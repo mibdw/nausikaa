@@ -1,0 +1,182 @@
+@mixin containerMixin(
+  $containerBackground,
+  $containerBorderColor,
+  $containerText,
+  $containerLinkColor,
+  $containerHeader
+) {
+  background-color: $containerBackground;
+  color: $containerText;
+  border: 1px solid $containerBorderColor;
+
+  a {
+    color: $containerLinkColor;
+    text-decoration: underline solid $containerLinkColor;
+
+    &:hover {
+      color: $containerText;
+      text-decoration: underline solid $containerLinkColor;
+    }
+
+    &:active {
+      color: $containerText;
+      text-decoration: underline solid $containerText;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $containerHeader;
+  }
+}
+
+.container {
+  @include containerMixin(
+    $mainBackground,
+    $mainLine,
+    $black,
+    $linkColor,
+    $black
+  );
+
+  margin: $paragraphSpacer 0;
+  padding: 0 1em 1em;
+  border-radius: 6px;
+  position: relative;
+
+  & > main {
+    padding: 0 1em 1em;
+  }
+
+  &.browser {
+    margin-top: calc(#{$paragraphSpacer} + 2.9em);
+    padding: 0 0 2em;
+    border-radius: 0;
+
+    &:before {
+      content: "";
+      display: block;
+      height: 2.9em;
+      position: absolute;
+      top: -2.9em;
+      left: -1px;
+      right: -1px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: $mainLine $mainLine $mainBackgroundLiteHover;
+      border-radius: 6px 6px 0 0;
+      background-color: $mainBackgroundLite;
+      background-image: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23eab4ae' /></svg>"),
+        url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23fbedb7' /></svg>"),
+        url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23abedc7' /></svg>");
+      background-position: 1em 0.9em, 2.7em 0.9em, 4.4em 0.9em;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -2.45em;
+      left: 6.5em;
+      right: 1em;
+      height: 2em;
+      padding: 0.2em 1em;
+      border: 1px solid $mainBackgroundLiteHover;
+      background-color: $white;
+      border-radius: 3px;
+      cursor: text;
+    }
+
+    & > .url {
+      color: $mainBackgroundLiteHover;
+      background-color: transparent;
+      font-family: $utilityText;
+      position: absolute;
+      top: -2.45em;
+      left: 6.5em;
+      right: 1em;
+      height: 2em;
+      padding: 0.2em 1em;
+      z-index: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: text;
+    }
+  }
+
+  &.yellow {
+    @include containerMixin(
+      $yellowBackground,
+      $yellowBorder,
+      $black,
+      $yellowActive,
+      $yellowHeader
+    );
+  }
+
+  &.blue {
+    @include containerMixin(
+      $blueBackground,
+      $blueBorder,
+      $black,
+      $blueActive,
+      $blueHeader
+    );
+  }
+
+  &.red {
+    @include containerMixin(
+      $redBackground,
+      $redBorder,
+      $black,
+      $redActive,
+      $redHeader
+    );
+  }
+
+  &.green {
+    @include containerMixin(
+      $greenBackground,
+      $greenBorder,
+      $black,
+      $greenActive,
+      $greenHeader
+    );
+  }
+
+  &.purple {
+    @include containerMixin(
+      $purpleBackground,
+      $purpleBorder,
+      $black,
+      $purpleActive,
+      $purpleHeader
+    );
+  }
+
+  &.orange {
+    @include containerMixin(
+      $orangeBackground,
+      $orangeBorder,
+      $black,
+      $orangeActive,
+      $orangeHeader
+    );
+  }
+
+  &.gray {
+    @include containerMixin(
+      $grayBackground,
+      $grayBorder,
+      $black,
+      $grayActive,
+      $grayHeader
+    );
+  }
+}

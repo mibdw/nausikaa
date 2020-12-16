@@ -1,0 +1,967 @@
+<main class="examples order-tracing">
+
+  <div class="products list">
+
+    <div class="controls">
+      <span>
+        Sort:
+        <div class="dropdown">
+          <a tabindex="">Title (A-Z)</a>
+          <nav class="panel arrow">
+            <ul>
+              <li class="active"><a href="">Title</a></li>
+              <li><a href="">Order date</a></li>
+              <li><a href="">Price</a></li>
+              <li><a href="">Invoice no.</a></li>
+              <li class="seperator"></li>
+              <li class="active"><a href="">Ascending</a></li>
+              <li><a href="">Descending</a></li>
+            </ul>
+          </nav>
+        </div>
+      </span>
+
+      <span>
+        Bulk actions:
+        <div class="dropdown">
+          <a tabindex="">No selection</a>
+          <nav class="panel arrow">
+            <ul>
+              <li><a href="">Select all</a></li>
+              <li><a href="">Deselect all</a></li>
+              <li class="seperator"></li>
+              <li><a href="">Print</a></li>
+              <li><a href="">E-mail</a></li>
+              <li><a href="">Save as PDF</a></li>
+              <li><a href="">Save as CSV</a></li>
+              <li><a href="">Save as MARC21</a></li>
+              <li class="seperator"></li>
+              <li><a href="">Claim</a></li>
+              <li><a href="">Cancel</a></li>
+            </ul>
+          </nav>
+        </div>
+      </span>
+
+      <div class="spacer"></div>
+
+      <ul class="pagination">
+        <li>
+          <a href="">
+            <svg style="transform: rotate(90deg)">
+              <use xlink:href="/icons/icons.svg#chevron-down"></use>
+            </svg>
+          </a>
+        </li><li>
+          <select>
+            <option value="1">1 of 21</option>
+            <option value="2">2 of 21</option>
+            <option value="3">3 of 21</option>
+            <option value="4">4 of 21</option>
+            <option value="5">5 of 21</option>
+            <option value="6">6 of 21</option>
+            <option value="7" selected>7 of 21</option>
+            <option value="8">8 of 21</option>
+            <option value="9">9 of 21</option>
+            <option value="10">10 of 21</option>
+            <option value="11">11 of 21</option>
+            <option value="12">12 of 21</option>
+            <option value="13">13 of 21</option>
+            <option value="14">14 of 21</option>
+            <option value="15">15 of 21</option>
+            <option value="16">16 of 21</option>
+            <option value="17">17 of 21</option>
+            <option value="18">18 of 21</option>
+            <option value="19">19 of 21</option>
+            <option value="20">20 of 21</option>
+            <option value="21">21 of 21</option>
+          </select>
+        </li><li>
+          <a href="">
+            <svg style="transform: rotate(-90deg)">
+              <use xlink:href="/icons/icons.svg#chevron-down"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+    <input type="checkbox" id="product-01">
+    <div class="product">
+
+      <div class="product-image">
+        <a href="">
+          <img src="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg" alt="">
+        </a>
+      </div>
+
+      <div class="product-metadata">
+        <h5 class="product-title">        
+          <a href="" title="Possimus, fugiat quia distinctio optio amet magnam dignissimos eveniet quod eos">Possimus, fugiat quia distinctio optio amet magnam dignissimos eveniet quod eos</a>
+        </h5>
+        <div class="product-author">
+          <a href="">Valerie Steele</a>
+        </div>
+
+        <h5><span class="tag red">Availability</span></h5>
+        
+      </div>
+      
+
+      <div class="product-controls">
+
+        <h5 class="price">&#8364;12.95</h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-01">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>
+
+    <input type="checkbox" id="product-02">
+    <div class="product">
+
+      <div class="product-image ">
+        <a href="">
+          <img src="/images/sandrart.jpg" alt="">
+        </a>
+      </div>
+
+      <div class="product-metadata">
+        <h5 class="product-title">      
+          <a href="" title="Magnam, eos architecto voluptatibus ratione excepturi voluptates. Vel incidunt quis esse tempore">Magnam, eos architecto voluptatibus ratione excepturi voluptates. Vel incidunt quis esse tempore</a>
+        </h5>
+
+        <div class="product-author">
+          <a href="">Guillaume Bounoure</a>, <a href="">Chloe Genevaux</a>
+        </div>
+
+        <h5><span class="tag green">Availability</span></h5>
+      </div>
+
+      <div class="product-controls">
+
+        <h5><span class="price">&dollar;112.50</span></h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-02">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>
+
+    <input type="checkbox" id="product-03">    
+    <div class="product">
+
+      <div class="product-image">
+        <ul class="gallery slideshow image-cover">
+          <li>
+            <input type="radio" name="sse" id="ss1e" checked>
+            <label for="ss1e"></label>
+            <a href="/images/dunlop.jpg">        
+              <img src="/images/dunlop.jpg" alt="">
+            </a>
+          </li>
+          <li>
+            <input type="radio" name="sse" id="ss2e">
+            <label for="ss2e"></label>
+            <a href="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg">
+              <img src="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg" alt="">
+            </a>
+          </li>
+          <li>
+            <input type="radio" name="sse" id="ss3e">
+            <label for="ss3e"></label>
+            <a href="/images/1878_Frederick_Leighton_-_Nausicaa.jpg"> 
+              <img src="/images/1878_Frederick_Leighton_-_Nausicaa.jpg" alt="" class="left-top">
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="product-metadata">
+        <h5 class="product-title">        
+          <a href="" title="Itaque nisi dignissimos ullam perferendis, odit eveniet odio obcaecati qui ea! ">Itaque nisi dignissimos ullam perferendis, odit eveniet odio obcaecati qui ea! </a>
+        </h5>
+
+        <div class="product-author">
+          <a href="">Moises Puente</a>, <a href="">Pedro Bandeira</a>, <a href="">Tibor Joanelly</a>, <a href="">Kersten Geers</a>, <a href="">Ricardo Loureiro</a>
+        </div>
+
+        <h5><span class="tag blue">Availability</span></h5>
+      </div>
+
+      <div class="product-controls">
+
+        <h5 class="price">&#8377;99.95</h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-03">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>    
+
+    <input type="checkbox" id="product-04">       
+    <div class="product">
+
+      <div class="product-image image-contain">
+        <a href="">
+          <img src="/images/1878_Frederick_Leighton_-_Nausicaa.jpg" alt="">
+        </a>
+      </div>
+      
+      <div class="product-metadata">
+        <h5 class="product-title">        
+          <a href="" title="Molestiae facere quasi aut ut">Molestiae facere quasi aut ut</a>
+        </h5>
+
+        <div class="product-author">
+          <a href="">Helen Thomas</a>, <a href="">Katrien Vandermarliere</a>, <a href="">Javier Fernández Contreras</a>
+        </div>
+
+        <h5><span class="tag orange">Availability</span></h5>
+      </div>
+
+      <div class="product-controls">
+
+        <h5 class="price">&yen;4800.00</h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-04">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>
+
+    <input type="checkbox" id="product-05">       
+    <div class="product">
+      
+      <div class="product-image">
+        <a href="">
+          <img src="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg" alt="">
+        </a>
+      </div>
+
+      <div class="product-metadata">
+        <h5 class="product-title">        
+          <a href="" title="Possimus, fugiat quia distinctio optio amet magnam dignissimos eveniet quod eos">Possimus, fugiat quia distinctio optio amet magnam dignissimos eveniet quod eos</a>
+        </h5>
+        <div class="product-author">
+          <a href="">Valerie Steele</a>
+        </div>
+
+        <h5><span class="tag red">Availability</span></h5>
+        
+      </div>
+      
+
+      <div class="product-controls">
+
+        <h5 class="price">&#8364;12.95</h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-05">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>
+
+    <input type="checkbox" id="product-06">       
+    <div class="product">
+
+      <div class="product-image ">
+        <a href="">
+          <img src="/images/sandrart.jpg" alt="">
+        </a>
+      </div>
+
+      <div class="product-metadata">
+        <h5 class="product-title">      
+          <a href="" title="Magnam, eos architecto voluptatibus ratione excepturi voluptates. Vel incidunt quis esse tempore">Magnam, eos architecto voluptatibus ratione excepturi voluptates. Vel incidunt quis esse tempore</a>
+        </h5>
+
+        <div class="product-author">
+          <a href="">Guillaume Bounoure</a>, <a href="">Chloe Genevaux</a>
+        </div>
+
+        <h5><span class="tag green">Availability</span></h5>
+      </div>
+
+      <div class="product-controls">
+
+        <h5><span class="price">&dollar;112.50</span></h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-06">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>
+    
+
+    <input type="checkbox" id="product-07">   
+    <div class="product">
+
+      <div class="product-image">
+        <ul class="gallery slideshow image-cover">
+          <li>
+            <input type="radio" name="ssxe" id="ssx1e" checked>
+            <label for="ssx1e"></label>
+            <a href="/images/dunlop.jpg">        
+              <img src="/images/dunlop.jpg" alt="">
+            </a>
+          </li>
+          <li>
+            <input type="radio" name="ssxe" id="ssx2e">
+            <label for="ssx2e"></label>
+            <a href="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg">
+              <img src="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg" alt="">
+            </a>
+          </li>
+          <li>
+            <input type="radio" name="ssxe" id="ssx3e">
+            <label for="ssx3e"></label>
+            <a href="/images/1878_Frederick_Leighton_-_Nausicaa.jpg"> 
+              <img src="/images/1878_Frederick_Leighton_-_Nausicaa.jpg" alt="" class="left-top">
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="product-metadata">
+        <h5 class="product-title">        
+          <a href="" title="Itaque nisi dignissimos ullam perferendis, odit eveniet odio obcaecati qui ea! ">Itaque nisi dignissimos ullam perferendis, odit eveniet odio obcaecati qui ea! </a>
+        </h5>
+
+        <div class="product-author">
+          <a href="">Moises Puente</a>, <a href="">Pedro Bandeira</a>, <a href="">Tibor Joanelly</a>, <a href="">Kersten Geers</a>, <a href="">Ricardo Loureiro</a>
+        </div>
+
+        <h5><span class="tag blue">Availability</span></h5>
+      </div>
+
+      <div class="product-controls">
+
+        <h5 class="price">&#8377;99.95</h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-07">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>    
+    
+    <input type="checkbox" id="product-08">   
+    <div class="product">
+
+      <div class="product-image image-contain">
+        <a href="">
+          <img src="/images/1878_Frederick_Leighton_-_Nausicaa.jpg" alt="">
+        </a>
+      </div>
+      
+      <div class="product-metadata">
+        <h5 class="product-title">        
+          <a href="" title="Molestiae facere quasi aut ut">Molestiae facere quasi aut ut</a>
+        </h5>
+
+        <div class="product-author">
+          <a href="">Helen Thomas</a>, <a href="">Katrien Vandermarliere</a>, <a href="">Javier Fernández Contreras</a>
+        </div>
+
+        <h5><span class="tag orange">Availability</span></h5>
+      </div>
+
+      <div class="product-controls">
+
+        <h5 class="price">&yen;4800.00</h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-08">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>
+    
+    <input type="checkbox" id="product-09">   
+    <div class="product">
+      
+      <div class="product-image">
+        <a href="">
+          <img src="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg" alt="">
+        </a>
+      </div>
+
+      <div class="product-metadata">
+        <h5 class="product-title">        
+          <a href="" title="Possimus, fugiat quia distinctio optio amet magnam dignissimos eveniet quod eos">Possimus, fugiat quia distinctio optio amet magnam dignissimos eveniet quod eos</a>
+        </h5>
+        <div class="product-author">
+          <a href="">Valerie Steele</a>
+        </div>
+
+        <h5><span class="tag red">Availability</span></h5>
+        
+      </div>
+      
+
+      <div class="product-controls">
+
+        <h5 class="price">&#8364;12.95</h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-09">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>
+
+
+    <input type="checkbox" id="product-10">       
+    <div class="product">
+
+      <div class="product-image ">
+        <a href="">
+          <img src="/images/sandrart.jpg" alt="">
+        </a>
+      </div>
+
+      <div class="product-metadata">
+        <h5 class="product-title">      
+          <a href="" title="Magnam, eos architecto voluptatibus ratione excepturi voluptates. Vel incidunt quis esse tempore">Magnam, eos architecto voluptatibus ratione excepturi voluptates. Vel incidunt quis esse tempore</a>
+        </h5>
+
+        <div class="product-author">
+          <a href="">Guillaume Bounoure</a>, <a href="">Chloe Genevaux</a>
+        </div>
+
+        <h5><span class="tag green">Availability</span></h5>
+      </div>
+
+      <div class="product-controls">
+
+        <h5><span class="price">&dollar;112.50</span></h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-10">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>
+
+
+    <input type="checkbox" id="product-11">       
+    <div class="product">
+
+      <div class="product-image">
+        <ul class="gallery slideshow image-cover">
+          <li>
+            <input type="radio" name="ssze" id="ssz1e" checked>
+            <label for="ssz1e"></label>
+            <a href="/images/dunlop.jpg">        
+              <img src="/images/dunlop.jpg" alt="">
+            </a>
+          </li>
+          <li>
+            <input type="radio" name="ssze" id="ssz2e">
+            <label for="ssz2e"></label>
+            <a href="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg">
+              <img src="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg" alt="">
+            </a>
+          </li>
+          <li>
+            <input type="radio" name="ssze" id="ssz3e">
+            <label for="ssz3e"></label>
+            <a href="/images/1878_Frederick_Leighton_-_Nausicaa.jpg"> 
+              <img src="/images/1878_Frederick_Leighton_-_Nausicaa.jpg" alt="" class="left-top">
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="product-metadata">
+        <h5 class="product-title">        
+          <a href="" title="Itaque nisi dignissimos ullam perferendis, odit eveniet odio obcaecati qui ea! ">Itaque nisi dignissimos ullam perferendis, odit eveniet odio obcaecati qui ea! </a>
+        </h5>
+
+        <div class="product-author">
+          <a href="">Moises Puente</a>, <a href="">Pedro Bandeira</a>, <a href="">Tibor Joanelly</a>, <a href="">Kersten Geers</a>, <a href="">Ricardo Loureiro</a>
+        </div>
+
+        <h5><span class="tag blue">Availability</span></h5>
+      </div>
+
+      <div class="product-controls">
+
+        <h5 class="price">&#8377;99.95</h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-11">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>    
+
+    <input type="checkbox" id="product-12">       
+    <div class="product">
+
+      <div class="product-image image-contain">
+        <a href="">
+          <img src="/images/1878_Frederick_Leighton_-_Nausicaa.jpg" alt="">
+        </a>
+      </div>
+      
+      <div class="product-metadata">
+        <h5 class="product-title">        
+          <a href="" title="Molestiae facere quasi aut ut">Molestiae facere quasi aut ut</a>
+        </h5>
+
+        <div class="product-author">
+          <a href="">Helen Thomas</a>, <a href="">Katrien Vandermarliere</a>, <a href="">Javier Fernández Contreras</a>
+        </div>
+
+        <h5><span class="tag orange">Availability</span></h5>
+      </div>
+
+      <div class="product-controls">
+
+        <h5 class="price">&yen;4800.00</h5>
+
+        <a href="">Claim order</a>
+        <label class="link product-selector" for="product-12">
+          <span class="deselect">Deselect</span>
+          <span class="select">Select</span>
+        </label>
+      </div>
+    </div>
+
+
+
+    <div class="controls">
+      <span>
+        Sort:
+        <div class="dropdown">
+          <a tabindex="">Title (A-Z)</a>
+          <nav class="panel arrow bottom center">
+            <ul>
+              <li class="active"><a href="">Title</a></li>
+              <li><a href="">Order date</a></li>
+              <li><a href="">Price</a></li>
+              <li><a href="">Invoice no.</a></li>
+              <li class="seperator"></li>
+              <li class="active"><a href="">Ascending</a></li>
+              <li><a href="">Descending</a></li>
+            </ul>
+          </nav>
+        </div>
+      </span>
+
+      <span>
+        Bulk actions:
+        <div class="dropdown">
+          <a tabindex="">No selection</a>
+          <nav class="panel arrow bottom center">
+            <ul>
+              <li><a href="">Select all</a></li>
+              <li><a href="">Deselect all</a></li>
+              <li class="seperator"></li>
+              <li><a href="">Print</a></li>
+              <li><a href="">E-mail</a></li>
+              <li><a href="">Save as PDF</a></li>
+              <li><a href="">Save as CSV</a></li>
+              <li><a href="">Save as MARC21</a></li>
+              <li class="seperator"></li>
+              <li><a href="">Claim</a></li>
+              <li><a href="">Cancel</a></li>
+            </ul>
+          </nav>
+        </div>
+      </span>
+
+      <div class="spacer"></div>
+
+      <ul class="pagination">
+        <li>
+          <a href="">
+            <svg style="transform: rotate(90deg)">
+              <use xlink:href="/icons/icons.svg#chevron-down"></use>
+            </svg>
+          </a>
+        </li><li>
+          <select>
+            <option value="1">1 of 21</option>
+            <option value="2">2 of 21</option>
+            <option value="3">3 of 21</option>
+            <option value="4">4 of 21</option>
+            <option value="5">5 of 21</option>
+            <option value="6">6 of 21</option>
+            <option value="7" selected>7 of 21</option>
+            <option value="8">8 of 21</option>
+            <option value="9">9 of 21</option>
+            <option value="10">10 of 21</option>
+            <option value="11">11 of 21</option>
+            <option value="12">12 of 21</option>
+            <option value="13">13 of 21</option>
+            <option value="14">14 of 21</option>
+            <option value="15">15 of 21</option>
+            <option value="16">16 of 21</option>
+            <option value="17">17 of 21</option>
+            <option value="18">18 of 21</option>
+            <option value="19">19 of 21</option>
+            <option value="20">20 of 21</option>
+            <option value="21">21 of 21</option>
+          </select>
+        </li><li>
+          <a href="">
+            <svg style="transform: rotate(-90deg)">
+              <use xlink:href="/icons/icons.svg#chevron-down"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <input type="checkbox" id="sidebar-toggle">  
+  <label for="sidebar-toggle">
+    <svg class="icon menu">
+      <use xlink:href="/icons/icons.svg#sidebar-toggle"></use>
+    </svg>
+    <svg class="icon close">
+      <use xlink:href="/icons/icons.svg#clear"></use>
+    </svg>
+  </label>
+    
+  </label>
+  <aside class="filters">
+
+    <form action="" class="suggestions" style="margin-top: 0;">
+      <div class="group">
+        <input type="text" placeholder="Search orders">
+        <button>
+          <svg class="icon">
+            <use xlink:href="/icons/icons.svg#search"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="panel">
+        <ul>
+          <li><a href="">Facere reprehenderit voluptatibus</a></li>
+          <li><a href="">Lorem ipsum dolor sit amet</a></li>
+          <li><a href="">Deleniti aut labore, consequatur</a></li>
+          <li><a href="">Repellendus tenetur</a></li>
+          <li><a href="">Earum soluta eum cum iure atque</a></li>
+          <li><a href="">Facere reprehenderit voluptatibus</a></li>
+          <li><a href="">Earum soluta eum cum iure atque</a></li>
+          <li><a href="">Deleniti aut labore, consequatur</a></li>
+        </ul>
+      </div>
+    </form>
+    <small>
+      Nulla dolorum enim cumque eos quia sequi
+    </small>
+
+    <div class="panel gray">
+      <div class="header">Repellendus</div>
+      <ul class="checkboxes">
+        <li>
+          <input id="labelOne1" type="checkbox" checked="">
+          <label for="labelOne1">
+            <span>Lorem ipsum dolor sit amet <small>checked</small></span>
+            <span>314</span>
+          </label>
+        </li>
+        <li>
+          <input id="labelTwo1" type="checkbox">
+          <label for="labelTwo1">
+            <span>Consectetur adipisicing elit</span>
+            <span>65</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="labelThree1" type="checkbox">
+          <label for="labelThree1">
+            <span>Nulla dolorum enim cumque eos quia sequi</span>
+            <span>21</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="labelFive1" type="checkbox">
+          <label for="labelFive1">
+            <span>Ab explicabo laborum labore blanditiis a pariatur</span>
+            <span>765</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="labelSix1" type="checkbox">
+          <label for="labelSix1">
+            <span>Cum, animi provident quae autem</span>
+            <span>1243</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="labelFour1" type="checkbox" disabled="">
+          <label for="labelFour1">
+            <span>Numquam, voluptates possimus <small>disabled</small></span>
+            <span>0</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel expandable">
+      <input type="checkbox" id="jiskefet">
+      <div class="header">Numquam voluptates</div>
+      <ul class="checkboxes">
+        <li>
+          <input id="glabelSix1" type="checkbox">
+          <label for="glabelSix1">
+            <span>Cum, animi provident quae autem</span>
+            <span>123</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="glabelSeven1" type="checkbox">
+          <label for="glabelSeven1">
+            <span>Nulla dolorum enim cumque eos quia sequi</span>
+            <span>85</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="glabelEight1" type="checkbox">
+          <label for="glabelEight1">
+            <span>Ab explicabo laborum labore blanditiis a pariatur</span>
+            <span>826</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="glabelNine1" type="checkbox">
+          <label for="glabelNine1">
+            <span>Cum, animi provident quae autem</span>
+            <span>344</span>
+          
+        </label>
+        </li>
+        <li class="more">
+          <label for="jiskefet">
+            All options
+            <svg class="icon">
+              <use xlink:href="/icons/icons.svg#add-circle"></use>
+            </svg>
+          </label>
+        </li>
+        <li>
+          <input id="glabelOne1" type="checkbox">
+          <label for="glabelOne1">
+            <span>Lorem ipsum dolor sit amet</span>
+            <span>12</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="glabelTwo1" type="checkbox">
+          <label for="glabelTwo1">
+            <span>Consectetur adipisicing elit</span>
+            <span>31</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="glabelThree1" type="checkbox">
+          <label for="glabelThree1">
+            <span>Nulla dolorum enim cumque eos quia sequi</span>
+            <span>173</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="glabelFive1" type="checkbox">
+          <label for="glabelFive1">
+            <span>Ab explicabo laborum labore blanditiis a pariatur</span>
+            <span>7596</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="glabelFour1" type="checkbox" disabled="">
+          <label for="glabelFour1">
+            <span>Numquam, voluptates possimus <small>disabled</small></span>
+            <span>0</span>
+
+          </label>
+        </li>
+        <li class="less">
+          <label for="jiskefet">Less options</label>
+        </li>
+      </ul>
+    </div>
+
+    <ul class="radios buttons">
+      <li>
+        <input name="radio6" id="labelOne6" type="radio" checked="">
+        <label class="button" for="labelOne6">Numquam</label>
+      </li>
+      <li>
+        <input name="radio6" id="labelTwo6" type="radio">
+        <label class="button" for="labelTwo6">Explicabo</label>
+      </li>
+      <li>
+        <input name="radio6" id="labelThree6" type="radio">
+        <label class="button" for="labelThree6">Nulla</label>
+      </li>
+    </ul>
+    <small>
+      Nulla dolorum enim cumque eos quia sequi
+    </small>
+
+    <div class="panel yellow">
+      <div class="header">Dolorum enim cumque</div>
+      <ul class="radios">
+        <li>
+          <input id="zlabelSix1" type="radio" name="radio-gaga">
+          <label for="zlabelSix1">
+            <span>Cum, animi provident quae autem</span>
+            <span>123</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="zlabelSeven1" type="radio" name="radio-gaga">
+          <label for="zlabelSeven1">
+            <span>Nulla dolorum enim cumque eos quia sequi</span>
+            <span>85</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="zlabelEight1" type="radio" name="radio-gaga">
+          <label for="zlabelEight1">
+            <span>Ab explicabo laborum labore blanditiis a pariatur</span>
+            <span>826</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="zlabelNine1" type="radio" name="radio-gaga">
+          <label for="zlabelNine1">
+            <span>Cum, animi provident quae autem</span>
+            <span>344</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="zlabelOne1" type="radio" name="radio-gaga">
+          <label for="zlabelOne1">
+            <span>Lorem ipsum dolor sit amet</span>
+            <span>12</span>
+          
+        </label>
+       </li>
+      </ul>
+    </div>
+
+    <div class="panel blue">
+      <form action="" class="group">
+        <input type="search" placeholder="Filter by keyword">
+        <button class="primary">Apply</button>
+      </form>
+      <ul class="checkboxes">
+        <li>
+          <input id="hlabelSix1" type="checkbox">
+          <label for="hlabelSix1">
+            <span>Cum, animi provident quae autem</span>
+            <span>123</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="hlabelSeven1" type="checkbox">
+          <label for="hlabelSeven1">
+            <span>Nulla dolorum enim cumque eos quia sequi</span>
+            <span>85</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="hlabelEight1" type="checkbox">
+          <label for="hlabelEight1">
+            <span>Ab explicabo laborum labore blanditiis a pariatur</span>
+            <span>826</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="hlabelNine1" type="checkbox">
+          <label for="hlabelNine1">
+            <span>Cum, animi provident quae autem</span>
+            <span>344</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="hlabelOne1" type="checkbox">
+          <label for="hlabelOne1">
+            <span>Lorem ipsum dolor sit amet</span>
+            <span>12</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="hlabelTwo1" type="checkbox">
+          <label for="hlabelTwo1">
+            <span>Consectetur adipisicing elit</span>
+            <span>31</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="hlabelThree1" type="checkbox">
+          <label for="hlabelThree1">
+            <span>Nulla dolorum enim cumque eos quia sequi</span>
+            <span>173</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="hlabelFive1" type="checkbox">
+          <label for="hlabelFive1">
+            <span>Ab explicabo laborum labore blanditiis a pariatur</span>
+            <span>7596</span>
+          
+        </label>
+        </li>
+        <li>
+          <input id="hlabelFour1" type="checkbox" disabled="">
+          <label for="hlabelFour1">
+            <span>Numquam, voluptates possimus <small>disabled</small></span>
+            <span>0</span>
+
+          </label>
+        </li>
+      </ul>
+    </div>
+  
+    <a href="">Advanced search</a><br>
+  </aside>
+
+</main>

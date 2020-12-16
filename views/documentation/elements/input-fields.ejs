@@ -1,0 +1,763 @@
+<header>
+  <h1>Input fields</h1>
+</header>
+
+<section>
+  <p>Eos sunt perspiciatis sed totam beatae possimus consequatur repellat dignissimos unde quae aperiam nulla, doloribus id aut. Eos inventore, expedita! Maiores aperiam reprehenderit quaerat repellat enim illo, cumque. Iusto, quaerat?</p>
+</section>
+
+<section id="text-fields">
+  <header>
+    <h2>Text fields</h2>
+  </header>
+
+  <p>Excepturi, cum eaque nam! Laudantium, corporis rem? Odio obcaecati mollitia architecto sunt, accusantium ipsa omnis temporibus, voluptates autem quisquam corrupti consectetur ea aspernatur doloribus esse non magnam harum adipisci aperiam!</p>
+  <p>Sed totam beatae possimus consequatur repellat dignissimos unde quae aperiam nulla, doloribus id aut. Eos inventore, expedita! Maiores aperiam reprehenderit quaerat repellat enim illo, cumque. Iusto, quaerat?</p>
+
+  <form class="basic-form">
+    
+    <label for="normal">Text</label>
+    <input id="normal" type="text" placeholder="Placeholder text">
+    
+    <label for="disabled">Disabled</label>
+    <input id="disabled" disabled="disabled" type="text" placeholder="Disabled placeholder text">
+    
+    <label for="readonly">Read only</label>
+    <input id="readonly" readonly="readonly" type="text" value="Read only text">
+    
+    <label for="required">Required</label>
+    <input id="required" required="" type="text" placeholder="Required placeholder text">
+    <small class="help error">Error messages where appropriate</small>
+    
+    <label for="password">Password</label>
+    <input id="password" type="password">
+    <small class="help">Help messages where appropriate.</small>
+    
+    <label for="tel">Telephone</label>
+    <input id="tel" type="tel">
+    
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="name@example.com">
+    
+    <label for="url">URL</label>
+    <input id="url" type="url" placeholder="http://example.com">
+    
+    <label for="search">Search</label>
+    <input id="search" type="search">
+    
+    <label for="date">Date</label>
+    <input id="date" type="date">
+    
+    <label for="time">Time</label>
+    <input id="time" type="time">
+    
+    <label for="datetime-local">Datetime local</label>
+    <input id="datetime-local" type="datetime-local"><small class="help">Help messages where appropriate.</small>
+    
+    <label for="week">Week</label>
+    <input id="week" type="week">
+    
+    <label for="month">Month</label>
+    <input id="month" type="month">
+    
+    <label for="number">Number</label>
+    <input id="number" type="number">
+  </form>
+
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-input-regular">
+    <label for="code-input-regular" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;input type="text"&gt;
+&lt;input type="text" disabled&gt;
+&lt;input type="text" readonly&gt;
+&lt;input type="text" required&gt;
+&lt;input type="password"&gt;
+&lt;input type="tel"&gt;
+&lt;input type="email"&gt;
+&lt;input type="url"&gt;
+&lt;input type="search"&gt;
+&lt;input type="date"&gt;
+&lt;input type="time"&gt;
+&lt;input type="datetime-local"&gt;
+&lt;input type="week"&gt;
+&lt;input type="month"&gt;
+&lt;input type="number"&gt;</code></pre>
+  
+  </div>
+
+</section>
+
+<section id="select-fields">
+  <header>
+    <h2>Select fields</h2>
+  </header>
+
+  <div class="basic-form">
+
+    <label for="select-regular">Select element</label>
+    <select id="select-regular">
+      <option value=""></option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <small class="help">Help messages where appropriate.</small>
+
+    <br>
+
+    <label for="select-disabled">Disabled select element</label>
+    <select id="select-disabled" disabled="disabled">
+      <option value=""></option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+
+    <br>
+
+    <label for="multiple">Multipe</label>
+    <select id="multiple" multiple="multiple">
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <small class="help">Help messages where appropriate.</small>
+
+    <br>
+
+    <label for="multiple-disabled">Multipe disabled</label>
+    <select id="multiple-disabled" disabled="disabled" multiple="multiple">
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+  </div>
+
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-select-regular">
+    <label for="code-select-regular" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;select&gt;
+  &lt;option value="..."&gt;...&lt;/option&gt;
+  &lt;option value="..."&gt;...&lt;/option&gt;
+  &lt;option value="..."&gt;...&lt;/option&gt;
+&lt;/select&gt;
+&lt;select disabled&gt;...&lt;/select&gt;
+&lt;select multiple&gt;
+  &lt;option value="..."&gt;...&lt;/option&gt;
+  &lt;option value="..."&gt;...&lt;/option&gt;
+  &lt;option value="..."&gt;...&lt;/option&gt;
+&lt;/select&gt;
+&lt;select disabled multiple&gt;...&lt;/select&gt;</code></pre>
+  
+  </div>
+
+</section>
+
+<section id="textarea">
+  <header>
+    <h2>Textarea</h2>
+  </header>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est ipsum, at, omnis, animi recusandae vitae consequatur voluptate amet quaerat similique nulla nemo minima hic dolor sint voluptas aperiam libero autem?</p>
+
+  <div class="basic-form">
+    <label for="textarea">Text area</label>
+    <textarea id="textarea"></textarea>
+    <small class="help">Help messages where appropriate.</small>
+
+    <label for="textarea-disabled">Disabled</label>
+    <textarea disabled="disabled" id="textarea-disabled"></textarea>
+
+  </div>
+
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-textareas">
+    <label for="code-textareas" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;textarea&gt;&lt;/textarea&gt;
+&lt;textarea disabled&gt;&lt;/textarea&gt;</code></pre>
+  
+  </div>
+  
+</section>
+
+<section id="attached-buttons">
+
+  <header>
+    <h2>Attached buttons</h2>
+  </header>
+
+  <div class="basic-form">
+
+    <label for="append-button">Append button</label>
+    <div class="group">
+      <input id="append-button" type="text">
+      <button class="positive">
+        <svg class="icon">
+          <use xlink:href="/icons/icons.svg#star"></use>
+        </svg>
+      </button>
+    </div>
+    <small class="help">Help messages where appropriate.</small>
+
+    <label for="multiple-append">Multiple append</label>
+    <div class="group">
+      <input id="multiple-append" type="text">
+      <button>Neutral</button>
+      <button class="secondary">Secondary</button>
+    </div>
+
+    <label for="append-prepend">Prepend button</label>
+    <div class="group">
+      <button class="primary">Front</button>
+      <input id="append-prepend" type="text">
+      <button class="negative">Back</button>
+    </div>
+
+    <label for="append-button-select">Append select</label>
+    <div class="group">
+      <select id="append-button-select">
+        <option value=""></option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <button class="secondary`">
+        <svg class="icon">
+          <use xlink:href="/icons/icons.svg#mail"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-input-buttons">
+    <label for="code-input-buttons" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;div class="group"&gt;
+  &lt;input type="text"&gt;
+  &lt;button class="positive"&gt;
+    &lt;svg class="icon"&gt;...&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="group"&gt;
+  &lt;input type="text"&gt;
+  &lt;button&gt;...&lt;/button&gt;
+  &lt;button class="secondary"&gt;...&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="group"&gt;
+  &lt;button class="primary"&gt;...&lt;/button&gt;
+  &lt;input type="text"&gt;
+  &lt;button class="negative"&gt;...&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="group"&gt;
+  &lt;select&gt;...&lt;/select&gt;
+  &lt;button class="positive"&gt;
+    &lt;svg class="icon"&gt;...&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  
+  </div>
+
+</section>
+<section id="attached-labels">
+
+  <header>
+    <h2>Attached labels</h2>
+  </header>
+
+  <div class="basic-form">
+
+    <label for="append-label">Append label</label>
+    <div class="group">
+      <input id="append-label" type="text">
+      <label for="append-label">Appended label</label>
+    </div>
+
+    <label for="prepend-label">Prepend label</label>
+    <div class="group">
+      <label for="prepend-label">Prepended label</label>
+      <input id="prepend-label" type="text">
+    </div>
+
+    <label for="append-label-select">Append label</label>
+  
+    <div class="group">
+      <select id="append-label-select">
+        <option value=""></option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <label for="append-label-select">Appended select</label>
+    </div>
+  </div>
+
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-input-labels">
+    <label for="code-input-labels" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;div class="group"&gt;
+  &lt;input type="text"&gt;
+  &lt;label for="..."&gt;Appended label&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="group"&gt;
+  &lt;label for="..."&gt;Prepended label&lt;/label&gt;
+  &lt;input type="text"&gt;
+&lt;/div&gt;
+&lt;div class="group"&gt;
+  &lt;select&gt;...&lt;/select&gt;
+  &lt;label for="..."&gt;Appended label&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+  
+  </div>
+
+</section>
+<section id="icons">
+
+  <header>
+    <h2>Icons</h2>
+  </header>
+
+  <div class="basic-form">
+    <label for="append-icon">Append icon</label>
+    <div class="group">
+      <input id="append-icon" class="append-icon" type="text">
+      <svg class="icon">
+        <use xlink:href="/icons/icons.svg#star"></use>
+      </svg>
+    </div>
+    <label for="prepend-icon">Prepend icon</label>
+
+    <div class="group">
+      <svg class="icon">
+        <use xlink:href="/icons/icons.svg#star"></use>
+      </svg>
+      <input id="prepend-icon" class="prepend-icon" type="text">
+    </div>
+
+    <label for="multiple-icon">Multiple icon</label>
+
+    <div class="group">
+      <svg class="icon">
+        <use xlink:href="/icons/icons.svg#mail"></use>
+      </svg>
+      <input id="multiple-icon" class="append-icon prepend-icon" type="text">
+      <svg class="icon">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </div>
+
+    <label for="prepend-icon-select">Prepend select</label>
+    <div class="group">
+      <svg class="icon">
+        <use xlink:href="/icons/icons.svg#cart"></use>
+      </svg>
+      <select id="prepend-icon-select" class="prepend-icon">
+        <option value=""></option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+    </div>
+
+  </div>
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-input-icons">
+    <label for="code-input-icons" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;div class="group"&gt;
+  &lt;input type="text" class="append-icon"&gt;
+  &lt;svg class="icon"&gt;...&lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;div class="group"&gt;
+  &lt;svg class="icon"&gt;...&lt;/svg&gt;
+  &lt;input type="text" class="prepend-icon"&gt;
+&lt;/div&gt;
+
+&lt;div class="group"&gt;
+  &lt;svg class="icon"&gt;...&lt;/svg&gt;
+  &lt;input type="text" class="prepend-icon append-icon"&gt;
+  &lt;svg class="icon"&gt;...&lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;div class="group"&gt;
+  &lt;select class="append-icon"&gt;...&lt;/select&gt;
+  &lt;svg class="icon"&gt;...&lt;/svg&gt;
+&lt;/div&gt;</code></pre>
+  
+  </div>
+
+</section>
+<section id="mixed">
+
+  <header>
+    <h2>Mixed</h2>
+  </header>
+
+  <div class="basic-form">
+    
+    <label for="mixed-group">Mixed group</label>
+    <div class="group">
+      <label for="mixed-group">
+        <svg class="icon">
+          <use xlink:href="/icons/icons.svg#star"></use>
+        </svg>
+      </label>
+      <svg class="icon">
+        <use xlink:href="/icons/icons.svg#mail"></use>
+      </svg>
+      <input id="mixed-group" class="prepend-icon" type="email" placeholder="info@example.com">
+      <button class="primary">Subscribe</button>
+      <button class="secondary">
+        <svg class="icon">
+          <use xlink:href="/icons/icons.svg#running"></use>
+        </svg>
+      </button>
+
+    </div>
+
+    <label for="first-name">Multiple input</label>
+    <div class="group">
+      <input id="first-name" type="text" placeholder="First name">
+      <input id="last-name" type="text" placeholder="Last name">
+      <button>Submit</button>
+    </div>
+    <label for="mixed-group-select">Mixed group</label>
+    <div class="group">
+      <label for="mixed-group-select">
+        <svg class="icon">
+          <use xlink:href="/icons/icons.svg#star"></use>
+        </svg>
+      </label>
+      <svg class="icon">
+        <use xlink:href="/icons/icons.svg#star"></use>
+      </svg>
+      <select class="prepend-icon" id="mixed-group-select">
+        <option value=""></option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <button class="primary">Subscribe</button>
+      <button class="secondary">
+        <svg class="icon">
+          <use xlink:href="/icons/icons.svg#star"></use>
+        </svg>
+      </button>
+    </div>
+
+    <label for="first-select">Multiple select</label>
+    <div class="group">
+      <select id="first-select">
+        <option value=""></option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <select>
+        <option value=""></option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <button>Submit</button>
+    </div>
+
+  </div>
+
+  <div class="code-example">
+  
+    <input type="checkbox" id="code-input-mixed">
+    <label for="code-input-mixed" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;div class="group"&gt;
+  &lt;label for="..."&gt;&lt;svg class="icon"&gt;...&lt;/svg&gt;&lt;/label&gt;
+  &lt;svg class="icon"&gt;...&lt;/svg&gt;
+  &lt;input type="email" class="prepend-icon"&gt;
+  &lt;button class="primary"&gt;...&lt;/button&gt;
+  &lt;button class="secondary"&gt;&lt;svg class="icon"&gt;...&lt;/svg&gt;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="group"&gt;
+  &lt;input type="text"&gt;
+  &lt;input type="text"&gt;
+  &lt;button&gt;...&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="group"&gt;
+  &lt;label for="..."&gt;&lt;svg class="icon"&gt;...&lt;/svg&gt;&lt;/label&gt;
+  &lt;svg class="icon"&gt;...&lt;/svg&gt;
+  &lt;select class="prepend-icon"&gt;...&lt;/select&gt;
+  &lt;button class="primary"&gt;...&lt;/button&gt;
+  &lt;button class="secondary"&gt;&lt;svg class="icon"&gt;...&lt;/svg&gt;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="group"&gt;
+  &lt;select&gt;...&lt;/select&gt;
+  &lt;select&gt;...&lt;/select&gt;
+  &lt;button&gt;...&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+  
+  </div>
+
+</section>  
+<section id="file-upload">
+  <header>
+    <h2>File upload</h2>
+  </header>
+
+  <p>Under construction!</p>
+
+  <input type="file" name="upload" id="upload">
+  <label for="upload" class="button">
+    <span class="label">
+      <svg class="icon">
+        <use xlink:href="/icons/icons.svg#upload"></use>
+      </svg>
+    </span>
+    File upload
+  </label>
+
+  <div class="code-example">
+  
+    <input type="checkbox" id="code-input-file">
+    <label for="code-input-file" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;input type="file" id="..."&gt;
+&lt;label for="..."&gt;...&lt;/label&gt;</code></pre>
+  
+  </div>
+
+</section>
+<section id="suggestions">
+  <header>
+    <h2>Suggestions</h2>
+  </header>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus aspernatur eius impedit rerum id, quaerat nisi beatae unde doloribus inventore nam omnis vel vitae, voluptas neque tempora magnam nesciunt, iusto.</p>
+
+  <div class="basic-form">
+
+    <label for="suggestions-1">Suggestions</label>
+    <div class="suggestions focus-within">
+      <input type="search" id="suggestions-1" class="prepend-icon" value="Search term (expanded)">
+      <div class="panel">
+        <ul>
+          <li><a href="">Lorem ipsum dolor sit amet</a></li>
+          <li><a href="">Earum soluta eum cum iure atque</a></li>
+          <li><a href="">Facere reprehenderit voluptatibus</a></li>
+          <li><a href="">Deleniti aut labore, consequatur</a></li>
+          <li><a href="">Repellendus tenetur</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <label for="suggestions-4" style="margin-top: 12em;">Bottom</label>
+    <div class="suggestions" style="margin-top: 12em;">
+      <input type="search" value="Suggestions to bottom (default)" id="suggestions-4">
+      <div class="panel">
+        <ul>
+          <li><a href="">Lorem ipsum dolor sit amet</a></li>
+          <li><a href="">Earum soluta eum cum iure atque</a></li>
+          <li><a href="">Facere reprehenderit voluptatibus</a></li>
+          <li><a href="">Deleniti aut labore, consequatur</a></li>
+          <li><a href="">Repellendus tenetur</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <label for="suggestions-5">Top</label>
+    <div class="suggestions top">
+      <input type="search" value="Suggestions to top" id="suggestions-5">
+      <div class="panel">
+        <ul>
+          <li><a href="">Lorem ipsum dolor sit amet</a></li>
+          <li><a href="">Earum soluta eum cum iure atque</a></li>
+          <li><a href="">Facere reprehenderit voluptatibus</a></li>
+          <li><a href="">Deleniti aut labore, consequatur</a></li>
+          <li><a href="">Repellendus tenetur</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <label for="suggestions-2">Groups</label>
+    <div class="suggestions">
+      <div class="group" style="width: 25em">
+        <svg class="icon">
+          <use xlink:href="/icons/icons.svg#search"></use>
+        </svg>
+        <input type="search" class="prepend-icon" value="Search term (expanded)" id="suggestions-2">
+      </div>  
+      <div class="panel">
+        <ul>
+          <li><a href="">Lorem ipsum dolor sit amet</a></li>
+          <li><a href="">Earum soluta eum cum iure atque</a></li>
+          <li><a href="">Facere reprehenderit voluptatibus</a></li>
+          <li><a href="">Deleniti aut labore, consequatur</a></li>
+          <li><a href="">Repellendus tenetur</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <br>
+
+    <label for="suggestions-3"></label>
+    <div class="suggestions">
+      <div class="group" style="width: 25em">
+        <input type="search"  value="Search term" id="suggestions-3">
+        <button class="primary">
+          <svg class="icon">
+            <use xlink:href="/icons/icons.svg#search"></use>
+          </svg>
+        </button>
+      </div>  
+      <div class="panel">
+        <ul>
+          <li><a href="">Lorem ipsum dolor sit amet</a></li>
+          <li><a href="">Earum soluta eum cum iure atque</a></li>
+          <li><a href="">Facere reprehenderit voluptatibus</a></li>
+          <li><a href="">Deleniti aut labore, consequatur</a></li>
+          <li><a href="">Repellendus tenetur</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="suggestions">
+      <div class="group">
+        <label for="suggestions-6">Prepend label</label>
+        <input type="text" id="suggestions-6" class="append-icon">
+        <svg class="icon">
+          <use xlink:href="/icons/icons.svg#mail"></use>
+        </svg>
+      </div>  
+      <div class="panel">
+        <ul>
+          <li><a href="">Lorem ipsum dolor sit amet</a></li>
+          <li><a href="">Earum soluta eum cum iure atque</a></li>
+          <li><a href="">Facere reprehenderit voluptatibus</a></li>
+          <li><a href="">Deleniti aut labore, consequatur</a></li>
+          <li><a href="">Repellendus tenetur</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="suggestions">
+      <div class="group">
+        <input type="text"  value="First name">
+        <input type="text"  value="Last name">
+        <button>
+          Submit
+        </button>
+      </div>  
+      <div class="panel">
+        <ul>
+          <li><a href="">Lorem ipsum dolor sit amet</a></li>
+          <li><a href="">Earum soluta eum cum iure atque</a></li>
+          <li><a href="">Facere reprehenderit voluptatibus</a></li>
+          <li><a href="">Deleniti aut labore, consequatur</a></li>
+          <li><a href="">Repellendus tenetur</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <p>Earum soluta eum cum iure atque, tempora error, voluptatibus repellendus tenetur, quisquam dignissimos aliquam! Facere reprehenderit voluptatibus totam minus consequuntur iure voluptates minima recusandae deleniti aut labore, consequatur, et dolore.</p>
+
+  <div class="code-example">
+  
+    <input type="checkbox" id="code-input-suggestions">
+    <label for="code-input-suggestions" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;div class="suggestions"&gt;
+  &lt;input type="..."&gt;
+  &lt;div class="panel"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="suggestions top"&gt;
+  &lt;input type="..."&gt;
+  &lt;div class="panel"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="suggestions"&gt;
+  &lt;div class="group"&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  
+  </div>
+
+</section>

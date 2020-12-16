@@ -1,0 +1,104 @@
+<header>
+  <h1>Progress bars</h1>
+</header>
+
+<section>
+
+  <progress max="100" value="2"></progress>
+  <progress max="100" value="20"></progress>
+  <progress max="100" value="40"></progress>
+  <progress max="100" value="60"></progress>
+  <progress max="100" value="80"></progress>
+  <progress max="100" value="100"></progress>
+
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-progress-regular">
+    <label for="code-progress-regular" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;progress max="..." value="..."&gt;&lt;/progress&gt;</code></pre>
+  
+  </div>
+
+  <h2>Progress Bar Without Value</h2>
+
+  <progress></progress>
+
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-progress-without">
+    <label for="code-progress-without" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;progress&gt;&lt;/progress&gt;</code></pre>
+  
+  </div>
+
+  <h2>Colors</h2>
+
+  <progress max="100" value="60" class="blue"></progress>
+  <progress max="100" value="65" class="red"></progress>
+  <progress max="100" value="53" class="yellow"></progress>
+  <progress max="100" value="71" class="green"></progress>
+  <progress max="100" value="55" class="purple"></progress>
+  <progress max="100" value="76" class="orange"></progress>
+  <progress max="100" value="67" class="gray"></progress>
+
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-progress-colors">
+    <label for="code-progress-colors" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;progress class="blue"&gt;&lt;/progress&gt;
+&lt;progress class="red"&gt;&lt;/progress&gt;
+&lt;progress class="yellow"&gt;&lt;/progress&gt;
+&lt;progress class="green"&gt;&lt;/progress&gt;
+&lt;progress class="purple"&gt;&lt;/progress&gt;
+&lt;progress class="orange"&gt;&lt;/progress&gt;
+&lt;progress class="gray"&gt;&lt;/progress&gt;</code></pre>
+  
+  </div>
+
+  <h2>Progress bar in action<br></h2>
+
+  <progress max="100" value="0" id="progressBarExample"></progress>
+  <button id="progressButtonExample">Progress!</button>
+
+<script>
+const progressBar = document.getElementById('progressBarExample');
+const progressButton = document.getElementById('progressButtonExample');
+progressButton.addEventListener('click', function () {
+var num = 0;
+var id = setInterval(frame, 10);
+function frame() {
+if (num== 100) {
+clearInterval(id);
+} else {
+num = num + .1;
+progressBar.setAttribute('value', num);
+}
+}
+});
+</script>
+
+</section>

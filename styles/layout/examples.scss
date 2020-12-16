@@ -1,0 +1,735 @@
+.examples {
+  &.checkout-form {
+    & > .breadcrumbs {
+      grid-column: 1 / 13;
+      margin-right: 0;
+      margin-bottom: 2em;
+      width: 100%;
+    }
+
+    & > form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 0.4rem;
+      grid-column: 1 / 8;
+      padding-right: 2em;
+      border-right: 1px solid $mainLine;
+
+      & > * {
+        grid-column: 1 / 3;
+      }
+
+      & > .half {
+        grid-column: span 1;
+      }
+
+      label > input[type="checkbox"] {
+        margin-right: 0.5em;
+      }
+
+      .controls {
+        margin-top: 2em;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      @media (max-width: 900px) {
+        padding-right: 0;
+        border-right-width: 0;
+      }
+
+      @media (max-width: 650px) {
+        grid-template-columns: 1fr;
+
+        & > * {
+          grid-column: 1 / 2;
+        }
+      }
+    }
+
+    & > .products {
+      grid-column: 8 / 13;
+      margin: $paragraphSpacer * 2 0 0;
+
+      & > .product {
+        padding: 0 0 0.8rem;
+        border-bottom-width: 0;
+        grid-gap: 0.4rem;
+
+        .product-author {
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          font-size: 0.8em;
+        }
+      }
+
+      .group {
+        width: 100%;
+      }
+
+      .total {
+        padding-top: 1em;
+        border-top: 1px solid $mainLine;
+
+        dd {
+          & > * {
+            margin-top: 0;
+          }
+
+          .unchecked {
+            color: $mainLine;
+          }
+
+          &.subtotal {
+            margin-bottom: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+
+  &.order-tracing {
+    grid-template-columns: repeat(16, 1fr);
+
+    & > .products {
+      grid-column: 6 / 17;
+
+      & > .product {
+        padding: 0.75em 0;
+
+        & > .product-metadata {
+          & > .product-title {
+            margin-bottom: 0;
+          }
+
+          & > .product-author {
+            margin-top: 0;
+            font-size: 0.9em;
+          }
+        }
+      }
+    }
+
+    & > .filters {
+      grid-column: 1 / 6;
+      min-width: 0;
+
+      & > form {
+        width: 100%;
+        margin-bottom: 0;
+      }
+
+      & > small {
+        display: block;
+        margin-bottom: 1rem;
+        text-align: right;
+        color: $mainVague;
+      }
+
+      & > .radios {
+        display: flex;
+        margin-right: 0;
+
+        & > li {
+          flex: 1 0 auto;
+
+          & > .button {
+            display: block;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  &.product-detail {
+    grid-template-columns: repeat(16, 1fr);
+    align-items: start;
+
+    & > .product.detail {
+      margin-top: 0;
+      grid-column: 1 / 12;
+    }
+
+    & > aside {
+      grid-column: 12 / 17;
+
+      & > small {
+        display: block;
+        margin: -1rem 0 1rem;
+        text-align: right;
+        color: $mainVague;
+      }
+
+      .panel > dl > dt {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-right: 0;
+
+        & > a {
+          display: inline;
+          flex-grow: 100;
+          padding-right: 0.5em;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+        & > .badge {
+          font-size: 0.5em;
+          position: relative;
+          margin-right: 0.1em;
+        }
+      }
+
+      & > table {
+        width: 100%;
+
+        td,
+        th {
+          max-width: 0;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          &:last-child {
+            text-align: right;
+          }
+
+          &:first-child {
+            width: 40%;
+          }
+        }
+      }
+    }
+
+    & > .products.cards {
+      grid-column: 5 / 17;
+    }
+
+    & > .product-editions {
+      grid-column: 1 / 5;
+    }
+  }
+
+  &.complex-form {
+    max-width: 1200px;
+    grid-template-columns: repeat(21, 1fr);
+    grid-column-gap: 1rem;
+
+    & > form {
+      font-size: 0.9em;
+      grid-column: 1 / 17;
+      display: grid;
+      grid-template-columns: repeat(18, 1fr);
+      grid-column-gap: 0.3rem;
+      grid-row-gap: 1rem;
+      margin-top: 0;
+      align-self: start;
+
+      // & > * > label {
+      //   line-height: $inputHeight;
+      // }
+
+      .group,
+      .integrated-label {
+        margin-bottom: 0;
+      }
+
+      .checkbox-button button,
+      .checkbox-button .button {
+        padding-left: 0.1em;
+        padding-right: 0.1em;
+        width: 100%;
+        text-align: center;
+      }
+
+      & > .top {
+        display: grid;
+        grid-column: 1 / 19;
+        grid-template-columns: repeat(18, 1fr);
+        grid-auto-rows: auto;
+        grid-gap: 0.3rem;
+
+        & > input[type="checkbox"] {
+          position: absolute;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        & > .item-no {
+          grid-column: 1 / 6;
+
+          .integrated-label {
+            flex-basis: 30%;
+          }
+
+          & + .checkbox-button {
+            grid-column: 6 / 9;
+          }
+
+          @media (min-width: 550px) and (max-width: 700px) {
+            grid-column: 1 / 12;
+
+            & + .checkbox-button {
+              grid-column: 12 / 15;
+            }
+          }
+
+          @media (max-width: 549px) {
+            grid-column: 1 / 14;
+
+            & + .checkbox-button {
+              grid-column: 14 / 19;
+            }
+          }
+        }
+
+        & > .isbn {
+          grid-column: 1 / 7;
+
+          & + .checkbox-button {
+            grid-column: 7 / 9;
+          }
+
+          @media (min-width: 550px) and (max-width: 700px) {
+            grid-column: 1 / 12;
+
+            & + .checkbox-button {
+              grid-column: 12 / 14;
+            }
+          }
+
+          @media (max-width: 549px) {
+            grid-column: 1 / 14;
+
+            & + .checkbox-button {
+              grid-column: 14 / 19;
+            }
+          }
+        }
+
+        & > .titles {
+          grid-column: 1 / 19;
+
+          & > .title {
+            flex: 1 0 59%;
+          }
+
+          & > .subtitle {
+            flex: 1 0 41%;
+          }
+
+          @media (max-width: 650px) {
+            flex-wrap: wrap;
+
+            & > .integrated-label {
+              flex-basis: 100%;
+
+              &:first-child {
+                margin-bottom: 0.4rem;
+              }
+
+              input {
+                border-radius: 6px;
+              }
+            }
+          }
+        }
+
+        & > .series {
+          grid-column: 1 / 13;
+
+          & > .series-title {
+            flex: 1 0 85%;
+          }
+
+          & > .series-no {
+            flex: 1 0 15%;
+          }
+
+          & + .checkbox-button {
+            grid-column: 13 / 14;
+          }
+
+          &.series2 {
+            display: none;
+
+            & + .checkbox-button {
+              display: none;
+            }
+          }
+
+          @media (max-width: 650px) {
+            grid-column: 1 / 16;
+
+            & + .checkbox-button {
+              grid-column: 16 / 19;
+            }
+          }
+        }
+
+        & > #add-series1:checked {
+          & ~ .add-series1 {
+            display: none;
+          }
+
+          & ~ .series2 {
+            display: inline-flex;
+
+            & + .checkbox-button {
+              display: block;
+            }
+          }
+        }
+
+        & > .remark {
+          grid-column: 10 / 19;
+          grid-row: 1 / 3;
+
+          & > textarea {
+            min-height: auto;
+            height: 100%;
+          }
+
+          @media (max-width: 700px) {
+            grid-column: 1 / 19;
+            grid-row: auto;
+
+            & > textarea {
+              height: 10em;
+            }
+          }
+        }
+      }
+
+      & > .left {
+        display: grid;
+        grid-column: 1 / 11;
+        grid-template-columns: repeat(10, 1fr);
+        grid-auto-rows: auto;
+        grid-gap: 0.3rem;
+        align-self: start;
+
+        & > input[type="checkbox"] {
+          pointer-events: none;
+          position: absolute;
+          opacity: 0;
+        }
+
+        .author2,
+        .author3,
+        .editor2,
+        .editor3 {
+          display: none;
+
+          & + .add,
+          & + .add + .add {
+            display: none;
+          }
+        }
+
+        .person {
+          grid-column: 1 / 8;
+
+          & > .last-name {
+            flex: 1 0 55%;
+          }
+
+          & > .first-name {
+            flex: 1 0 45%;
+          }
+
+          & + .etal {
+            grid-column: 8 / 10;
+
+            & + .add {
+              grid-column: 10 / 11;
+            }
+          }
+        }
+
+        & > #add-author1:checked {
+          & ~ .author1 + .etal + .add {
+            display: none;
+          }
+
+          & ~ .author2 {
+            display: inline-flex;
+
+            & + .add,
+            & + .add + .add {
+              display: block;
+            }
+          }
+        }
+
+        & > #add-author2:checked {
+          & ~ .author2 + .add,
+          & ~ .author2 + .add + .add {
+            display: none;
+          }
+
+          & ~ .author3 {
+            display: inline-flex;
+
+            & + .add {
+              display: block;
+            }
+          }
+        }
+
+        & > #add-editor1:checked {
+          & ~ .editor1 + .etal + .add {
+            display: none;
+          }
+
+          & ~ .editor2 {
+            display: inline-flex;
+
+            & + .add,
+            & + .add + .add {
+              display: block;
+            }
+          }
+        }
+
+        & > #add-editor2:checked {
+          & ~ .editor2 + .add,
+          & ~ .editor2 + .add + .add {
+            display: none;
+          }
+
+          & ~ .editor3 {
+            display: inline-flex;
+
+            & + .add {
+              display: block;
+            }
+          }
+        }
+
+        & > .publisher-name {
+          grid-column: 1 / 10;
+          margin-top: 1rem;
+
+          @media (max-width: 500px) {
+            grid-column: 1 / 11;
+          }
+        }
+
+        & > .publisher-city {
+          grid-column: 1 / 5;
+        }
+
+        & > .publisher-country {
+          grid-column: 5 / 9;
+
+          select {
+            flex-basis: 100%;
+          }
+        }
+
+        & > .publisher-no {
+          grid-column: 9 / 11;
+        }
+
+        & > .publication-price {
+          grid-column: 1 / 6;
+
+          & > .amount {
+            flex: 3 0 20%;
+          }
+
+          & > #currency {
+            flex: 1 0 10%;
+          }
+
+          @media (max-width: 500px) {
+            grid-column: 1 / 7;
+          }
+        }
+
+        & > .publication-date {
+          grid-column: 6 / 10;
+
+          @media (max-width: 500px) {
+            grid-column: 7 / 11;
+          }
+        }
+
+        & > #language {
+          grid-column: 1 / 5;
+          margin-top: 1rem;
+        }
+
+        & > #binding {
+          grid-column: 5 / 8;
+          margin-top: 1rem;
+        }
+
+        & > .pages {
+          grid-column: 8 / 11;
+          margin-top: 1rem;
+        }
+
+        & > .illustrations {
+          grid-column: 1 / 6;
+        }
+
+        & > .priceinfo {
+          grid-column: 6 / 11;
+        }
+
+        & > .source {
+          grid-column: 1 / 9;
+
+          @media (max-width: 600px) {
+            grid-column: 1 / 11;
+          }
+        }
+
+        & > .editions {
+          grid-column: 1 / 10;
+
+          @media (max-width: 600px) {
+            grid-column: 1 / 11;
+          }
+        }
+      }
+
+      & > .right {
+        display: grid;
+        grid-column: 11 / 19;
+        grid-template-columns: repeat(8, 1fr);
+        grid-auto-rows: auto;
+        grid-auto-flow: dense;
+        grid-gap: 0.3rem;
+        align-self: start;
+        padding-left: 1rem;
+
+        & > .subjects {
+          grid-column: 1 / 9;
+        }
+
+        & > .conditions {
+          margin-top: 0;
+          grid-column: 1 / 9;
+          font-size: 0.95em;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+
+          input[type="checkbox"] + label {
+            line-height: 1.1;
+            color: $mainVague;
+          }
+
+          @media (min-width: 850px) and (max-width: 1100px) {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+
+        & > .description {
+          margin-top: 1rem;
+          grid-column: 1 / 9;
+
+          textarea {
+            height: 14em;
+          }
+        }
+
+        & > .controls {
+          margin-top: 1rem;
+          grid-column: 1 / 9;
+          display: flex;
+          flex-direction: row-reverse;
+
+          button {
+            margin-right: 0.1rem;
+          }
+        }
+      }
+
+      @media (max-width: 850px) {
+        & > .left,
+        & > .right {
+          grid-column: 1 / 19;
+          padding-left: 0;
+        }
+      }
+    }
+
+    & > aside {
+      grid-column: 17 / 22;
+      min-width: 0;
+
+      .buttons {
+        button {
+          margin-right: 0;
+          margin-bottom: $paragraphSpacer;
+        }
+      }
+
+      .panel {
+        form {
+          margin-bottom: 0.4rem;
+
+          input {
+            width: 50%;
+          }
+        }
+
+        dl .tag {
+          font-size: 0.9em;
+        }
+
+        .subnav > ul > li > a {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: row;
+
+          .no {
+            order: 1;
+            flex: 0 0 20%;
+            color: $mainLine;
+          }
+
+          .user {
+            order: 3;
+            flex: 0 0 10%;
+            text-align: right;
+            color: $mainLine;
+          }
+
+          .title {
+            order: 2;
+            flex: 0 0 65%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding-left: 0.4rem;
+          }
+        }
+
+        .subnav > ul > li.active > a > span {
+          color: $mainBackground;
+        }
+      }
+    }
+
+    @media (max-width: 1000px) {
+      //   display: grid;
+      //   grid-template-columns: 1fr;
+
+      //   & > form,
+      //   & > aside {
+      //     grid-column: 1 / 2;
+      //   }
+    }
+  }
+}

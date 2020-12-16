@@ -1,0 +1,132 @@
+
+<% if (params.s1 && params.s2) { %>
+
+<main class="sidebar-right">
+
+  <article>
+    
+    <%- include(params.s1 + '/' + params.s2); %>
+
+  </article>
+
+  <input type="checkbox" id="sidebar-toggle">  
+  <label for="sidebar-toggle">
+    <svg class="icon menu">
+      <use xlink:href="/icons/icons.svg#sidebar-toggle"></use>
+    </svg>
+    <svg class="icon close">
+      <use xlink:href="/icons/icons.svg#clear"></use>
+    </svg>
+  </label>
+
+  <aside class="sidebar">
+    
+    <%
+    var i = nav.findIndex(n => { return n.slug == lane; });
+    nav[i].nav.forEach(n => {
+    %>
+    
+    <nav class="panel <%= n.color; %>">
+      <header>
+        <%= n.title %>
+      </header>
+      <ul>
+        <%
+        n.nav.forEach(s => {
+        if (s.nav) { %>
+        
+        <li class="subnav <%= s.slug == params.s2 ? 'active' : ''; %>">
+          <input type="checkbox" id="<%= s.slug; %>" <%= s.slug == params.s2 ? 'checked' : '' %>>
+          <label for="<%= s.slug %>">
+            <%= s.title %>
+            <svg class="icon chevron">
+              <use xlink:href="/icons/icons.svg#chevron-down"></use>
+            </svg>
+          </label>
+          
+          <ul>
+            <% s.nav.forEach(z => { %>
+            <li>
+              <a href="/<%= nav[i].slug %>/<%= n.slug %>/<%= s.slug %>/#<%= z.slug %>" title="<%= z.title %>">
+                <%= z.title %>
+              </a>
+            </li>
+            <% }); %>
+          </ul>
+        </li>
+        <% } else { %>
+        <li class="<%= s.slug == params.s2 ? 'active' : ''; %>">
+          <a href="/<%= nav[i].slug %>/<%= n.slug %>/<%= s.slug %>" title="<%= s.title %>">
+            <%= s.title %>
+          </a>
+        </li>
+        <% }
+        });
+        %>
+      </ul>
+    </nav>
+    <% }); %>
+  </aside>
+</main>
+
+<% } else { %>
+
+<main id="documentation-overview">
+  
+  <div class="introduction">
+    
+    <div class="skew"></div>
+
+    <h1>Documentation</h1>
+
+    <div class="explainer">
+      
+      <p>Everything you need to create a website with <u>Nausikaä</u> can be found in the documentation. There are three categories: <a href="#elements">Elements</a>, contains the standard HTML elements. <a href="#components">Components</a> are small groups of elements, that together fulfill one function. <a href="#collections">Collections</a> are larger groups of components and/or elements, that make up commonly used website patterns (like image galleries and navbars).</p>
+
+      <p>All documented items contain a description, samples and example HTML code. If you find anything missing or wrong, please let me know.</p>
+
+    </div>
+  </div>
+
+  <%
+  var i = nav.findIndex(n => { return n.slug == lane; });
+  nav[i].nav.forEach((n, i, arr) => {
+  %>
+
+    <div class="site-overview <%= n.color %>" id="<%= n.slug %>">
+      
+      <h2>
+        <%= n.title %>
+      </h2>
+      
+      <div class="explainer">
+        <% n.description.forEach(descr => { %>
+          <p><%- descr %></p>
+        <% }); %>
+      </div>
+
+      <ul>
+        <% n.nav.forEach(s => { %>
+        
+        <li>
+          <a href="/<%= lane %>/<%= n.slug %>/<%= s.slug %>" alt="<%= s.title %>">
+            <svg class="icon">
+              <use xlink:href="/icons/icons.svg#<%= s.icon %>"></use>
+            </svg>
+            <div class="title"><%= s.title %></div>
+            <div class="description"><%- s.description %></div>
+          </a>
+        </li>
+
+        <% }); %>
+      </ul>
+    </div>
+
+    <% if (i < (arr.length - 1)) { %> 
+      <hr>
+    <% } %>
+
+  <% }); %>
+</main>
+
+<% } %>

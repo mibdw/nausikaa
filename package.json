@@ -1,0 +1,21 @@
+{
+  "name": "nausikaa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "nodemon": "^1.19.4",
+    "sass": "^1.23.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"sass styles/index.scss public/style.min.css --watch --source-map --style=compressed\" \"nodemon app -e js,ejs,css --watch\"",
+    "build": "sass styles/index.scss public/style.min.css --style=compressed"
+  },
+  "author": "MIBDW",
+  "license": "none"
+}

@@ -1,0 +1,128 @@
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: $fontFamily;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $white;
+}
+
+p {
+  margin: $paragraphSpacer 0;
+
+  &.sample-text {
+    margin-bottom: calc($paragraphSpacer * 1.5);
+  }
+}
+
+hr {
+  border-width: 0 0 1px 0;
+  border-style: dashed;
+  border-color: $mainLine;
+  margin: $paragraphSpacer 0;
+
+  &.vertical {
+    border-width: 0 0 0 1px;
+    margin: 0 $paragraphSpacer;
+  }
+}
+
+u {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+blockquote {
+  border: 1px solid $mainLine;
+  border-radius: 6px;
+  padding: 1em;
+  background-color: $mainBackgroundLite;
+  margin: $paragraphSpacer 0;
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  footer {
+    font-size: 0.9em;
+    color: $mainVague;
+
+    &:before {
+      content: "\02015";
+    }
+  }
+
+  &.sample-text {
+    color: $mainLine;
+    padding-top: 0.5rem;
+  }
+}
+
+abbr,
+time {
+  background-color: transparent;
+  text-decoration: underline dotted $mainVague;
+  cursor: help;
+}
+
+mark {
+  background-color: $yellow;
+}
+
+del {
+  text-decoration: line-through solid $inputLineError;
+}
+
+code,
+kbd,
+samp {
+  font-family: $monoText;
+  font-size: 0.9em;
+  line-height: 1.1;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+code {
+  color: $red;
+  background-color: $mainBackgroundLite;
+  border: 1px solid $mainLine;
+}
+
+kbd {
+  color: $white;
+  background-color: $darkblue;
+  border: 1px solid $black;
+  white-space: nowrap;
+}
+
+samp {
+  color: #0f0;
+  background-color: #333;
+  border: 1px solid $black;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+  margin: $paragraphSpacer 0;
+}
+
+.sample-text {
+  color: $mainBackgroundLite;
+  font-family: "BLOKK";
+  font-size: 2em;
+  word-spacing: -20px;
+}
+
+.price {
+  border-bottom: 1px dotted $mainLine;
+}

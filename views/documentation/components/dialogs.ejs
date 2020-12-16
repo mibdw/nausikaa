@@ -1,0 +1,201 @@
+<header>
+  <h1>Dialogs</h1>
+</header>
+
+<section id="regular">
+  <p>
+    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+  </p>
+
+  <dialog open="" class="medium inline">
+    <h4>Dialog</h4>
+    <p>Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <a href="#">exercitation ullamco</a> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+    <a class="control close">
+      <svg>
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </a>
+  </dialog>
+
+  <dialog open="" class="wide inline">
+    <h4>Dialog with footer</h4>
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+    <a class="control close">
+      <svg>
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </a>
+    <footer>
+      <button class="primary" style="order:3;">Confirm</button>
+      <button style="order:4;">Cancel</button>
+      <div class="spacer" style="order:2;"></div>
+      <a href="#" class="" style="order:1;">How I got to Memphis</a>
+    </footer>
+  </dialog>
+
+
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-dialogs">
+    <label for="code-dialogs" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;dialog&gt;
+  ...
+  &lt;a class="control close"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/a&gt;
+&lt;/dialog&gt;
+
+&lt;dialog&gt;
+  ...
+  &lt;a class="control close"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/a&gt;
+  &lt;footer&gt;
+    &lt;button class="primary"&gt;...&lt;/button&gt;
+    &lt;button&gt;...&lt;/button&gt;
+  &lt;/footer&gt;
+&lt;/dialog&gt;</code></pre>
+  
+  </div>
+
+</section>
+<section id="width">
+  <header>
+    <h2>
+    Width                </h2>
+  </header>
+
+  <dialog open="" class="small inline">
+    <p>Are you sure?</p>
+    <a class="control close">
+      <svg>
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </a>
+    <footer>
+      <button class="positive">Yes</button>
+      <button class="negative">No</button>
+    </footer>
+  </dialog>
+
+  <dialog open="" class="medium inline">
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint.</p>
+    <a class="control close">
+      <svg>
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </a>
+    <footer>
+      <a href="#">What's happening now?</a>
+      <div class="spacer"></div>
+      <button>Dismiss</button>
+    </footer>
+  </dialog>
+
+  <dialog open="" class="wide inline">
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+    <a class="control close">
+      <svg>
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </a>
+    <footer>
+      <div class="spacer"></div>
+      <button class="primary">Confirm</button>
+      <button>Cancel</button>
+    </footer>
+  </dialog>
+
+  <dialog open="" class="full-width inline">
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+    <a class="control close">
+      <svg>
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </a>
+  </dialog>
+
+  <div class="code-example">
+    
+    <input type="checkbox" id="code-dialog-widths">
+    <label for="code-dialog-widths" title="Show/hide example code">
+      <svg class="code">
+        <use xlink:href="/icons/icons.svg#code"></use>
+      </svg>
+      <svg class="clear">
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </label>
+    
+    <pre><code class="html">&lt;dialog class="small"&gt;&lt;/dialog&gt;
+&lt;dialog class="medium"&gt;&lt;/dialog&gt;
+&lt;dialog class="wide"&gt;&lt;/dialog&gt;
+&lt;dialog class="full-width"&gt;&lt;/dialog&gt;</code></pre>
+  
+  </div>
+
+</section>
+<section id="in-action">
+  <header>
+    <h2>In action</h2>
+  </header>
+
+  <p>To see a dialog box in action, please press below button:</p>
+
+  <p>
+    <button id="launchDialog">Launch dialog</button> 
+  </p>
+  
+  <dialog id="exampleDialog" role="dialog">
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+
+    <form class="basic-form">
+      <label for="dialogEmail">E-mail</label>
+      <input id="dialogEmail" type="email" placeholder="email@example.com"><br>
+      <label for="dialogPassword">Password</label>
+       <input id="dialogPassword" type="password" placeholder="password">
+      <span class="help">
+        <input type="checkbox" id="dialogCheckbox"> <label for="dialogCheckbox">Remember me</label>
+      </span>
+    </form>
+
+    <p>Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  
+    <a class="control close">
+      <svg>
+        <use xlink:href="/icons/icons.svg#clear"></use>
+      </svg>
+    </a>
+
+    <footer>
+      <div class="spacer"></div>
+      <button class="primary close">Confirm</button>
+      <button class="close">Cancel</button>
+    </footer>
+
+  </dialog>
+  
+  <script>
+  const dialog = document.getElementById('exampleDialog');
+  dialogPolyfill.registerDialog(dialog);
+  const launchDialog = document.getElementById('launchDialog');
+  launchDialog.addEventListener('click', function () {
+  dialog.showModal();
+  });
+  const closeDialogs = document.querySelectorAll('dialog .close');
+  closeDialogs.forEach(function (closeDialog) {
+  closeDialog.addEventListener('click', function () {
+  dialog.classList.add('hide');
+  setTimeout(function () {
+  dialog.close();
+  dialog.classList.remove('hide');
+  }, 299);
+  });
+  });
+  </script>
+  
+</section>
