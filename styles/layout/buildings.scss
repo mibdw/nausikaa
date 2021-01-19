@@ -1,32 +1,43 @@
 // BUILDING COLORS
 
-.building {
+// .building {
 
-  .east {
-    fill: #f1c40f;
+//   .east {
+//     fill: #f1c40f !important;
 
-    &.top {
-      fill: #c0c0c0;
-    }
-  }
+//     &.top {
+//       fill: #c0c0c0 !important;
+//     }
+//   }
 
-  .west {
-    fill: #fdf9e7;
+//   .west {
+//     fill: #fdf9e7 !important;
 
-    &.top {
-      fill: #dfdfdf;
-    }
-  }
+//     &.top {
+//       fill: #dfdfdf !important;
+//     }
+//   }
 
-  .roof {
-    fill: #e8e8e8;
-  }
+//   .roof {
+//     fill: #e8e8e8 !important;
+//   }
 
-  .outline {
-    fill: #000;
-    stroke: #000;
-    stroke-width: .5;
-  }
+//   .outline {
+//     fill: #000 !important;
+//     stroke: #000 !important;
+//     stroke-width: .5;
+//   }
+// }
+
+:root {
+  --outline-stroke: #000;
+  --outline-stroke-width: .25;
+  --outline-fill: #000;
+  --east-fill: #f1c40f;
+  --east-top-fill: #c0c0c0;
+  --west-fill: #fdf9e7;
+  --west-top-fill: #dfdfdf;
+  --roof-fill: #e8e8e8;
 }
 
 // BUILDING RATIO
