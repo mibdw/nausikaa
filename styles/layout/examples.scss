@@ -732,4 +732,241 @@
       //   }
     }
   }
+
+  &.library-services {
+
+    h1 {
+      grid-column: 1 / 13;
+      text-align: center;
+      border-bottom: 1px dotted $mainLine;
+      margin-bottom: 0;
+    }
+
+    & > section {
+      display: grid;
+      grid-column: 1 / 13;
+      grid-template-columns: repeat(12, 1fr);
+      grid-column-gap: 1em;
+      grid-auto-flow: dense;
+      padding: 4em 0;
+      border-bottom: 1px dotted $mainLine;
+
+      .text {
+        grid-column: 1 / 7;
+        font-size: 1.2em;
+        line-height: 1.4;
+
+        .back-to-top {
+          font-size: 0.8em;
+        }
+      }
+
+      .container.under-construction {
+        padding: 60% 2em; 
+        margin: 1em;
+        background-color: rgb(238, 238, 238); 
+        background-image: repeating-linear-gradient(-45deg, rgb(238, 238, 238), rgb(238, 238, 238) 1rem, rgb(242, 242, 242) 1rem, rgb(242, 242, 242) 2rem); 
+        text-align: center; 
+        font-weight: bold; 
+        color: rgb(187, 187, 187); 
+      }
+    }
+
+    #introduction {
+
+      .text {
+        grid-column: 1 / 7;
+        padding-right: 2em;
+      }
+
+      .illustration {
+        grid-column: 7 / 12;
+        margin-top: 6em;
+        padding: 3em;
+        min-height: 16em;
+        max-height: 28em;
+
+        span {
+          font-size: 8em;
+          position: absolute;
+          top: 45%;
+          left: 50%;
+          transform: translate(-50%, -50%)
+        }
+      }
+
+    }
+
+    #design-considerations {
+      grid-row-gap: 1em;
+
+      .text {
+        grid-column: 1 / 12;
+
+        h2 { text-align: center;}
+      }
+
+      .principle {
+        font-size: 1.1em;
+        line-height: 1.4;
+        grid-column: 2 / span 4;
+
+        &:nth-child(odd) {
+          grid-column: 7 / span 4
+        }
+
+        h3 {
+          text-align: center;
+
+          small {
+            display: block;
+            font-size: .6em;
+            font-weight: normal;
+            color: $mainVague;
+          }
+        }
+      }
+    }
+
+    #users {
+
+      .text {
+        grid-column: 1 / 8;
+      }
+
+      .example {
+        grid-column: 8 / 13;
+      }
+    }
+
+    #messages {
+
+      .text {
+        grid-column: 6 / 13;
+      }
+
+      .example {
+        grid-column: 1 / 6;
+
+        .container {
+          overflow: hidden;
+          margin: 2em 1.5em;
+          padding-left: 0;
+          padding-right: 0;
+          padding-bottom: 22em;
+          font-size: 1.1em;
+
+          .navbar {
+
+            .knobs > li > a {
+              background-color: $mainBackground;
+              margin: 1em 0;
+            }
+
+            .panel {
+              width: 225%;
+
+              li:not(.seperator) {
+                display: flex;
+                flex-direction: row;
+                cursor: pointer;
+
+                &:hover {
+                }
+
+                .avatar {
+                  flex: 0 0 50px;
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50%;
+                  padding: 0;
+
+                  img {
+                    object-fit: cover;
+                  }
+                }
+
+                .message-text {
+                  line-height: 1.1;
+                  padding: 0 0 0 .6em;
+
+                  .message-subject {
+                    padding: 0;
+                    font-weight: bold;
+                    color: $mainText;
+
+                    &:hover {
+                      background-color: transparent;
+
+                    }
+                  }
+
+                  .message-content {
+                    margin: 0 0 .4em; 
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;  
+                    overflow: hidden;
+                    color: $mainVague;
+                  }
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+
+    #publications {
+
+      .text {
+        grid-column: 1 / 8;
+      }
+
+      .example {
+        grid-column: 8 / 13;
+      }
+    }
+
+    #lists {
+
+      .text {
+        grid-column: 7 / 13;
+      }
+
+      .example {
+        grid-column: 1 / 7;
+      }
+    }
+
+    #orders {
+
+      .text {
+        grid-column: 1 / 9;
+      }
+
+      .example {
+        grid-column: 9 / 13;
+      }
+    }
+
+    #services {
+
+   
+    }
+
+    #news {
+
+    }
+
+    #apis {
+
+    }
+
+    #static-pages {
+
+    }
+
+  }
 }

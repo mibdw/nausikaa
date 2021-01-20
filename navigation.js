@@ -492,6 +492,10 @@ var nav = [
       {
         title: "Complex form",
         slug: "complex-form"
+      },
+      {
+        title: "Library services",
+        slug: "library-services"
       }
     ]
   },

@@ -1,0 +1,384 @@
+<main class="examples library-services">
+  
+
+	<h1>🏛️ Library services</h1>
+
+  <section id="introduction">
+  	
+  	<div class="text">
+  		<h2>Introduction</h2>
+	    
+	    <p>What does the next generation acquisition platform for librarians look like? What functions and features do contemporary librarians expect from their bookshop website? And what do not yet expect, but maybe will in the future?</p>
+
+		  <p>This page is an overview of the features and functions a contemporary library services website might have. Some illustrated with interactive examples. Below an index of all topics discussed:</p>
+
+		  <ol>
+		  	<li>Introduction</li>
+		  	<li><a href="#design-considerations">Design considerations</a></li>
+		  	<li><a href="#users">Users</a></li>
+		  	<li><a href="#messages">Messages</a></li>
+		  	<li><a href="#publications">Publications</a></li>
+		  	<li><a href="#lists">Lists</a></li>
+		  	<li><a href="#orders">Orders</a></li>
+		  	<li><a href="#services">Services</a></li>
+		  	<li><a href="#news">News</a></li>
+		  	<li><a href="#apis">APIs</a></li>
+		  	<li><a href="#static-pages">Static pages</a></li>
+		  </ol>
+  	</div>
+
+  	<div class="illustration container browser">
+  		<span>📖</span>
+  	</div>
+
+  </section>
+
+  <section id="design-considerations">
+  	<div class="text">
+
+	  	<h2>🎨 Design considerations</h2>
+
+	  	<p>Users come in all shapes and sizes. What they expect out of a website, may differ wildly. A French librarian might want to send a list of carefully curated books to another librarian in China, from their smartphone. Another may want to use their text-to-speech application to read out all available antiquarian first editions of <em>Ulysses</em> by James Joyce. A contemporary library services website should take into account most, if not all, of use cases.</p>
+
+	  	<p>Designing with all these use cases in mind can be difficult. But it can also lead to interesting and creative solutions. No system is perfect, but we should try our best to make the website fun and hospitable for everyone. While designing, these four guiding principles should be taken into consideration:</p>
+
+	  	<p>(Something about Web standards)</p>
+
+	  	<p><strong>Accessibility</strong>, <strong>Usability</strong>, <strong>Shareability</strong> and <strong>Internationalization</strong> <span style="opacity: .3">(and equally important: <strong>Fun</strong>)</span></p>
+
+
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+		</div>
+
+		<div class="principle container">
+	  	<h3>♿<br>Accessibility <small>A11Y</small></h3>
+			  
+		  <ul>
+		  	<li><em>Devices</em>: older desktops, smartphones, tablets, screen readers, etc.</li>
+				<li><em>Users</em>: old, young, visually handicapped, voice control</li>
+		  	<li><em>Readability</em>: typography tailored to the medium</li>
+		  </ul>		
+				
+			<em>Further reading</em>:<br> 
+			<a href="https://www.a11yproject.com/" target="_blank">https://www.a11yproject.com/</a>
+		</div>
+
+		<div class="principle container">
+			<h3>⚒️<br>Usability <small>UX</small></h3>
+
+			<ul>
+				<li>Complex interfaces, but not complicated</li>
+				<li>Clear and simple flows (order process, onboarding)</li>
+				<li>Consistent navigation</li>
+			</ul>
+		</div>
+
+		<div class="principle container">
+			<h3>🖇️<br>Shareability <small>Sharing == caring</small></h3>
+
+			<ul>
+				<li>Semantic URLs</li>
+				<li>Email integration</li>
+			</ul>
+		</div>
+
+		<div class="principle container">
+			<h3>🌍<br>Internationalization <small>I18N</small></h3>
+
+			<ul>
+				<li><em>Writing systems</em>: Roman, Cyrillic, Hebrew, Arabic, Chinese, Japanese, Korean, etc.</li>
+				<li><em>Directionality</em>: left-to-right (LTR), right-to-left (RTL), top-to-bottom (TB-RL), etc.</li>
+			</ul>
+		</div>
+  </section>
+
+  <section id="users">
+  	<div class="text">
+  		
+  		<h2>👥 Users</h2>
+
+  		<p>The most important part of any website are its users. They might be using the website, long after we are done designing it, on a daily basis. Giving them tools to customize and tailor their experience will make them feel more at home. And inclined to come back more often, or even spread the word to colleagues.</p>
+
+			<strong>Profile:</strong> 	
+			<ul>
+				<li>Personal information (Name, e-mail, password, etc.)</li>
+				<li>Avatar / profile picture</li>
+				<li>Remove user</li>
+			</ul>
+
+			<strong>Settings</strong>
+			<ul>
+				<li>Site themes (Dark mode, high contrast)</li>
+				<li>Language / localization (Latin based (left to right), Arabic?, Chinese?)</li>
+				<li>Readability (Font, font size, colors)</li>
+				<li>Receive mail (newsletters, price updates, promotions)</li>
+			</ul>
+
+			<strong>Superusers / Admins</strong>
+			<ul>
+				<li>Create/Read/Update/Delete (CRUD) other users</li>
+				<li>Manage other user rights</li>	
+			</ul>
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+  	</div>
+
+  	<div class="example">
+  		
+  		<div class="container gray under-construction">
+  			Example under construction
+  		</div>
+  	</div>
+  </section>
+
+  <section id="messages">
+
+
+  	<div class="text">
+  		<h2>✉️ Messages</h2>
+
+  		<p>Interactivity breathes life into any website. Users should be able to send each other publications or lists. Maybe they want approval to purchase a certain publication by their coworker. Maybe they wish to respond to the list of curated titles they received from a colleague. Users should also be able to communicate with our staff, to discuss orders, price quotes or anyting else. We should enable them to do so right from the library services website itself, without having the hassle of copy-pasting URLs or formatted text into emails.</p>
+
+  		<p>A dedicated inbox, right on top of every page, is a logical place to expect any incoming messages. Clicking on it to expand it and then clicking through to see details. Notifications might also be sent to an e-mailaddress, in addition to on the website itself.</p>
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+  	</div>
+
+  	<div class="example">
+
+  		<div class="container">
+  			
+	  		<header class="navbar">
+	  			<div class="spacer"></div>
+
+	  			<nav>
+	  				<ul class="knobs">
+		  				<li class="dropdown focus-within">
+		  					<a href="#">
+		  						Messages
+		  						<span class="tag red">4</span>
+		  					</a>
+
+		  					<div class="panel arrow">
+		  						<ul>
+		  							<li>
+		  								<a href="#" class="avatar">
+		  									<img src="/images/avatar-01.png" alt="">
+		  								</a>
+		  								<div class="message-text">
+		  									<a href="#" class="message-subject">Message headline</a>
+		  									<p class="message-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, aperiam quas, in possimus, aliquid eaque quos laborum suscipit provident illo iste quia id quaerat. Minima qui amet nam mollitia possimus.</p>
+		  								</div>
+		  							</li>
+		  							<li class="seperator"></li>
+		  							<li>
+		  								<a href="#" class="avatar">
+		  									<img src="/images/avatar-03.png" alt="">
+		  								</a>
+		  								<div class="message-text">
+		  									<a href="#" class="message-subject">Message headline</a>
+		  									<p class="message-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia officiis velit maxime nulla, odit autem in, quas tempora voluptatum, pariatur reprehenderit odio doloribus sed illo provident totam saepe temporibus, adipisci!</p>
+		  								</div>
+		  							</li>
+		  							<li class="seperator"></li>
+		  							<li>
+		  								<a href="#" class="avatar">
+		  									<img src="/images/avatar-02.png" alt="">
+		  								</a>
+		  								<div class="message-text">
+		  									<a href="#" class="message-subject">Message headline</a>
+		  									<p class="message-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis eum, itaque magnam molestiae porro non nam placeat, laboriosam delectus, possimus sapiente eligendi ea, officia ut sit. Eius, optio eaque placeat.</p>
+		  								</div>
+		  							</li>
+		  							<li class="seperator"></li>
+		  							<li>
+		  								<a href="#" class="avatar">
+		  									<img src="/images/avatar-05.png" alt="">
+		  								</a>
+		  								<div class="message-text">
+		  									<a href="#" class="message-subject">Message headline</a>
+		  									<p class="message-content">Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Obcaecati corrupti voluptas harum dolores ut iure ad ducimus provident quas, reprehenderit nisi qui aut, fugit tempore saepe itaque similique architecto, totam.</p>
+		  								</div>
+		  							</li>
+		  						</ul>
+		  					</div>
+		  				</li>
+	  				</ul>
+
+	  			</nav>
+
+	  			<div class="spacer"></div>
+	  		</header>
+  		</div>
+  	</div>
+  </section>
+
+  <section id="publications">
+  	<div class="text">
+  		
+  		<h2>📚 Publications</h2>
+
+  		<p>Our bread and butter is publications. It is what we do best. Monographs, journals, magazine subscriptions, e-books, DVDs, audio CDs, multi-volume sets, pocket books, hardcovers, catalogues, etc. A standard publication should contain the following information and features:</p>
+
+  		<ul>
+  			<li>Bibliographic information</li>
+  			<li>Price &amp; availability</li>
+  			<li>Media (Cover image, look inside, promotional material)</li>
+  			<li>Order history (if available)</li>
+  			<li><em>Action</em>: Instant order</li>
+  			<li><em>Action</em>: Place on list</li>
+  			<li><em>Action</em>: Share publication (on site or through e-mail)</li>
+  			<li><em>Action</em>: Download bibliographic information as file (MARC21, JSON, PDF)</li>
+  		</ul>
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+  	</div>
+
+  	<div class="example">
+  		
+  		<div class="container gray under-construction">
+  			Example under construction
+  		</div>
+  	</div>
+  </section>
+
+  <section id="lists">
+  	<div class="text">
+  		
+  		<h2>📋 Lists</h2>	  	
+
+  		<p>Think of lists as a combination of playlists and shopping carts. Lists should become the new default way for librarians to compile and share collections. Right now I can think of no way contemporary librarians share their work. They might be proud of their carefully curated collections, but have no way to show them off. Lists should be more than ordinary shopping carts, but still serve as such. "List" deserves a catchier name.</p>
+
+  		<ul>
+  			<li>List title, subtitle (optional) and description (optional)</li>
+  			<li>List of publications</li>
+  			<li>Comments for each publication</li>
+  			<li><em>Action:</em> Place order</li>
+  			<li><em>Action:</em> Request price quotation</li>
+  			<li><em>Action:</em> Share list (on site or through e-mail)</li>
+  			<li><em>Action:</em> Download bibliographic information as file (MARC21, JSON, PDF)</li>
+  		</ul>
+
+  		<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+  	</div>
+
+  	<div class="example">
+  		
+  		<div class="container gray under-construction">
+  			Example under construction
+  		</div>
+  	</div>
+  </section>
+
+  <section id="orders">
+  	<div class="text">
+  		
+  		<h2>🛒 Orders</h2>
+
+  		<ul>
+  			<li>Search past orders</li>
+  			<li>Order status</li>
+  			<li>View invoices (and maybe also pay, right from the website?)</li>
+  			<li>Budget information</li>
+  			<li>Order statistics</li>
+  			<li>Place reorders</li>
+  		</ul>
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+  	</div>
+
+  	<div class="example">
+  		
+  		<div class="container gray under-construction">
+  			Example under construction
+  		</div>
+  	</div>
+  </section>
+
+  <section id="services">
+  	<div class="text">
+  		
+  		<h2>☎️ Services</h2>
+
+  		<ul>
+  			<li>New title service</li>
+  			<li>Approval plans</li>
+  			<li>Antiquarian search</li>
+  			<li>Outside database search</li>
+  		</ul>
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+  	</div>
+
+  	<div class="example">
+  		
+  		<!-- <div class="container gray under-construction">
+  			Example under construction
+  		</div>
+  	</div> -->
+  </section>
+
+  <section id="news">
+  	<div class="text">
+  		
+  		<h2>📰 News</h2>
+
+  		<ul>
+  			<li>Keep users updated on new developments</li>
+				<li>Highlight special publications</li>
+				<li>Promotions</li>
+  		</ul>
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+  	</div>
+
+  	<!-- <div class="example">
+  		
+  		<div class="container gray under-construction">
+  			Example under construction
+  		</div>
+  	</div> -->
+  </section>
+
+  <section id="apis">
+  	<div class="text">
+  		
+  		<h2>🛰️ APIs</h2>
+
+  		<p>We should provide librarians with our own APIs, to search our bibliographic database, search and place orders. And also integrate with their APIs. Documentation and settings for this should be on the website.</p>
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+  	</div>
+
+  <!-- 	<div class="example">
+  		
+  		<div class="container gray under-construction">
+  			Example under construction
+  		</div>
+  	</div> -->
+  </section>
+
+  <section id="static-pages">
+  	<div class="text">
+  		
+  		<h2>🧱 Static pages</h2>
+
+  		<ul>
+  			<li>Contact information</li>
+				<li>About / Company history</li>
+				<li>Help pages</li>
+  		</ul>
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
+  	</div>
+
+  	<!-- <div class="example">
+  		
+  		<div class="container gray under-construction">
+  			Example under construction
+  		</div>
+  	</div> -->
+  </section>
+
+</main>
