@@ -839,6 +839,64 @@
       }
     }
 
+    #search {
+
+      
+      .text {
+        grid-column: 1 / 6;
+      }
+
+      .example {
+        grid-column: 6 / 13;
+
+        .container {
+          overflow: hidden;
+          margin: 2em 1.5em;
+          padding-left: 0;
+          padding-right: 0;
+          padding-bottom: 40em;
+          font-size: 1.1em;
+
+          .navbar {
+
+            .suggestions {
+              flex: 0 0 80%;
+
+              .clear:hover {
+                cursor: pointer;
+                fill: #333;
+              }
+
+              .monograph-suggestion {
+                display: flex;
+                flex-direction: row;
+                padding: .25em .7em; 
+                margin: 0 -.7em;
+                cursor: pointer;
+
+                &:hover {
+                  background-color: $mainBackgroundLite;
+                }
+
+
+                img {
+                  flex: 0 0 40px;
+                  width: 40px;
+                  margin-right: .5em;
+                }
+
+                .meta {
+                  opacity: .5;
+                  font-size: .8em;
+                  line-height: 1.3;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     #messages {
 
       .text {
