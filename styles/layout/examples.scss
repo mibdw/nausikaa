@@ -836,6 +836,78 @@
 
       .example {
         grid-column: 8 / 13;
+
+        .container {
+          overflow: hidden;
+          margin: 2em 1.5em;
+          padding-left: 0;
+          padding-right: 0;
+          min-height: 20em;
+          font-size: 1.1em;
+
+          .dropdown {
+            left: -2em;
+
+            .avatar {
+              margin-top: .3em;
+              display: inline-block;
+              width: $headerHeight * .85;
+              height: $headerHeight * .85;
+              border-radius: 50%;
+              overflow: hidden;
+
+              img {
+                object-fit: cover;
+              }
+            }
+
+            .panel {
+              width: 19em;
+              transform: translate(calc(-100% + 1.7em), 0.5em);
+
+              a {
+                padding: 0;
+                margin: 0;
+                display: inline;
+                
+                &:hover {
+                  background-color: transparent;
+                  color: $mainText;
+                  text-decoration: underline solid $linkColor;
+                }                
+              }
+
+              .user-profile {
+                display: flex;
+
+                .avatar {
+                  flex: 0 0 70px;
+                  width: 70px;
+                  height: 70px;
+                  margin-right: 1em;
+                  margin-bottom: .5em;
+                  border-radius: 50%;
+                  padding: 0;
+
+                  img {
+                    object-fit: cover;
+                  }
+                }
+
+                h5 {
+                  margin: 0;
+
+                }
+
+                .knob {
+                  padding: .1em .3em;
+                  display: inline-block;
+                }
+              }
+            }
+
+          }
+        }
       }
     }
 
