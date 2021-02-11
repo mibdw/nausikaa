@@ -751,6 +751,10 @@
       padding: 4em 0;
       border-bottom: 1px dotted $mainLine;
 
+      &:target .example .container {
+        animation: pulsingExample 1s infinite alternate;
+      }
+
       .text {
         grid-column: 1 / 7;
         font-size: 1.2em;
@@ -865,7 +869,12 @@
               width: 19em;
               transform: translate(calc(-100% + 1.7em), 0.5em);
 
-              a {
+              a > .icon {
+                transform-origin: center -10%;
+                transform: scale(1.2);
+              }
+
+              a.xx {
                 padding: 0;
                 margin: 0;
                 display: inline;
@@ -899,10 +908,6 @@
 
                 }
 
-                .knob {
-                  padding: .1em .3em;
-                  display: inline-block;
-                }
               }
             }
 
@@ -1002,6 +1007,13 @@
                 cursor: pointer;
 
                 &:hover {
+                  background-color: $mainBackgroundLite;
+                  outline: .3em solid $mainBackgroundLite;
+                  border-top-width: 0;
+
+                  .message-text .message-content {
+                    color: $mainText;
+                  }
                 }
 
                 .avatar {
@@ -1019,15 +1031,19 @@
                 .message-text {
                   line-height: 1.1;
                   padding: 0 0 0 .6em;
+                  min-width: 0;
 
                   .message-subject {
+                    display: block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     padding: 0;
                     font-weight: bold;
                     color: $mainText;
 
                     &:hover {
                       background-color: transparent;
-
                     }
                   }
 
@@ -1037,7 +1053,7 @@
                     -webkit-line-clamp: 2;
                     -webkit-box-orient: vertical;  
                     overflow: hidden;
-                    color: $mainVague;
+                    color: #aaa;
                   }
                 }
               }
@@ -1049,13 +1065,21 @@
     }
 
     #publications {
+      grid-template-columns: repeat(1fr, 15);
 
       .text {
-        grid-column: 1 / 8;
+        grid-column: 1 / 6;
       }
 
       .example {
-        grid-column: 8 / 13;
+        grid-column: 6 / 13;
+
+        .product-summary {
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
       }
     }
 
@@ -1063,10 +1087,135 @@
 
       .text {
         grid-column: 7 / 13;
+        margin-left: 2em;
       }
 
       .example {
         grid-column: 1 / 7;
+
+        .container {
+          width: 100%;
+          min-height: 100%;
+          max-height: 43em;
+          overflow: hidden;
+
+          .list-main {
+            min-width: 160%;
+            display: grid;
+            grid-template-columns: 14em auto;
+            grid-column-gap: 2em;
+            min-height: 100%;
+
+            .list-sidebar {
+              grid-column: 1 / 2;
+
+              & > div {
+                padding: 0 0 2em 0;
+              }
+
+              .amounts {
+
+                .prices {
+                  font-family: $utilityText;
+                  font-size: 1.5em;
+                  display: inline-block;
+                  text-decoration: underline wavy $mainLine;
+
+                }
+
+                & > small {
+                  font-family: $utilityText;
+                  display: block;
+                  transform: translateY(-.3em);
+                  opacity: .4;
+                }
+
+                padding: 2em 0 2em;
+
+              }
+
+              .users {
+
+                .avatar {
+                  display: inline-block;
+                  height: 5em;
+                  width: 5em;
+                  border-radius: 50%;
+                  overflow: hidden;
+                  border: 2px solid $mainBackground;
+                  margin-left: -3em;
+
+                  &:nth-child(2) {
+                    margin-left: -.2em;
+                  }
+
+                  img {
+                    object-fit: cover;
+                  }
+                }
+              }
+            }
+
+            .list-content {
+              grid-column: 2 / 4;
+
+              .list-title {
+                margin-bottom: .1em;
+              }
+
+              .list-changes {
+                display: block;
+                opacity: .4;
+                line-height: 1.2;
+              }
+
+              .list-items {
+                margin: .5em 0;
+                padding: 0;
+                list-style-type: none;
+                border: 1px solid $mainLine;
+                border-radius: 6px;
+
+                & > li {
+                  margin: 0;
+                  padding: .6em .6em 1em;
+                  border-top: 1px solid $mainLine;
+                  display: grid;
+                  grid-template-columns: repeat(8, 1fr);
+                  grid-gap: 1em;
+
+                  &:first-child { border-top-width: 0; }
+
+                  .cover {
+                    display: block;
+                    grid-column: 1 / 2;
+                    text-decoration: none;
+                    position: relative;
+
+                    .badge {
+                      font-size: .9em;
+                      position: absolute;
+                      top: -.3em;
+                      right: -.3em;
+                    }
+
+                    img {
+                      max-width: 100%;
+                    }
+                  }
+
+                  .list-metadata {
+                    grid-column: 2 / 9;
+
+                    & > small {
+                      opacity: .4;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
 
@@ -1098,5 +1247,15 @@
 
     }
 
+  }
+}
+
+@keyframes pulsingExample {
+  0% {
+    box-shadow: 0 0 10px 1px rgba($inputLineFocus, .3); 
+  }
+
+  100% {
+    box-shadow: 0 0 15px 2px rgba($inputLineFocus, .6); 
   }
 }

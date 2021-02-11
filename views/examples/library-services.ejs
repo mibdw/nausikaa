@@ -137,7 +137,7 @@
   					<a href="#" class="avatar">
   						<img src="/images/avatar-02.png" alt="">
   					</a>
-  					<nav class="panel arrow right top">
+  					<nav class="panel  arrow right top">
   						<ul>
   							<li class="user-profile">
   								<a href="#" class="avatar">
@@ -145,22 +145,34 @@
 			  					</a>
 			  					<div>
 			  						<h5>Olympia Betty</h5>
-			  						<a href="mailto:hello@olympia.today">hello@olympia.today</a>
+			  						<a class="xx" href="mailto:hello@olympia.today">hello@olympia.today</a>
 
 			  						<small>
 
-				  						<a class="" href="">Change profile</a> 
-				  						<a class="" href="">Logout</a>
+				  						<a class="xx" href="">Change profile</a> 
+				  						<a class="xx" href="">Logout</a>
 			  						</small>
 			  					</div>
   							</li>
   							<li class="seperator"></li>
   							<li class="user-settings">
-  								Settings
+  								<a href="#">
+	  								<svg class="icon">
+			  							<use xlink:href="/icons/icons.svg#settings"></use>
+			  						</svg>
+
+	  								Settings
+  								</a>
   							</li>
   							<li class="seperator"></li>
   							<li class="user-superuser">
-  								Superuser
+	  							<a href="">
+	  								
+	  								<svg class="icon">
+			  							<use xlink:href="/icons/icons.svg#people"></use>
+			  						</svg>
+  									Manage other users
+	  							</a>	
   							</li>
   						</ul>
   					</nav>
@@ -176,9 +188,11 @@
   		
   		<h2>🔍 Search</h2>
 
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas praesentium excepturi libero quam esse deleniti nemo, maiores illum eveniet eos dolore facere labore est, ipsum dignissimos repudiandae facilis debitis hic?</p>
+  		<p>We have become so accustomed to good search, that it usually only stands out, when it is bad. Users expect results they are looking for, and maybe even better ones. Contemporary users also expect suggestions and autocomplete functionality from their search bar.</p>
 
-  		<p>Dolore repudiandae laudantium, possimus deserunt ad perspiciatis alias cumque quod enim rerum quasi, quaerat accusantium fuga, ullam odio commodi minus fugit nulla consequatur vitae qui excepturi eligendi repellat molestiae. In.</p>
+  		<p>Quicksearch results, inside a dropdown, should contain just enough complexity, without becoming confusing. Advanced users should be able to drill down, while less advanced users should not get lost among irrelevant results. Complex, not complicated.</p>
+
+	  	<p><a class="back-to-top" href="#introduction">Back to top</a></p>
   	</div>
 
   	<div class="example">
@@ -340,48 +354,58 @@
 		  				<li class="dropdown focus-within">
 		  					<a href="#">
 		  						Messages
-		  						<span class="tag red">4</span>
+		  						<span class="tag red">3</span>
 		  					</a>
 
 		  					<div class="panel arrow">
 		  						<ul>
-		  							<li>
+		  							<li title='Price quote for "A Life of Picasso: The Cubist Rebel: 1907-1916"'>
 		  								<a href="#" class="avatar">
 		  									<img src="/images/avatar-01.png" alt="">
 		  								</a>
-		  								<div class="message-text">
-		  									<a href="#" class="message-subject">Message headline</a>
-		  									<p class="message-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, aperiam quas, in possimus, aliquid eaque quos laborum suscipit provident illo iste quia id quaerat. Minima qui amet nam mollitia possimus.</p>
+		  								<div class="message-text" ti>
+		  									<a href="#" class="message-subject">Price quote for "A Life of Picasso: The Cubist Rebel: 1907-1916"</a>
+		  									<p class="message-content">Dear Olympia, We should be able to acquire this publication within the timeframe you mentioned. A mint copy was found by our antiquarian research department and we can offer it to you for EUR 120, including shipping.</p>
 		  								</div>
 		  							</li>
 		  							<li class="seperator"></li>
-		  							<li>
+		  							<li title="November 2021 budget discussion">
 		  								<a href="#" class="avatar">
 		  									<img src="/images/avatar-03.png" alt="">
 		  								</a>
 		  								<div class="message-text">
-		  									<a href="#" class="message-subject">Message headline</a>
-		  									<p class="message-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia officiis velit maxime nulla, odit autem in, quas tempora voluptatum, pariatur reprehenderit odio doloribus sed illo provident totam saepe temporibus, adipisci!</p>
+		  									<a href="#" class="message-subject">November 2021 budget discussion</a>
+		  									<p class="message-content">Discussed approval plans –this is rather complicated at the library and I have had a follow up call with his manager Harry Potter recently. Theyare doing a general review of approval plans since it is not working as well with current supplier</p>
 		  								</div>
 		  							</li>
 		  							<li class="seperator"></li>
-		  							<li>
+		  							<li title="Re: Approval plans">
 		  								<a href="#" class="avatar">
 		  									<img src="/images/avatar-02.png" alt="">
 		  								</a>
 		  								<div class="message-text">
-		  									<a href="#" class="message-subject">Message headline</a>
-		  									<p class="message-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis eum, itaque magnam molestiae porro non nam placeat, laboriosam delectus, possimus sapiente eligendi ea, officia ut sit. Eius, optio eaque placeat.</p>
+		  									<a href="#" class="message-subject">Re: Approval plans</a>
+		  									<p class="message-content">We continued our discussion about approval plans and she has committed to looking into this in Spring. She and Harry Potter from Hogwarts are funded to start a project collecting extreme far right</p>
 		  								</div>
 		  							</li>
 		  							<li class="seperator"></li>
-		  							<li>
+		  							<li title="Limited time offer: La Tapisserie de Bayeux">
 		  								<a href="#" class="avatar">
 		  									<img src="/images/avatar-05.png" alt="">
 		  								</a>
 		  								<div class="message-text">
-		  									<a href="#" class="message-subject">Message headline</a>
-		  									<p class="message-content">Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Obcaecati corrupti voluptas harum dolores ut iure ad ducimus provident quas, reprehenderit nisi qui aut, fugit tempore saepe itaque similique architecto, totam.</p>
+		  									<a href="#" class="message-subject" style="font-weight: 400">Limited time offer: La Tapisserie de Bayeux</a>
+		  									<p class="message-content">Dear Librarian, We are pleased to offer the following publication with a 10% discount: La Tapisserie de Bayeux relève de deux "miracles" : son exceptionnelle richesse visuelle et son remarquable état de conservation près d'un millénaire après sa réalisation.</p>
+		  								</div>
+		  							</li>
+		  							<li class="seperator"></li>
+		  							<li title="Re: Approval plans">
+		  								<a href="#" class="avatar">
+		  									<img src="/images/avatar-03.png" alt="">
+		  								</a>
+		  								<div class="message-text">
+		  									<a href="#" class="message-subject" style="font-weight: 400">Re: Approval plans</a>
+		  									<p class="message-content">Dear Librarian, We are pleased to offer the following publication with a 10% discount: La Tapisserie de Bayeux relève de deux "miracles" : son exceptionnelle richesse visuelle et son remarquable état de conservation près d'un millénaire après sa réalisation.</p>
 		  								</div>
 		  							</li>
 		  						</ul>
@@ -420,8 +444,105 @@
 
   	<div class="example">
   		
-  		<div class="container gray under-construction">
-  			Example under construction
+  		<div class="container" style="overflow: hidden; max-height: 43em;">
+
+  			<div class="products list" style="transform: translateY(-10em)">
+  				
+  				<div class="product"><div class="product-image" style="grid-row: 1 / 21; text-align: center;"><a href="https://catalogue.bnf.fr/couverture?appName=NE&amp;idImage=449820&amp;couverture=1" target="_blank"><img src="/images/picasso-06.png" alt="Nu avec Picasso"></a>
+  					
+  					<div class="group">
+  						
+	  					<div class="dropdown">
+	  						<button class="small" title="Add to list" style="margin-right: 0;"><svg class="icon"><use xlink:href="/icons/icons.svg#add-list"></use></svg></button>
+	  						<nav class="panel arrow top left">
+	  							<ul>
+	  								<small style="opacity: .3"><strong>Instant actions</strong></small>
+	  								<li><a href="#">Instant order</a></li>
+	  								<li><a href="#">Request price quote</a></li>
+	  								<li class="seperator"></li>
+	  								<small style="opacity: .3"><strong>Add to list</strong></small>
+	  								<li><a href="#">November 2020: new acquisitions</a></li>
+	  								<li><a href="#">Upcoming Picasso exhibition</a></li>
+	  								<li><a href="#">Climate change research project</a></li>
+	  								<li><a href="#">Budget residue / June 2021</a></li>
+	  								<li><a href="#">Italian master painters</a></li>
+	  								<li class="seperator"></li>
+	  								<li><a href="#">Add to new list</a></li>
+	  							</ul>
+	  						</nav>
+	  					</div><div class="dropdown">
+	  						<button class="small" title="Add to list"><svg class="icon"><use xlink:href="/icons/icons.svg#more-horizontal"></use></svg></button>
+	  						<nav class="panel arrow top left">
+	  							<ul>
+	  								<small style="opacity: .3"><strong>Share</strong></small>
+	  								<li><a href="#">Send to other user</a></li>
+	  								<li><a href="#">Share by e-mail</a></li>
+	  								<li class="seperator"></li>
+	  								<small style="opacity: .3"><strong>Download</strong></small>
+	  								<li><a href="#">Download as PDF</a></li>
+	  								<li><a href="#">Download as MARC21</a></li>
+	  								<li><a href="#">Download as JSON</a></li>
+	  							</ul>
+	  						</nav>
+	  					</div>
+  					</div>
+
+  				</div><h5 class="product-title" style="grid-column: 4 / 13; display: block; margin-top: 0">Nu avec Picasso</h5><div class="product-metadata" style="grid-column: 4 / 13;"><dl><dt>Authors</dt><dd><span>Bilal, Enki (<time datetime="1951">1951</time>-)</span></dd><dt>Series</dt><dd><span>Ma nuit au musée</span></dd><dt>Publication</dt><dd><div>Stock, <time datetime="DL 2020">DL 2020</time>,<a style="display: inline-block; color: black;" href="https://www.google.com/maps?q=Paris" target="_blank"><svg class="icon" style="width: 1.3em; height: 1.3em; transform: translateY(5px); fill: rgb(255, 128, 128);"><use xlink:href="/icons/icons.svg#location"></use></svg><em style="text-decoration: underline rgb(255, 128, 128);">Paris</em></a></div></dd><dt>Material</dt><dd><span>1 vol., ill., 21 cm <small class="tag">93 pages</small></span></dd><dt>ISBN</dt><dd>978-2-234-08625-8, 9782234086258 <a href="https://www.worldcat.org/search?&amp;q=9782234086258" target="_blank" class="tag blue" title="Search &quot;9782234086258&quot; on Worldcat"><svg class="icon"><use xlink:href="/icons/icons.svg#info"></use></svg></a></dd><dt>Classification</dt><dd><span><span>Comic books, graphic novels</span><span class="tag" style="margin-left: 0.3em; background-color: rgb(204, 204, 204);">120</span><span class="tag erasmus" style="margin-left: 0.3em;">Erasmus</span></span></dd><dt>Prices</dt><dd><div class="price-row"><span class="price" style="text-decoration: underline wavy rgb(204, 204, 204); border-bottom-width: 0px;">16 EUR</span> <span class="tag blue">Not yet published</span></div></dd><dt>Notes</dt><dd><div class="note-row"><span>Dessins réalisés durant une nuit passée au Musée Picasso, Paris</span><span class="tag" style="margin-left: 0.3em;">BNF</span></div></dd></dl></div><p class="product-summary" style="grid-column: 4 / 13; margin-bottom: 0px;"><span>Quelle est cette main inconnue et surpuissante qui attrape Enki Bilal au beau milieu de la nuit et le projette sur un lit de camp? Quel est ce lieu mystérieux et hanté dans lequel il a atterri? Qui sont ces créatures, minotaure, cheval ou humains déformés, que l'artiste rencontre en essayant de trouver son chemin dans ce labyrinthe sombre et inquiétant? Que lui veulent-elles?  Et dans quel état sortira-t-il de cette incroyable nuit? Dans une déambulation hallucinée, Enki Bilal croise tant les personnages de Picasso, ses muses, ses modèles, que le grand maître lui-même et Goya, son idole. Son errance dans les couloirs du Musée Picasso prend la forme d'une rêverie éveillée qui nous fait toucher du doigt l'œuvre du peintre espagnol d'une façon sensorielle et envoûtante, pour aboutir en épiphanie à la présentation de Guernica, la grande toile du maître. [source éditeur]</span><span class="tag" style="margin-left: 0.3em; background-color: rgb(204, 204, 204);">Description</span><span class="tag " style="margin-left: 0.3em;">BNF</span></p>
+
+	  				<div class="product-metadata"  style="grid-column: 4 / 13; margin-top: 1em;">
+		  					
+		  				<dl>
+		  					<dt>History</dt>
+		  					<dd>Order by <a href="mailto:colleague@library.edu">colleague@library.edu</a><br> 
+		  					<small><time datetime="">15 minutes ago</time></small></dd>
+		  				</dl>
+	  				</div>
+  				</div>
+
+  				<div class="product"><div class="product-image" style="grid-row: 1 / 21; text-align: center;"><a href="http://www.erasmusbooks.nl/main/tools/Scale.aspx?size=1&amp;PR=9782072871078" target="_blank"><img src="/images/picasso-05.png" alt="Les musiques de Picasso"></a>
+
+
+  					<div class="group">
+  						
+	  					<div class="dropdown">
+	  						<button class="small" title="Add to list" style="margin-right: 0;"><svg class="icon"><use xlink:href="/icons/icons.svg#add-list"></use></svg></button>
+	  						<nav class="panel arrow bottom left">
+	  							<ul>
+	  								<small style="opacity: .3"><strong>Instant actions</strong></small>
+	  								<li><a href="#">Instant order</a></li>
+	  								<li><a href="#">Request price quote</a></li>
+	  								<li class="seperator"></li>
+	  								<small style="opacity: .3"><strong>Add to list</strong></small>
+	  								<li><a href="#">November 2020: new acquisitions</a></li>
+	  								<li><a href="#">Upcoming Picasso exhibition</a></li>
+	  								<li><a href="#">Climate change research project</a></li>
+	  								<li><a href="#">Budget residue / June 2021</a></li>
+	  								<li><a href="#">Italian master painters</a></li>
+	  								<li class="seperator"></li>
+	  								<li><a href="#">Add to new list</a></li>
+	  							</ul>
+	  						</nav>
+	  					</div><div class="dropdown">
+	  						<button class="small" title="Add to list"><svg class="icon"><use xlink:href="/icons/icons.svg#more-horizontal"></use></svg></button>
+	  						<nav class="panel arrow bottom left">
+	  							<ul>
+	  								<small style="opacity: .3"><strong>Share</strong></small>
+	  								<li><a href="#">Send to other user</a></li>
+	  								<li><a href="#">Share by e-mail</a></li>
+	  								<li class="seperator"></li>
+	  								<small style="opacity: .3"><strong>Download</strong></small>
+	  								<li><a href="#">Download as PDF</a></li>
+	  								<li><a href="#">Download as MARC21</a></li>
+	  								<li><a href="#">Download as JSON</a></li>
+	  							</ul>
+	  						</nav>
+	  					</div>
+  					</div>
+
+  				</div><h5 class="product-title" style="grid-column: 4 / 13; display: block; margin-top: 0;">Les musiques de Picasso<span class="product-alternative-title" style="font-weight: normal;">. [exposition, Paris, Philharmonie de Paris, 3 avril-16 août 2020]</span></h5><div class="product-metadata" style="grid-column: 4 / 13;"><dl><dt>Contributors</dt><dd><span>Godefroy, Cécile (<time datetime="1976">1976</time>-)<span class="tag" style="margin: 0px 0.3em; background-color: rgb(204, 204, 204);">Directeur de publication</span></span></dd><dt>Publication</dt><dd><div>Gallimard,<a style="display: inline-block; color: black;" href="https://www.google.com/maps?q=Paris" target="_blank"><svg class="icon" style="width: 1.3em; height: 1.3em; transform: translateY(5px); fill: rgb(255, 128, 128);"><use xlink:href="/icons/icons.svg#location"></use></svg><em style="text-decoration: underline rgb(255, 128, 128);">Paris</em></a></div></dd><dt>Material</dt><dd><span>1 vol., ill. en coul., 30 cm <small class="tag">311 pages</small></span></dd><dt>Medium</dt><dd>Paperback</dd><dt>ISBN</dt><dd>978-2-07-287107-8, 9782072871078 <a href="https://www.worldcat.org/search?&amp;q=9782072871078" target="_blank" class="tag blue" title="Search &quot;9782072871078&quot; on Worldcat" style="margin-left: 0.4em;"><svg class="icon"><use xlink:href="/icons/icons.svg#info"></use></svg></a></dd><dt>Classification</dt><dd><span><span>Picasso, Pablo (1881-1973)</span><span class="tag " style="margin-left: 0.3em;">BNF</span>, </span><span><span>Et la musique</span><span class="tag " style="margin-left: 0.3em;">BNF</span>, </span><span><span>Thèmes, motifs</span><span class="tag " style="margin-left: 0.3em;">BNF</span>, </span><span><span>Musique</span><span class="tag " style="margin-left: 0.3em;">BNF</span>, </span><span><span>Dans l'art</span><span class="tag " style="margin-left: 0.3em;">BNF</span>, </span><span><span class="tag" style="margin-left: 0px; background-color: rgb(204, 204, 204);">759.6</span><span class="tag " style="margin-left: 0.3em;">Dewey</span>, </span><span><span>Modern Art</span><span class="tag" style="margin-left: 0.3em; background-color: rgb(204, 204, 204);">66</span><span class="tag erasmus" style="margin-left: 0.3em;">Erasmus</span></span></dd><dt>Price</dt><dd><div class="price-row"><span class="price" style="text-decoration: underline wavy rgb(204, 204, 204); border-bottom-width: 0px;">45 EUR</span> <span class="tag green">Available</span></div></dd><dt>Notes</dt><dd><div class="note-row"><span>Bibliogr. p. 295-297</span><span class="tag" style="margin-left: 0.3em;">BNF</span></div></dd></dl></div><p class="product-summary" style="grid-column: 4 / 13; margin-bottom: 0px;"><span>"Au fond quand on parle d'art abstrait, on dit toujours que c'est de la musique. Quand on veut en dire du bien on parle musique. Tout devient musique [.]. Je crois que c'est pour ça que je n'aime pas la musique." Pablo Picasso. Contrairement à cette déclaration volontiers provocatrice, l'observation de l'oeuvre de Picasso dévoile un intérêt considérable pour l'imaginaire musical: des premières scènes de vie gitane aux joueurs de flûte des années 1970, en passant par les saltimbanques musiciens, les Guitares cubistes, les collaborations avec les Ballets russes, les poèmes sonores de l'artiste ou les bacchanales qui colorent après-guerre un nombre infini de toiles, d'oeuvres graphiques, de céramiques et de sculptures, tout son oeuvre est traversé par la musique. Cet ouvrage s'attache à explorer cette dimension, en soulignant notamment l'attachement de l'artiste pour les instruments, son intérêt pour la musique populaire et ses diverses manifestations, les ambiances sonores de spectacles auxquels il aimait assister (cirque, fanfare, corrida), le chant de la poésie, ainsi que la dimension rituelle de la musique.</span><span class="tag" style="margin-left: 0.3em; background-color: rgb(204, 204, 204);">Summary</span><span class="tag erasmus" style="margin-left: 0.3em;">Erasmus</span></p></div>
+
+  			</div>
+
   		</div>
   	</div>
   </section>
@@ -448,8 +569,255 @@
 
   	<div class="example">
   		
-  		<div class="container gray under-construction">
-  			Example under construction
+  		<div class="container" style="overflow: hidden;">
+
+  			<div class="list-main">
+  				<aside class="list-sidebar">
+
+
+  					<div class="amounts">
+  						<div class="prices">
+  							<span>EUR</span> <strong>492.33</strong><br>
+  						</div>
+	  					<small>for <strong>39 items</strong> total</small>
+
+  						<button class="primary">
+  							<span class="label">
+  								<svg class="icon">
+		  							<use xlink:href="/icons/icons.svg#cart"></use>
+		  						</svg>
+  							</span>
+  							Place order
+  						</button>
+  						<button class="">
+  							<span class="label">
+  								<svg class="icon">
+		  							<use xlink:href="/icons/icons.svg#request-quote"></use>
+		  						</svg>
+  							</span>
+  							Request quote
+  						</button>
+						</div>
+
+  					<div class="users">
+  						<h6 style="margin: 0 0 .1em; opacity: .3">Contributors</h6>
+
+  						<a href="#" class="avatar">
+	  						<img src="/images/avatar-02.png" alt="">
+	  					</a>
+  						<a href="#" class="avatar">
+	  						<img src="/images/avatar-01.png" alt="">
+	  					</a>
+  						<a href="#" class="avatar">
+	  						<img src="/images/avatar-03.png" alt="">
+	  					</a>
+  						<a href="#" class="avatar">
+	  						<img src="/images/avatar-04.png" alt="">
+	  					</a>
+
+	  					<small style="display: block; opacity: .4"><a href="">Invite contributor</a></small>
+  					</div>
+
+						<div>
+  						<h6 style="margin: 0 0 .1em; opacity: .3">References</h6>
+
+  						<div class="integrated-label">
+  							<input type="text" placeholder="Budget code" id="budget">
+  							<label for="budget">Budget code</label>
+  						</div>
+  						<div class="integrated-label">
+  							<input type="text" placeholder="Department" id="department">
+  							<label for="department">Department</label>
+  						</div>
+  						<div class="integrated-label">
+  							<input type="text" placeholder="Fund" id="fund">
+  							<label for="fund">Fund</label>
+  						</div>
+						</div>
+
+
+  					<div>
+  						<h6 style="margin: 0 0 .1em; opacity: .3">Permalink</h6>
+  						<input type="text" style="margin: 0 0 -.4em" readonly value="http://library-services.xyz/list/88lkj12bekja/early-picasso-research-project-04-2021">
+
+  						<button class="secondary small" style="transform: translateY(-.3em)">Copy</button>
+
+  						<ul class="radios buttons">
+  							<li>
+  								<input type="radio" name="secrecy" id="public" checked>
+  								<label class="button small" for="public">Public</label>
+  							</li>
+  							<li>
+  								<input type="radio" name="secrecy" id="secret">
+  								<label class="button small" for="secret">Secret</label>
+  							</li>
+  						</ul>
+  					</div>
+
+  					<nav class="panel">
+							<ul>
+								<li><a href="#">Send to other user</a></li>
+								<li><a href="#">Share by e-mail</a></li>
+								<li class="seperator"></li>
+								<li><a href="#">Download as PDF</a></li>
+								<li><a href="#">Download as MARC21</a></li>
+								<li><a href="#">Download as JSON</a></li>
+							</ul>
+						</nav>
+
+
+  				</aside>
+
+  				<div class="list-content">
+  					<h3 class="list-title">Early Picasso research project, 04/2021</h3>
+  					<small class="list-changes">Created <time>21 days ago</time> by <a href="mailto:coworker@library.edu">coworker@library.edu</a></small>
+  					<small class="list-changes" >Last modified <time>14 days ago</time> by <a href="mailto:coworker@library.edu">staff@library.edu</a></small>
+
+  					<ul class="list-items">
+  						<li>
+  							<a href="#" class="cover">
+  								<span class="tag badge blue">1</span>
+  								<img src="/images/picasso-01.png" alt="">
+  							</a>
+  							<div class="list-metadata">
+  								<p style="margin: 0;">Schroll, Elena; Müller, Markus. <a href="#">PABLO PICASSO. Ausgewählte Graphik und Arbeiten auf Papier</a> (1. Auflage). Die Galerie, 2020, Frankfurt am Main, Germany. 9782358322614</p>
+  								<p style="margin: .4em 0 -.2em">
+  									<span class="price">EUR 74.50</span>
+  									<a href="" style="text-decoration: none;">
+		  								<svg class="icon" style="transform: scale(1.4, 1.4) translateY(2px); opacity: .25;">
+				  							<use xlink:href="/icons/icons.svg#question"></use>
+				  						</svg>
+  									</a>
+  									<span class="tag green">Available</span>
+  								</p>
+  								<small>Added <time>21 days ago</time> by <a href="mailto:coworker@library.edu">coworker@library.edu</a></small>
+  							</div>
+
+  						</li>
+  						<li>
+  							<a href="#" class="cover">
+  								<span class="tag badge blue">2</span>
+  								<img src="/images/picasso-02.png" alt="">
+  							</a>
+  							<div class="list-metadata">
+  								<p style="margin: 0;"><a href="#">Picasso. Donner à voir, 14 moments-clés : au Musée Fabre de Montpellier</a>. "Beaux-arts" éditions, DL 2017, Issy-les-Moulineaux. 9791020404848</p>
+  								<p style="margin: .4em 0 -.2em">
+  									<span class="price">EUR 74.50</span>
+  									<a href="" style="text-decoration: none;">
+		  								<svg class="icon" style="transform: scale(1.4, 1.4) translateY(2px); opacity: .25;">
+				  							<use xlink:href="/icons/icons.svg#question"></use>
+				  						</svg>
+  									</a>
+  									<span class="tag green">Available</span>
+  								</p>
+
+  								<small>Added <time>21 days ago</time> by <a href="mailto:coworker@library.edu">coworker@library.edu</a></small>
+  							</div>
+  						</li>
+  						<li>
+  							<a href="#" class="cover">
+  								<span class="tag badge blue">1</span>
+  								<img src="/images/picasso-03.png" alt="">
+  							</a>
+  							<div class="list-metadata">
+  								<p style="margin: 0;">Boeck, Wilhelm (1908-1998). <a href="#">Pablo Picasso, linogravures</a>. Éditions Cercle d'art, impr. 2019, Paris. 9782702211137</p>
+  								<p style="margin: .4em 0 -.2em">
+  									<span class="price">EUR 99.93</span>
+  									<a href="" style="text-decoration: none;">
+		  								<svg class="icon" style="transform: scale(1.4, 1.4) translateY(2px); opacity: .25;">
+				  							<use xlink:href="/icons/icons.svg#question"></use>
+				  						</svg>
+  									</a>
+  									<span class="tag blue">Not yet published</span>
+  								</p>
+
+  								<small>Added <time>21 days ago</time> by <a href="mailto:coworker@library.edu">coworker@library.edu</a></small>
+  							</div>
+  						</li>
+  						<li>
+  							<a href="#" class="cover">
+  								<span class="tag badge blue">1</span>
+  								<img src="/images/picasso-06.png" alt="">
+  							</a>
+  							<div class="list-metadata">
+  								<p style="margin: 0;">Bouvard, Émilie (1980-); McCully, Marilyn; Raeburn, Michael (1940-). <a href="#">Picasso, tableaux magiques</a>. Musée Picasso ; Milano,Paris. 9788836643912</p>
+  								<p style="margin: .4em 0 -.2em">
+  									<span class="price">EUR 120.00</span>
+  									<a href="" style="text-decoration: none;">
+		  								<svg class="icon" style="transform: scale(1.4, 1.4) translateY(2px); opacity: .25;">
+				  							<use xlink:href="/icons/icons.svg#question"></use>
+				  						</svg>
+  									</a>
+  									<span class="tag red">Out of print</span>
+  								</p>
+
+  								<small>Added <time>21 days ago</time> by <a href="mailto:coworker@library.edu">coworker@library.edu</a></small>
+  							</div>
+  						</li>
+  						<li>
+  							<a href="#" class="cover">
+  								<span class="tag badge blue">1</span>
+  								<img src="/images/picasso-04.png" alt="">
+  							</a>
+  							<div class="list-metadata">
+  								<p style="margin: 0;">Chauveau, Sophie (1953-). <a href="#">Picasso, le minotaure. 1881-1973</a>. Gallimard, DL 2020, [Paris]. 9782072795473</p>
+  								<p style="margin: .4em 0 -.2em">
+  									<span class="price">EUR 55.25</span>
+  									<a href="" style="text-decoration: none;">
+		  								<svg class="icon" style="transform: scale(1.4, 1.4) translateY(2px); opacity: .25;">
+				  							<use xlink:href="/icons/icons.svg#question"></use>
+				  						</svg>
+  									</a>
+  									<span class="tag green">Available</span>
+  								</p>
+
+  								<small>Added <time>21 days ago</time> by <a href="mailto:coworker@library.edu">coworker@library.edu</a></small>
+  							</div>
+  						</li>
+  						<li>
+  							<a href="#" class="cover">
+  								<span class="tag badge blue">15</span>
+  								<img src="/images/picasso-05.png" alt="">
+  							</a>
+  							<div class="list-metadata">
+  								<p style="margin: 0;">Godefroy, Cécile (1976-). <a href="#">Les musiques de Picasso. [exposition, Paris, Philharmonie de Paris, 3 avril-16 août 2020]</a>. Gallimard, Paris. 9782072871078</p>
+  								<p style="margin: .4em 0 -.2em">
+  									<span class="price">EUR 74.50</span>
+  									<a href="" style="text-decoration: none;">
+		  								<svg class="icon" style="transform: scale(1.4, 1.4) translateY(2px); opacity: .25;">
+				  							<use xlink:href="/icons/icons.svg#question"></use>
+				  						</svg>
+  									</a>
+  									<span class="tag green">Available</span>
+  								</p>
+
+  								<small>Added <time>21 days ago</time> by <a href="mailto:coworker@library.edu">coworker@library.edu</a></small>
+  							</div>
+  						</li>
+  						<li>
+  							<a href="#" class="cover">
+  								<span class="tag badge blue">1</span>
+  								<img src="/images/picasso-07.png" alt="">
+  							</a>
+  							<div class="list-metadata">
+  								<p style="margin: 0;">Schroll, Elena; Müller, Markus. <a href="#">PABLO PICASSO. Ausgewählte Graphik und Arbeiten auf Papier</a> (1. Auflage). Die Galerie, 2020, Frankfurt am Main, Germany</p>
+  								<p style="margin: .4em 0 -.2em">
+  									<span class="price">EUR 74.50</span>
+  									<a href="" style="text-decoration: none;">
+		  								<svg class="icon" style="transform: scale(1.4, 1.4) translateY(2px); opacity: .25;">
+				  							<use xlink:href="/icons/icons.svg#question"></use>
+				  						</svg>
+  									</a>
+  									<span class="tag green">Available</span>
+  								</p>
+
+  								<small>Added <time>21 days ago</time> by <a href="mailto:coworker@library.edu">coworker@library.edu</a></small>
+  							</div>
+  						</li>
+  					</ul>
+  				</div>
+  			</div>
+
   		</div>
   	</div>
   </section>
