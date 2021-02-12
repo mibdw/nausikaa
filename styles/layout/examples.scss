@@ -1102,11 +1102,15 @@
           .list-main {
             min-width: 160%;
             display: grid;
-            grid-template-columns: 14em auto;
+            grid-template-columns: 16em auto;
             grid-column-gap: 2em;
             min-height: 100%;
+            transform: translateX(-1em);
 
             .list-sidebar {
+              background-color: $headerBackground;
+              border-right: 1px solid $mainLine;
+              padding: 0 1em;
               grid-column: 1 / 2;
 
               & > div {
