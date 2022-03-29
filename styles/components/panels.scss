@@ -28,7 +28,7 @@
 
   & > .header,
   & > header {
-    color: $mainText;
+    color: $panelLinkColor;
     text-decoration: underline solid $panelHeaderColor;
     -webkit-text-decoration: underline solid $panelHeaderColor;
 
@@ -57,6 +57,7 @@
   }
 
   a,
+  .link,
   .subnav > label {
     color: $panelLinkColor;
     border: 1px solid transparent;
@@ -67,6 +68,7 @@
   }
 
   a:hover,
+  .link:hover,
   label:hover,
   .subnav:focus-within:not(.active) > label {
     background-color: $panelHoverBackground;
@@ -79,6 +81,7 @@
   }
 
   a:focus,
+  .link:focus,
   label:focus,
   input[type="checkbox"]:focus + label,
   input[type="radio"]:focus + label {
@@ -93,6 +96,7 @@
   }
 
   .active > a,
+  .active > .link,
   .active > label,
   a.active {
     color: $panelActiveText;
@@ -124,11 +128,13 @@
   .subnav > ul {
     border-left-width: 0;
 
-    & > li > a {
+    & > li > a,
+    & > li > .link {
       color: $panelSubnavLinkColor;
     }
 
-    & > li.active > a {
+    & > li.active > a,
+    & > li.active > .link {
       color: $panelActiveText;
     }
   }
@@ -150,11 +156,13 @@
   }
 
   .with-icon {
-    &:hover > a {
+    &:hover > a,
+    &:hover > .link {
       background-color: $panelHoverBackground;
     }
 
-    &.active > a {
+    &.active > a,
+    &.active > .link {
       background-color: $panelActiveBackground;
 
       &:nth-child(2) > .icon {
@@ -166,9 +174,8 @@
       }
     }
 
-    & > a {
-      &:nth-child(1) {
-      }
+    & > a,
+    & > .link {
       &:nth-child(2) {
         & > .icon {
           fill: $panelBackground;
@@ -184,12 +191,12 @@
 
 .panel {
   @include panelMixin(
-    $mainBackground,
+    $mainBackgroundLite,
     $mainLine,
     $linkColor,
     $linkColor,
-    $mainLine,
-    $black,
+    $mainVague,
+    $mainText,
     $mainBackgroundLiteHover,
     $blue,
     $white
@@ -267,6 +274,8 @@
   & > header {
     margin: 0 0 0.3em;
     font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
 
     & > .icon {
       height: 1.1em;
@@ -283,6 +292,7 @@
   }
 
   a,
+  .link,
   .subnav > label {
     line-height: 1.5em;
     padding: 0.1em 0.3em;
@@ -292,6 +302,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    width: 100%;
+    text-align: left;
 
     & > .icon {
       height: 1.3em;
@@ -354,7 +366,7 @@
       content: "";
       display: block;
       position: absolute;
-      top: 0;
+      top: -1px;
       left: calc(50% - 0.6em);
       width: 1.2em;
       height: 1.2em;
@@ -365,7 +377,7 @@
     }
 
     &.top:after {
-      top: 0;
+      top: -1px;
       transform: translateY(-50%) rotate(-45deg);
     }
 
@@ -386,6 +398,15 @@
     &.right:after {
       left: auto;
       right: calc(1.6em - 0.6em);
+    }
+  }
+
+  .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    & > * {
+      pointer-events: none;
     }
   }
 

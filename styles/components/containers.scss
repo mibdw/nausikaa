@@ -36,11 +36,11 @@
 
 .container {
   @include containerMixin(
-    $mainBackground,
+    $mainBackgroundLite,
     $mainLine,
-    $black,
+    $mainText,
     $linkColor,
-    $black
+    $mainText
   );
 
   margin: $paragraphSpacer 0;
@@ -56,6 +56,7 @@
     margin-top: calc(#{$paragraphSpacer} + 2.9em);
     padding: 0 0 2em;
     border-radius: 0;
+    background-color: $mainBackground !important;
 
     &:before {
       content: "";
@@ -87,13 +88,13 @@
       height: 2em;
       padding: 0.2em 1em;
       border: 1px solid $mainBackgroundLiteHover;
-      background-color: $white;
+      background-color: $mainBackgroundAlt;
       border-radius: 3px;
       cursor: text;
     }
 
     & > .url {
-      color: $mainBackgroundLiteHover;
+      color: $mainText;
       background-color: transparent;
       font-family: $utilityText;
       position: absolute;
@@ -114,7 +115,7 @@
     @include containerMixin(
       $yellowBackground,
       $yellowBorder,
-      $black,
+      $yellowText,
       $yellowActive,
       $yellowHeader
     );
@@ -124,7 +125,7 @@
     @include containerMixin(
       $blueBackground,
       $blueBorder,
-      $black,
+      $blueText,
       $blueActive,
       $blueHeader
     );
@@ -134,7 +135,7 @@
     @include containerMixin(
       $redBackground,
       $redBorder,
-      $black,
+      $redText,
       $redActive,
       $redHeader
     );
@@ -144,7 +145,7 @@
     @include containerMixin(
       $greenBackground,
       $greenBorder,
-      $black,
+      $greenText,
       $greenActive,
       $greenHeader
     );
@@ -154,7 +155,7 @@
     @include containerMixin(
       $purpleBackground,
       $purpleBorder,
-      $black,
+      $purpleText,
       $purpleActive,
       $purpleHeader
     );
@@ -164,7 +165,7 @@
     @include containerMixin(
       $orangeBackground,
       $orangeBorder,
-      $black,
+      $orangeText,
       $orangeActive,
       $orangeHeader
     );
@@ -174,9 +175,25 @@
     @include containerMixin(
       $grayBackground,
       $grayBorder,
-      $black,
+      $mainText,
       $grayActive,
       $grayHeader
     );
+  }
+
+  &.black {
+    @include containerMixin(#333, #111, #fff, #ff8533, $orangeActive);
+
+    input,
+    select,
+    textarea {
+      background-color: #555;
+      border-color: #444;
+      color: white;
+    }
+
+    table tr:hover td {
+      background-color: rgba(#444, 0.3);
+    }
   }
 }

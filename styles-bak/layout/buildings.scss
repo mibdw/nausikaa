@@ -1,0 +1,94 @@
+// BUILDING COLORS
+
+// .building {
+
+//   .east {
+//     fill: #f1c40f !important;
+
+//     &.top {
+//       fill: #c0c0c0 !important;
+//     }
+//   }
+
+//   .west {
+//     fill: #fdf9e7 !important;
+
+//     &.top {
+//       fill: #dfdfdf !important;
+//     }
+//   }
+
+//   .roof {
+//     fill: #e8e8e8 !important;
+//   }
+
+//   .outline {
+//     fill: #000 !important;
+//     stroke: #000 !important;
+//     stroke-width: .5;
+//   }
+// }
+
+:root {
+  --outline-stroke: #000;
+  --outline-stroke-width: .25;
+  --outline-fill: #000;
+  --east-fill: #f1c40f;
+  --east-top-fill: #c0c0c0;
+  --west-fill: #fdf9e7;
+  --west-top-fill: #dfdfdf;
+  --roof-fill: #e8e8e8;
+}
+
+// BUILDING RATIO
+
+.house-01, .house-02, .house-03, .house-04, .house-05, .house-06, .house-07, .house-08, .house-09, .house-10, .house-11, .house-12 {
+  width: 3em;
+  height: 10em;
+}
+
+.arch-01, .arch-02 {
+  width: 5.8em;
+  height: 14.6em;
+}
+
+.arch-03, .arch-04 {
+  width: 7.9em;
+  height: 13.6em;
+}
+
+.arch-05, .arch-06 {
+  width: 16.6em;
+  height: 16.2em;
+}
+
+.arch-07, .arch-08 {
+  width: 14.3em;
+  height: 20.3em;
+}
+
+.spike-01, .spike-02, .spike-03, .spike-04, .spike-05 {
+  width: 8.1em;
+  height: 19.5em;
+}
+
+.tower-01 {
+  width: 9em;
+  height: 25.5em;
+}
+
+.tower-02 {
+  width: 12em;
+  height: 22em;
+}
+
+// BUILDING CLUSTERS
+
+.intro-cluster, .elaboration-cluster {
+  position: relative;
+  // border: 1px solid blue;
+
+  & > svg {
+    position: absolute;
+  }
+}

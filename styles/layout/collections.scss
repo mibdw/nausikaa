@@ -1,0 +1,27 @@
+main#collections {
+	grid-template-columns: repeat(18, 1fr);
+	grid-column-gap: 1em;
+	margin: 0 auto;
+	padding: 0 1em;
+	max-width: 1200px;
+	min-height: 100vh;
+
+	& > article {
+		padding: 2em 0 4em;
+		grid-column: 1 / 14;
+	}
+
+	& > .sidebar {
+		grid-column: 14 / 19;
+		padding: 2em 0 4em;
+		min-width: 0;
+
+		& > .panel {
+			max-width: 100%;
+
+			&.expandable > ul:last-child > .seperator {
+				display: none;
+			}
+		}
+	}
+}

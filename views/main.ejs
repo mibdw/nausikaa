@@ -2,6 +2,11 @@
 <%
   var pageTitle = "Nausikaä";
   var navbar = 'transparent'; 
+  var themeFile = 'style';
+
+  if (theme) {
+    themeFile = theme
+  }
   
   if (lane == 'frontpage') {
     pageTitle = pageTitle + ", a CSS framework for accessible websites";
@@ -49,10 +54,11 @@
 
     <link href='https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,300i,400,400i,700,700i|IBM+Plex+Sans:300,300i,400,400i,500,500i,700,700i|IBM+Plex+Serif:300,300i,400,400i,700,700i' rel='stylesheet'>
     <link href='/fonts/blokkfont.css' rel='stylesheet' type='text/css'>
-    <link rel='stylesheet' href='/style.min.css'>
+    <link rel='stylesheet' href='/<%= themeFile %>.min.css'>
 
     <script src="/dialog-polyfill.js"></script>
     <script src="/highlight.pack.js"></script>
+    <script src="/theme-switch.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
       
   </head>
@@ -145,6 +151,25 @@
           <li><a href="https://github.com/mibdw/nausikaa" alt="Github">Github</a></li>
         </ul>
       </nav>
+
+      <form action="/theme-switch" method="POST" class="theme-switcher">
+        <% if (themeFile == "dark") { %>
+        <input type="hidden" name="theme" value="style" />
+        <button type="submit">
+          <svg class="icon">
+            <use xlink:href="/icons/icons.svg#lightmode"></use>
+          </svg>
+        </button>
+       <% } else { %>
+        <input type="hidden" name="theme" value="dark" />
+        <button type="submit" class="secondary">
+          <svg class="icon">
+            <use xlink:href="/icons/icons.svg#darkmode"></use>
+          </svg>
+        </button>
+       <% } %>
+      </form>
+
       
     </header>
     

@@ -10,7 +10,7 @@
 
     & > * {
       display: block;
-      background-color: $mainBackground;
+      background-color: $mainBackgroundLite;
       border-width: 1px 0 1px 1px;
       border-style: solid;
       border-color: $mainLine;
@@ -20,6 +20,11 @@
       padding: 0 1em;
       margin: 0 -4px 0 0;
       text-decoration: none;
+
+      &:disabled {
+        color: #666;
+        background-color: #ddd;
+      }
     }
 
     &:first-child > * {
@@ -29,6 +34,10 @@
     &:last-child > * {
       border-radius: 0 6px 6px 0;
       border-width: 1px 1px 1px 1px;
+    }
+
+    &:first-child:last-child > * {
+      border-radius: 6px;
     }
 
     & > a:hover,

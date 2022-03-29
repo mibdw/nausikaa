@@ -18,12 +18,12 @@
   }
 
   & > svg.icon {
-    fill: $notificationBorder;
+    fill: $notificationHeader;
   }
 
   .control.close {
     svg {
-      fill: $notificationBorder;
+      fill: $notificationHeader;
     }
 
     &:hover svg,
@@ -34,7 +34,12 @@
 }
 
 .notification {
-  @include notificationMixin($mainBackground, $mainLine, $black, $mainVague);
+  @include notificationMixin(
+    $mainBackgroundLite,
+    $mainLine,
+    $mainText,
+    $mainVague
+  );
 
   margin: $paragraphSpacer 0;
   padding: 0 4rem 0 2rem;

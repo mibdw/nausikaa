@@ -1,7 +1,12 @@
+@use "sass:math";
 @use "typography/normalize.css";
-@use "typography/monokai-sublime.css";
+@use "codemirror.css";
+@use "codemirror-material.css";
+@use "codemirror-monokai.css";
+
 @import "variables.scss";
 @import "typography/typography.scss";
+@import "typography/print.scss";
 
 @import "elements/buttons.scss";
 @import "elements/checkboxes-radios.scss";
@@ -37,8 +42,18 @@
 @import "collections/code-example.scss";
 @import "collections/site-overview.scss";
 
+//@import "layout/responsive.scss";
+//@import "layout/frontpage.scss";
+//@import "layout/documentation.scss";
+//@import "layout/collections.scss";
+//@import "layout/tools.scss";
+//@import "layout/quotes.scss";
+//@import "layout/tasks.scss";
+//@import "layout/bibliograph.scss";
+
 @import "layout/responsive.scss";
 @import "layout/buildings.scss";
 @import "layout/frontpage.scss";
 @import "layout/documentation.scss";
 @import "layout/examples.scss";
+@import "layout/theme-switcher.scss";

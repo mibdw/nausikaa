@@ -1,0 +1,363 @@
+main#bibliograph {
+  padding-top: 1.6em;
+  min-height: auto;
+  grid-column-gap: 0.75em;
+  grid-template-columns: 300px 1fr;
+
+  & > header {
+    grid-column: 1 / 3;
+    border-bottom: 1px solid $mainLine;
+    padding: 0 0 0.5em;
+    margin-bottom: 1em;
+    display: flex;
+
+    & > .spacer {
+      flex-grow: 999;
+    }
+
+    & > button {
+      margin-right: 0.5em;
+    }
+
+    & > .suggestions {
+      min-width: 400px;
+
+      & > .panel {
+        top: calc(100% - 6px);
+
+        .searching {
+          text-align: center;
+
+          img {
+            animation: rotation 2s infinite linear;
+            margin: 1em;
+            opacity: 0.5;
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .product {
+          display: grid;
+          grid-template-columns: repeat(15, 1fr);
+          grid-gap: 0.5em;
+          margin-top: 0;
+          margin-bottom: 0;
+
+          mark {
+            background-color: #ffff99;
+            color: #111;
+          }
+
+          .product-image {
+            grid-column: 1 / 3;
+            min-height: 4em;
+          }
+
+          .product-metadata {
+            grid-column: 3 / 16;
+
+            & > * {
+              color: #000;
+            }
+
+            .product-title {
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+
+              strong,
+              span {
+                display: inline;
+              }
+            }
+
+            .product-persons,
+            .product-misc,
+            .product-prices,
+            .product-production {
+              opacity: 0.6;
+              font-size: 0.85em;
+              line-height: 1.4;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & > .biblio-images {
+    grid-column: 1 / 2;
+
+    .slideshow {
+      &:before {
+        padding-top: 120%;
+      }
+
+      img {
+        height: 120%;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  & > .biblio-metadata {
+    grid-column: 2 / 3;
+
+    .title {
+      font-weight: normal;
+      font-family: $utilityText;
+    }
+
+    .editable {
+      position: relative;
+      padding: 0.3em 0.5em;
+      border-radius: 6px;
+      background-color: $mainBackground;
+      border: 1px solid $mainBackground;
+      transition: 0.2s border-color, 0.2s background-color;
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        border-color: $mainLine;
+        outline-width: 0;
+
+        &.not-editing:after {
+          content: "Click to edit";
+          position: absolute;
+          top: 5px;
+          right: -10px;
+          background-color: $grayHover;
+          display: inline-box;
+          padding: 0.1em 0.2em;
+          border-radius: 3px;
+          color: $grayHeader;
+          font-size: 0.8em;
+          font-family: $utilityText;
+        }
+      }
+
+      dl {
+        line-height: 1.6;
+
+        & > dt {
+          flex: 0 0 19%;
+        }
+
+        & > dd {
+          flex: 0 0 81%;
+        }
+      }
+
+      .undefined {
+        opacity: 0.5;
+        font-family: $utilityText;
+      }
+
+      .static {
+        visibility: visible;
+        height: auto;
+        padding: auto;
+        margin: auto;
+      }
+
+      .edit {
+        visibility: hidden;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        position: relative;
+
+        .edit-summary {
+          grid-column: 1 / 17;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+          margin: 0;
+          padding: 0.25em 2em 0.25em 0.1em;
+          margin-bottom: 0.5em;
+          min-height: 2.5em;
+        }
+
+        .close {
+          position: absolute;
+          top: 0.5em;
+          right: 0.5em;
+          width: 1.7em;
+          height: 1.7em;
+          opacity: 0.3;
+          cursor: pointer;
+          grid-column: unset;
+
+          &:hover,
+          &:focus {
+            opacity: 0.7;
+          }
+        }
+      }
+
+      &.editing {
+        background-color: $yellowBackground;
+        border-color: $yellowHover;
+
+        .help {
+          line-height: 1.2;
+          margin-top: -0.2em;
+        }
+
+        .static {
+          visibility: hidden;
+          height: 0;
+          padding: 0;
+          margin: 0;
+        }
+
+        .edit {
+          visibility: visible;
+          height: auto;
+          padding: auto;
+          margin: auto;
+        }
+      }
+
+      &.diff-less,
+      &.diff-less.editing {
+        background-color: $redBackground;
+        border-color: $redHover;
+        margin: 0.15em 0;
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+          border-color: $redBorder;
+
+          &.not-editing:after {
+            background-color: $redBorder;
+            color: $white;
+          }
+        }
+      }
+
+      &.diff-more,
+      &.diff-more.editing {
+        background-color: $greenBackground;
+        border-color: $greenHover;
+        margin: 0.15em 0;
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+          border-color: $greenBorder;
+
+          &.not-editing:after {
+            background-color: $greenBorder;
+            color: $white;
+          }
+        }
+      }
+
+      &.diff-unsure,
+      &.diff-unsure.editing {
+        background-color: $orangeBackground;
+        border-color: $orangeHover;
+        margin: 0.15em 0;
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+          border-color: $orangeBorder;
+
+          &.not-editing:after {
+            background-color: $orangeBorder;
+            color: $white;
+          }
+        }
+      }
+
+      &.diff-more {
+        background-color: $greenBackground;
+        border-color: $greenHover;
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+          border-color: $greenBorder;
+
+          &.not-editing:after {
+            background-color: $greenBorder;
+            color: $white;
+          }
+        }
+      }
+    }
+
+    .biblio-title {
+      h4 {
+        margin: 0;
+        padding: 0.25em 0;
+        font-family: $utilityText;
+
+        & > span {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+  & > .biblio-controls {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    padding-top: 1em;
+    grid-column: 1 / 3;
+    border-top: 1px solid $mainLine;
+    text-align: right;
+  }
+
+  & > .biblio-revisions {
+    border-top: 1px solid $mainLine;
+    grid-column: 1 / 3;
+  }
+
+  & > .code-example {
+    border-top: 1px solid $mainLine;
+    grid-column: 1 / 3;
+
+    & > label {
+      .open {
+        display: inline;
+      }
+      .close {
+        display: none;
+      }
+
+      opacity: 0.6;
+    }
+
+    & > input {
+      left: 100%;
+    }
+
+    & > input:checked + label {
+      color: #fff;
+
+      .open {
+        display: none;
+      }
+      .close {
+        display: inline;
+        font-size: 3em;
+      }
+    }
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: translateY(0.1em) scale(2.2, 2.2) rotate(0deg);
+  }
+  to {
+    transform: translateY(0.1em) scale(2.2, 2.2) rotate(359deg);
+  }
+}

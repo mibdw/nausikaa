@@ -6,10 +6,7 @@ table,
   width: 100%;
   max-width: 100%;
   margin: $paragraphSpacer 0;
-
-  th {
-    font-family: $utilityText;
-  }
+  font-family: $utilityText;
 
   th,
   td {
@@ -49,15 +46,22 @@ table,
 
   &.striped {
     tbody tr:nth-of-type(odd) td {
-      background-color: $mainBackgroundAlt;
+      background-color: $mainBackgroundLite;
     }
 
     tbody tr:hover:nth-of-type(odd) td {
-      background-color: $mainBackgroundLite;
+      background-color: $mainBackgroundAlt;
     }
   }
 
   &.outlined {
     border: 1px solid $mainLine;
+  }
+
+  &.dense {
+    th,
+    td {
+      padding: 0.35em 0.5em;
+    }
   }
 }

@@ -13,7 +13,8 @@ html {
 }
 
 body {
-  background-color: $white;
+  background-color: $mainBackground;
+  color: $mainText;
 }
 
 p {
@@ -94,7 +95,7 @@ samp {
 }
 
 code {
-  color: $red;
+  color: #fda7df;
   background-color: $mainBackgroundLite;
   border: 1px solid $mainLine;
 }
@@ -117,12 +118,73 @@ samp {
 }
 
 .sample-text {
-  color: $mainBackgroundLite;
+  color: $mainVague;
   font-family: "BLOKK";
   font-size: 2em;
   word-spacing: -20px;
 }
 
 .price {
+  font-family: $utilityText;
   border-bottom: 1px dotted $mainLine;
+}
+
+.spinner {
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-55%);
+}
+
+.spinner svg {
+  animation: rotate 1.5s linear infinite;
+  height: 100%;
+  width: 100%;
+}
+
+.spinner circle {
+  stroke: $blue;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite 0s;
+  fill: none;
+  stroke-width: 6;
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes color {
+  100%,
+  0% {
+    stroke: #4285f4;
+  }
+  25% {
+    stroke: #de3e35;
+  }
+  50% {
+    stroke: #f7c223;
+  }
+  75% {
+    stroke: #1da760;
+  }
 }

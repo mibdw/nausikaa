@@ -4,6 +4,8 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "^1.19.2",
+    "cookie-parser": "^1.4.6",
     "ejs": "^2.7.1",
     "express": "^4.17.1"
   },
@@ -13,7 +15,7 @@
     "sass": "^1.23.2"
   },
   "scripts": {
-    "dev": "concurrently \"sass styles/index.scss public/style.min.css --watch --source-map --style=compressed\" \"nodemon app -e js,ejs,css --watch\"",
+    "dev": "concurrently \"sass styles/index.scss public/style.min.css --watch --source-map --style=compressed\" \"sass styles/dark.scss public/dark.min.css --watch --source-map --style=compressed\" \"nodemon app -e js,ejs,css --watch\"",
     "build": "sass styles/index.scss public/style.min.css --style=compressed"
   },
   "author": "MIBDW",

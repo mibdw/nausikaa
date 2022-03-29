@@ -1,4 +1,10 @@
-@mixin siteOverviewMixin($soIcon, $soHeader, $soBorder, $soBackground) {
+@mixin siteOverviewMixin(
+  $soIcon,
+  $soHeader,
+  $soBorder,
+  $soBackground,
+  $soActiveText
+) {
   h1,
   h2,
   h3,
@@ -22,8 +28,7 @@
       fill: $soIcon;
     }
 
-    &:hover,
-    &:focus {
+    &:hover {
       & > .title {
         text-decoration: underline solid $soHeader;
       }
@@ -34,9 +39,23 @@
     }
 
     &:focus {
+      color: $soActiveText;
       outline-width: 0;
       border-color: $soBorder;
       background-color: $soBackground;
+
+      & > .title {
+        color: $soActiveText;
+        text-decoration: underline solid $soHeader;
+      }
+
+      & > .icon {
+        fill: $soActiveText;
+      }
+
+      & > .description {
+        color: $soActiveText;
+      }
     }
 
     &:active {
@@ -53,7 +72,8 @@
     $mainLine,
     $linkColor,
     $mainLine,
-    $mainBackgroundLite
+    $mainBackgroundLite,
+    $mainText
   );
 
   padding: 2em 1em;
@@ -131,7 +151,8 @@
       $yellowBorder,
       $yellowActive,
       $yellowBorder,
-      $yellowBackground
+      $yellowBackground,
+      $yellowText
     );
   }
   &.red {
@@ -139,7 +160,8 @@
       $redHeader,
       $redActive,
       $redBorder,
-      $redBackground
+      $redBackground,
+      $redText
     );
   }
   &.blue {
@@ -147,7 +169,8 @@
       $blueHeader,
       $blueActive,
       $blueBorder,
-      $blueBackground
+      $blueBackground,
+      $blueText
     );
   }
   &.green {
@@ -155,7 +178,8 @@
       $greenHeader,
       $greenActive,
       $greenBorder,
-      $greenBackground
+      $greenBackground,
+      $greenText
     );
   }
   &.orange {
@@ -163,7 +187,8 @@
       $orangeHeader,
       $orangeActive,
       $orangeBorder,
-      $orangeBackground
+      $orangeBackground,
+      $orangeText
     );
   }
   &.purple {
@@ -171,7 +196,8 @@
       $purpleHeader,
       $purpleActive,
       $purpleBorder,
-      $purpleBackground
+      $purpleBackground,
+      $purpleText
     );
   }
   &.gray {
@@ -179,7 +205,8 @@
       $grayHeader,
       $grayActive,
       $grayBorder,
-      $grayBackground
+      $grayBackground,
+      $grayText
     );
   }
 }

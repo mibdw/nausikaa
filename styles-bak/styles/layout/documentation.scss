@@ -1,0 +1,8 @@
+main#documentation {
+  & > article {
+    & > h2 {
+      margin-top: 0;
+      border-bottom: 1px dotted $mainLine;
+    }
+  }
+}

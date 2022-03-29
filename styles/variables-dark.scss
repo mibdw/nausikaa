@@ -1,0 +1,177 @@
+/* COLORS */
+
+$black: #111;
+$white: #fff;
+
+$mainBackground: #222;
+$mainBackgroundLite: #333;
+$mainBackgroundLiteHover: #444;
+$mainBackgroundAlt: #000;
+$mainText: $white;
+$mainVague: #aaa;
+$mainHover: #333;
+$mainLine: #111;
+
+$yellow: #ff0;
+$yellowBackground: #ffcc33;
+$yellowBorder: #e6ac00;
+$yellowText: $black;
+$yellowHeader: $yellowBorder;
+$yellowBorderSub: $yellowBorder;
+$yellowTextSub: $black;
+$yellowHover: #ffd966;
+$yellowActive: #ffe699;
+$yellowActiveLite: #ffe699;
+$yellowActiveText: $black;
+
+$blue: #2980d7;
+$darkblue: #154360;
+$blueBackground: #2066ac;
+$blueBorder: #184d81;
+$blueText: $white;
+$blueHeader: $blueBorder;
+$blueBorderSub: $blueBorder;
+$blueTextSub: $white;
+$blueHover: #2473c2;
+$blueActive: #2980d7;
+$blueActiveLite: #2980d7;
+$blueActiveText: $white;
+
+$red: #c00;
+$redBackground: #cb4335;
+$redBorder: #a2362a;
+$redText: $white;
+$redHeader: $redBorder;
+$redBorderSub: $redBorder;
+$redTextSub: $white;
+$redHover: #d05649;
+$redActive: #da7c71;
+$redActiveLite: #da7c71;
+$redActiveText: $white;
+
+$greenBackground: #176939;
+$greenBorder: #0e3f22;
+$greenText: $white;
+$greenHeader: $greenBorder;
+$greenBorderSub: $greenBorder;
+$greenTextSub: $white;
+$greenHover: #209250;
+$greenActive: #29bc67;
+$greenActiveLite: #29bc67;
+$greenActiveText: $white;
+
+$purpleBackground: #8000ff;
+$purpleBorder: #400080;
+$purpleText: $white;
+$purpleHeader: $purpleBorder;
+$purpleBorderSub: $purpleBorder;
+$purpleTextSub: $white;
+$purpleHover: #a64dff;
+$purpleActive: #bf80ff;
+$purpleActiveLite: #bf80ff;
+$purpleActiveText: $white;
+
+$orangeBackground: #d35400;
+$orangeBorder: #b34700;
+$orangeText: $white;
+$orangeHeader: $orangeBorder;
+$orangeBorderSub: $orangeBorder;
+$orangeTextSub: $white;
+$orangeHover: #ff6600;
+$orangeActive: #ff8533;
+$orangeActiveLite: #ff8533;
+$orangeActiveText: $white;
+
+$gray: #aaa;
+$grayBackground: $mainBackgroundLite;
+$grayBorder: $mainLine;
+$grayText: #58a6da;
+$grayHeader: $mainVague;
+$grayBorderSub: $grayHeader;
+$grayTextSub: $white;
+$grayHover: $mainBackgroundLiteHover;
+$grayActive: $blue;
+$grayActiveText: $white;
+
+/* TYPOGRAPHY */
+
+$blockText: "IBM Plex Serif", Georgia, serif;
+$utilityText: "IBM Plex Sans", Calibri, Arial, Verdana, sans-serif;
+$monoText: "IBM Plex Mono", monospace;
+
+$fontFamily: $blockText;
+$fontSize: 15px;
+$lineHeight: $fontSize * 1.4;
+$paragraphSpacer: $lineHeight * 0.75;
+
+/* HEADER */
+
+$headerBackground: $mainBackgroundLite;
+$headerText: $white;
+$headerLine: $mainLine;
+$headerHeight: 55px;
+
+/* ASIDE */
+
+$asideBackground: #e6e6e6;
+$asideLine: #c8c8c8;
+
+/* SECTIONS */
+
+$sectionHeaderBackground: #f2f2f2;
+$inner3D: $white;
+$outer3D: $black;
+$outer3D-80: #1a1a1a;
+$outer3D-60: #262626;
+$outer3D-50: #595959;
+$outer3D-40: #737373;
+
+/* LINKS */
+
+$linkColor: #58a6ff;
+$linkLine: #66adff;
+$linkHover: $mainText;
+$linkActive: $mainText;
+$linkVisited: #e6b800;
+
+/* INPUT */
+
+$inputFontSize: 1em;
+$inputHeight: 2.6em;
+$inputPaddingWidth: 0.6em;
+$inputPaddingHeight: 0;
+$inputPadding: $inputPaddingHeight $inputPaddingWidth;
+
+$inputBackground: #444;
+$inputBackgroundDisabled: $mainBackgroundLite;
+$inputText: $mainText;
+$inputVague: #666;
+$inputLine: $mainLine;
+$inputLineHover: #5dade2;
+$inputLineFocus: #2e8fc1;
+$inputLineActive: #2c81ba;
+$inputLineError: #c0392b;
+
+/* BUTTONS */
+
+$buttonFontSize: 1em;
+$buttonHeight: 2.6em;
+$buttonPadding: 0 1.2em 5px;
+$buttonShadowSize: 3px;
+
+$buttonBackground: #595959;
+$buttonText: $mainText;
+$buttonTextDisabled: rgba($mainText, 0.4);
+
+$buttonLine: #111111;
+$buttonHover: #444444;
+$buttonFocus: #444444;
+$buttonActive: #333333;
+$buttonDisabled: #444444;
+$buttonShadow: #333333;
+
+$buttonPulseHigh: #bbc2c3;
+$buttonPulseLow: #e4e7e7;
+
+$buttonRefresh: url(../images/icons/refresh-black.svg);
+$buttonCheck: url(../images/icons/check-black.svg);

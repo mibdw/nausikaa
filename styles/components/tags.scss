@@ -17,7 +17,7 @@
 }
 
 .tag {
-  @include tagMixin($black, $grayHover, $grayHover, $mainVague);
+  @include tagMixin($mainText, $grayHover, $grayHover, $mainVague);
 
   font-family: $utilityText;
   font-weight: 200;
@@ -72,7 +72,7 @@
 
   &.yellow {
     @include tagMixin(
-      $yellowActiveText,
+      $black,
       $yellowActive,
       $yellowActiveLite,
       $yellowBackground
@@ -86,6 +86,10 @@
       $greenActiveLite,
       $greenBackground
     );
+  }
+
+  &.erasmus {
+    @include tagMixin(#fff, #006b57, #005746, rgba(255, 255, 255, 0.5));
   }
 
   &.orange {
@@ -105,11 +109,38 @@
       $purpleBackground
     );
   }
-}
 
-h1 .tag {
-  font-size: 1.5rem;
-  border-radius: 6px;
+  &.pink {
+    @include tagMixin($white, #ff69b4, #ff4da6, #ffe6f2);
+  }
+
+  &.teal {
+    @include tagMixin($white, #008080, #00b3b3, #d9ecec);
+  }
+
+  &.navy {
+    @include tagMixin($white, #000080, #262693, #b2b2d9);
+  }
+
+  &.olive {
+    @include tagMixin($white, #808000, #999933, #d9d9b2);
+  }
+
+  &.salmon {
+    @include tagMixin($white, #fa8072, #fb998e, #fed9d5);
+  }
+
+  &.magenta {
+    @include tagMixin($white, #ff00ff, #ff59ff, #ffccff);
+  }
+
+  &.cyan {
+    @include tagMixin($black, #00ffff, #b2ffff, #00d9d9);
+  }
+
+  &.black {
+    @include tagMixin($white, $black, #262626, #eee);
+  }
 }
 
 h2 .tag {
