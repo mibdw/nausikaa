@@ -9,33 +9,38 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +3 app.js
+badd +9 app.js
 badd +52 routes.js
 badd +168 views/main.ejs
 badd +1 styles/layout/responsive.scss
-badd +131 styles/variables-dark.scss
+badd +143 styles/variables-dark.scss
 badd +99 styles/components/breadcrumbs.scss
 badd +41 styles/components/containers.scss
 badd +98 styles/typography/typography.scss
 badd +60 styles/elements/dialogs.scss
 badd +1 styles/elements/links.scss
-badd +605 styles/components/panels.scss
+badd +195 styles/components/panels.scss
 badd +6 styles/index.scss
 badd +61 styles/dark.scss
-badd +10 styles/variables.scss
-badd +122 styles/components/tags.scss
+badd +77 styles/variables.scss
+badd +82 styles/components/tags.scss
 badd +26 styles/collections/articles.scss
 badd +73 styles/layout/frontpage.scss
 badd +38 styles/layout/dark-mods.scss
 badd +32 styles/layout/buildings.scss
 badd +56 styles/collections/site-overview.scss
 badd +15 styles/components/notifications.scss
-badd +45 styles/components/pagination.scss
-badd +413 views/documentation/components/tags.ejs
+badd +74 styles/components/pagination.scss
+badd +203 views/documentation/components/tags.ejs
+badd +0 ~/dev/nausikaa
+badd +6 .gitignore
+badd +169 styles/elements/inputs.scss
+badd +25 styles/elements/selects.scss
+badd +0 styles/elements/tables.scss
 argglobal
 %argdel
-$argadd .
-edit styles/components/tags.scss
+$argadd ~/dev/nausikaa
+edit styles/elements/tables.scss
 argglobal
 balt views/documentation/components/tags.ejs
 setlocal fdm=manual
@@ -54,6 +59,7 @@ keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
+lcd ~/dev/nausikaa
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf

@@ -53,65 +53,31 @@
   }
 
   &.red {
-    @include tagMixin(
-      $redActiveText,
-      $redActive,
-      $redActiveLite,
-      $redBackground
-    );
+    @include tagMixin(#fff, #cb4335, #d05649, #f5d9d6);
   }
 
   &.blue {
-    @include tagMixin(
-      $blueActiveText,
-      $blueActive,
-      $blueActiveLite,
-      $blueBackground
-    );
+    @include tagMixin(#fff, #2980d7, #3d8cdb, #e6f2ff);
   }
 
   &.yellow {
-    @include tagMixin(
-      $black,
-      $yellowActive,
-      $yellowActiveLite,
-      $yellowBackground
-    );
+    @include tagMixin(#000, #f1c40f, #f2ca26, #fdf9e7);
   }
 
   &.green {
-    @include tagMixin(
-      $greenActiveText,
-      $greenActive,
-      $greenActiveLite,
-      $greenBackground
-    );
-  }
-
-  &.erasmus {
-    @include tagMixin(#fff, #006b57, #005746, rgba(255, 255, 255, 0.5));
+    @include tagMixin(#000, #28b463, #29bc67, #d5f6e3);
   }
 
   &.orange {
-    @include tagMixin(
-      $orangeActiveText,
-      $orangeActive,
-      $orangeActiveLite,
-      $orangeBackground
-    );
+    @include tagMixin(#fff, #d35400, #e65c00, #ffa366);
   }
 
   &.purple {
-    @include tagMixin(
-      $purpleActiveText,
-      $purpleActive,
-      $purpleActiveLite,
-      $purpleBackground
-    );
+    @include tagMixin(#fff, #9933ff, #a64dff, #e6ccff);
   }
 
   &.pink {
-    @include tagMixin($white, #ff69b4, #ff4da6, #ffe6f2);
+    @include tagMixin(#000, #ffc0cb, #ffcdd5, #ffecef);
   }
 
   &.teal {
@@ -140,6 +106,10 @@
 
   &.black {
     @include tagMixin($white, $black, #262626, #eee);
+  }
+
+  &.erasmus {
+    @include tagMixin(#fff, #006b57, #005746, rgba(255, 255, 255, 0.5));
   }
 }
 

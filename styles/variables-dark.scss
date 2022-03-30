@@ -6,11 +6,11 @@ $white: #fff;
 $mainBackground: #222;
 $mainBackgroundLite: #333;
 $mainBackgroundLiteHover: #444;
-$mainBackgroundAlt: #000;
+$mainBackgroundAlt: #191919;
 $mainText: $white;
 $mainVague: #aaa;
 $mainHover: #333;
-$mainLine: #111;
+$mainLine: #383838;
 
 $yellow: #ff0;
 $yellowBackground: #ffcc33;
@@ -142,8 +142,8 @@ $inputPaddingWidth: 0.6em;
 $inputPaddingHeight: 0;
 $inputPadding: $inputPaddingHeight $inputPaddingWidth;
 
-$inputBackground: #444;
-$inputBackgroundDisabled: $mainBackgroundLite;
+$inputBackground: #191919;
+$inputBackgroundDisabled: #262626;
 $inputText: $mainText;
 $inputVague: #666;
 $inputLine: $mainLine;

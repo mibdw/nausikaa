@@ -49,8 +49,12 @@ table,
       background-color: $mainBackgroundLite;
     }
 
+    tbody tr:hover:nth-of-type(even) td {
+      background-color: $mainBackgroundLiteHover;
+    }
+
     tbody tr:hover:nth-of-type(odd) td {
-      background-color: $mainBackgroundAlt;
+      background-color: $mainBackgroundLiteHover;
     }
   }
 

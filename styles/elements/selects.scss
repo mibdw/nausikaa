@@ -21,7 +21,7 @@ select {
 
   &[multiple] {
     min-height: $inputHeight * 2;
-    background: none;
+    background-image: none;
     padding: 0.5em 0 0;
 
     &[disabled],

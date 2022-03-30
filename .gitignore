@@ -2,3 +2,5 @@ node_modules
 *.sublime-workspace
 *.sublime-project
 package-lock.json
+Session.vim
+
