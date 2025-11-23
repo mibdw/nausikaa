@@ -1,22 +1,23 @@
 {
+  "type": "module",
   "name": "nausikaa",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "body-parser": "^1.19.2",
-    "cookie-parser": "^1.4.6",
-    "ejs": "^2.7.1",
-    "express": "^4.17.1"
+    "body-parser": "^2.2.0",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
   },
   "devDependencies": {
-    "concurrently": "^5.0.0",
-    "nodemon": "^1.19.4",
-    "sass": "^1.23.2"
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.11",
+    "sass": "^1.94.1"
   },
   "scripts": {
-    "dev": "concurrently \"sass styles/index.scss public/style.min.css --watch --source-map --style=compressed\" \"sass styles/dark.scss public/dark.min.css --watch --source-map --style=compressed\" \"nodemon app -e js,ejs,css --watch\"",
-    "build": "sass styles/index.scss public/style.min.css --style=compressed"
+    "dev": "concurrently \"sass styles/light.scss public/styles/nausikaa-light.min.css --watch --style=compressed --no-source-map --quiet-deps\" \"sass styles/dark.scss public/styles/nausikaa-dark.min.css --watch --style=compressed --no-source-map --quiet-deps\" \"nodemon app -e js,ejs,css --watch\"",
+    "build": "concurrently \"sass styles/light.scss public/styles/nausikaa-light.min.css --style=compressed --no-source-map --quiet-deps\" \"sass styles/dark.scss public/styles/nausikaa-dark.min.css --style=compressed --no-source-map --quiet-deps\""
   },
   "author": "MIBDW",
   "license": "none"

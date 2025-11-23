@@ -1,0 +1,83 @@
+@use "../colors" as *;
+@use "../variables" as *;
+
+#documentation-overview {
+  .introduction {
+    grid-column: 1 /13;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: auto;
+    position: relative;
+    margin-bottom: 3em;
+    padding: 6em 0;
+
+    u {
+      text-decoration: underline solid $yellowActive;
+      -webkit-text-decoration: underline solid $yellowActive;
+    }
+
+    a {
+      color: $yellowActive;
+      text-decoration: underline solid $text;
+      -webkit-text-decoration: underline solid $text;
+
+      &:hover {
+        color: $text;
+      }
+    }
+
+    .skew {
+      position: absolute;
+      top: -50em;
+      left: 50%;
+      bottom: -3.4em;
+      width: 100vw;
+      z-index: -1;
+      background-color: $yellowBackground;
+      transform: skewY(2deg) translateX(-50%);
+    }
+
+    h1 {
+      grid-column: 7 / 12;
+      text-decoration: underline solid $yellowActive;
+      -webkit-text-decoration: underline solid $yellowActive;
+      text-align: right;
+    }
+
+    .explainer {
+      font-size: 1.2em;
+      line-height: 1.3;
+      grid-column: 7 / 12;
+    }
+  }
+
+  .site-overview,
+  hr {
+    grid-column: 1 / 13;
+  }
+
+  @media (min-width: 667px) and (max-width: 900px) {
+    .introduction {
+      h1 {
+        grid-column: 5 / 12;
+      }
+
+      .explainer {
+        grid-column: 5 / 12;
+      }
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 666px) {
+    .introduction {
+      h1 {
+        grid-column: 2 / 12;
+        text-align: left;
+      }
+
+      .explainer {
+        grid-column: 2 / 12;
+      }
+    }
+  }
+}

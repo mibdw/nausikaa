@@ -1,4 +1,5 @@
 @use "../colors" as *;
+@use "../variables" as *;
 
 $imageWidth: 12%;
 $printGap: 7pt;
@@ -106,7 +107,7 @@ $printGap: 7pt;
         left: 0;
         right: 0;
         height: 7mm;
-        border-bottom: 1px solid rgba($mainLine, 0.6);
+        border-bottom: 1px solid rgba($crust, 0.6);
         margin: 0;
         padding: 1mm 0;
 
@@ -141,14 +142,14 @@ $printGap: 7pt;
 
       .product-print-footer {
         display: flex;
-        border-top: 1px solid rgba($mainLine, 0.6);
+        border-top: 1px solid rgba($crust, 0.6);
         position: absolute;
         left: 0;
         bottom: 0;
         right: 0;
         height: 3em;
         padding: 3pt 0 0;
-        background-color: $mainBackground;
+        background-color: $base;
         z-index: 999;
 
         & > div {
@@ -249,74 +250,4 @@ body.print {
   & > footer {
     display: none;
   }
-
-  //main#quotes {
-  //display: block;
-  //margin: 0;
-  //padding: 0;
-  //max-width: none;
-
-  //.quote-line {
-  //display: block;
-
-  //.quote-line-quantity {
-  //width: 2%;
-  //font-size: 1.3em;
-  //}
-
-  //.quote-line-images {
-  //width: 12ch;
-  //}
-
-  //.product-title {
-  //margin: 0 0 math.div($paragraphSpacer, 2);
-  //}
-
-  //.quote-line-references td {
-  //padding: 0 0.3em;
-  //border-width: 0;
-
-  //&.ref-label {
-  //width: 15ch;
-  //opacity: 0.5;
-  //}
-  //}
-
-  //.quote-line-price {
-  //font-family: $utilityText;
-  //text-align: right;
-
-  //strong {
-  //font-size: 1.5em;
-  //}
-
-  //small {
-  //font-size: 1em;
-  //opacity: 0.5;
-  //}
-  //}
-  //}
-
-  //.quote-line-empty {
-  //h4 {
-  //text-align: center;
-  //opacity: 0.15;
-  //padding: 1em 0;
-  //}
-  //}
-
-  //.quote-print-footer {
-  //td {
-  //text-align: right;
-  //}
-
-  //.purchase {
-  //font-size: 1.5em;
-  //}
-  //small {
-  //opacity: 0.5;
-  //font-size: 1em;
-  //}
-  //}
-  //}
 }
