@@ -4,7 +4,10 @@
 
 <section>
   <p class="introduction">
-    Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum sapien malesuada et. Duis elementum arcu nec enim sagittis interdum. Praesent gravida lacinia ipsum, et rutrum felis posuere nec. Duis ipsum ipsum, consectetur in molestie non, dignissim eget ex. Maecenas ut fermentum libero. Mauris eu libero sollicitudin, pulvinar nunc id, facilisis odio.
+    <strong>Typography</strong> sets the tone for the entire interface: clear hierarchies help readers scan, while consistent type choices build trust and reinforce the brand. Every heading, inline adjustment, or list conveys structure even before the words do, so thoughtful typography becomes an essential piece of <em>interaction design</em>.
+  </p>
+  <p class="introduction">
+    The elements below collect the most common <strong>HTML primitives</strong> we rely on - headings, inline emphasis, quotes, lists, and more - so you can preview their styling in one place. Use these samples as guidance when composing new screens to ensure content flows logically and feels <em>cohesive across the documentation site</em>.
   </p>
 </section>
 
@@ -13,32 +16,26 @@
     <h2>Headings</h2>
   </header>
 
-  <h1>First header, H1</h1>
-  <h2>Second header, H2</h2>
-  <h3>Third header, H3</h3>
-  <h4>Fourth header, H4</h4>
-  <h5>Fifth header, H5</h5>
-  <h6>Sixth header, H6</h6>
+  <p><strong>Headings</strong> communicate the outline of a page, from the single, page-level &lt;h1&gt; down to more granular &lt;h6&gt; sections. They make long-form content scannable, improve accessibility, and allow assistive technologies to navigate through the <em>document structure</em>.</p>
+
+	<div class="section-example">
+		<h1>First header, H1</h1>
+		<h2>Second header, H2</h2>
+		<h3>Third header, H3</h3>
+		<h4>Fourth header, H4</h4>
+		<h5>Fifth header, H5</h5>
+		<h6>Sixth header, H6</h6>
+	</div>
+
+  <p class="note"><strong>Use headings in order</strong> without skipping levels so that screen readers can build a predictable document map, and <em>reserve only one &lt;h1&gt; per view</em> for the main title.</p>
     
   <div class="code-example">
-    
-    <input type="checkbox" id="code-headings">
-    <label for="code-headings" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
-    <pre><code class="html">&lt;h1&gt;...&lt;/h1&gt;
+    <pre><code class="language-html">&lt;h1&gt;...&lt;/h1&gt;
 &lt;h2&gt;...&lt;/h2&gt;
 &lt;h3&gt;...&lt;/h3&gt;
 &lt;h4&gt;...&lt;/h4&gt;
 &lt;h5&gt;...&lt;/h5&gt;
 &lt;h6&gt;...&lt;/h6&gt;</code></pre>
-
   </div>
 
 </section>  
@@ -48,6 +45,9 @@
     <h2>Inline text elements</h2>
   </header>
 
+  <p><strong>Inline styling</strong> communicates nuance inside a paragraph - whether that is emphasis, provenance, code, or mathematical notation. These elements keep the text flowing while still providing semantic hooks that CSS and assistive tech can interpret for <em>better accessibility</em>.</p>
+
+	<div class="section-example">
     <p>You can use the mark tag to <mark>highlight</mark> text.</p>
     <p><del>This line of text is meant to be treated as deleted text.</del></p>
     <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
@@ -60,20 +60,12 @@
     <p>Snippets of code with <code>&lt;code&gt;</code> tags.</p>
     <p>Keyboard input is displayed like: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F8</kbd> or <kbd>ls -gto</kbd>.</p>
     <p>Computer sample output is displayed like: <samp>Press F1 to continue</samp>.</p>
+</div>
+
+  <p class="note"><strong>Favor semantics over presentation</strong>: choose the tag that best describes the intent (e.g., &lt;em&gt; for stress emphasis vs. &lt;strong&gt; for importance) so future readers can <em>restyle or localize appropriately</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-inline-text-elements">
-    <label for="code-inline-text-elements" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
-    <pre><code class="html">You can use the mark tag to &lt;mark&gt;highlight&lt;/mark&gt; text
+    <pre><code class="language-html">You can use the mark tag to &lt;mark&gt;highlight&lt;/mark&gt; text
 &lt;del&gt;This line of text is meant to be treated as deleted text.&lt;/del&gt;
 &lt;s&gt;This line of text is meant to be treated as no longer accurate.&lt;/s&gt;
 &lt;ins&gt;This line of text is meant to be treated as an addition to the document.&lt;/ins&gt;
@@ -94,29 +86,31 @@ Computer sample output is displayed like: &lt;samp&gt;Press F1 to continue&lt;/s
   <header>
     <h2>Blockquotes</h2>
   </header>
+
+  <p><strong>Blockquotes</strong> call attention to sourced material, testimonials, or excerpts that deserve visual separation from the surrounding copy. Pair them with citations so readers immediately understand where the thought originated and can <em>evaluate the context</em>.</p>
  
-  <blockquote>
+	<div class="section-example">
+		<blockquote>
     <p>
-      <strong>Blockquote</strong> lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam eveniet eius sapiente rerum nesciunt magni neque officia aperiam, enim minus quaerat ipsum, ea suscipit. Iure eligendi placeat voluptatum beatae a.
+      &ldquo;According to a certain Chinese encyclopedia called <em>Celestial Emporium of Benevolent Knowledge</em>, animals are divided into: (a) belonging to the Emperor, (b) embalmed, (c) tame, (d) sucking pigs, (e) sirens, (f) fabulous, (g) stray dogs, (h) included in the present classification, (i) frenzied, (j) innumerable, (k) drawn with a very fine camel-hair brush, (l) et cetera, (m) having just broken the water pitcher, (n) that from a long way off look like flies.&rdquo;
     </p>
     <footer>
-      Someone famous in <cite title="Source">Cite Source</cite>
+      Jorge Luis Borges in <cite title="Jorge Luis Borges, The Analytical Language of John Wilkins">The Analytical Language of John Wilkins</cite>
     </footer>
   </blockquote>
+
+  <blockquote>
+    <p>
+      &ldquo;What do we live for, if it is not to make life less difficult to each other?&rdquo;
+    </p>
+    <footer>
+      George Eliot in <cite title="George Eliot, Middlemarch">Middlemarch</cite>
+    </footer>
+  </blockquote>
+	</div>
   
   <div class="code-example">
-    
-    <input type="checkbox" id="code-blockquotes">
-    <label for="code-blockquotes" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
-    <pre><code class="html">&lt;blockquote&gt;
+    <pre><code class="language-html">&lt;blockquote&gt;
   &lt;p&gt;&lt;strong&gt;Blockquote&lt;/strong&gt; ... &lt;/p&gt;
   &lt;footer&gt;
     Someone famous in &lt;cite title="Source"&gt;Cite Source&lt;/cite&gt;
@@ -132,43 +126,38 @@ Computer sample output is displayed like: &lt;samp&gt;Press F1 to continue&lt;/s
     <h2>(Un)Ordered lists</h2>
   </header>
 
-  <ul>
-    <li>Orange</li>
-    <li>Apple
-      <ul>
-        <li>Tomato</li>
-        <li>Eggplant</li>
-        <li>Potato</li>
-        <li>Cucumber
-          <ul>
-            <li>Chickpea</li>
-            <li>Peanut</li>
-            <li>Green bean</li>
-            <li>Kidney bean</li>
-            <li>Tamarind</li>
-          </ul>
-        </li>
-        <li>Soybean</li>
-      </ul>
-    </li>
-    <li>Rasberry</li>
-    <li>Blueberry</li>
-    <li>Cherry</li>
-  </ul>
+  <p><strong>Lists</strong> keep related concepts together and make scanning easier than long paragraphs. Use unordered lists (&lt;ul&gt;) when sequence is irrelevant and you simply want bullet points, and ordered lists (&lt;ol&gt;) when the items need an inherent ranking or <em>step-by-step progression</em>.</p>
+	
+	<div class="section-example">
+		<ul>
+			<li>Orange</li>
+			<li>Apple
+				<ul>
+					<li>Tomato</li>
+					<li>Eggplant</li>
+					<li>Potato</li>
+					<li>Cucumber
+						<ul>
+							<li>Chickpea</li>
+							<li>Peanut</li>
+							<li>Green bean</li>
+							<li>Kidney bean</li>
+							<li>Tamarind</li>
+						</ul>
+					</li>
+					<li>Soybean</li>
+				</ul>
+			</li>
+			<li>Rasberry</li>
+			<li>Blueberry</li>
+			<li>Cherry</li>
+		</ul>
+	</div>
+
+  <p class="note"><strong>Unordered lists</strong> work well for navigation menus, feature highlights, pros-and-cons summaries, or any collection of items where users only need to understand <em>membership, not sequence</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-ul">
-    <label for="code-ul" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
-    <pre><code class="html">&lt;ul&gt;
+    <pre><code class="language-html">&lt;ul&gt;
   &lt;li&gt;...&lt;/li&gt;
   &lt;li&gt;
     ...
@@ -182,52 +171,44 @@ Computer sample output is displayed like: &lt;samp&gt;Press F1 to continue&lt;/s
   &lt;li&gt;...&lt;/li&gt;
   &lt;li&gt;...&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
-
   </div>
 
-  <ol>
-    <li>Agamemnon</li>
-    <li>Patroclus</li>
-    <li>Diomedes</li>
-    <li>Nestor
-      <ol>
-        <li>Priam</li>
-        <li>Hector</li>
-        <li>Paris
-          <ol>
-            <li>Athena</li>
-            <li>Zeus</li>
-            <li>Eris</li>
-            <li>Poseidon</li>
-            <li>Hephaestus</li>
-            <li>Hermes</li>
-            <li>Hera</li>
-            <li>Apollo</li>
-            <li>Scamander</li>
-          </ol>
-        </li>
-        <li>Hecuba</li>
-        <li>Aeneas</li>
-        <li>Cassandra</li>
-      </ol>
-    </li>
-    <li>Odysseus</li>
-    <li>Menelaus</li>
-  </ol>
+	<div class="section-example">
+		<ol>
+			<li>Agamemnon</li>
+			<li>Patroclus</li>
+			<li>Diomedes</li>
+			<li>Nestor
+				<ol>
+					<li>Priam</li>
+					<li>Hector</li>
+					<li>Paris
+						<ol>
+							<li>Athena</li>
+							<li>Zeus</li>
+							<li>Eris</li>
+							<li>Poseidon</li>
+							<li>Hephaestus</li>
+							<li>Hermes</li>
+							<li>Hera</li>
+							<li>Apollo</li>
+							<li>Scamander</li>
+						</ol>
+					</li>
+					<li>Hecuba</li>
+					<li>Aeneas</li>
+					<li>Cassandra</li>
+				</ol>
+			</li>
+			<li>Odysseus</li>
+			<li>Menelaus</li>
+		</ol>
+	</div>
+
+  <p class="note"><strong>Ordered lists</strong> shine for multi-step instructions, ranked results, timelines, or anywhere the number in front of each item adds <em>clarity and meaning</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-ol">
-    <label for="code-ol" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
-    <pre><code class="html">&lt;ol&gt;
+    <pre><code class="language-html">&lt;ol&gt;
   &lt;li&gt;...&lt;/li&gt;
   &lt;li&gt;
     ...
@@ -245,50 +226,45 @@ Computer sample output is displayed like: &lt;samp&gt;Press F1 to continue&lt;/s
   </div>
 
 </section>
-<section id="description-lists">
 
+<section id="description-lists">
   <header>
     <h2>Description lists</h2>
   </header>
 
-  <dl>
-    <dt>Kick</dt>
-    <dd>808</dd>
-    <dt>Snare</dt>
-    <dd>909</dd>
-  </dl>
-  <dl>
-    <dt>Maine</dt>
-    <dd>Augusta</dd>
-    <dt>California</dt>
-    <dd>Sacremento</dd>
-    <dt>Oregon</dt>
-    <dd>Salem</dd>
-    <dt>New York</dt>
-    <dd>Albany</dd>
-  </dl>
-  <dl>
-    <dt>Ascender</dt>
-    <dd>The part of certain lowercase letters that extends above the x-height of a font.</dd>
-    <dt>Font</dt>
-    <dd>Traditionally, a complete set of characters for one typeface at one particular type size. Often used more loosely as a synonym for "typeface".</dd>
-    <dt>Golden Section</dt>
-    <dd>The ideal proportion according to the ancient Greeks. It is visualized as the division of a line into two unequal segments in such a way that the ratio of the smaller segment to the larger segment is equal to the ratio of the larger to the whole. It is usually defined as 21:34, that is, 21/34 and 34/(21+34) both equal approximately 0.618. A rectangle whose sides are of this proportion is called a "golden rectangle". Golden rectangles can be found in the proportions of the Parthenon and many medieval<br>manuscripts.</dd>
-  </dl>
+  <p><strong>Description lists</strong> (&lt;dl&gt;) pair a term (&lt;dt&gt;) with one or more descriptions (&lt;dd&gt;), making them ideal for glossaries, key-value metadata, or question-and-answer content. They provide a compact, semantic alternative to <em>two-column tables</em>.</p>
+
+	<div class="section-example">
+		<dl>
+			<dt>Kick</dt>
+			<dd>808</dd>
+			<dt>Snare</dt>
+			<dd>909</dd>
+		</dl>
+		<dl>
+			<dt>Maine</dt>
+			<dd>Augusta</dd>
+			<dt>California</dt>
+			<dd>Sacremento</dd>
+			<dt>Oregon</dt>
+			<dd>Salem</dd>
+			<dt>New York</dt>
+			<dd>Albany</dd>
+		</dl>
+		<dl>
+			<dt>Ascender</dt>
+			<dd>The part of certain lowercase letters that extends above the x-height of a font.</dd>
+			<dt>Font</dt>
+			<dd>Traditionally, a complete set of characters for one typeface at one particular type size. Often used more loosely as a synonym for "typeface".</dd>
+			<dt>Golden Section</dt>
+			<dd>The ideal proportion according to the ancient Greeks. It is visualized as the division of a line into two unequal segments in such a way that the ratio of the smaller segment to the larger segment is equal to the ratio of the larger to the whole. It is usually defined as 21:34, that is, 21/34 and 34/(21+34) both equal approximately 0.618. A rectangle whose sides are of this proportion is called a "golden rectangle". Golden rectangles can be found in the proportions of the Parthenon and many medieval<br>manuscripts.</dd>
+		</dl>
+	</div>
+
+  <p class="note"><strong>Reach for description lists</strong> whenever you need to display definitions, metadata for resources (e.g., author, version, license), or structured FAQs where each question is immediately followed by its <em>answer</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-dl">
-    <label for="code-dl" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
-    <pre><code class="html">&lt;dl&gt;
+    <pre><code class="language-html">&lt;dl&gt;
   &lt;dt&gt;...&lt;/dt&gt;
   &lt;dd&gt;...&lt;/dd&gt;
   &lt;dt&gt;...&lt;/dt&gt;
@@ -298,45 +274,41 @@ Computer sample output is displayed like: &lt;samp&gt;Press F1 to continue&lt;/s
   </div>
 
 </section>
-<section id="horizontal-rule">
 
+<section id="horizontal-rule">
   <header>
     <h2>Horizontal rule</h2>
   </header>
 
-  <p>Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum sapien malesuada et. Duis elementum arcu nec enim sagittis interdum.</p>
+  <p><strong>The &lt;hr&gt; element</strong> inserts a thematic break between sections, signaling a shift in topic or grouping. Visually it provides breathing room in dense layouts, and semantically it helps assistive technologies understand that the surrounding content is <em>separated</em>.</p>
 
-  <hr>
-  
-  <p>Praesent gravida lacinia ipsum, et rutrum felis posuere nec. Duis ipsum ipsum, consectetur in molestie non, dignissim eget ex. Maecenas ut fermentum libero. Mauris eu libero sollicitudin, pulvinar nunc id, facilisis odio.</p>
+	<div class="section-example">
+		<p>Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum sapien malesuada et. Duis elementum arcu nec enim sagittis interdum.</p>
+
+		<hr>
+		
+		<p>Praesent gravida lacinia ipsum, et rutrum felis posuere nec. Duis ipsum ipsum, consectetur in molestie non, dignissim eget ex. Maecenas ut fermentum libero. Mauris eu libero sollicitudin, pulvinar nunc id, facilisis odio.</p>
+	</div>
+
+  <p class="note"><strong>Insert a horizontal rule</strong> between standalone stories, to divide form sections (e.g., billing vs. shipping), or to separate comments from the <em>composer controls</em>.</p>
   
   <div class="code-example">
-    
-    <input type="checkbox" id="code-hr">
-    <label for="code-hr" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
-    <pre><code class="html">&lt;p&gt;...&lt;/p&gt;
+    <pre><code class="language-html">&lt;p&gt;...&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;...&lt;/p&gt;</code></pre>
 
   </div>
 
 </section>
-<section id="pre">
 
+<section id="pre">
   <header>
     <h2>Pre</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum suscipit a dolores, error cupiditate, iste ducimus hic. Dicta rem illo, accusamus, quod, iusto quis modi nesciunt, impedit enim quaerat laudantium.</p>
-              
+  <p><strong>The &lt;pre&gt; element</strong> preserves whitespace and line breaks exactly as written, rendering its contents in a monospace face by default. It is perfect for displaying code snippets, log excerpts, or any text where spacing carries <em>meaning</em>.</p>
+
+  	<div class="section-example">           
   <pre>main( ) {
   extern a, b, c;
   putchar(a); putchar(b); putchar(c); putchar('!*n');
@@ -346,21 +318,11 @@ a 'hell';
 b 'o, w';
 c 'orld';</pre>
 
-  <p>Sit eaque magni aliquam dolore cum aliquid ipsa, asperiores modi voluptates? Quisquam magnam dignissimos tempore quae quasi iure dolorum, quidem ad mollitia architecto distinctio nisi cumque deleniti provident adipisci eos!</p>
+		</div>
+
+  <p class="note"><strong>Beyond code examples</strong>, preformatted blocks are useful for command-line transcripts, ASCII diagrams, configuration files, and other <em>fixed-width artifacts</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-pre">
-    <label for="code-pre" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
-    <pre><code class="html">&lt;pre&gt;...&lt;/pre&gt;</code></pre>
-
+    <pre><code class="language-html">&lt;pre&gt;...&lt;/pre&gt;</code></pre>
   </div>
 </section>

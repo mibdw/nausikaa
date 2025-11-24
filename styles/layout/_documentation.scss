@@ -81,3 +81,32 @@
     }
   }
 }
+
+#documentation-detail {
+  & > article {
+    & > header {
+      h1 {
+        font-size: 3em;
+      }
+    }
+
+    .introduction {
+      font-size: 1.2em;
+      line-height: 1.4;
+    }
+
+    & > section {
+      & > header {
+        & > h2 {
+          font-size: 2.8em;
+          font-weight: 100;
+        }
+      }
+    }
+
+    .section-example {
+      padding: 0.1em 0 0.1em 1.3em;
+      border-left: 8px solid $yellow0;
+    }
+  }
+}

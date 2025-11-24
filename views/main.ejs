@@ -57,9 +57,11 @@
     <link rel='stylesheet' href='/styles/<%= themeFile %>.min.css'>
 
     <script src="/dialog-polyfill.js"></script>
-    <script src="/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-      
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
+		<script>hljs.highlightAll();</script>
+
   </head>
   <body ontouchstart="">
     <header class="navbar <%= navbar %>">
