@@ -142,7 +142,7 @@
 
       &:hover,
       &:focus {
-        background: rgba($baseLite, 0.8);
+        background: rgba($mantle, 0.8);
 
         & > .icon {
           fill: $text;
@@ -160,13 +160,13 @@
         border-radius: 50%;
 
         &.nothing {
-          background-color: $baseLite;
+          background-color: $mantle;
           background-image: repeating-linear-gradient(
             -45deg,
-            $baseLite,
-            $baseLite 0.3rem,
-            color.adjust($baseLite, $lightness: 5%) 0.3rem,
-            color.adjust($baseLite, $lightness: 5%) 0.6rem
+            $mantle,
+            $mantle 0.3rem,
+            color.adjust($mantle, $lightness: 5%) 0.3rem,
+            color.adjust($mantle, $lightness: 5%) 0.6rem
           );
         }
       }
@@ -195,13 +195,13 @@
           height: 1.8em;
 
           &.nothing {
-            background-color: $baseLite;
+            background-color: $mantle;
             background-image: repeating-linear-gradient(
               -45deg,
-              $baseLite,
-              $baseLite 0.3rem,
-              color.adjust($baseLite, $lightness: 3%) 0.3rem,
-              color.adjust($baseLite, $lightness: 3%) 0.6rem
+              $mantle,
+              $mantle 0.3rem,
+              color.adjust($mantle, $lightness: 3%) 0.3rem,
+              color.adjust($mantle, $lightness: 3%) 0.6rem
             );
           }
         }
@@ -233,7 +233,7 @@
 
     div.ProseMirror-selectednode,
     img.ProseMirror-selectednode {
-      box-shadow: 0 0 0 4px $blue !important;
+      box-shadow: 0 0 0 4px $blue3 !important;
     }
 
     .task-list {
@@ -267,7 +267,7 @@
         padding: 0.35em 0.5em;
 
         &.selectedCell {
-          background-color: $yellowBackground;
+          background-color: $yellow0;
         }
 
         & > p {
@@ -344,7 +344,7 @@
 
       &:hover,
       &:focus {
-        background: rgba($baseLite, 0.8);
+        background: rgba($mantle, 0.8);
 
         & > .icon {
           fill: $text;
@@ -372,13 +372,13 @@
         border-radius: 50%;
 
         &.nothing {
-          background-color: $baseLite;
+          background-color: $mantle;
           background-image: repeating-linear-gradient(
             -45deg,
-            $baseLite,
-            $baseLite 0.3rem,
-            color.adjust($baseLite, $lightness: 5%) 0.3rem,
-            color.adjust($baseLite, $lightness: 5%) 0.6rem
+            $mantle,
+            $mantle 0.3rem,
+            color.adjust($mantle, $lightness: 5%) 0.3rem,
+            color.adjust($mantle, $lightness: 5%) 0.6rem
           );
         }
       }
@@ -420,22 +420,22 @@
 
         &:hover,
         &:focus {
-          box-shadow: 0 0 0 2px $blue;
+          box-shadow: 0 0 0 2px $blue3;
         }
 
         &.active {
-          box-shadow: 0 0 0 4px rgba($blue, 0.65);
+          box-shadow: 0 0 0 4px rgba($blue3, 0.65);
           font-weight: bold;
         }
 
         &.nothing {
-          background-color: $baseLite;
+          background-color: $mantle;
           background-image: repeating-linear-gradient(
             -45deg,
-            $baseLite,
-            $baseLite 0.3rem,
-            color.adjust($baseLite, $lightness: 3%) 0.3rem,
-            color.adjust($baseLite, $lightness: 3%) 0.6rem
+            $mantle,
+            $mantle 0.3rem,
+            color.adjust($mantle, $lightness: 3%) 0.3rem,
+            color.adjust($mantle, $lightness: 3%) 0.6rem
           );
         }
       }
@@ -472,13 +472,13 @@
       .no-images {
         width: 100%;
         padding: 60% 2em;
-        background-color: $baseLite;
+        background-color: $mantle;
         background-image: repeating-linear-gradient(
           -45deg,
-          $baseLite,
-          $baseLite 0.4rem,
-          color.adjust($baseLite, $lightness: 4%) 0.4rem,
-          color.adjust($baseLite, $lightness: 4%) 0.8rem
+          $mantle,
+          $mantle 0.4rem,
+          color.adjust($mantle, $lightness: 4%) 0.4rem,
+          color.adjust($mantle, $lightness: 4%) 0.8rem
         );
         text-align: center;
         font-weight: bold;

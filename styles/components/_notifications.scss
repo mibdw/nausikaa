@@ -1,5 +1,6 @@
 @use "../colors" as *;
 @use "../variables" as *;
+@use "sass:color";
 
 @mixin notificationMixin(
   $notificationBackground,
@@ -37,7 +38,7 @@
 }
 
 .notification {
-  @include notificationMixin($baseLite, $crust, $text, $subtext0);
+  @include notificationMixin($mantle, $crust, $text, $subtext1);
 
   margin: $paragraphSpacer 0;
   padding: 0 4rem 0 2rem;
@@ -70,66 +71,138 @@
     border-radius: 0;
   }
 
-  &.yellow {
+  &.rosewater {
     @include notificationMixin(
-      $yellowActive,
-      $yellowBorder,
-      $yellowActiveText,
-      $yellowActiveText
+      $rosewater0,
+      color.adjust($rosewater0, $lightness: -10%),
+      $base,
+      $base
     );
   }
 
-  &.blue {
+  &.flamingo {
     @include notificationMixin(
-      $blueActive,
-      $blueBorder,
-      $blueActiveText,
-      $blueActiveText
+      $flamingo0,
+      color.adjust($flamingo0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
+
+  &.pink {
+    @include notificationMixin(
+      $pink0,
+      color.adjust($pink0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
+
+  &.mauve {
+    @include notificationMixin(
+      $mauve0,
+      color.adjust($mauve0, $lightness: -10%),
+      $base,
+      $base
     );
   }
 
   &.red {
     @include notificationMixin(
-      $redActive,
-      $redBorder,
-      $redActiveText,
-      $redActiveText
+      $red0,
+      color.adjust($red0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
+
+  &.maroon {
+    @include notificationMixin(
+      $maroon0,
+      color.adjust($maroon0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
+
+  &.peach {
+    @include notificationMixin(
+      $peach0,
+      color.adjust($peach0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
+
+  &.yellow {
+    @include notificationMixin(
+      $yellow0,
+      color.adjust($yellow0, $lightness: -10%),
+      $base,
+      $base
     );
   }
 
   &.green {
     @include notificationMixin(
-      $greenActive,
-      $greenBorder,
-      $greenActiveText,
-      $greenActiveText
+      $green0,
+      color.adjust($green0, $lightness: -10%),
+      $base,
+      $base
     );
   }
 
-  // &.purple {
-  //   @include notificationMixin(
-  //     $purpleActive,
-  //     $purpleBorder,
-  //     $purpleActiveText,
-  //     $purpleActiveText
-  //   );
-  // }
-  //
-  // &.orange {
-  //   @include notificationMixin(
-  //     $orangeActive,
-  //     $orangeBorder,
-  //     $orangeActiveText,
-  //     $orangeActiveText
-  //   );
-  // }
+  &.teal {
+    @include notificationMixin(
+      $teal0,
+      color.adjust($teal0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
+
+  &.sky {
+    @include notificationMixin(
+      $sky0,
+      color.adjust($sky0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
+
+  &.sapphire {
+    @include notificationMixin(
+      $sapphire0,
+      color.adjust($sapphire0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
+
+  &.blue {
+    @include notificationMixin(
+      $blue0,
+      color.adjust($blue0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
+
+  &.lavender {
+    @include notificationMixin(
+      $lavender0,
+      color.adjust($lavender0, $lightness: -10%),
+      $base,
+      $base
+    );
+  }
 
   &.gray {
     @include notificationMixin(
-      $grayBackground,
-      $grayBorder,
-      $grayText,
-      $grayActive
+      $subtext0,
+      $subtext1,
+      $base,
+      $base
     );
   }
 }

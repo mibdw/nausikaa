@@ -44,8 +44,8 @@
       border-radius: 50%;
 
       &.code {
-        fill: $blue;
-        background-color: $baseLiteHover;
+        fill: $blue3;
+        background-color: $surface2;
       }
 
       &.clear {
@@ -80,7 +80,7 @@
       &:hover,
       &:focus,
       &:active {
-        fill: $blue;
+        fill: $blue3;
       }
     }
 

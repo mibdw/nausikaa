@@ -196,14 +196,14 @@
 
 .panel {
   @include panelMixin(
-    $baseAlt,
+    $surface0,
     $crust,
     $blue3,
     $blue3,
     $subtext0,
     $text,
-    $baseLiteHover,
-    $blue,
+    $surface2,
+    $blue3,
     $white
   );
 
@@ -524,101 +524,213 @@
     }
   }
 
-  &.yellow {
+  &.rosewater {
     @include panelMixin(
-      $yellowBackground,
-      $yellowBorder,
-      $yellowText,
-      $yellowHeader,
-      $yellowBorderSub,
-      $yellowTextSub,
-      $yellowHover,
-      $yellowActive,
-      $yellowActiveText
+      $rosewater0,
+      $rosewater2,
+      $text,
+      $rosewater3,
+      $rosewater3,
+      $text,
+      rgba($rosewater3, .2),
+      $rosewater3,
+      $white
     );
   }
 
-  &.blue {
+  &.flamingo {
     @include panelMixin(
-      $blueBackground,
-      $blueBorder,
-      $blueText,
-      $blueHeader,
-      $blueBorderSub,
-      $blueTextSub,
-      $blueHover,
-      $blueActive,
-      $blueActiveText
+      $flamingo0,
+      $flamingo2,
+      $text,
+      $flamingo3,
+      $flamingo3,
+      $text,
+      rgba($flamingo3, .2),
+      $flamingo3,
+      $white
+    );
+  }
+
+  &.pink {
+    @include panelMixin(
+      $pink0,
+      $pink2,
+      $text,
+      $pink3,
+      $pink3,
+      $text,
+      rgba($pink3, .2),
+      $pink3,
+      $white
+    );
+  }
+
+  &.mauve {
+    @include panelMixin(
+      $mauve0,
+      $mauve2,
+      $text,
+      $mauve3,
+      $mauve3,
+      $text,
+      rgba($mauve3, .2),
+      $mauve3,
+      $white
     );
   }
 
   &.red {
     @include panelMixin(
-      $redBackground,
-      $redBorder,
-      $redText,
-      $redHeader,
-      $redBorderSub,
-      $redTextSub,
-      $redHover,
-      $redActive,
-      $redActiveText
+      $red0,
+      $red2,
+      $text,
+      $red3,
+      $red3,
+      $text,
+      rgba($red3, .2),
+      $red3,
+      $white
+    );
+  }
+
+  &.maroon {
+    @include panelMixin(
+      $maroon0,
+      $maroon2,
+      $text,
+      $maroon3,
+      $maroon3,
+      $text,
+      rgba($maroon3, .2),
+      $maroon3,
+      $white
+    );
+  }
+
+  &.peach {
+    @include panelMixin(
+      $peach0,
+      $peach2,
+      $text,
+      $peach3,
+      $peach3,
+      $text,
+      rgba($peach3, .2),
+      $peach3,
+      $white
+    );
+  }
+
+  &.yellow {
+    @include panelMixin(
+      $yellow0,
+      $yellow2,
+      $text,
+      $yellow3,
+      $yellow3,
+      $text,
+      rgba($yellow3, .2),
+      $yellow3,
+      $white
     );
   }
 
   &.green {
     @include panelMixin(
-      $greenBackground,
-      $greenBorder,
-      $greenText,
-      $greenHeader,
-      $greenBorderSub,
-      $greenTextSub,
-      $greenHover,
-      $greenActive,
-      $greenActiveText
+      $green0,
+      $green2,
+      $text,
+      $green3,
+      $green3,
+      $text,
+      rgba($green3, .2),
+      $green3,
+      $white
     );
   }
 
-  // &.purple {
-  //   @include panelMixin(
-  //     $purpleBackground,
-  //     $purpleBorder,
-  //     $purpleText,
-  //     $purpleHeader,
-  //     $purpleBorderSub,
-  //     $purpleTextSub,
-  //     $purpleHover,
-  //     $purpleActive,
-  //     $purpleActiveText
-  //   );
-  // }
-  //
-  // &.orange {
-  //   @include panelMixin(
-  //     $orangeBackground,
-  //     $orangeBorder,
-  //     $orangeText,
-  //     $orangeHeader,
-  //     $orangeBorderSub,
-  //     $orangeTextSub,
-  //     $orangeHover,
-  //     $orangeActive,
-  //     $orangeActiveText
-  //   );
-  // }
+  &.teal {
+    @include panelMixin(
+      $teal0,
+      $teal2,
+      $text,
+      $teal3,
+      $teal3,
+      $text,
+      rgba($teal3, .2),
+      $teal3,
+      $white
+    );
+  }
+
+  &.sky {
+    @include panelMixin(
+      $sky0,
+      $sky2,
+      $text,
+      $sky3,
+      $sky3,
+      $text,
+      rgba($sky3, .2),
+      $sky3,
+      $white
+    );
+  }
+
+  &.sapphire {
+    @include panelMixin(
+      $sapphire0,
+      $sapphire2,
+      $text,
+      $sapphire3,
+      $sapphire3,
+      $text,
+      rgba($sapphire3, .2),
+      $sapphire3,
+      $white
+    );
+  }
+
+  &.blue {
+    @include panelMixin(
+      $blue0,
+      $blue2,
+      $text,
+      $blue3,
+      $blue3,
+      $text,
+      rgba($blue3, .2),
+      $blue3,
+      $white
+    );
+  }
+
+  &.lavender {
+    @include panelMixin(
+      $lavender0,
+      $lavender2,
+      $text,
+      $lavender3,
+      $lavender3,
+      $text,
+      rgba($lavender3, .2),
+      $lavender3,
+      $white
+    );
+  }
 
   &.gray {
     @include panelMixin(
-      $grayBackground,
-      $grayBorder,
-      $grayText,
-      $grayHeader,
-      $grayBorderSub,
-      $grayTextSub,
-      $grayHover,
-      $grayActive,
-      $grayActiveText
+      $surface0,
+      $surface2,
+      $text,
+      $overlay0,
+      $surface2,
+      $text,
+      rgba($overlay0, .2),
+      $overlay0,
+      $white
     );
   }
 }

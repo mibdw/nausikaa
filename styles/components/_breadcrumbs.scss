@@ -52,9 +52,9 @@
         margin: 0 0 0.4rem 0;
         text-decoration: none;
         border-radius: 6px;
-        background-color: $blue;
+        background-color: $blue3;
         color: $white;
-        border: 1px solid $blue;
+        border: 1px solid $blue3;
       }
     }
   }
@@ -96,7 +96,7 @@
       }
 
       & > * {
-        background-color: $baseLite;
+        background-color: $mantle;
         border: 1px solid $crust;
 
         & > .icon {
@@ -105,7 +105,7 @@
       }
 
       & > a:hover {
-        background-color: $baseLiteHover;
+        background-color: $surface2;
 
         & > .icon {
           fill: $subtext0;
@@ -113,7 +113,7 @@
       }
 
       & > a:focus {
-        background-color: $baseLiteHover;
+        background-color: $surface2;
         box-shadow: 0 0 0 2px $crust;
         outline-width: 0;
 
@@ -134,9 +134,9 @@
       }
 
       &.active > * {
-        background-color: $blue;
+        background-color: $blue3;
         color: $white;
-        border-color: $blue;
+        border-color: $blue3;
 
         & > .icon {
           fill: $white;

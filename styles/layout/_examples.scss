@@ -1021,7 +1021,7 @@
                 cursor: pointer;
 
                 &:hover {
-                  background-color: $baseLite;
+                  background-color: $mantle;
                 }
 
                 img {
@@ -1095,8 +1095,8 @@
                 cursor: pointer;
 
                 &:hover {
-                  background-color: $baseLite;
-                  outline: 0.3em solid $baseLite;
+                  background-color: $mantle;
+                  outline: 0.3em solid $mantle;
                   border-top-width: 0;
 
                   .message-text .message-content {

@@ -47,7 +47,7 @@
     & > a.hover,
     & > a:focus,
     &.focus > a {
-      background-color: $baseLiteHover;
+      background-color: $surface2;
       color: $text;
     }
 
@@ -107,8 +107,8 @@
       line-height: 1em;
       margin: 0 0.5em;
       color: transparent;
-      background-color: $baseLiteHover;
-      border-color: $baseLiteHover;
+      background-color: $surface2;
+      border-color: $surface2;
       cursor: pointer;
 
       &:hover,
@@ -122,8 +122,8 @@
     & > li > *:active,
     & > li.active > * {
       color: transparent;
-      background-color: $blue;
-      border-color: $blue;
+      background-color: $blue3;
+      border-color: $blue3;
     }
   }
 }

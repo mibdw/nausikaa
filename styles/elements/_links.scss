@@ -1,5 +1,6 @@
 @use "../colors" as *;
 @use "../variables" as *;
+@use "sass:color";
 
 a,
 .link {
@@ -68,8 +69,7 @@ a,
 }
 
 @mixin knobMixin(
-  $knobBackground,
-  $knobHeader,
+  $knobBackground, 
   $knobText,
   $knobHover,
   $knobActive,
@@ -79,6 +79,7 @@ a,
   background-color: $knobBackground;
   color: $knobText;
   border: 1px solid $knobBorder;
+  cursor: pointer;
 
   &:hover,
   &.hover {
@@ -119,12 +120,11 @@ a,
 .knob {
   @include knobMixin(
     $base,
-    $subtext0,
     $text,
-    $surface0,
-    $subtext0,
+    $surface1,
+    $overlay1,
     $white,
-    $crust
+    $surface1
   );
 
   display: inline-block;
@@ -168,100 +168,180 @@ a,
       margin-right: 0;
     }
   }
-}
 
-.knob.yellow {
-  @include knobMixin(
-    $yellowBackground,
-    $yellowHeader,
-    $yellowText,
-    $yellowHover,
-    $yellowActive,
-    $yellowActiveText,
-    $yellowBorder
-  );
-}
+  &.rosewater {
+    @include knobMixin(
+      $rosewater0,
+      $text,
+      $rosewater2,
+      $rosewater3,
+      $white,
+      $rosewater3
+    );
+  }
 
-.knob.red {
-  @include knobMixin(
-    $redBackground,
-    $redHeader,
-    $redText,
-    $redHover,
-    $redActive,
-    $redActiveText,
-    $redBorder
-  );
-}
+  &.flamingo {
+    @include knobMixin(
+      $flamingo0,
+      $text,
+      $flamingo2,
+      $flamingo3,
+      $white,
+      $flamingo3
+    );
+  }
 
-.knob.blue {
-  @include knobMixin(
-    $blueBackground,
-    $blueHeader,
-    $blueText,
-    $blueHover,
-    $blueActive,
-    $blueActiveText,
-    $blueBorder
-  );
-}
+  &.pink {
+    @include knobMixin(
+      $pink0,
+      $text,
+      $pink2,
+      $pink3,
+      $white,
+      $pink3
+    );
+  }
 
-.knob.green {
-  @include knobMixin(
-    $greenBackground,
-    $greenHeader,
-    $greenText,
-    $greenHover,
-    $greenActive,
-    $greenActiveText,
-    $greenBorder
-  );
-}
+  &.mauve {
+    @include knobMixin(
+      $mauve0,
+      $text,
+      $mauve2,
+      $mauve3,
+      $white,
+      $mauve3
+    );
+  }
 
-// .knob.purple {
-//   @include knobMixin(
-//     $purpleBackground,
-//     $purpleHeader,
-//     $purpleText,
-//     $purpleHover,
-//     $purpleActive,
-//     $purpleActiveText,
-//     $purpleBorder
-//   );
-// }
+  &.red {
+    @include knobMixin(
+      $red0,
+      $text,
+      $red2,
+      $red3,
+      $white,
+      $red3
+    );
+  }
 
-// .knob.orange {
-//   @include knobMixin(
-//     $orangeBackground,
-//     $orangeHeader,
-//     $orangeText,
-//     $orangeHover,
-//     $orangeActive,
-//     $orangeActiveText,
-//     $orangeBorder
-//   );
-// }
+  &.maroon {
+    @include knobMixin(
+      $maroon0,
+      $text,
+      $maroon2,
+      $maroon3,
+      $white,
+      $maroon3
+    );
+  }
 
-.knob.gray {
-  @include knobMixin(
-    $grayBackground,
-    $grayHeader,
-    $grayText,
-    $grayHover,
-    $grayActive,
-    $grayActiveText,
-    $grayBorder
-  );
-}
+  &.peach {
+    @include knobMixin(
+      $peach0,
+      $text,
+      $peach2,
+      $peach3,
+      $white,
+      $peach3
+    );
+  }
 
-.knob.transparent {
-  @include knobMixin(
-    transparent,
-    $grayHeader,
-    $grayText,
-    $grayHover,
-    $subtext0,
-    $grayActiveText,
-    $grayBorder
-  );
+  &.yellow {
+    @include knobMixin(
+      $yellow0,
+      $text,
+      $yellow2,
+      $yellow3,
+      $white,
+      $yellow3
+    );
+  }
+
+  &.green {
+    @include knobMixin(
+      $green0,
+      $text,
+      $green2,
+      $green3,
+      $white,
+      $green3
+    );
+  }
+
+  &.teal {
+    @include knobMixin(
+      $teal0,
+      $text,
+      $teal2,
+      $teal3,
+      $white,
+      $teal3
+    );
+  }
+
+  &.sky {
+    @include knobMixin(
+      $sky0,
+      $text,
+      $sky2,
+      $sky3,
+      $white,
+      $sky3
+    );
+  }
+
+  &.sapphire {
+    @include knobMixin(
+      $sapphire0,
+      $text,
+      $sapphire2,
+      $sapphire3,
+      $white,
+      $sapphire3
+    );
+  }
+
+  &.blue {
+    @include knobMixin(
+      $blue0,
+      $text,
+      $blue2,
+      $blue3,
+      $white,
+      $blue3
+    );
+  }
+
+  &.lavender {
+    @include knobMixin(
+      $lavender0,
+      $text,
+      $lavender2,
+      $lavender3,
+      $white,
+      $lavender3
+    );
+  }
+
+  &.gray {
+    @include knobMixin(
+      $surface0,
+      $text,
+      $surface2,
+      $overlay0,
+      $white,
+      $overlay0
+    );
+  }
+
+  &.transparent {
+    @include knobMixin(
+      transparent,
+      $text,
+      $surface2,
+      $subtext0,
+      $subtext0,
+      $overlay0
+    );
+  }
 }

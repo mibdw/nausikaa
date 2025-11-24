@@ -1,3 +1,4 @@
+@use "../colors" as *;
 @use "../variables" as *;
 
 dialog {
@@ -66,7 +67,7 @@ dialog {
   footer {
     display: flex;
     flex-direction: row;
-    background-color: $baseLite;
+    background-color: $mantle;
     border-top: 1px solid $crust;
     border-radius: 0 0 6px 6px;
     padding: 0.5rem 1rem 0.2rem;

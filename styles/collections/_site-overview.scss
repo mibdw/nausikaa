@@ -71,7 +71,7 @@
 }
 
 .site-overview {
-  @include siteOverviewMixin($crust, $blue3, $crust, $baseLite, $text);
+  @include siteOverviewMixin($crust, $blue3, $crust, $mantle, $text);
 
   padding: 2em 1em;
   margin-bottom: 2em;
@@ -145,71 +145,71 @@
 
   &.yellow {
     @include siteOverviewMixin(
-      $yellowBorder,
-      $yellowActive,
-      $yellowBorder,
-      $yellowBackground,
-      $yellowText
+      $yellow2,
+      $yellow3,
+      $yellow1,
+      $yellow0,
+      $black
     );
   }
 
   &.red {
     @include siteOverviewMixin(
-      $redHeader,
-      $redActive,
-      $redBorder,
-      $redBackground,
-      $redText
+      $red2,
+      $red3,
+      $red1,
+      $red0,
+      $black
     );
   }
 
   &.blue {
     @include siteOverviewMixin(
-      $blueHeader,
-      $blueActive,
-      $blueBorder,
-      $blueBackground,
-      $blueText
+      $blue2,
+      $blue3,
+      $blue1,
+      $blue0,
+      $black
     );
   }
 
   &.green {
     @include siteOverviewMixin(
-      $greenHeader,
-      $greenActive,
-      $greenBorder,
-      $greenBackground,
-      $greenText
+      $green2,
+      $green3,
+      $green1,
+      $green0,
+      $black
     );
   }
 
-  // &.orange {
-  //   @include siteOverviewMixin(
-  //     $orangeHeader,
-  //     $orangeActive,
-  //     $orangeBorder,
-  //     $orangeBackground,
-  //     $orangeText
-  //   );
-  // }
-  //
-  // &.purple {
-  //   @include siteOverviewMixin(
-  //     $purpleHeader,
-  //     $purpleActive,
-  //     $purpleBorder,
-  //     $purpleBackground,
-  //     $purpleText
-  //   );
-  // }
+  &.orange {
+    @include siteOverviewMixin(
+      $peach2,
+      $peach3,
+      $peach1,
+      $peach0,
+      $black
+    );
+  }
+
+  &.purple {
+    @include siteOverviewMixin(
+      $mauve2,
+      $mauve3,
+      $mauve1,
+      $mauve0,
+      $black
+    );
+  }
 
   &.gray {
     @include siteOverviewMixin(
-      $grayHeader,
-      $grayActive,
-      $grayBorder,
-      $grayBackground,
-      $grayText
+      $overlay2,
+      $subtext0,
+      $overlay1,
+      $overlay0,
+      $black
     );
   }
 }

@@ -1,5 +1,7 @@
+@use '../colors' as *;
 @use '../variables' as *;
 @use 'sass:math';
+@use 'sass:color';
 
 @mixin buttonMixin($bmBackground,
   $bmLine,
@@ -248,7 +250,8 @@ input[type="submit"] {
   }
 
   &.primary {
-    @include buttonMixin(#2980d7,
+    @include buttonMixin(
+      #2980d7,
       #184d81,
       #1c5997,
       #fff,
@@ -262,7 +265,8 @@ input[type="submit"] {
   }
 
   &.secondary {
-    @include buttonMixin(#34495e,
+    @include buttonMixin(
+      #34495e,
       #121a21,
       #1b2631,
       #fff,
@@ -276,7 +280,8 @@ input[type="submit"] {
   }
 
   &.positive {
-    @include buttonMixin(#28b463,
+    @include buttonMixin(
+      #28b463,
       #176939,
       #1c7d44,
       #fff,
@@ -290,7 +295,8 @@ input[type="submit"] {
   }
 
   &.negative {
-    @include buttonMixin(#cb4335,
+    @include buttonMixin(
+      #cb4335,
       #7a281f,
       #8e2f25,
       #fff,
@@ -304,7 +310,8 @@ input[type="submit"] {
   }
 
   &.purple {
-    @include buttonMixin(#a300cc,
+    @include buttonMixin(
+      #a300cc,
       #6b00b3,
       #7a0099,
       #fff,
@@ -318,7 +325,8 @@ input[type="submit"] {
   }
 
   &.radiant {
-    @include buttonMixin(#fbc531,
+    @include buttonMixin(
+      #fbc531,
       #a38020,
       #bc9425,
       #000,
@@ -330,6 +338,22 @@ input[type="submit"] {
       url(../images/refresh-black.svg),
       url(../images/check-black.svg));
   }
+
+  &.rosewater {
+    @include buttonMixin(
+      $rosewater3,
+      color.adjust($rosewater3, $lightness: -5%),
+      color.adjust($rosewater3, $lightness: -3%),
+      $black,
+      #e2b12c,
+      #e2b12c,
+      #bc9425,
+      rgba(#000, 0.4),
+      #bc9425,
+      url(../images/refresh-black.svg),
+      url(../images/check-black.svg));
+  }
+
 
   &.mini {
     font-size: 0.65em;

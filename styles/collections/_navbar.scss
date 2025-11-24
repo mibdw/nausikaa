@@ -38,7 +38,7 @@
     svg {
       width: $headerHeight * 0.8;
       height: $headerHeight * 0.8;
-      fill: $blue;
+      fill: $blue3;
       transform: translateY(-0.2em);
     }
 
@@ -47,7 +47,7 @@
     }
 
     &.ball {
-      background-color: $blue;
+      background-color: $blue3;
       min-width: $headerHeight * 0.8;
       height: $headerHeight * 0.8;
       line-height: $headerHeight * 0.75;
@@ -235,23 +235,23 @@
         background-color: transparent;
 
         &:hover {
-          background-color: $grayHover;
+          background-color: $surface1;
         }
 
         &:focus {
-          border-color: $grayBorder;
-          box-shadow: 0 0 0 2px $grayBorder;
+          border-color: $surface2;
+          box-shadow: 0 0 0 2px $surface2;
         }
       }
 
       &:focus-within > a {
         background-color: transparent;
-        border-color: $grayBorder;
-        box-shadow: 0 0 0 2px $grayBorder;
+        border-color: $surface2;
+        box-shadow: 0 0 0 2px $surface2;
       }
 
       &.active > a {
-        background-color: $grayActive;
+        background-color: $overlay0;
         color: $white;
 
         .icon {
@@ -393,7 +393,7 @@
               }
 
               & > ul > li.active a {
-                background-color: $baseLite;
+                background-color: $mantle;
                 color: $text;
               }
             }

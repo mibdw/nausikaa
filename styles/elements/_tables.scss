@@ -1,3 +1,4 @@
+@use "../colors" as *;
 @use "../variables" as *;
 
 table,
@@ -23,7 +24,7 @@ table,
   }
 
   tr:hover > td {
-    background-color: $baseLite;
+    background-color: $mantle;
   }
 
   thead th {
@@ -52,15 +53,15 @@ table,
 
   &.striped {
     tbody tr:nth-of-type(odd) td {
-      background-color: $baseLite;
+      background-color: $mantle;
     }
 
     tbody tr:hover:nth-of-type(even) > td {
-      background-color: $baseLiteHover;
+      background-color: $surface2;
     }
 
     tbody tr:hover:nth-of-type(odd) > td {
-      background-color: $baseLiteHover;
+      background-color: $surface2;
     }
   }
 

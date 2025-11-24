@@ -22,7 +22,7 @@
 }
 
 .tag {
-  @include tagMixin($text, $grayHover, $grayHover, $subtext0);
+  @include tagMixin($text, $surface1, $surface1, $subtext0);
 
   font-family: $utilityText;
   font-weight: 200;
@@ -61,42 +61,66 @@
   &.alt {
     @include tagMixin(
       $text,
-      color.adjust($grayHover, $lightness: -10%),
-      color.adjust($grayHover, $lightness: -12%),
+      $overlay1,
+      $overlay2,
       $subtext0
     );
   }
 
-  &.red {
-    @include tagMixin(#fff, #cb4335, #d05649, #f5d9d6);
+  &.rosewater {
+    @include tagMixin($white, $rosewater3, color.adjust($rosewater3, $lightness: -5%), $rosewater2);
   }
 
-  &.blue {
-    @include tagMixin(#fff, #2980d7, #3d8cdb, #e6f2ff);
-  }
-
-  &.yellow {
-    @include tagMixin(#000, #f1c40f, #f2ca26, #fdf9e7);
-  }
-
-  &.green {
-    @include tagMixin(#000, #28b463, #29bc67, #d5f6e3);
-  }
-
-  &.orange {
-    @include tagMixin(#fff, #d35400, #e65c00, #ffa366);
-  }
-
-  &.purple {
-    @include tagMixin(#fff, #9933ff, #a64dff, #e6ccff);
+  &.flamingo {
+    @include tagMixin($white, $flamingo3, color.adjust($flamingo3, $lightness: -5%), $flamingo2);
   }
 
   &.pink {
-    @include tagMixin(#000, #ffc0cb, #ffcdd5, #ffecef);
+    @include tagMixin($white, $pink3, color.adjust($pink3, $lightness: -5%), $pink2);
+  }
+
+  &.mauve {
+    @include tagMixin($white, $mauve3, color.adjust($mauve3, $lightness: -5%), $mauve2);
+  }
+
+  &.red {
+    @include tagMixin($white, $red3, color.adjust($red3, $lightness: -5%), $red2);
+  }
+
+  &.maroon {
+    @include tagMixin($white, $maroon3, color.adjust($maroon3, $lightness: -5%), $maroon2);
+  }
+
+  &.peach {
+    @include tagMixin($white, $peach3, color.adjust($peach3, $lightness: -5%), $peach2);
+  }
+
+  &.yellow {
+    @include tagMixin($white, $yellow3, color.adjust($yellow3, $lightness: -5%), $yellow2);
+  }
+
+  &.green {
+    @include tagMixin($white, $green3, color.adjust($green3, $lightness: -5%), $green2);
   }
 
   &.teal {
-    @include tagMixin($white, #008080, #00b3b3, #d9ecec);
+    @include tagMixin($white, $teal3, color.adjust($teal3, $lightness: -5%), $teal2);
+  }
+
+  &.sky {
+    @include tagMixin($white, $sky3, color.adjust($sky3, $lightness: -5%), $sky2);
+  }
+
+  &.sapphire {
+    @include tagMixin($white, $sapphire3, color.adjust($sapphire3, $lightness: -5%), $sapphire2);
+  }
+
+  &.blue {
+    @include tagMixin($white, $blue3, color.adjust($blue3, $lightness: -5%), $blue2);
+  }
+
+  &.lavender {
+    @include tagMixin($white, $lavender3, color.adjust($lavender3, $lightness: -5%), $lavender2);
   }
 
   &.navy {
@@ -131,12 +155,16 @@
     @include tagMixin($white, $black, #262626, #eee);
   }
 
-  &.erasmus {
+  &.forest {
     @include tagMixin(#fff, #006b57, #005746, rgba(255, 255, 255, 0.5));
   }
 
-  &.paris {
+  &.royal {
     @include tagMixin(#fff, #005c90, #005746, rgba(255, 255, 255, 0.5));
+  }
+
+  &.lemon {
+    @include tagMixin($black, #ffff00, #dddd00, rgba(0, 0, 0, 0.5));
   }
 }
 

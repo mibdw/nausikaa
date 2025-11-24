@@ -1,3 +1,4 @@
+@use "../colors" as *;
 @use "../variables" as *;
 @use "sass:color";
 
@@ -33,11 +34,11 @@
     border-radius: 0.9em 0.9em;
     object-fit: cover;
     -o-object-fit: cover;
-    outline: 2px solid $blueHover;
+    outline: 2px solid $blue3;
 
     &:hover,
     &.hover {
-      outline-color: color.adjust($blueBorder, $lightness: -30%);
+      outline-color: color.adjust($blue3, $lightness: -30%);
     }
   }
 }
@@ -45,13 +46,13 @@
 .user-avatar > .no-avatar,
 .group-avatar > .no-avatar {
   color: $base;
-  background-color: $blueActive;
-  outline: 2px solid $blueHover;
+  background-color: $blue3;
+  outline: 2px solid color.adjust($blue3, $lightness: -10%);
 
   &:hover,
   &.hover {
-    background-color: color.adjust($blueActive, $lightness: 0.5%);
-    outline-color: color.adjust($blueBorder, $lightness: -30%);
+    background-color: color.adjust($blue3, $lightness: 5%);
+    outline-color: color.adjust($blue3, $lightness: -30%);
   }
 }
 

@@ -38,7 +38,7 @@
 }
 
 .container {
-  @include containerMixin($baseLite, $crust, $text, $blue3, $text);
+  @include containerMixin($mantle, $crust, $text, $blue3, $text);
 
   margin: $paragraphSpacer 0;
   padding: 0 1em 1em;
@@ -65,9 +65,9 @@
       right: -1px;
       border-width: 1px;
       border-style: solid;
-      border-color: $crust $crust $baseLiteHover;
+      border-color: $crust $crust $surface2;
       border-radius: 6px 6px 0 0;
-      background-color: $baseLite;
+      background-color: $mantle;
       background-image:
         url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23eab4ae' /></svg>"),
         url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23fbedb7' /></svg>"),
@@ -88,8 +88,8 @@
       right: 1em;
       height: 2em;
       padding: 0.2em 1em;
-      border: 1px solid $baseLiteHover;
-      background-color: $baseAlt;
+      border: 1px solid $surface2;
+      background-color: $surface0;
       border-radius: 3px;
       cursor: text;
     }
@@ -112,89 +112,181 @@
     }
   }
 
-  &.yellow {
+  &.rosewater {
     @include containerMixin(
-      $yellowBackground,
-      $yellowBorder,
-      $yellowText,
-      $yellowActive,
-      $yellowHeader
+      $rosewater0,
+      $rosewater2,
+      $text,
+      $rosewater0,
+      $text
     );
   }
 
-  &.blue {
+  &.flamingo {
     @include containerMixin(
-      $blueBackground,
-      $blueBorder,
-      $blueText,
-      $blueActive,
-      $blueHeader
+      $flamingo0,
+      $flamingo2,
+      $text,
+      $flamingo0,
+      $text
     );
   }
+
+
+  &.pink {
+    @include containerMixin(
+      $pink0,
+      $pink2,
+      $text,
+      $pink0,
+      $text
+    );
+  }
+
+
+  &.mauve {
+    @include containerMixin(
+      $mauve0,
+      $mauve2,
+      $text,
+      $mauve0,
+      $text
+    );
+  }
+
 
   &.red {
     @include containerMixin(
-      $redBackground,
-      $redBorder,
-      $redText,
-      $redActive,
-      $redHeader
+      $red0,
+      $red2,
+      $text,
+      $red0,
+      $text
     );
   }
+
+
+  &.maroon {
+    @include containerMixin(
+      $maroon0,
+      $maroon2,
+      $text,
+      $maroon0,
+      $text
+    );
+  }
+
+
+  &.peach {
+    @include containerMixin(
+      $peach0,
+      $peach2,
+      $text,
+      $peach0,
+      $text
+    );
+  }
+
+
+  &.yellow {
+    @include containerMixin(
+      $yellow0,
+      $yellow2,
+      $text,
+      $yellow0,
+      $text
+    );
+  }
+
 
   &.green {
     @include containerMixin(
-      $greenBackground,
-      $greenBorder,
-      $greenText,
-      $greenActive,
-      $greenHeader
+      $green0,
+      $green2,
+      $text,
+      $green0,
+      $text
     );
   }
 
-  // &.purple {
-  //   @include containerMixin(
-  //     $purpleBackground,
-  //     $purpleBorder,
-  //     $purpleText,
-  //     $purpleActive,
-  //     $purpleHeader
-  //   );
-  // }
-  //
-  // &.orange {
-  //   @include containerMixin(
-  //     $orangeBackground,
-  //     $orangeBorder,
-  //     $orangeText,
-  //     $orangeActive,
-  //     $orangeHeader
-  //   );
-  // }
+
+  &.teal {
+    @include containerMixin(
+      $teal0,
+      $teal2,
+      $text,
+      $teal0,
+      $text
+    );
+  }
+
+
+  &.sky {
+    @include containerMixin(
+      $sky0,
+      $sky2,
+      $text,
+      $sky0,
+      $text
+    );
+  }
+
+
+  &.sapphire {
+    @include containerMixin(
+      $sapphire0,
+      $sapphire2,
+      $text,
+      $sapphire0,
+      $text
+    );
+  }
+
+
+  &.blue {
+    @include containerMixin(
+      $blue0,
+      $blue2,
+      $text,
+      $blue0,
+      $text
+    );
+  }
+
+
+  &.lavender {
+    @include containerMixin(
+      $lavender0,
+      $lavender2,
+      $text,
+      $lavender0,
+      $text
+    );
+  }
 
   &.gray {
     @include containerMixin(
-      $grayBackground,
-      $grayBorder,
+      $surface0,
+      $surface1,
       $text,
-      $grayActive,
-      $grayHeader
+      $surface0,
+      $text
     );
   }
 
   &.black {
-    @include containerMixin(#333, #111, #fff, #ff8533, $peachActive);
+    @include containerMixin($asideBase, $asideCrust, $asideText, $asideBase, $asideText);
 
     input,
     select,
     textarea {
-      background-color: #555;
-      border-color: #444;
+      background-color: $subtext1;
+      border-color: $subtext0;
       color: white;
     }
 
     table tr:hover td {
-      background-color: rgba(#444, 0.3);
+      background-color: rgba($subtext0, 0.3);
     }
   }
 }

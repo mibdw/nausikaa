@@ -12,10 +12,10 @@
   <input type="checkbox" id="sidebar-toggle">  
   <label for="sidebar-toggle">
     <svg class="icon menu">
-      <use xlink:href="/icons/icons.svg#sidebar-toggle"></use>
+      <use xlink:href="/images/icons.svg#sidebar-toggle"></use>
     </svg>
     <svg class="icon close">
-      <use xlink:href="/icons/icons.svg#clear"></use>
+      <use xlink:href="/images/icons.svg#clear"></use>
     </svg>
   </label>
 
@@ -40,7 +40,7 @@
           <label for="<%= s.slug %>">
             <%= s.title %>
             <svg class="icon chevron">
-              <use xlink:href="/icons/icons.svg#chevron-down"></use>
+              <use xlink:href="/images/icons.svg#chevron-down"></use>
             </svg>
           </label>
           
@@ -111,7 +111,7 @@
         <li>
           <a href="/<%= lane %>/<%= n.slug %>/<%= s.slug %>" alt="<%= s.title %>">
             <svg class="icon">
-              <use xlink:href="/icons/icons.svg#<%= s.icon %>"></use>
+              <use xlink:href="/images/icons.svg#<%= s.icon %>"></use>
             </svg>
             <div class="title"><%= s.title %></div>
             <div class="description"><%- s.description %></div>

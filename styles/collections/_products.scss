@@ -81,13 +81,13 @@
     & > .no-images {
       width: 100%;
       padding: 60% 2em;
-      background-color: $baseLite;
+      background-color: $mantle;
       background-image: repeating-linear-gradient(
         -45deg,
-        $baseLite,
-        $baseLite 1rem,
-        color.adjust($baseLite, $lightness: 1%) 1rem,
-        color.adjust($baseLite, $lightness: 1%) 2rem
+        $mantle,
+        $mantle 1rem,
+        color.adjust($mantle, $lightness: 1%) 1rem,
+        color.adjust($mantle, $lightness: 1%) 2rem
       );
       text-align: center;
       font-weight: bold;
@@ -133,11 +133,11 @@
       width: 1.3em;
       height: 1.3em;
       transform: translateY(5px);
-      fill: color.adjust($red, $lightness: 10%);
+      fill: color.adjust($red3, $lightness: 10%);
     }
 
     & > em {
-      text-decoration: underline solid color.adjust($red, $lightness: 10%);
+      text-decoration: underline solid color.adjust($red3, $lightness: 10%);
     }
   }
 
@@ -149,14 +149,14 @@
       width: 1.3em;
       height: 1.3em;
       transform: translateY(5px);
-      fill: color.adjust($blue, $lightness: 10%);
+      fill: color.adjust($blue3, $lightness: 10%);
     }
   }
 
   &.card {
     &:focus-within,
     &:hover {
-      background-color: $baseAlt;
+      background-color: $surface0;
       box-shadow: 0 0 0 3px $inputLineHover;
       border-color: $inputLineHover;
     }
@@ -716,8 +716,8 @@
           &:focus-within > a,
           &.focus-within > a {
             color: $blue3;
-            background-color: $yellowBackground;
-            box-shadow: 0 0 0 5px rgba($yellowBackground, 0.6);
+            background-color: $yellow0;
+            box-shadow: 0 0 0 5px rgba($yellow0, 0.6);
             border-radius: 3px;
           }
 
@@ -730,9 +730,9 @@
 
             &:hover,
             &:focus {
-              color: $yellowText;
-              background-color: $yellowBackground;
-              box-shadow: 0 0 0 5px rgba($yellowBackground, 0.6);
+              color: $black;
+              background-color: $yellow0;
+              box-shadow: 0 0 0 5px rgba($yellow0, 0.6);
               border-radius: 3px;
             }
 
@@ -779,17 +779,17 @@
                 font-size: 0.9em;
 
                 .non-zero {
-                  text-decoration: underline solid $green;
+                  text-decoration: underline solid $green3;
                   text-decoration-thickness: 3px;
 
                   &.ordered {
-                    text-decoration: underline solid $blue;
+                    text-decoration: underline solid $blue3;
                     text-decoration-thickness: 3px;
                   }
                 }
 
                 .zero {
-                  text-decoration: underline solid $red;
+                  text-decoration: underline solid $red3;
                   text-decoration-thickness: 3px;
                 }
               }
@@ -963,7 +963,7 @@
       }
 
       .error {
-        color: $red;
+        color: $red3;
         font-weight: bold;
       }
     }
@@ -1289,7 +1289,7 @@
             }
 
             tr.product-order.focus td {
-              background-color: $baseLiteHover;
+              background-color: $surface2;
               color: $text;
 
               &.product-order-customer span:nth-child(2) {
@@ -1331,17 +1331,17 @@
                   font-size: 0.9em;
 
                   .non-zero {
-                    text-decoration: underline solid $green;
+                    text-decoration: underline solid $green3;
                     text-decoration-thickness: 3px;
 
                     &.ordered {
-                      text-decoration: underline solid $blue;
+                      text-decoration: underline solid $blue3;
                       text-decoration-thickness: 3px;
                     }
                   }
 
                   .zero {
-                    text-decoration: underline solid $red;
+                    text-decoration: underline solid $red3;
                     text-decoration-thickness: 3px;
                   }
                 }
@@ -1419,8 +1419,8 @@
           &:focus-within > a,
           &.focus-within > a {
             color: $blue3;
-            background-color: $yellowBackground;
-            box-shadow: 0 0 0 5px rgba($yellowBackground, 0.6);
+            background-color: $yellow0;
+            box-shadow: 0 0 0 5px rgba($yellow0, 0.6);
             border-radius: 3px;
           }
 
@@ -1433,9 +1433,9 @@
 
             &:hover,
             &:focus {
-              color: $yellowText;
-              background-color: $yellowBackground;
-              box-shadow: 0 0 0 5px rgba($yellowBackground, 0.6);
+              color: $black;
+              background-color: $yellow0;
+              box-shadow: 0 0 0 5px rgba($yellow0, 0.6);
               border-radius: 3px;
             }
 
@@ -1793,7 +1793,7 @@
       opacity: 0;
 
       &:checked + .product {
-        border-left: 2em solid $blue;
+        border-left: 2em solid $blue3;
         padding-left: 1em;
 
         .product-selector .select {
@@ -1987,7 +1987,7 @@
 
       .tag {
         transform: translateY(-3px);
-        background-color: $yellowHover;
+        background-color: $yellow2;
       }
     }
 
@@ -2002,8 +2002,8 @@
     width: calc(60% - 1em);
 
     .active {
-      background-color: $yellowHover;
-      box-shadow: 0 0 0 3px $yellowHover;
+      background-color: $yellow2;
+      box-shadow: 0 0 0 3px $yellow2;
       border-radius: 3px;
     }
   }
