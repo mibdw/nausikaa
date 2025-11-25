@@ -1,18 +1,23 @@
-<header>
+<header id="introduction">
   <h1>Buttons</h1>
 </header>
 <section>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, quibusdam! Voluptatem tempora mollitia perferendis adipisci molestiae, veritatis magni pariatur beatae quo itaque excepturi suscipit, velit quam dignissimos, inventore sunt. Pariatur.</p>
-  <p>Atque cupiditate eius pariatur, aliquam dolore ipsum omnis, reprehenderit illum nesciunt, suscipit laboriosam magnam maiores obcaecati porro. Quam quidem, ducimus quos nam corporis, perspiciatis aut, aperiam eaque maiores laudantium nisi.</p>
+	<p class="introduction">
+		<strong>Buttons</strong> are the clearest invitations to act&mdash;submitting a form, confirming a dialog, or advancing a workflow. Their affordances must be unmistakable, from color and weight to the way icons sit beside copy, so people can identify primary actions without rereading the entire <em>interface vocabulary</em>.
+	</p>
+	<p class="introduction">
+		The patterns below cover base styling, color systems (including the expressive Catppuccin palette), and variations like loading states, icon labels, sizes, and button groups. Use them to keep interaction density predictable while still telling a cohesive story across modules, so every call-to-action feels like part of a <em>single design language</em>.
+	</p>
 </section>
 
 <section id="regular">
   <header>
-    <h2>Regular</h2>
+    <h2>Regular buttons</h2>
   </header>
 
-  <p>
-  	
+	<p><strong>Default buttons</strong> provide the baseline chrome for actions that sit outside special contexts like toolbars or cards. Use the neutral version for secondary flows, pair it with helper icons when space is tight, and lean on the predefined hover, focus, and active states so the button communicates <em>interactivity even without motion</em>.</p>
+
+  <div class="section-example">
   	<button>Default</button> 
   	<button class="hover">Hover</button> 
   	<button class="focus">Focus</button> 
@@ -23,21 +28,11 @@
   			<use xlink:href="/images/icons.svg#star"></use>
   		</svg>
   	</button>
+  </div>
 
-  </p>
+	<p class="note"><strong>Always set an explicit type</strong> (<code>type="button"</code> vs. <code>submit</code>) to avoid surprising form submissions, and ensure every button text or icon has a clear, localized label so screen readers can <em>announce the action</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-button-regular">
-    <label for="code-button-regular" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;button&gt;...&lt;/button&gt;
 &lt;button class="hover"&gt;...&lt;/button&gt;
 &lt;button class="focus"&gt;...&lt;/button&gt;
@@ -54,8 +49,9 @@
     <h2>Colors</h2>
   </header>
 
+	<p><strong>Color-coded buttons</strong> establish hierarchy at a glance: Primary commands drive the main flow, Secondary buttons support alternative paths, while Positive and Negative treatments reinforce the intent of confirmation or caution. Reuse these roles consistently so returning readers can predict what will happen before they <em>press the control</em>.</p>
 
-  <p>
+	<div class="section-example">
   	<button class="primary">Primary</button> 
   	<button class="primary hover">Hover</button> 
   	<button class="primary focus">Focus</button> 
@@ -69,7 +65,7 @@
 
   	<br>
   
-  	<button class="secondary">Primary</button> 
+  	<button class="secondary">Secondary</button> 
   	<button class="secondary hover">Hover</button> 
   	<button class="secondary focus">Focus</button> 
   	<button class="secondary active">Active</button> 
@@ -82,7 +78,7 @@
 
   	<br>
 
-  	<button class="positive">Primary</button> 
+  	<button class="positive">Positive</button> 
   	<button class="positive hover">Hover</button> 
   	<button class="positive focus">Focus</button> 
   	<button class="positive active">Active</button> 
@@ -95,7 +91,7 @@
 
   	<br>
   
-  	<button class="negative">Primary</button> 
+  	<button class="negative">Negative</button> 
   	<button class="negative hover">Hover</button> 
   	<button class="negative focus">Focus</button> 
   	<button class="negative active">Active</button> 
@@ -106,38 +102,243 @@
   		</svg>
   	</button>
 
-  </p>
+  	<br>
+  
+  	<button class="radiant">Radiant</button> 
+  	<button class="radiant hover">Hover</button> 
+  	<button class="radiant focus">Focus</button> 
+  	<button class="radiant active">Active</button> 
+  	<button class="radiant" disabled="disabled">Disabled</button> 
+  	<button class="radiant">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  
+  	<button class="midnight">Midnight</button> 
+  	<button class="midnight hover">Hover</button> 
+  	<button class="midnight focus">Focus</button> 
+  	<button class="midnight active">Active</button> 
+  	<button class="midnight" disabled="disabled">Disabled</button> 
+  	<button class="midnight">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+  </div>
+
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-button-colors">
-    <label for="code-button-colors" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;button class="primary"&gt;Primary&lt;/button&gt;
 &lt;button class="secondary"&gt;Secondary&lt;/button&gt;
 &lt;button class="positive"&gt;Positive&lt;/button&gt;
-&lt;button class="negative"&gt;Negative&lt;/button&gt;</code></pre>
+&lt;button class="negative"&gt;Negative&lt;/button&gt;
+&lt;button class="radiant"&gt;Radiant&lt;/button&gt;</code></pre>
   
   </div>
 
+	<p><strong>Catppuccin hues</strong> add a more expressive layer while staying balanced. Reference the <a href="https://catppuccin.com" target="_blank" rel="noreferrer">Catppuccin palette</a> when theming knobs, menu chips, or contextual actions so the broader system retains cohesion, especially when pairing icons with <em>warm gradients and dark surfaces</em>.</p>
+
+	<div class="section-example">
+  	<button class="rosewater">Rosewater</button> 
+  	<button class="rosewater hover">Hover</button> 
+  	<button class="rosewater focus">Focus</button> 
+  	<button class="rosewater active">Active</button> 
+  	<button class="rosewater" disabled="disabled">Disabled</button> 
+  	<button class="rosewater">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+
+  	<button class="flamingo">Flamingo</button> 
+  	<button class="flamingo hover">Hover</button> 
+  	<button class="flamingo focus">Focus</button> 
+  	<button class="flamingo active">Active</button> 
+  	<button class="flamingo" disabled="disabled">Disabled</button> 
+  	<button class="flamingo">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+
+  	<button class="pink">Pink</button> 
+  	<button class="pink hover">Hover</button> 
+  	<button class="pink focus">Focus</button> 
+  	<button class="pink active">Active</button> 
+  	<button class="pink" disabled="disabled">Disabled</button> 
+  	<button class="pink">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="mauve">Mauve</button> 
+  	<button class="mauve hover">Hover</button> 
+  	<button class="mauve focus">Focus</button> 
+  	<button class="mauve active">Active</button> 
+  	<button class="mauve" disabled="disabled">Disabled</button> 
+  	<button class="mauve">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="red">Red</button> 
+  	<button class="red hover">Hover</button> 
+  	<button class="red focus">Focus</button> 
+  	<button class="red active">Active</button> 
+  	<button class="red" disabled="disabled">Disabled</button> 
+  	<button class="red">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="maroon">Maroon</button> 
+  	<button class="maroon hover">Hover</button> 
+  	<button class="maroon focus">Focus</button> 
+  	<button class="maroon active">Active</button> 
+  	<button class="maroon" disabled="disabled">Disabled</button> 
+  	<button class="maroon">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="peach">Peach</button> 
+  	<button class="peach hover">Hover</button> 
+  	<button class="peach focus">Focus</button> 
+  	<button class="peach active">Active</button> 
+  	<button class="peach" disabled="disabled">Disabled</button> 
+  	<button class="peach">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="yellow">Yellow</button> 
+  	<button class="yellow hover">Hover</button> 
+  	<button class="yellow focus">Focus</button> 
+  	<button class="yellow active">Active</button> 
+  	<button class="yellow" disabled="disabled">Disabled</button> 
+  	<button class="yellow">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="green">Green</button> 
+  	<button class="green hover">Hover</button> 
+  	<button class="green focus">Focus</button> 
+  	<button class="green active">Active</button> 
+  	<button class="green" disabled="disabled">Disabled</button> 
+  	<button class="green">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="teal">Teal</button> 
+  	<button class="teal hover">Hover</button> 
+  	<button class="teal focus">Focus</button> 
+  	<button class="teal active">Active</button> 
+  	<button class="teal" disabled="disabled">Disabled</button> 
+  	<button class="teal">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="sky">Sky</button> 
+  	<button class="sky hover">Hover</button> 
+  	<button class="sky focus">Focus</button> 
+  	<button class="sky active">Active</button> 
+  	<button class="sky" disabled="disabled">Disabled</button> 
+  	<button class="sky">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="sapphire">Sapphire</button> 
+  	<button class="sapphire hover">Hover</button> 
+  	<button class="sapphire focus">Focus</button> 
+  	<button class="sapphire active">Active</button> 
+  	<button class="sapphire" disabled="disabled">Disabled</button> 
+  	<button class="sapphire">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="blue">Blue</button> 
+  	<button class="blue hover">Hover</button> 
+  	<button class="blue focus">Focus</button> 
+  	<button class="blue active">Active</button> 
+  	<button class="blue" disabled="disabled">Disabled</button> 
+  	<button class="blue">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+
+  	<br>
+  	<button class="lavender">Lavender</button> 
+  	<button class="lavender hover">Hover</button> 
+  	<button class="lavender focus">Focus</button> 
+  	<button class="lavender active">Active</button> 
+  	<button class="lavender" disabled="disabled">Disabled</button> 
+  	<button class="lavender">
+  		<svg class="icon">
+  			<use xlink:href="/images/icons.svg#star"></use>
+  		</svg>
+  	</button>
+	</div>
+
+	<div class="code-example">
+    <pre><code class="html">&lt;button class="rosewater"&gt;...&lt;/button&gt;
+&lt;button class="flamingo"&gt;...&lt;/button&gt;
+&lt;button class="pink"&gt;...&lt;/button&gt;
+&lt;button class="mauve"&gt;...&lt;/button&gt;
+&lt;button class="red"&gt;...&lt;/button&gt;
+&lt;button class="maroon"&gt;...&lt;/button&gt;
+&lt;button class="peach"&gt;...&lt;/button&gt;
+&lt;button class="yellow"&gt;...&lt;/button&gt;
+&lt;button class="green"&gt;...&lt;/button&gt;
+&lt;button class="teal"&gt;...&lt;/button&gt;
+&lt;button class="sky"&gt;...&lt;/button&gt;
+&lt;button class="sapphire"&gt;...&lt;/button&gt;
+&lt;button class="blue"&gt;...&lt;/button&gt;
+&lt;button class="lavender"&gt;...&lt;/button&gt;</code></pre>
+	</div>
 </section>
 
 
 <section id="loading">
   <header>
-    <h2>Loading</h2>
+    <h2>Loading / Success states</h2>
   </header>
 
+	<p><strong>Stateful buttons</strong> keep users oriented during async work. Swap in the loading variant the moment a submission begins, then transition to success when the operation completes so the button itself narrates progress without forcing someone to hunt for <em>a detached status message</em>.</p>
 
-  <p>
-  	
+	<div class="section-example">
   	<button class="loading">Loading</button> 
   	<button class="primary loading">Loading</button> 
   	<button class="secondary loading">Loading</button> 
@@ -151,23 +352,13 @@
   	<button class="secondary loading success">Success</button> 
   	<button class="positive loading success">Success</button> 
   	<button class="negative loading success">Success</button>
-  </p>
+  </div>
+
+	<p class="note"><strong>Preserve button width</strong> when swapping labels or spinners to prevent layout shift, and expose the same status via <code>aria-live</code> regions so assistive tech can <em>announce completion</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-button-loading">
-    <label for="code-button-loading" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;button class="loading"&gt;...&lt;/button&gt;
 &lt;button class="loading success"&gt;...&lt;/button&gt;</code></pre>
-  
   </div>
 </section>
 
@@ -177,8 +368,9 @@
     <h2>Labels</h2>
   </header>
 
-  <p>
-  	
+	<p><strong>Button labels</strong> pair supporting text or icons with the main caption to clarify meaning. Use the <code>.label</code> span for prepended glyphs, counters, or statuses so spacing and alignment stay consistent whether the label contains an SVG or short word like <em>“New”</em>.</p>
+
+	<div class="section-example">
   	<button>
   		<span class="label">
   			<svg class="icon">
@@ -291,21 +483,10 @@
 	  	</span>
 	  	Text
 	  </button>
+	</div>
 
-	</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-button-labels">
-    <label for="code-button-labels" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;button&gt;
   &lt;span class="label"&gt;
     &lt;svg class="icon"&gt;&lt;/svg&gt;
@@ -327,8 +508,9 @@
     <h2>Sizes</h2>
   </header>
 
-  <p>
-  	
+	<p><strong>Size variants</strong> adapt buttons to the scale of their surroundings: Mini works well inside dense tables, while Massive anchors hero zones or confirmation modals. Mix sizes sparingly on a single screen so users can infer importance from weight without <em>relearning padding math</em>.</p>
+
+	<div class="section-example">
   	<button class="mini">Mini</button> 
   	<button class="mini">
   		<span class="label">
@@ -473,19 +655,11 @@
 	  </button> 
 	  <button class="massive loading">Massive</button>
 
-	</p>
+	</div>
+
+	<p class="note"><strong>Maintain a minimum hit area</strong> of 44px for touch interactions and keep icon buttons square so that motor-impaired users can <em>predict the tap target</em> regardless of visual flourish.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-button-sizes">
-    <label for="code-button-sizes" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
     
     <pre><code class="html">&lt;button class="mini"&gt;...&lt;/button&gt;
 &lt;button class="small"&gt;...&lt;/button&gt;
@@ -506,7 +680,9 @@
     <h2>Groups</h2>
   </header>
 
-  <p>
+	<p><strong>Button groups</strong> bundle related actions so people can compare options side by side—ideal for pagination, segmented controls, or contextual toolbars. Wrap them in <code>.group</code> to keep borders merged and spacing uniform across different color schemes.</p>
+
+	<div class="section-example">
 
 	  <div class="group">
 	    
@@ -601,27 +777,17 @@
 	  	</button>
 	  </div>
 
-  </p>
+  </div>
+
+	<p class="note"><strong>Manage focus order</strong> so each grouped button remains reachable via tabbing, and add <code>aria-pressed</code> or <code>role="group"</code> metadata when the collection acts like a toggle set. Doing so lets assistive tech describe the relationship and <em>prevents navigation traps</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-button-groups">
-    <label for="code-button-groups" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="group"&gt;
   &lt;button&gt;...&lt;/button&gt;
   &lt;button&gt;...&lt;/button&gt;
   &lt;button&gt;...&lt;/button&gt;
   &lt;button disabled&gt;...&lt;/button&gt;
 &lt;/div&gt;</code></pre>
-  
   </div>
 
 </section>

@@ -1,9 +1,14 @@
-<header>
+<header id="introduction">
   <h1>Input fields</h1>
 </header>
 
-<section>
-  <p>Eos sunt perspiciatis sed totam beatae possimus consequatur repellat dignissimos unde quae aperiam nulla, doloribus id aut. Eos inventore, expedita! Maiores aperiam reprehenderit quaerat repellat enim illo, cumque. Iusto, quaerat?</p>
+<section class="introduction">
+	<p class="introduction">
+		<strong>Input fields</strong> turn curiosity into structured data&mdash;names, search terms, shipping details, or dates that steer the experience forward. Well-crafted fields hint at their expected content through labels, placeholders, and validation, reducing friction so people can stay focused on the <em>task at hand</em> rather than deciphering the UI.
+	</p>
+	<p class="introduction">
+		The patterns below cover single-line inputs, selects, textareas, and enhanced combinations with icons, buttons, or suggestions. Use them as building blocks when designing flows: align labels, reuse helper text styles, and lean on the provided states to keep every form <em>clear, accessible, and predictable</em> from start to submit.
+	</p>
 </section>
 
 <section id="text-fields">
@@ -11,71 +16,63 @@
     <h2>Text fields</h2>
   </header>
 
-  <p>Excepturi, cum eaque nam! Laudantium, corporis rem? Odio obcaecati mollitia architecto sunt, accusantium ipsa omnis temporibus, voluptates autem quisquam corrupti consectetur ea aspernatur doloribus esse non magnam harum adipisci aperiam!</p>
-  <p>Sed totam beatae possimus consequatur repellat dignissimos unde quae aperiam nulla, doloribus id aut. Eos inventore, expedita! Maiores aperiam reprehenderit quaerat repellat enim illo, cumque. Iusto, quaerat?</p>
+	<p><strong>Text inputs</strong> handle everything from simple strings to structured data types like email, tel, and date pickers. Pair each input with a descriptive label and keep placeholders instructional rather than essential, since helper text and validation states can communicate formatting rules far more <em>reliably</em>.</p>
 
-  <form class="basic-form">
-    
-    <label for="normal">Text</label>
-    <input id="normal" type="text" placeholder="Placeholder text">
-    
-    <label for="disabled">Disabled</label>
-    <input id="disabled" disabled="disabled" type="text" placeholder="Disabled placeholder text">
-    
-    <label for="readonly">Read only</label>
-    <input id="readonly" readonly="readonly" type="text" value="Read only text">
-    
-    <label for="required">Required</label>
-    <input id="required" required="" type="text" placeholder="Required placeholder text">
-    <small class="help error">Error messages where appropriate</small>
-    
-    <label for="password">Password</label>
-    <input id="password" type="password">
-    <small class="help">Help messages where appropriate.</small>
-    
-    <label for="tel">Telephone</label>
-    <input id="tel" type="tel">
-    
-    <label for="email">Email</label>
-    <input id="email" type="email" placeholder="name@example.com">
-    
-    <label for="url">URL</label>
-    <input id="url" type="url" placeholder="http://example.com">
-    
-    <label for="search">Search</label>
-    <input id="search" type="search">
-    
-    <label for="date">Date</label>
-    <input id="date" type="date">
-    
-    <label for="time">Time</label>
-    <input id="time" type="time">
-    
-    <label for="datetime-local">Datetime local</label>
-    <input id="datetime-local" type="datetime-local"><small class="help">Help messages where appropriate.</small>
-    
-    <label for="week">Week</label>
-    <input id="week" type="week">
-    
-    <label for="month">Month</label>
-    <input id="month" type="month">
-    
-    <label for="number">Number</label>
-    <input id="number" type="number">
-  </form>
+	<div class="section-example">
+		<form class="basic-form">
+			
+			<label for="normal">Text</label>
+			<input id="normal" type="text" placeholder="Placeholder text">
+			
+			<label for="disabled">Disabled</label>
+			<input id="disabled" disabled="disabled" type="text" placeholder="Disabled placeholder text">
+			
+			<label for="readonly">Read only</label>
+			<input id="readonly" readonly="readonly" type="text" value="Read only text">
+			
+			<label for="required">Required</label>
+			<input id="required" required="" type="text" placeholder="Required placeholder text">
+			<small class="help error">Error messages where appropriate</small>
+			
+			<label for="password">Password</label>
+			<input id="password" type="password">
+			<small class="help">Help messages where appropriate.</small>
+			
+			<label for="tel">Telephone</label>
+			<input id="tel" type="tel">
+			
+			<label for="email">Email</label>
+			<input id="email" type="email" placeholder="name@example.com">
+			
+			<label for="url">URL</label>
+			<input id="url" type="url" placeholder="http://example.com">
+			
+			<label for="search">Search</label>
+			<input id="search" type="search">
+			
+			<label for="date">Date</label>
+			<input id="date" type="date">
+			
+			<label for="time">Time</label>
+			<input id="time" type="time">
+			
+			<label for="datetime-local">Datetime local</label>
+			<input id="datetime-local" type="datetime-local"><small class="help">Help messages where appropriate.</small>
+			
+			<label for="week">Week</label>
+			<input id="week" type="week">
+			
+			<label for="month">Month</label>
+			<input id="month" type="month">
+			
+			<label for="number">Number</label>
+			<input id="number" type="number">
+		</form>
+	</div>
+
+	<p class="note"><strong>Connect every label</strong> via the <code>for</code>/<code>id</code> relationship, and avoid removing native browser affordances (e.g., numeric spinners) so keyboard, touch, and assistive users all benefit from the built-in <em>semantics</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-input-regular">
-    <label for="code-input-regular" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;input type="text"&gt;
 &lt;input type="text" disabled&gt;
 &lt;input type="text" readonly&gt;
@@ -101,59 +98,54 @@
     <h2>Select fields</h2>
   </header>
 
-  <div class="basic-form">
+	<p><strong>Select elements</strong> constrain choices to a known list, perfect for states, categories, or filters where free-form entry would introduce errors. Rely on the native single-select for concise menus and the <code>multiple</code> variant when users need to select several items without leaving the <em>form context</em>.</p>
 
-    <label for="select-regular">Select element</label>
-    <select id="select-regular">
-      <option value=""></option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <small class="help">Help messages where appropriate.</small>
+	<div class="section-example">
+		<div class="basic-form">
 
-    <br>
+			<label for="select-regular">Select element</label>
+			<select id="select-regular">
+				<option value=""></option>
+				<option value="1">Option 1</option>
+				<option value="2">Option 2</option>
+				<option value="3">Option 3</option>
+			</select>
+			<small class="help">Help messages where appropriate.</small>
 
-    <label for="select-disabled">Disabled select element</label>
-    <select id="select-disabled" disabled="disabled">
-      <option value=""></option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
+			<br>
 
-    <br>
+			<label for="select-disabled">Disabled select element</label>
+			<select id="select-disabled" disabled="disabled">
+				<option value=""></option>
+				<option value="1">Option 1</option>
+				<option value="2">Option 2</option>
+				<option value="3">Option 3</option>
+			</select>
 
-    <label for="multiple">Multipe</label>
-    <select id="multiple" multiple="multiple">
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <small class="help">Help messages where appropriate.</small>
+			<br>
 
-    <br>
+			<label for="multiple">Multipe</label>
+			<select id="multiple" multiple="multiple">
+				<option value="1">Option 1</option>
+				<option value="2">Option 2</option>
+				<option value="3">Option 3</option>
+			</select>
+			<small class="help">Help messages where appropriate.</small>
 
-    <label for="multiple-disabled">Multipe disabled</label>
-    <select id="multiple-disabled" disabled="disabled" multiple="multiple">
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
+			<br>
+
+			<label for="multiple-disabled">Multipe disabled</label>
+			<select id="multiple-disabled" disabled="disabled" multiple="multiple">
+				<option value="1">Option 1</option>
+				<option value="2">Option 2</option>
+				<option value="3">Option 3</option>
+			</select>
+		</div>
   </div>
 
+	<p class="note"><strong>Keep option labels short</strong> and unique so they truncate gracefully, and always provide an empty first option or placeholder when a selection is optional. This ensures assistive tech can announce whether a value has been chosen, preventing accidental <em>defaults</em>.</p>
+
   <div class="code-example">
-    
-    <input type="checkbox" id="code-select-regular">
-    <label for="code-select-regular" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;select&gt;
   &lt;option value="..."&gt;...&lt;/option&gt;
   &lt;option value="..."&gt;...&lt;/option&gt;
@@ -176,33 +168,25 @@
     <h2>Textarea</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est ipsum, at, omnis, animi recusandae vitae consequatur voluptate amet quaerat similique nulla nemo minima hic dolor sint voluptas aperiam libero autem?</p>
+	<p><strong>Textareas</strong> support longer narratives like feedback, descriptions, or multi-line code snippets. Keep them vertically resizable when possible and pair them with helper text describing content expectations so users can gauge the <em>appropriate length</em>.</p>
 
-  <div class="basic-form">
-    <label for="textarea">Text area</label>
-    <textarea id="textarea"></textarea>
-    <small class="help">Help messages where appropriate.</small>
+	<div class="section-example">
+		<div class="basic-form">
+			<label for="textarea">Text area</label>
+			<textarea id="textarea"></textarea>
+			<small class="help">Help messages where appropriate.</small>
 
-    <label for="textarea-disabled">Disabled</label>
-    <textarea disabled="disabled" id="textarea-disabled"></textarea>
+			<label for="textarea-disabled">Disabled</label>
+			<textarea disabled="disabled" id="textarea-disabled"></textarea>
 
+		</div>
   </div>
 
+	<p class="note"><strong>Preserve line breaks</strong> server-side and mirror them in previews, and ensure disabled or read-only states still contrast enough with the background so the content remains <em>legible</em>.</p>
+
   <div class="code-example">
-    
-    <input type="checkbox" id="code-textareas">
-    <label for="code-textareas" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;textarea&gt;&lt;/textarea&gt;
 &lt;textarea disabled&gt;&lt;/textarea&gt;</code></pre>
-  
   </div>
   
 </section>
@@ -213,8 +197,10 @@
     <h2>Attached buttons</h2>
   </header>
 
-  <div class="basic-form">
+	<p><strong>Attached buttons</strong> bundle actions directly with their controlling fields: think search bars with submit buttons, unit converters, or segmented filter chips. Grouping the controls keeps spatial relationships obvious and reduces the travel distance between text entry and <em>next step</em>.</p>
 
+	<div class="section-example">
+  <div class="basic-form">
     <label for="append-button">Append button</label>
     <div class="group">
       <input id="append-button" type="text">
@@ -255,19 +241,11 @@
       </button>
     </div>
   </div>
+  </div>
   
+	<p class="note"><strong>Match heights and spacing</strong> between inputs and buttons so the group reads as a single control, and ensure keyboard users can tab through the sequence without unexpected focus traps or <em>ARIA misfires</em>.</p>
+
   <div class="code-example">
-    
-    <input type="checkbox" id="code-input-buttons">
-    <label for="code-input-buttons" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="group"&gt;
   &lt;input type="text"&gt;
   &lt;button class="positive"&gt;
@@ -300,45 +278,40 @@
     <h2>Attached labels</h2>
   </header>
 
-  <div class="basic-form">
+	<p><strong>Attached labels</strong> keep inline units, suffixes, or prefixes tightly coupled to their fields. Use them for currency symbols, measurement units, or quick descriptors when a traditional block label would consume too much vertical space.</p>
 
-    <label for="append-label">Append label</label>
-    <div class="group">
-      <input id="append-label" type="text">
-      <label for="append-label">Appended label</label>
-    </div>
+	<div class="section-example">
+		<div class="basic-form">
 
-    <label for="prepend-label">Prepend label</label>
-    <div class="group">
-      <label for="prepend-label">Prepended label</label>
-      <input id="prepend-label" type="text">
-    </div>
+			<label for="append-label">Append label</label>
+			<div class="group">
+				<input id="append-label" type="text">
+				<label for="append-label">Appended label</label>
+			</div>
 
-    <label for="append-label-select">Append label</label>
-  
-    <div class="group">
-      <select id="append-label-select">
-        <option value=""></option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </select>
-      <label for="append-label-select">Appended select</label>
-    </div>
+			<label for="prepend-label">Prepend label</label>
+			<div class="group">
+				<label for="prepend-label">Prepended label</label>
+				<input id="prepend-label" type="text">
+			</div>
+
+			<label for="append-label-select">Append label</label>
+		
+			<div class="group">
+				<select id="append-label-select">
+					<option value=""></option>
+					<option value="1">Option 1</option>
+					<option value="2">Option 2</option>
+					<option value="3">Option 3</option>
+				</select>
+				<label for="append-label-select">Appended select</label>
+			</div>
+		</div>
   </div>
 
+	<p class="note"><strong>Reuse real <code>&lt;label&gt;</code> elements</strong>, even for inline adornments, so assistive technologies announce the association. When the label mirrors a unit (like “kg”), keep it short and avoid duplicating the same text inside the input value to prevent <em>redundancy</em>.</p>
+
   <div class="code-example">
-    
-    <input type="checkbox" id="code-input-labels">
-    <label for="code-input-labels" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="group"&gt;
   &lt;input type="text"&gt;
   &lt;label for="..."&gt;Appended label&lt;/label&gt;
@@ -355,67 +328,63 @@
   </div>
 
 </section>
-<section id="icons">
 
+<section id="icons">
   <header>
     <h2>Icons</h2>
   </header>
 
-  <div class="basic-form">
-    <label for="append-icon">Append icon</label>
-    <div class="group">
-      <input id="append-icon" class="append-icon" type="text">
-      <svg class="icon">
-        <use xlink:href="/images/icons.svg#star"></use>
-      </svg>
-    </div>
-    <label for="prepend-icon">Prepend icon</label>
+	<p><strong>Icon adornments</strong> provide visual hints for expected content&mdash;mail icons for email fields, magnifiers for search, warning badges for validation. They also help users scan dense forms by reinforcing intent before they read the <em>full label</em>.</p>
 
-    <div class="group">
-      <svg class="icon">
-        <use xlink:href="/images/icons.svg#star"></use>
-      </svg>
-      <input id="prepend-icon" class="prepend-icon" type="text">
-    </div>
+	<div class="section-example">
+		<div class="basic-form">
+			<label for="append-icon">Append icon</label>
+			<div class="group">
+				<input id="append-icon" class="append-icon" type="text">
+				<svg class="icon">
+					<use xlink:href="/images/icons.svg#star"></use>
+				</svg>
+			</div>
+			<label for="prepend-icon">Prepend icon</label>
 
-    <label for="multiple-icon">Multiple icon</label>
+			<div class="group">
+				<svg class="icon">
+					<use xlink:href="/images/icons.svg#star"></use>
+				</svg>
+				<input id="prepend-icon" class="prepend-icon" type="text">
+			</div>
 
-    <div class="group">
-      <svg class="icon">
-        <use xlink:href="/images/icons.svg#mail"></use>
-      </svg>
-      <input id="multiple-icon" class="append-icon prepend-icon" type="text">
-      <svg class="icon">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </div>
+			<label for="multiple-icon">Multiple icon</label>
 
-    <label for="prepend-icon-select">Prepend select</label>
-    <div class="group">
-      <svg class="icon">
-        <use xlink:href="/images/icons.svg#cart"></use>
-      </svg>
-      <select id="prepend-icon-select" class="prepend-icon">
-        <option value=""></option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </select>
-    </div>
+			<div class="group">
+				<svg class="icon">
+					<use xlink:href="/images/icons.svg#mail"></use>
+				</svg>
+				<input id="multiple-icon" class="append-icon prepend-icon" type="text">
+				<svg class="icon">
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</div>
 
+			<label for="prepend-icon-select">Prepend select</label>
+			<div class="group">
+				<svg class="icon">
+					<use xlink:href="/images/icons.svg#cart"></use>
+				</svg>
+				<select id="prepend-icon-select" class="prepend-icon">
+					<option value=""></option>
+					<option value="1">Option 1</option>
+					<option value="2">Option 2</option>
+					<option value="3">Option 3</option>
+				</select>
+			</div>
+
+		</div>
   </div>
+
+	<p class="note"><strong>Ensure icons are decorative by default</strong> (hide them from screen readers) unless they convey critical meaning, and keep padding symmetrical so focus rings never clip against the SVG container.</p>
+
   <div class="code-example">
-    
-    <input type="checkbox" id="code-input-icons">
-    <label for="code-input-icons" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="group"&gt;
   &lt;input type="text" class="append-icon"&gt;
   &lt;svg class="icon"&gt;...&lt;/svg&gt;
@@ -438,97 +407,89 @@
 &lt;/div&gt;</code></pre>
   
   </div>
-
 </section>
-<section id="mixed">
 
+<section id="mixed">
   <header>
     <h2>Mixed</h2>
   </header>
 
-  <div class="basic-form">
-    
-    <label for="mixed-group">Mixed group</label>
-    <div class="group">
-      <label for="mixed-group">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#star"></use>
-        </svg>
-      </label>
-      <svg class="icon">
-        <use xlink:href="/images/icons.svg#mail"></use>
-      </svg>
-      <input id="mixed-group" class="prepend-icon" type="email" placeholder="info@example.com">
-      <button class="primary">Subscribe</button>
-      <button class="secondary">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#running"></use>
-        </svg>
-      </button>
+	<p><strong>Mixed groups</strong> combine labels, icons, multiple inputs, and buttons to build compact flows like newsletter subscriptions or billing forms. Treat each grouping as a mini-layout: align baselines, reuse spacing tokens, and keep the reading order logical so both visual and assistive users can parse the <em>sequence</em>.</p>
 
-    </div>
+	<div class="section-example">
+		<div class="basic-form">
+			
+			<label for="mixed-group">Mixed group</label>
+			<div class="group">
+				<label for="mixed-group">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+				</label>
+				<svg class="icon">
+					<use xlink:href="/images/icons.svg#mail"></use>
+				</svg>
+				<input id="mixed-group" class="prepend-icon" type="email" placeholder="info@example.com">
+				<button class="primary">Subscribe</button>
+				<button class="secondary">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#running"></use>
+					</svg>
+				</button>
 
-    <label for="first-name">Multiple input</label>
-    <div class="group">
-      <input id="first-name" type="text" placeholder="First name">
-      <input id="last-name" type="text" placeholder="Last name">
-      <button>Submit</button>
-    </div>
-    <label for="mixed-group-select">Mixed group</label>
-    <div class="group">
-      <label for="mixed-group-select">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#star"></use>
-        </svg>
-      </label>
-      <svg class="icon">
-        <use xlink:href="/images/icons.svg#star"></use>
-      </svg>
-      <select class="prepend-icon" id="mixed-group-select">
-        <option value=""></option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </select>
-      <button class="primary">Subscribe</button>
-      <button class="secondary">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#star"></use>
-        </svg>
-      </button>
-    </div>
+			</div>
 
-    <label for="first-select">Multiple select</label>
-    <div class="group">
-      <select id="first-select">
-        <option value=""></option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </select>
-      <select>
-        <option value=""></option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </select>
-      <button>Submit</button>
-    </div>
+			<label for="first-name">Multiple input</label>
+			<div class="group">
+				<input id="first-name" type="text" placeholder="First name">
+				<input id="last-name" type="text" placeholder="Last name">
+				<button>Submit</button>
+			</div>
+			<label for="mixed-group-select">Mixed group</label>
+			<div class="group">
+				<label for="mixed-group-select">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+				</label>
+				<svg class="icon">
+					<use xlink:href="/images/icons.svg#star"></use>
+				</svg>
+				<select class="prepend-icon" id="mixed-group-select">
+					<option value=""></option>
+					<option value="1">Option 1</option>
+					<option value="2">Option 2</option>
+					<option value="3">Option 3</option>
+				</select>
+				<button class="primary">Subscribe</button>
+				<button class="secondary">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+				</button>
+			</div>
 
+			<label for="first-select">Multiple select</label>
+			<div class="group">
+				<select id="first-select">
+					<option value=""></option>
+					<option value="1">Option 1</option>
+					<option value="2">Option 2</option>
+					<option value="3">Option 3</option>
+				</select>
+				<select>
+					<option value=""></option>
+					<option value="1">Option 1</option>
+					<option value="2">Option 2</option>
+					<option value="3">Option 3</option>
+				</select>
+				<button>Submit</button>
+			</div>
+
+		</div>
   </div>
 
   <div class="code-example">
-  
-    <input type="checkbox" id="code-input-mixed">
-    <label for="code-input-mixed" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="group"&gt;
   &lt;label for="..."&gt;&lt;svg class="icon"&gt;...&lt;/svg&gt;&lt;/label&gt;
   &lt;svg class="icon"&gt;...&lt;/svg&gt;
@@ -561,6 +522,7 @@
   </div>
 
 </section>  
+
 <section id="file-upload">
   <header>
     <h2>File upload</h2>
@@ -568,6 +530,7 @@
 
   <p>Under construction!</p>
 
+	<div class="section-example">
   <input type="file" name="upload" id="upload">
   <label for="upload" class="button">
     <span class="label">
@@ -577,172 +540,152 @@
     </span>
     File upload
   </label>
+	</div>
 
   <div class="code-example">
-  
-    <input type="checkbox" id="code-input-file">
-    <label for="code-input-file" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;input type="file" id="..."&gt;
 &lt;label for="..."&gt;...&lt;/label&gt;</code></pre>
-  
   </div>
-
 </section>
+
 <section id="suggestions">
   <header>
     <h2>Suggestions</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus aspernatur eius impedit rerum id, quaerat nisi beatae unde doloribus inventore nam omnis vel vitae, voluptas neque tempora magnam nesciunt, iusto.</p>
+	<p><strong>Suggestion panels</strong> pair an input with contextual results, ideal for autocomplete, search-as-you-type, or quick-pick lists. Panels can appear below or above the control, and the group variants show how icons, buttons, and stacked inputs keep the affordance cohesive even as the interaction grows richer.</p>
 
-  <div class="basic-form">
+	<div class="section-example">
+		<div class="basic-form">
 
-    <label for="suggestions-1">Suggestions</label>
-    <div class="suggestions focus-within">
-      <input type="search" id="suggestions-1" class="prepend-icon" value="Search term (expanded)">
-      <div class="panel">
-        <ul>
-          <li><a href="">Lorem ipsum dolor sit amet</a></li>
-          <li><a href="">Earum soluta eum cum iure atque</a></li>
-          <li><a href="">Facere reprehenderit voluptatibus</a></li>
-          <li><a href="">Deleniti aut labore, consequatur</a></li>
-          <li><a href="">Repellendus tenetur</a></li>
-        </ul>
-      </div>
-    </div>
+			<label for="suggestions-1">Suggestions</label>
+			<div class="suggestions focus-within">
+				<input type="search" id="suggestions-1" class="prepend-icon" value="Search term (expanded)">
+				<div class="panel">
+					<ul>
+						<li><a href="">Lorem ipsum dolor sit amet</a></li>
+						<li><a href="">Earum soluta eum cum iure atque</a></li>
+						<li><a href="">Facere reprehenderit voluptatibus</a></li>
+						<li><a href="">Deleniti aut labore, consequatur</a></li>
+						<li><a href="">Repellendus tenetur</a></li>
+					</ul>
+				</div>
+			</div>
 
-    <label for="suggestions-4" style="margin-top: 12em;">Bottom</label>
-    <div class="suggestions" style="margin-top: 12em;">
-      <input type="search" value="Suggestions to bottom (default)" id="suggestions-4">
-      <div class="panel">
-        <ul>
-          <li><a href="">Lorem ipsum dolor sit amet</a></li>
-          <li><a href="">Earum soluta eum cum iure atque</a></li>
-          <li><a href="">Facere reprehenderit voluptatibus</a></li>
-          <li><a href="">Deleniti aut labore, consequatur</a></li>
-          <li><a href="">Repellendus tenetur</a></li>
-        </ul>
-      </div>
-    </div>
+			<label for="suggestions-4" style="margin-top: 12em;">Bottom</label>
+			<div class="suggestions" style="margin-top: 12em;">
+				<input type="search" value="Suggestions to bottom (default)" id="suggestions-4">
+				<div class="panel">
+					<ul>
+						<li><a href="">Lorem ipsum dolor sit amet</a></li>
+						<li><a href="">Earum soluta eum cum iure atque</a></li>
+						<li><a href="">Facere reprehenderit voluptatibus</a></li>
+						<li><a href="">Deleniti aut labore, consequatur</a></li>
+						<li><a href="">Repellendus tenetur</a></li>
+					</ul>
+				</div>
+			</div>
 
-    <label for="suggestions-5">Top</label>
-    <div class="suggestions top">
-      <input type="search" value="Suggestions to top" id="suggestions-5">
-      <div class="panel">
-        <ul>
-          <li><a href="">Lorem ipsum dolor sit amet</a></li>
-          <li><a href="">Earum soluta eum cum iure atque</a></li>
-          <li><a href="">Facere reprehenderit voluptatibus</a></li>
-          <li><a href="">Deleniti aut labore, consequatur</a></li>
-          <li><a href="">Repellendus tenetur</a></li>
-        </ul>
-      </div>
-    </div>
+			<label for="suggestions-5">Top</label>
+			<div class="suggestions top">
+				<input type="search" value="Suggestions to top" id="suggestions-5">
+				<div class="panel">
+					<ul>
+						<li><a href="">Lorem ipsum dolor sit amet</a></li>
+						<li><a href="">Earum soluta eum cum iure atque</a></li>
+						<li><a href="">Facere reprehenderit voluptatibus</a></li>
+						<li><a href="">Deleniti aut labore, consequatur</a></li>
+						<li><a href="">Repellendus tenetur</a></li>
+					</ul>
+				</div>
+			</div>
 
 
-    <label for="suggestions-2">Groups</label>
-    <div class="suggestions">
-      <div class="group" style="width: 25em">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#search"></use>
-        </svg>
-        <input type="search" class="prepend-icon" value="Search term (expanded)" id="suggestions-2">
-      </div>  
-      <div class="panel">
-        <ul>
-          <li><a href="">Lorem ipsum dolor sit amet</a></li>
-          <li><a href="">Earum soluta eum cum iure atque</a></li>
-          <li><a href="">Facere reprehenderit voluptatibus</a></li>
-          <li><a href="">Deleniti aut labore, consequatur</a></li>
-          <li><a href="">Repellendus tenetur</a></li>
-        </ul>
-      </div>
-    </div>
+			<label for="suggestions-2">Groups</label>
+			<div class="suggestions">
+				<div class="group" style="width: 25em">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#search"></use>
+					</svg>
+					<input type="search" class="prepend-icon" value="Search term (expanded)" id="suggestions-2">
+				</div>  
+				<div class="panel">
+					<ul>
+						<li><a href="">Lorem ipsum dolor sit amet</a></li>
+						<li><a href="">Earum soluta eum cum iure atque</a></li>
+						<li><a href="">Facere reprehenderit voluptatibus</a></li>
+						<li><a href="">Deleniti aut labore, consequatur</a></li>
+						<li><a href="">Repellendus tenetur</a></li>
+					</ul>
+				</div>
+			</div>
 
-    <br>
+			<br>
 
-    <label for="suggestions-3"></label>
-    <div class="suggestions">
-      <div class="group" style="width: 25em">
-        <input type="search"  value="Search term" id="suggestions-3">
-        <button class="primary">
-          <svg class="icon">
-            <use xlink:href="/images/icons.svg#search"></use>
-          </svg>
-        </button>
-      </div>  
-      <div class="panel">
-        <ul>
-          <li><a href="">Lorem ipsum dolor sit amet</a></li>
-          <li><a href="">Earum soluta eum cum iure atque</a></li>
-          <li><a href="">Facere reprehenderit voluptatibus</a></li>
-          <li><a href="">Deleniti aut labore, consequatur</a></li>
-          <li><a href="">Repellendus tenetur</a></li>
-        </ul>
-      </div>
-    </div>
+			<label for="suggestions-3"></label>
+			<div class="suggestions">
+				<div class="group" style="width: 25em">
+					<input type="search"  value="Search term" id="suggestions-3">
+					<button class="primary">
+						<svg class="icon">
+							<use xlink:href="/images/icons.svg#search"></use>
+						</svg>
+					</button>
+				</div>  
+				<div class="panel">
+					<ul>
+						<li><a href="">Lorem ipsum dolor sit amet</a></li>
+						<li><a href="">Earum soluta eum cum iure atque</a></li>
+						<li><a href="">Facere reprehenderit voluptatibus</a></li>
+						<li><a href="">Deleniti aut labore, consequatur</a></li>
+						<li><a href="">Repellendus tenetur</a></li>
+					</ul>
+				</div>
+			</div>
 
-    <div class="suggestions">
-      <div class="group">
-        <label for="suggestions-6">Prepend label</label>
-        <input type="text" id="suggestions-6" class="append-icon">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#mail"></use>
-        </svg>
-      </div>  
-      <div class="panel">
-        <ul>
-          <li><a href="">Lorem ipsum dolor sit amet</a></li>
-          <li><a href="">Earum soluta eum cum iure atque</a></li>
-          <li><a href="">Facere reprehenderit voluptatibus</a></li>
-          <li><a href="">Deleniti aut labore, consequatur</a></li>
-          <li><a href="">Repellendus tenetur</a></li>
-        </ul>
-      </div>
-    </div>
+			<div class="suggestions">
+				<div class="group">
+					<label for="suggestions-6">Prepend label</label>
+					<input type="text" id="suggestions-6" class="append-icon">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#mail"></use>
+					</svg>
+				</div>  
+				<div class="panel">
+					<ul>
+						<li><a href="">Lorem ipsum dolor sit amet</a></li>
+						<li><a href="">Earum soluta eum cum iure atque</a></li>
+						<li><a href="">Facere reprehenderit voluptatibus</a></li>
+						<li><a href="">Deleniti aut labore, consequatur</a></li>
+						<li><a href="">Repellendus tenetur</a></li>
+					</ul>
+				</div>
+			</div>
 
-    <div class="suggestions">
-      <div class="group">
-        <input type="text"  value="First name">
-        <input type="text"  value="Last name">
-        <button>
-          Submit
-        </button>
-      </div>  
-      <div class="panel">
-        <ul>
-          <li><a href="">Lorem ipsum dolor sit amet</a></li>
-          <li><a href="">Earum soluta eum cum iure atque</a></li>
-          <li><a href="">Facere reprehenderit voluptatibus</a></li>
-          <li><a href="">Deleniti aut labore, consequatur</a></li>
-          <li><a href="">Repellendus tenetur</a></li>
-        </ul>
-      </div>
-    </div>
+			<div class="suggestions">
+				<div class="group">
+					<input type="text"  value="First name">
+					<input type="text"  value="Last name">
+					<button>
+						Submit
+					</button>
+				</div>  
+				<div class="panel">
+					<ul>
+						<li><a href="">Lorem ipsum dolor sit amet</a></li>
+						<li><a href="">Earum soluta eum cum iure atque</a></li>
+						<li><a href="">Facere reprehenderit voluptatibus</a></li>
+						<li><a href="">Deleniti aut labore, consequatur</a></li>
+						<li><a href="">Repellendus tenetur</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
   </div>
 
-  <p>Earum soluta eum cum iure atque, tempora error, voluptatibus repellendus tenetur, quisquam dignissimos aliquam! Facere reprehenderit voluptatibus totam minus consequuntur iure voluptates minima recusandae deleniti aut labore, consequatur, et dolore.</p>
+	<p class="note"><strong>Link the panel and input</strong> with <code>aria-controls</code> and <code>aria-expanded</code> so assistive tech understands when results appear, and keep keyboard navigation consistent (arrow keys to traverse, Enter to confirm) to build <em>muscle memory</em>.</p>
 
   <div class="code-example">
-  
-    <input type="checkbox" id="code-input-suggestions">
-    <label for="code-input-suggestions" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="suggestions"&gt;
   &lt;input type="..."&gt;
   &lt;div class="panel"&gt;...&lt;/div&gt;
@@ -759,5 +702,4 @@
 &lt;/div&gt;</code></pre>
   
   </div>
-
 </section>

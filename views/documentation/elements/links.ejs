@@ -1,68 +1,61 @@
-<header>
+<header id="introduction">
   <h1>Links</h1>
 </header>
 <section>
-
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti accusamus dolorum vitae reprehenderit modi quidem rerum quibusdam sapiente quasi. Culpa eveniet est quasi, eaque quae aliquid animi sint, magnam eligendi.</p>
-
-  <p>Omnis porro sequi ipsum eos labore debitis, iste, quis inventore. Ab tempora amet accusamus, nobis distinctio totam asperiores expedita nihil fugiat vitae autem ducimus voluptatibus hic corporis maiores, porro ea.</p>
+  <p class="introduction">
+    <strong>Links</strong> stitch our documentation together, turning static copy into guided journeys with clear entry and exit points. Thoughtful microcopy, predictable states, and semantic anchors ensure that every hyperlink feels intentional—inviting readers onward while keeping the overall experience <em>navigable for assistive technology</em>.
+  </p>
+  <p class="introduction">
+    The patterns below showcase common treatments—from inline anchors to menu-ready knobs and button-styled links—so you can mix expressive color with consistent interaction affordances. Use these references whenever you need to signal hierarchy, revisit history, or offer an action that still behaves like a <em>trusted hyperlink</em>.
+  </p>
 
 </section>
 <section>
+  <header>
+    <h2>Inline links</h2>
+  </header>
 
-  <p>
-    <a>Regular link</a><br>
-    <a class="hover">Hover link</a><br>
-    <a class="focus">Focused link</a><br>
-    <a class="active">Active link</a>
-  </p>
+	<p><strong>Inline links</strong> carry readers from one idea to the next, whether you are pointing to supporting docs or inviting them deeper into the product. Keep the copy short, lead with verbs when the link triggers an action, and rely on the provided hover, focus, and active states so keyboard users gain the same <em>contextual feedback</em> as mouse users.</p>
+
+	<div class="section-example">
+		<a>Regular link</a><br>
+		<a class="hover">Hover link</a><br>
+		<a class="focus">Focused link</a><br>
+		<a class="active">Active link</a>
+	</div>
   
   <div class="code-example">
-    
-    <input type="checkbox" id="code-regular-links">
-    <label for="code-regular-links" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code>&lt;a&gt;Regular link&lt;/a&gt;
 &lt;a class="hover"&gt;Hover link&lt;/a&gt;
 &lt;a class="focus"&gt;Focused link&lt;/a&gt;
 &lt;a class="active"&gt;Active link&lt;/a&gt;</code></pre>
-  
   </div>
 
-  <p>
+	<p><strong>Visited links</strong> reduce cognitive load by showing where someone has already explored, which is especially helpful in reference-heavy docs. Allow the visited styling to remain distinct from the default so researchers can quickly orient themselves, but avoid assigning critical actions&mdash;like destructive flows&mdash;to states that might appear muted after a single visit.</p>
+
+	<div class="section-example">
     <a class="visited">Visited link</a><br>
     <a class="visited hover">Visited hover link</a><br>
     <a class="visited focus">Visited focused link</a><br>
     <a class="visited active">Visited active link</a>
-  </p>
+  </div>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-visited-links">
-    <label for="code-visited-links" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code>&lt;a class="visited"&gt;Visited link&lt;/a&gt;
 &lt;a class="visited hover"&gt;...&lt;/a&gt;
 &lt;a class="visited focus"&gt;...&lt;/a&gt;
 &lt;a class="visited active"&gt;...&lt;/a&gt;</code></pre>
-  
   </div>
 
-  <p>
+</section>
+<section>
+  <header>
+    <h2>Knobs</h2>
+  </header>
+
+	<p><strong>Knob links</strong> double as compact navigation chips: they keep menus tidy, highlight filters, and make icon/text pairings feel intentional. Use them when you need a tappable control that still behaves like a link&mdash;opening detail panes, swapping content, or filtering tables&mdash;so you gain the styling nuance without sacrificing <em>semantic anchors</em>.</p>
+
+  <div class="section-example">
     <a class="knob">Knob link</a><br>
     <a class="knob hover">Knob hover link</a><br>
     <a class="knob focus">Knob focused link</a><br>
@@ -73,29 +66,18 @@
       </svg> 
       Knob icon link
     </a>
-  </p>
+	</div>
   
   <div class="code-example">
-    
-    <input type="checkbox" id="code-knobs">
-    <label for="code-knobs" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code>&lt;a class="knob"&gt;...&lt;/a&gt;
 &lt;a class="knob hover"&gt;...&lt;/a&gt;
 &lt;a class="knob focus"&gt;...&lt;/a&gt;
 &lt;a class="knob active"&gt;...&lt;/a&gt;</code></pre>
-  
   </div>
 
-  <p>
+	<p><strong>Color variants</strong> reference the <a href="https://catppuccin.com" target="_blank" rel="noreferrer">Catppuccin palette</a>, giving knobs a warm, expressive range that still feels cohesive. Pick a hue that reinforces meaning (warnings in Maroon, confirmations in Green, highlights in Rosewater), and remember that every tone ships with hover, focus, and active treatments so states stay <em>accessible and predictable</em>.</p>
 
+	<div class="section-example">
     <a class="knob rosewater">Rosewater</a>
 		<a class="knob hover rosewater">Rosewater hover</a>
 		<a class="knob focus rosewater">Rosewater focused</a>
@@ -259,55 +241,46 @@
 				<use xlink:href="/images/icons.svg#warning"></use>
 			</svg> Gray icon
 		</a>
-		<br>
-  </p>
-  
-  <div class="code-example">
-    
-    <input type="checkbox" id="code-knob-colors">
-    <label for="code-knob-colors" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
-    <pre><code>&lt;a class="knob yellow"&gt;...&lt;/a&gt;
-&lt;a class="knob red"&gt;...&lt;/a&gt;
-&lt;a class="knob blue"&gt;...&lt;/a&gt;
-&lt;a class="knob green"&gt;...&lt;/a&gt;
-&lt;a class="knob purple"&gt;...&lt;/a&gt;
-&lt;a class="knob orange"&gt;...&lt;/a&gt;
-&lt;a class="knob gray"&gt;...&lt;/a&gt;</code></pre>
-  
   </div>
+  
+	<div class="code-example">
+		<pre><code>&lt;a class="knob rosewater"&gt;...&lt;/a&gt;
+&lt;a class="knob flamingo"&gt;...&lt;/a&gt;
+&lt;a class="knob pink"&gt;...&lt;/a&gt;
+&lt;a class="knob mauve"&gt;...&lt;/a&gt;
+&lt;a class="knob red"&gt;...&lt;/a&gt;
+&lt;a class="knob maroon"&gt;...&lt;/a&gt;
+&lt;a class="knob peach"&gt;...&lt;/a&gt;
+&lt;a class="knob yellow"&gt;...&lt;/a&gt;
+&lt;a class="knob green"&gt;...&lt;/a&gt;
+&lt;a class="knob teal"&gt;...&lt;/a&gt;
+&lt;a class="knob sky"&gt;...&lt;/a&gt;
+&lt;a class="knob sapphire"&gt;...&lt;/a&gt;
+&lt;a class="knob blue"&gt;...&lt;/a&gt;
+&lt;a class="knob lavender"&gt;...&lt;/a&gt;
+&lt;a class="knob gray"&gt;...&lt;/a&gt;</code></pre>
+	
+	</div>
 
-  <p>
+
+</section>
+<section>
+  <header>
+    <h2>Buttons</h2>
+  </header>
+	<p><strong>Button links</strong> mimic native buttons for times when a navigation target needs the prominence of a primary call-to-action but still routes to another page. Lean on these when a surface lacks room for both buttons and links, and review the <a href="/documentation/elements/buttons">buttons</a> guidelines to stay aligned on spacing, color choices, and <em>interactive etiquette</em>.</p>
+
+	<div class="section-example">
     <a class="button">Button link</a><br>
     <a class="button hover">Button hover link</a><br>
     <a class="button focus">Button focused link</a><br>
     <a class="button active">Button active link</a>
-  </p>
+  </div>
   
   <div class="code-example">
-    
-    <input type="checkbox" id="code-button-links">
-    <label for="code-button-links" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code>&lt;a class="button"&gt;...&lt;/a&gt;
 &lt;a class="button hover"&gt;...&lt;/a&gt;
 &lt;a class="button focus"&gt;...&lt;/a&gt;
 &lt;a class="button active"&gt;...&lt;/a&gt;</code></pre>
-  
   </div>
-  
 </section>

@@ -3,9 +3,16 @@
   var pageTitle = "Nausikaä";
   var navbar = 'transparent'; 
   var themeFile = 'nausikaa-light';
+  var highlightFile = 'github-light';
 
   if (theme) {
-    themeFile = theme
+    themeFile = theme;
+
+		if (theme == "nausikaa-dark") {
+			highlightFile = "github-dark";
+		} else {
+			highlightFile = "github-light";
+		}
   }
   
   if (lane == 'frontpage') {
@@ -58,8 +65,8 @@
 
     <script src="/dialog-polyfill.js"></script>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
+		<link rel="stylesheet" href="/styles/<%= highlightFile %>.css">
+		<script src="/highlight.min.js"></script> 
 		<script>hljs.highlightAll();</script>
 
   </head>
