@@ -16,13 +16,14 @@
       background-color: $base;
       border-width: 1px 0 1px 1px;
       border-style: solid;
-      border-color: $crust;
+      border-color: $overlay0;
       height: $inputHeight;
       line-height: $inputHeight;
       color: $blue3;
       padding: 0 1em;
       margin: 0 -4px 0 0;
       text-decoration: none;
+      cursor: pointer;
 
       &:disabled {
         color: $subtext0;
@@ -47,7 +48,7 @@
     & > a.hover,
     & > a:focus,
     &.focus > a {
-      background-color: $surface2;
+      background-color: $surface1;
       color: $text;
     }
 
@@ -107,15 +108,15 @@
       line-height: 1em;
       margin: 0 0.5em;
       color: transparent;
-      background-color: $surface2;
-      border-color: $surface2;
+      background-color: $surface0;
+      border-color: $surface0;
       cursor: pointer;
 
       &:hover,
       &:focus {
         color: transparent;
-        background-color: $crust;
-        border-color: $crust;
+        background-color: $surface2;
+        border-color: $surface2;
       }
     }
 

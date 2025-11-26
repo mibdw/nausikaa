@@ -2,30 +2,34 @@
   <h1>Breadcrumbs</h1>
 </header>
 
-<section id="regular">
-  
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta eum architecto minus deserunt reiciendis debitis distinctio sit, modi, id! Vel a provident, rerum eius est placeat fugiat incidunt officiis id.</p>
+<section id="introduction">
 
-  <ol class="breadcrumbs">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Products</a></li>
-    <li><a href="#">Leisure &amp; safety products</a></li>
-    <li><a href="#">Travelpacks &amp; backpacks</a></li>
-    <li><span>Daypack</span></li>
-  </ol>
+	<p class="introduction">
+		<strong>Breadcrumbs</strong> reveal where someone sits inside a hierarchy and how to get back. They turn deep navigation into a short sentence—Home › Products › Daypacks—so people can trace their steps without reopening menus or guessing at parent pages.
+	</p>
+	<p class="introduction">
+		Use breadcrumbs when the information architecture is at least three levels deep or when search often lands visitors mid-flow. Keep labels concise, make the trail keyboard-navigable, and let the final crumb read-only so it quietly anchors the current view.
+	</p>
+</section>
+
+<section id="regular">
+  <header>
+		<h2>Regular</h2>
+  </header>
+  
+  <p><strong>Regular breadcrumbs</strong> are the default inline trail: an ordered list of links that lets readers jump to any ancestor. Use plain text for the current page, avoid truncating the hierarchy unless space is tight, and respect logical ordering from broad to specific so scanning mirrors the site map.</p>
+
+	<div class="section-example">
+		<ol class="breadcrumbs">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Products</a></li>
+			<li><a href="#">Leisure &amp; safety products</a></li>
+			<li><a href="#">Travelpacks &amp; backpacks</a></li>
+			<li><span>Daypack</span></li>
+		</ol>
+	</div>
   
   <div class="code-example">
-    
-    <input type="checkbox" id="code-breadcrumbs">
-    <label for="code-breadcrumbs" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;ol class="breadcrumbs"&gt;
   &lt;li&gt;...&lt;/li&gt;
   &lt;li&gt;...&lt;/li&gt;
@@ -36,33 +40,25 @@
 </section>
 
 <section id="knobs">
-  
   <header>
     <h2>Knobs</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis necessitatibus repellat cumque, vitae quas inventore, libero officiis impedit soluta, facilis excepturi dolore adipisci doloribus repellendus magnam et quis, maiores sit.</p>
+  <p><strong>Knob breadcrumbs</strong> swap the classic chevrons for pill-shaped links, making each level feel tappable and distinct. They shine in touch-heavy layouts or when breadcrumbs double as quick filters. Keep spacing generous, and reserve the final knob as static text to reinforce the current location.</p>
 
-  <ol class="breadcrumbs knobs">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Products</a></li>
-    <li><a href="#">Leisure &amp; safety products</a></li>
-    <li><a href="#">Travelpacks &amp; backpacks</a></li>
-    <li>Daypack<br></li>
-  </ol>
+	<div class="section-example">
+		<ol class="breadcrumbs knobs">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Products</a></li>
+			<li><a href="#">Leisure &amp; safety products</a></li>
+			<li><a href="#">Travelpacks &amp; backpacks</a></li>
+			<li>Daypack<br></li>
+		</ol>
+	</div>
+
+	<p class="note"><strong>Knob styling</strong> shares tokens with knob links; see <a href="/documentation/elements/links#knobs">Links › Knobs</a> for color and state guidance so breadcrumb pills match the rest of your navigation controls.</p>
   
   <div class="code-example">
-    
-    <input type="checkbox" id="code-breadcrumb-knobs">
-    <label for="code-breadcrumb-knobs" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;ol class="breadcrumbs knobs"&gt;
   &lt;li&gt;...&lt;/li&gt;
   &lt;li&gt;...&lt;/li&gt;
@@ -77,42 +73,33 @@
     <h2>Steps</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui itaque quasi, laboriosam saepe unde! Doloremque nemo dolorum aliquid alias quia. Amet ab doloribus consequatur pariatur cum. Rem suscipit obcaecati, error.</p>
-  <p>Laborum, minus. Nam sint laborum id quo doloribus labore eligendi, temporibus repellendus consequatur veritatis. Laudantium temporibus odit dolorem vel tempore atque itaque, impedit voluptates quo nisi iste quidem amet voluptatem!</p>
+  <p><strong>Step breadcrumbs</strong> guide users through sequenced flows—checkout, onboarding, booking—where the path is linear and progress matters. Each step doubles as a label and status indicator; only completed steps should be links, the current step should be visually active, and future steps should remain reachable only after validation.</p>
+  <p>Keep copy short (one title plus a subline), align steps to the process order, and ensure focus states are visible so keyboard users can review completed steps without losing their place.</p>
 
-  <ul class="breadcrumbs steps">
-    <li>
-      <a href="">
-        <h5>Shipping</h5>
-        Choose your shipping method
-      </a>
-    </li>
-    <li class="active">
-      <span>
-        <h5>Billing</h5>
-        Enter billing information
-      </span>
-    </li>
-    <li>
-      <a href="">
-        <h5>Confirm order</h5>
-         Verify order details
-      </a>
-    </li>
-  </ul>
+	<div class="section-example">
+		<ul class="breadcrumbs steps">
+			<li>
+				<a href="">
+					<h5>Shipping</h5>
+					Choose your shipping method
+				</a>
+			</li>
+			<li class="active">
+				<span>
+					<h5>Billing</h5>
+					Enter billing information
+				</span>
+			</li>
+			<li>
+				<a href="">
+					<h5>Confirm order</h5>
+					 Verify order details
+				</a>
+			</li>
+		</ul>
+	</div>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-breadcrumbs-steps">
-    <label for="code-breadcrumbs-steps" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;ul class="breadcrumbs steps"&gt;
   &lt;li&gt;
     &lt;a href="..."&gt;...&lt;/a&gt;
@@ -129,50 +116,41 @@
 
   <header><h3>Icons</h3></header>
 
-  <p>Aperiam quidem pariatur dolor, neque, accusamus nulla laboriosam omnis! Consequatur odit vitae in nihil quod laboriosam expedita repellendus numquam cum, iste exercitationem, excepturi dolorem quasi magni vel tenetur ex nostrum?</p>
+  <p><strong>Icon steps</strong> layer symbols above the labels to reinforce meaning (shipping, billing, confirmation). Choose icons that communicate state at a glance, and keep sizing consistent so the rhythm of the trail remains even.</p>
 
-  <ul class="breadcrumbs steps icons">
-    <li>
-      <a href="">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#star"></use>
-        </svg>
-        <h6>Shipping</h6>
-        Choose your shipping method
-      </a>
-    </li>
-    <li class="active">  
-      <span>
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#warning"></use>
-        </svg>
-        <h6>Billing</h6>
-        Enter billing information
-      </span>
-    </li>
-    <li>
-      <a href="">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#mail"></use>
-        </svg>
-        <h6>Confirm order</h6>
-         Verify order details
-      </a>
-    </li>
-  </ul>
+	<div class="section-example">
+		<ul class="breadcrumbs steps icons">
+			<li>
+				<a href="">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+					<h6>Shipping</h6>
+					Choose your shipping method
+				</a>
+			</li>
+			<li class="active">  
+				<span>
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#warning"></use>
+					</svg>
+					<h6>Billing</h6>
+					Enter billing information
+				</span>
+			</li>
+			<li>
+				<a href="">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#mail"></use>
+					</svg>
+					<h6>Confirm order</h6>
+					 Verify order details
+				</a>
+			</li>
+		</ul>
+	</div>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-breadcrumbs-steps-icons">
-    <label for="code-breadcrumbs-steps-icons" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;ul class="breadcrumbs steps icons"&gt;
   &lt;li&gt;
     &lt;a href="..."&gt;
@@ -200,52 +178,42 @@
     <h3>Vertical</h3>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum similique impedit deleniti tenetur maiores tempore nobis, quidem voluptates adipisci obcaecati veniam, cumque quo. Aperiam perferendis dignissimos, rerum omnis, pariatur optio!</p>
+  <p><strong>Vertical steps</strong> fit sidebars and narrow viewports where horizontal space is limited. Use them for wizard-style flows or dashboards that keep process navigation pinned while the main content changes. Maintain clear active styling and ample spacing so touch targets stay comfortable.</p>
 
-  <ul class="breadcrumbs steps vertical icons">
-    <li>
-      <a href="">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#star"></use>
-        </svg>
-        <h6>Shipping</h6>
-        Choose your shipping method
-      </a>
-    </li>
-    <li class="active">  
-      <span>
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#warning"></use>
-        </svg>
-        <h6>Billing</h6>
-        Enter billing information
-      </span>
-    </li>
-    <li>
-      <a href="">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#mail"></use>
-        </svg>
-        <h6>Confirm order</h6>
-         Verify order details
-      </a>
-    </li>
-  </ul>
+	<div class="section-example">
+		<ul class="breadcrumbs steps vertical icons">
+			<li>
+				<a href="">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+					<h6>Shipping</h6>
+					Choose your shipping method
+				</a>
+			</li>
+			<li class="active">  
+				<span>
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#warning"></use>
+					</svg>
+					<h6>Billing</h6>
+					Enter billing information
+				</span>
+			</li>
+			<li>
+				<a href="">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#mail"></use>
+					</svg>
+					<h6>Confirm order</h6>
+					 Verify order details
+				</a>
+			</li>
+		</ul>
+	</div>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-breadcrumbs-steps-vertical">
-    <label for="code-breadcrumbs-steps-vertical" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;ul class="breadcrumbs steps vertical"&gt;...&lt;/ul&gt;</code></pre>
-  
   </div>
 
 </section>

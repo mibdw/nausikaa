@@ -18,16 +18,18 @@
   h4,
   h5,
   h6 {
-    color: $notificationHeader;
+    color: rgba($notificationHeader, 0.6);
   }
 
   & > svg.icon {
-    fill: $notificationHeader;
+    fill: rgba($notificationHeader, 0.6);
   }
 
   .control.close {
+    cursor: pointer;
+
     svg {
-      fill: $notificationHeader;
+      fill: rgba($notificationHeader, 0.6);
     }
 
     &:hover svg,
@@ -38,7 +40,7 @@
 }
 
 .notification {
-  @include notificationMixin($mantle, $crust, $text, $subtext1);
+  @include notificationMixin($overlay2, $subtext0, $white, $white);
 
   margin: $paragraphSpacer 0;
   padding: 0 4rem 0 2rem;
@@ -73,136 +75,131 @@
 
   &.rosewater {
     @include notificationMixin(
-      $rosewater0,
-      color.adjust($rosewater0, $lightness: -10%),
-      $base,
-      $base
+      $rosewater3,
+      color.adjust($rosewater3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.flamingo {
     @include notificationMixin(
-      $flamingo0,
-      color.adjust($flamingo0, $lightness: -10%),
-      $base,
-      $base
+      $flamingo3,
+      color.adjust($flamingo3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.pink {
     @include notificationMixin(
-      $pink0,
-      color.adjust($pink0, $lightness: -10%),
-      $base,
-      $base
+      $pink3,
+      color.adjust($pink3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.mauve {
     @include notificationMixin(
-      $mauve0,
-      color.adjust($mauve0, $lightness: -10%),
-      $base,
-      $base
+      $mauve3,
+      color.adjust($mauve3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.red {
     @include notificationMixin(
-      $red0,
-      color.adjust($red0, $lightness: -10%),
-      $base,
-      $base
+      $red3,
+      color.adjust($red3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.maroon {
     @include notificationMixin(
-      $maroon0,
-      color.adjust($maroon0, $lightness: -10%),
-      $base,
-      $base
+      $maroon3,
+      color.adjust($maroon3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.peach {
     @include notificationMixin(
-      $peach0,
-      color.adjust($peach0, $lightness: -10%),
-      $base,
-      $base
+      $peach3,
+      color.adjust($peach3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.yellow {
     @include notificationMixin(
-      $yellow0,
-      color.adjust($yellow0, $lightness: -10%),
-      $base,
-      $base
+      $yellow3,
+      color.adjust($yellow3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.green {
     @include notificationMixin(
-      $green0,
-      color.adjust($green0, $lightness: -10%),
-      $base,
-      $base
+      $green3,
+      color.adjust($green3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.teal {
     @include notificationMixin(
-      $teal0,
-      color.adjust($teal0, $lightness: -10%),
-      $base,
-      $base
+      $teal3,
+      color.adjust($teal3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.sky {
     @include notificationMixin(
-      $sky0,
-      color.adjust($sky0, $lightness: -10%),
-      $base,
-      $base
+      $sky3,
+      color.adjust($sky3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.sapphire {
     @include notificationMixin(
-      $sapphire0,
-      color.adjust($sapphire0, $lightness: -10%),
-      $base,
-      $base
+      $sapphire3,
+      color.adjust($sapphire3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.blue {
     @include notificationMixin(
-      $blue0,
-      color.adjust($blue0, $lightness: -10%),
-      $base,
-      $base
+      $blue3,
+      color.adjust($blue3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.lavender {
     @include notificationMixin(
-      $lavender0,
-      color.adjust($lavender0, $lightness: -10%),
-      $base,
-      $base
+      $lavender3,
+      color.adjust($lavender3, $lightness: -5%),
+      $white,
+      $white
     );
   }
 
   &.gray {
-    @include notificationMixin(
-      $subtext0,
-      $subtext1,
-      $base,
-      $base
-    );
+    @include notificationMixin($subtext0, $subtext1, $white, $white);
   }
 }

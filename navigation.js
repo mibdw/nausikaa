@@ -241,8 +241,8 @@ const nav = [
                 slug: "regular",
               },
               {
-                title: "Width",
-                slug: "width",
+                title: "Colors",
+                slug: "colors",
               },
               {
                 title: "Mock browser",
@@ -264,10 +264,6 @@ const nav = [
               {
                 title: "Width",
                 slug: "width",
-              },
-              {
-                title: "In action",
-                slug: "in-action",
               },
             ],
           },
@@ -535,4 +531,3 @@ const nav = [
 ];
 
 export default nav;
-

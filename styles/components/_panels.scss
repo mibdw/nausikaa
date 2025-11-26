@@ -196,13 +196,13 @@
 
 .panel {
   @include panelMixin(
-    $surface0,
-    $crust,
-    $blue3,
-    $blue3,
-    $subtext0,
-    $text,
+    $base,
     $surface2,
+    $blue3,
+    $blue3,
+    $overlay0,
+    $text,
+    $surface0,
     $blue3,
     $white
   );
@@ -532,7 +532,7 @@
       $rosewater3,
       $rosewater3,
       $text,
-      rgba($rosewater3, .2),
+      rgba($rosewater3, 0.2),
       $rosewater3,
       $white
     );
@@ -546,7 +546,7 @@
       $flamingo3,
       $flamingo3,
       $text,
-      rgba($flamingo3, .2),
+      rgba($flamingo3, 0.2),
       $flamingo3,
       $white
     );
@@ -560,7 +560,7 @@
       $pink3,
       $pink3,
       $text,
-      rgba($pink3, .2),
+      rgba($pink3, 0.2),
       $pink3,
       $white
     );
@@ -574,7 +574,7 @@
       $mauve3,
       $mauve3,
       $text,
-      rgba($mauve3, .2),
+      rgba($mauve3, 0.2),
       $mauve3,
       $white
     );
@@ -588,7 +588,7 @@
       $red3,
       $red3,
       $text,
-      rgba($red3, .2),
+      rgba($red3, 0.2),
       $red3,
       $white
     );
@@ -602,7 +602,7 @@
       $maroon3,
       $maroon3,
       $text,
-      rgba($maroon3, .2),
+      rgba($maroon3, 0.2),
       $maroon3,
       $white
     );
@@ -616,7 +616,7 @@
       $peach3,
       $peach3,
       $text,
-      rgba($peach3, .2),
+      rgba($peach3, 0.2),
       $peach3,
       $white
     );
@@ -630,7 +630,7 @@
       $yellow3,
       $yellow3,
       $text,
-      rgba($yellow3, .2),
+      rgba($yellow3, 0.2),
       $yellow3,
       $white
     );
@@ -644,7 +644,7 @@
       $green3,
       $green3,
       $text,
-      rgba($green3, .2),
+      rgba($green3, 0.2),
       $green3,
       $white
     );
@@ -658,7 +658,7 @@
       $teal3,
       $teal3,
       $text,
-      rgba($teal3, .2),
+      rgba($teal3, 0.2),
       $teal3,
       $white
     );
@@ -672,7 +672,7 @@
       $sky3,
       $sky3,
       $text,
-      rgba($sky3, .2),
+      rgba($sky3, 0.2),
       $sky3,
       $white
     );
@@ -686,7 +686,7 @@
       $sapphire3,
       $sapphire3,
       $text,
-      rgba($sapphire3, .2),
+      rgba($sapphire3, 0.2),
       $sapphire3,
       $white
     );
@@ -700,7 +700,7 @@
       $blue3,
       $blue3,
       $text,
-      rgba($blue3, .2),
+      rgba($blue3, 0.2),
       $blue3,
       $white
     );
@@ -714,7 +714,7 @@
       $lavender3,
       $lavender3,
       $text,
-      rgba($lavender3, .2),
+      rgba($lavender3, 0.2),
       $lavender3,
       $white
     );
@@ -728,7 +728,7 @@
       $overlay0,
       $surface2,
       $text,
-      rgba($overlay0, .2),
+      rgba($overlay0, 0.2),
       $overlay0,
       $white
     );

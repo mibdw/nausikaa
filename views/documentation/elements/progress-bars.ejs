@@ -2,99 +2,121 @@
   <h1>Progress bars</h1>
 </header>
 
+<section id="introduction">
+	<p class="introduction">
+		<strong>Progress bars</strong> communicate task status visually, giving users a sense of how much work remains. Use them for lengthy processes like file uploads, installations, or multi-step forms to set expectations and reduce uncertainty. Always pair progress bars with clear labels or percentages so users understand what’s happening at a glance.
+	</p>
+	<p class="introduction">
+		<strong>Progress bars</strong> can be determinate (showing specific progress) or indeterminate (indicating ongoing activity without a set endpoint). Choose the right type based on the task: use determinate bars when you can measure progress, and indeterminate bars for processes where timing is unpredictable. Keep designs simple and avoid overloading users with too many visual cues.
+	</p>
+	<p class="introduction">
+		Ensure <strong>progress bars</strong> are accessible by providing text alternatives and ensuring they work well with screen readers. Use ARIA attributes like <code>aria-valuenow</code>, <code>aria-valuemin</code>, and <code>aria-valuemax</code> to convey progress information. Test across devices and assistive technologies to ensure a smooth experience for all users.
+	</p>
+</section>
+
 <section>
+  <header>
+		<h2>Default</h2>
+  </header>
 
-  <progress max="100" value="2"></progress>
-  <progress max="100" value="20"></progress>
-  <progress max="100" value="40"></progress>
-  <progress max="100" value="60"></progress>
-  <progress max="100" value="80"></progress>
-  <progress max="100" value="100"></progress>
+	<div class="section-example">
+		<progress max="100" value="2"></progress>
+		<progress max="100" value="20"></progress>
+		<progress max="100" value="40"></progress>
+		<progress max="100" value="60"></progress>
+		<progress max="100" value="80"></progress>
+		<progress max="100" value="100"></progress>
+	</div>
+
+	<p>Use the <code>&lt;progress&gt;</code> element with <code>max</code> and <code>value</code> attributes to create a determinate progress bar. The <code>max</code> attribute sets the total value, while the <code>value</code> attribute indicates the current progress.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-progress-regular">
-    <label for="code-progress-regular" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;progress max="..." value="..."&gt;&lt;/progress&gt;</code></pre>
-  
   </div>
 
-  <h2>Progress Bar Without Value</h2>
+	<p>A progress bar <strong>without</strong> a <code>value</code> attribute indicates an indeterminate state, showing that a process is ongoing without specifying how much has been completed.</p>
 
-  <progress></progress>
+	<div class="section-example">
+		<progress></progress>
+	</div>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-progress-without">
-    <label for="code-progress-without" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;progress&gt;&lt;/progress&gt;</code></pre>
-  
   </div>
 
-  <h2>Colors</h2>
+</section>
 
-  <progress max="100" value="60" class="blue"></progress>
-  <progress max="100" value="65" class="red"></progress>
-  <progress max="100" value="53" class="yellow"></progress>
-  <progress max="100" value="71" class="green"></progress>
-  <progress max="100" value="55" class="purple"></progress>
-  <progress max="100" value="76" class="orange"></progress>
-  <progress max="100" value="67" class="gray"></progress>
+<section>
+  <header>
+		<h2>Colors</h2>
+  </header>
+	<p>Customize progress bar <strong>colors</strong> using CSS classes to match your design system or brand guidelines. Below are examples of progress bars with different color classes applied.</p>
+
+	<div class="section-example">
+		<progress max="100" value="60" class="rosewater"></progress>
+		<progress max="100" value="65" class="flamingo"></progress>
+		<progress max="100" value="53" class="pink"></progress>
+		<progress max="100" value="71" class="mauve"></progress>
+		<progress max="100" value="55" class="red"></progress>
+		<progress max="100" value="76" class="maroon"></progress>
+		<progress max="100" value="67" class="peach"></progress>
+		<progress max="100" value="45" class="yellow"></progress>
+		<progress max="100" value="83" class="green"></progress>
+		<progress max="100" value="71" class="teal"></progress>
+		<progress max="100" value="90" class="sky"></progress>
+		<progress max="100" value="55" class="sapphire"></progress>
+		<progress max="100" value="73" class="blue"></progress>
+		<progress max="100" value="53" class="lavender"></progress>
+		<progress max="100" value="71" class="gray"></progress>
+	</div>
+
+	<p class="note"><strong>Catppuccin hues</strong> are available for progress bars as well; reference the <a href="https://catppuccin.com" target="_blank" rel="noreferrer">Catppuccin palette</a> to keep status treatments consistent with the rest of the system.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-progress-colors">
-    <label for="code-progress-colors" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
-    <pre><code class="html">&lt;progress class="blue"&gt;&lt;/progress&gt;
+    <pre><code class="html">&lt;progress class="rosewater"&gt;&lt;/progress&gt;
+&lt;progress class="flamingo"&gt;&lt;/progress&gt;
+&lt;progress class="pink"&gt;&lt;/progress&gt;
+&lt;progress class="mauve"&gt;&lt;/progress&gt;
 &lt;progress class="red"&gt;&lt;/progress&gt;
+&lt;progress class="maroon"&gt;&lt;/progress&gt;
+&lt;progress class="peach"&gt;&lt;/progress&gt;
 &lt;progress class="yellow"&gt;&lt;/progress&gt;
 &lt;progress class="green"&gt;&lt;/progress&gt;
-&lt;progress class="purple"&gt;&lt;/progress&gt;
-&lt;progress class="orange"&gt;&lt;/progress&gt;
+&lt;progress class="teal"&gt;&lt;/progress&gt;
+&lt;progress class="sky"&gt;&lt;/progress&gt;
+&lt;progress class="sapphire"&gt;&lt;/progress&gt;
+&lt;progress class="blue"&gt;&lt;/progress&gt;
+&lt;progress class="lavender"&gt;&lt;/progress&gt;
 &lt;progress class="gray"&gt;&lt;/progress&gt;</code></pre>
   
   </div>
 
-  <h2>Progress bar in action<br></h2>
+</section>
 
-  <progress max="100" value="0" id="progressBarExample"></progress>
-  <button id="progressButtonExample">Progress!</button>
+<section>
+  <header>
+		<h2>Demo</h2>
+  </header>
+	<p>Click the button to see the progress bar fill up from 0 to 100%.</p>
+
+	<div class="section-example">
+		<div style="display: flex; gap: 1rem; align-items: center;">
+			<progress style="flex-grow: 99" max="100" value="0" id="progressBarExample"></progress>
+			<button id="progressButtonExample">Progress!</button>
+		</div>
+	</div>
 
 <script>
 const progressBar = document.getElementById('progressBarExample');
 const progressButton = document.getElementById('progressButtonExample');
 progressButton.addEventListener('click', function () {
 var num = 0;
-var id = setInterval(frame, 10);
+var id = setInterval(frame, 5);
 function frame() {
 if (num== 100) {
 clearInterval(id);
 } else {
-num = num + .1;
+num = num + .2;
 progressBar.setAttribute('value', num);
 }
 }

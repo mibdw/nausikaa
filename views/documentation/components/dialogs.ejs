@@ -2,50 +2,61 @@
   <h1>Dialogs</h1>
 </header>
 
+<section id="introduction">
+	<p class="introduction">
+		<strong>Dialogs</strong> are a type of modal window that appears in front of app content to provide critical information or ask for a decision. They disable app functionality until the user interacts with them.
+	</p>
+	<p class="introduction">
+	<strong>Dialogs</strong> are typically used for:
+	</p>
+	<ul class="introduction">
+		<li>Confirming a user action (e.g., deleting an item)</li>
+		<li>Displaying important information that requires user acknowledgment</li>
+		<li>Gathering user input without navigating away from the current page</li>
+	</ul>
+	<p class="introduction">
+		Dialogs should be <em>used sparingly</em> to avoid disrupting the user experience. They should be clear, concise, and provide a straightforward way for users to complete the required action or dismiss the dialog.
+	</p>
+</section>
+
 <section id="regular">
-  <p>
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
-  </p>
+  <header>
+    <h2>Regular dialogs</h2>
+  </header>
 
-  <dialog open="" class="medium inline">
-    <h4>Dialog</h4>
-    <p>Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <a href="#">exercitation ullamco</a> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </dialog>
+	<p><strong>Regular dialogs</strong> work best for short decisions or confirmations: keep titles clear, lead with the primary action, and always provide a close affordance that is keyboard-focusable. Use the native <code>&lt;dialog&gt;</code> element to inherit accessibility features, and rely on motion or subtle dimming—not surprise—to draw attention.</p>
 
-  <dialog open="" class="wide inline">
-    <h4>Dialog with footer</h4>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-    <footer>
-      <button class="primary" style="order:3;">Confirm</button>
-      <button style="order:4;">Cancel</button>
-      <div class="spacer" style="order:2;"></div>
-      <a href="#" class="" style="order:1;">How I got to Memphis</a>
-    </footer>
-  </dialog>
+	<div class="section-example">
+		<dialog open="" class="medium inline">
+			<h4>Dialog</h4>
+			<p>Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <a href="#">exercitation ullamco</a> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</dialog>
 
+		<dialog open="" class="wide inline">
+			<h4>Dialog with footer</h4>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+			<footer>
+				<button class="primary" style="order:3;">Confirm</button>
+				<button style="order:4;">Cancel</button>
+				<div class="spacer" style="order:2;"></div>
+				<a href="#" class="" style="order:1;">How I got to Memphis</a>
+			</footer>
+		</dialog>
+	</div>
+
+	<p class="note"><strong>Common pitfalls:</strong> trapping focus without escape, hiding the close control, or placing destructive actions in the left-most position (which many readers treat as “safe”). Always restore focus to the triggering element after closing, and ensure keyboard users can reach every control inside the dialog.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-dialogs">
-    <label for="code-dialogs" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;dialog&gt;
   ...
   &lt;a class="control close"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/a&gt;
@@ -59,78 +70,74 @@
     &lt;button&gt;...&lt;/button&gt;
   &lt;/footer&gt;
 &lt;/dialog&gt;</code></pre>
-  
   </div>
 
 </section>
+
 <section id="width">
   <header>
     <h2>
-    Width                </h2>
+			Width
+		</h2>
   </header>
 
-  <dialog open="" class="small inline">
-    <p>Are you sure?</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-    <footer>
-      <button class="positive">Yes</button>
-      <button class="negative">No</button>
-    </footer>
-  </dialog>
+	<p><strong>Dialog width</strong> should match the task: small for terse confirmations, medium for short forms, wide for rich text or summaries, and full-width for immersive previews. Avoid stuffing wide dialogs with single-line content—choose the smallest size that keeps copy readable without awkward wrapping.</p>
 
-  <dialog open="" class="medium inline">
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint.</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-    <footer>
-      <a href="#">What's happening now?</a>
-      <div class="spacer"></div>
-      <button>Dismiss</button>
-    </footer>
-  </dialog>
+	<div class="section-example">
+		<dialog open="" class="small inline">
+			<p>Are you sure?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+			<footer>
+				<button class="positive">Yes</button>
+				<button class="negative">No</button>
+			</footer>
+		</dialog>
 
-  <dialog open="" class="wide inline">
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-    <footer>
-      <div class="spacer"></div>
-      <button class="primary">Confirm</button>
-      <button>Cancel</button>
-    </footer>
-  </dialog>
+		<dialog open="" class="medium inline">
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint.</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+			<footer>
+				<a href="#">What's happening now?</a>
+				<div class="spacer"></div>
+				<button>Dismiss</button>
+			</footer>
+		</dialog>
 
-  <dialog open="" class="full-width inline">
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </dialog>
+		<dialog open="" class="wide inline">
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+			<footer>
+				<div class="spacer"></div>
+				<button class="primary">Confirm</button>
+				<button>Cancel</button>
+			</footer>
+		</dialog>
+
+		<dialog open="" class="full-width inline">
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</dialog>
+	</div>
+
+		<p class="note"><strong>Backdrops:</strong> use <code>::backdrop</code> to soften the page behind the dialog, and keep contrast high so the active dialog remains obvious. If you allow backdrop clicks to close, make sure keyboard users have an equivalent escape path (Esc or a close button), and prevent background scrolling while the dialog is open.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-dialog-widths">
-    <label for="code-dialog-widths" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;dialog class="small"&gt;&lt;/dialog&gt;
 &lt;dialog class="medium"&gt;&lt;/dialog&gt;
 &lt;dialog class="wide"&gt;&lt;/dialog&gt;
@@ -139,25 +146,27 @@
   </div>
 
 </section>
+
 <section id="in-action">
   <header>
-    <h2>In action</h2>
+    <h2>Dialog demo</h2>
   </header>
 
   <p>To see a dialog box in action, please press below button:</p>
-
-  <p>
-    <button id="launchDialog">Launch dialog</button> 
-  </p>
+	
+	<div class="section-example">
+    <button className="mauve large" id="launchDialog">Launch dialog</button> 
+  </div>
   
   <dialog id="exampleDialog" role="dialog">
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+		<h4>Dialog Demo</h4>
+    <p>This demo shows a modal collecting login details with primary and secondary actions. Launch it, tab through the form fields, and use the controls or Esc key to close, mirroring a real authentication gate.</p>
 
     <form class="basic-form">
       <label for="dialogEmail">E-mail</label>
       <input id="dialogEmail" type="email" placeholder="email@example.com"><br>
       <label for="dialogPassword">Password</label>
-       <input id="dialogPassword" type="password" placeholder="password">
+       <input id="dialogPassword" type="password" placeholder="Password">
       <span class="help">
         <input type="checkbox" id="dialogCheckbox"> <label for="dialogCheckbox">Remember me</label>
       </span>

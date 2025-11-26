@@ -1,51 +1,53 @@
 <header>
-  <h1>Checkboxes & radios</h1>
+  <h1>Checkboxes &amp; radios</h1>
 </header>
+
+<section id="introduction">
+	<p class="introduction">
+		<strong>Checkboxes and radio buttons</strong> translate decisions into simple taps or clicks, whether a reader is opting into newsletters, toggling feature flags, or committing to a single choice in a crowded form. Their geometry might be humble, but their semantics provide screen readers and validation logic with an unambiguous source of truth, keeping preference panes and documentation samples <em>predictable across devices</em>.
+	</p>
+	<p class="introduction">
+		This page gathers the default, inline, and disabled states for checkboxes, radios, and hybrids so you can preview spacing, helper text, and feedback patterns in one place. Lean on these guidelines whenever you need to confirm label alignment, stack nuanced helper copy, or keep multi-column layouts tidy without sacrificing <em>clarity or accessibility</em>.
+	</p>
+</section>
 
 <section id="checkboxes">
   <header>
     <h2>Checkboxes</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero culpa voluptatem consectetur sequi ab minima nisi eveniet quibusdam, qui nobis provident, distinctio cumque saepe mollitia velit dolorem quo autem, veritatis!</p>
+  <p><strong>Checkboxes</strong> capture independent truths: a user can subscribe to multiple notifications, opt into beta features, or acknowledge a series of requirements without losing earlier selections. Pair every box with a concise label (and optional helper text) so the touch target stays generous and the commitment behind each checkmark remains <em>immediately legible</em>.</p>
 
-  <div class="basic-form">
-    <label>Checkbox</label>
-    <ul class="checkboxes">
-      <li>
-        <input name="radio1" id="labelOne0" type="checkbox" checked="">
-        <label for="labelOne1">Label 1 <small>checked</small></label>
-      </li>
-      <li>
-        <input name="radio1" id="labelTwo1" type="checkbox">
-        <label for="labelTwo1">Label 2</label>
-      </li>
-      <li>
-        <input name="radio1" id="labelThree1" type="checkbox">
-        <label for="labelThree1">Label 3</label>
-      </li>
-      <li>
-        <input name="radio1" id="labelFour1" type="checkbox" disabled="">
-        <label for="labelFour1">Label 4 <small>disabled</small></label>
-      </li>
-    </ul>
-    <small class="help">Help messages where appropriate.</small>
+  <div class="section-example">
+		<div class="basic-form">
+			<label>Checkbox</label>
+			<ul class="checkboxes">
+				<li>
+					<input name="radio1" id="labelOne0" type="checkbox" checked="">
+					<label for="labelOne1">Label 1 <small>checked</small></label>
+				</li>
+				<li>
+					<input name="radio1" id="labelTwo1" type="checkbox">
+					<label for="labelTwo1">Label 2</label>
+				</li>
+				<li>
+					<input name="radio1" id="labelThree1" type="checkbox">
+					<label for="labelThree1">Label 3</label>
+				</li>
+				<li>
+					<input name="radio1" id="labelFour1" type="checkbox" disabled="">
+					<label for="labelFour1">Label 4 <small>disabled</small></label>
+				</li>
+			</ul>
+			<small class="help">Help messages where appropriate.</small>
+		</div>
   </div>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus ducimus asperiores qui consequatur adipisci vero reiciendis, nesciunt, assumenda quod corporis officia debitis illo vel velit porro quo autem nisi facere!</p>
+
+  
+  <p class="note"><strong>Group related checkboxes</strong> with a legend or heading, order them logically, and only pre-check values when you are confident the default mirrors a user's intent; otherwise you risk obscuring consent and creating extra <em>unchecking work</em>.</p>
   
   <div class="code-example">
-    
-    <input type="checkbox" id="code-checkbox-basic">
-    <label for="code-checkbox-basic" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;ul class="checkboxes"&gt;
   &lt;li&gt;
     &lt;input type="checkbox" id="..." checked&gt;
@@ -75,8 +77,10 @@
     <h2>Radio buttons</h2>
   </header>
   
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam iusto provident laudantium earum, nisi cumque ipsam voluptas fugit accusamus eius expedita cupiditate excepturi deleniti vitae consectetur laboriosam praesentium, eveniet quisquam?</p>
 
+  <p><strong>Radio buttons</strong> enforce a single answer among peers, which keeps shipping methods, billing cadences, or permission levels mutually exclusive. Because changing one selection clears the rest, radios are perfect when "one-and-only-one" logic is required and when you need to expose all possibilities without hiding them behind <em>dropdown friction</em>.</p>
+
+  <div class="section-example">
   <div class="basic-form">
     <label>Radios</label>
     <ul class="radios">
@@ -99,19 +103,12 @@
     </ul>
     <small class="help">Help messages where appropriate.</small>
   </div>
+  </div>
   
+ 
+  <p class="note"><strong>Share a name attribute</strong> across every radio in the set, arrange the list in a natural sequence (chronological, price, intensity), and default to the safest option so users can confirm rather than recover from an <em>accidental commitment</em>.</p>
+
   <div class="code-example">
-    
-    <input type="checkbox" id="code-radio-basic">
-    <label for="code-radio-basic" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;ul class="radios"&gt;
   &lt;li&gt;
     &lt;input type="radio" name="..." id="..." checked&gt;
@@ -141,8 +138,10 @@
     <h2>Inline boxes</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt vitae autem hic molestias veniam nobis ad iusto odio nostrum officiis, sequi quasi, neque adipisci. Saepe qui beatae, reiciendis minima quia!</p>
 
+  <p><strong>Inline boxes</strong> place checkboxes or radios side-by-side, making compact filters and quick preference pickers feel at home in toolbars, tables, or summary cards. Use them when the choices are short (think weekdays, badge colors, status chips) and when the surrounding layout benefits from a single line of <em>lightweight controls</em>.</p>
+
+  <div class="section-example">
   <div class="basic-form">
     <label>Inline checkboxes</label>
     <ul class="checkboxes inline">
@@ -185,93 +184,77 @@
     </ul>
     <small class="help">Help messages where appropriate.</small>
   </div>
+  </div>
+
+ 
+  <p class="note"><strong>Watch line wrapping</strong>: once inline options exceed the available width, revert to stacked lists or add responsive breakpoints so labels never collide. Maintain consistent spacing between the boxes and place helper text underneath the entire group so context remains <em>anchored to the control</em>.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-checkbox-inline">
-    <label for="code-checkbox-inline" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
     
     <pre><code class="html">&lt;ul class="checkboxes inline"&gt;&lt;/ul&gt;
 &lt;ul class="radios inline"&gt;&lt;/ul&gt;</code></pre>
   
   </div>
-
 </section>
 
 <section id="button-styles">
-
   <header>
     <h2>Button styles</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum ducimus similique, dolores velit nesciunt at. Excepturi quod alias nisi corporis neque veniam laudantium maiores, pariatur ipsam odio nesciunt! Dolorum, ullam.</p>
-  
-  <div class="basic-form">
-    <label>Button checkboxes</label>
-    <ul class="checkboxes buttons">
-      <li>
-        <input id="labelOne5" type="checkbox">
-        <label class="button" for="labelOne5">Label 1</label>
-      </li>
-      <li>
-        <input id="labelTwo5" type="checkbox">
-        <label class="button" for="labelTwo5">Label 2</label>
-      </li>
-      <li>
-        <input id="labelThree5" type="checkbox">
-        <label class="button" for="labelThree5">Label 3</label>
-      </li>
-      <li>
-        <input id="labelFour5" type="checkbox" disabled="">
-        <label class="button" for="labelFour5">Label 4</label>
-      </li>
-    </ul>
-    <small class="help">Help messages where appropriate.</small>
+  <p><strong>Button-style checkboxes and radios</strong> deliver the same form semantics but borrow the bolder chrome of our button system, making segmented controls, format selectors, or filter chips easier to parse at a glance. Use them when you want mutually exclusive states to feel tactile without losing the underlying input behavior described in the <a href="/documentation/elements/buttons">buttons documentation</a>.</p>
 
-    <label>Button radios</label>
-    <ul class="radios buttons">
-      <li>
-        <input name="radio6" id="labelOne6" type="radio">
-        <label class="button" for="labelOne6">Label 1</label>
-      </li>
-      <li>
-        <input name="radio6" id="labelTwo6" type="radio">
-        <label class="button" for="labelTwo6">Label 2</label>
-      </li>
-      <li>
-        <input name="radio6" id="labelThree6" type="radio">
-        <label class="button" for="labelThree6">Label 3</label>
-      </li>
-      <li>
-        <input name="radio6" id="labelFour6" type="radio" disabled="">
-        <label class="button" for="labelFour6">Label 4</label>
-      </li>
-    </ul>
+  <p class="note"><strong>Sync interaction cues</strong> by matching the pressed/selected visuals to their actual checked state and ensuring icons or short labels communicate what toggling will do. Remember that these are still form inputs, so keyboard focus, disabled styling, and helper text should mirror their standard counterparts for <em>consistent accessibility</em>.</p>
+  
+	<div class="section-example">
+		<div class="basic-form">
+			<label>Button checkboxes</label>
+			<ul class="checkboxes buttons">
+				<li>
+					<input id="labelOne5" type="checkbox">
+					<label class="button" for="labelOne5">Label 1</label>
+				</li>
+				<li>
+					<input id="labelTwo5" type="checkbox">
+					<label class="button" for="labelTwo5">Label 2</label>
+				</li>
+				<li>
+					<input id="labelThree5" type="checkbox">
+					<label class="button" for="labelThree5">Label 3</label>
+				</li>
+				<li>
+					<input id="labelFour5" type="checkbox" disabled="">
+					<label class="button" for="labelFour5">Label 4</label>
+				</li>
+			</ul>
+			<small class="help">Help messages where appropriate.</small>
+
+			<label>Button radios</label>
+			<ul class="radios buttons">
+				<li>
+					<input name="radio6" id="labelOne6" type="radio">
+					<label class="button" for="labelOne6">Label 1</label>
+				</li>
+				<li>
+					<input name="radio6" id="labelTwo6" type="radio">
+					<label class="button" for="labelTwo6">Label 2</label>
+				</li>
+				<li>
+					<input name="radio6" id="labelThree6" type="radio">
+					<label class="button" for="labelThree6">Label 3</label>
+				</li>
+				<li>
+					<input name="radio6" id="labelFour6" type="radio" disabled="">
+					<label class="button" for="labelFour6">Label 4</label>
+				</li>
+			</ul>
+		</div>
   </div>
 
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-checkbox-buttons">
-    <label for="code-checkbox-buttons" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;ul class="checkboxes buttons"&gt;&lt;/ul&gt;
 &lt;ul class="radios buttons"&gt;&lt;/ul&gt;</code></pre>
-  
   </div>
 
 </section>

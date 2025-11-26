@@ -90,7 +90,6 @@
       }
     }
 
-
     & > section {
       & > header {
         & > h2 {
@@ -99,13 +98,12 @@
         }
       }
 
-      & > p {
-        margin: 2em 0;
-
+      & > p,
+      & > ul {
         &.introduction {
           font-size: 1.2em;
           line-height: 1.4;
-          margin: $paragraphSpacer 0;
+          margin-top: $paragraphSpacer;
         }
       }
     }
@@ -113,6 +111,27 @@
     .section-example {
       padding: 0.1em 0 0.1em 1.3em;
       border-left: 8px solid $yellow0;
+    }
+  }
+
+  &.elements > article {
+    & > header > h1 {
+      text-decoration: underline solid $yellow3;
+      text-decoration-thickness: 6px;
+    }
+  }
+
+  &.components > article {
+    & > header > h1 {
+      text-decoration: underline solid $red3;
+      text-decoration-thickness: 6px;
+    }
+  }
+
+  &.collections > article {
+    & > header > h1 {
+      text-decoration: underline solid $blue3;
+      text-decoration-thickness: 6px;
     }
   }
 }

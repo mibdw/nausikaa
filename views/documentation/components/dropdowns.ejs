@@ -2,49 +2,54 @@
   <h1>Dropdowns</h1>
 </header>
 
+<section id="introduction">
+	<p class="introduction">
+		<strong>Dropdowns</strong> reveal more choices without overwhelming the layout, pairing a trigger with a lightweight panel. They’re ideal for secondary actions, compact menus, or filters that don’t warrant a full page—just be sure the trigger is clearly interactive and reachable by keyboard.
+	</p>
+	<p class="introduction">
+		Keep the content inside concise: predictable labels, grouped options, and clear hover/focus states borrowed from your button and link patterns. Dismissal should be easy (Esc, clicking outside, or the trigger again) so people never feel trapped.
+	</p>
+</section>
+
 <section>
-  <p>Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor.   Nunc pharetra nibh justo, vitae fermentum sapien malesuada et. Duis   elementum arcu nec enim sagittis interdum. Praesent gravida lacinia   ipsum, et rutrum felis posuere nec. Duis ipsum ipsum, consectetur in   molestie non, dignissim eget ex. Maecenas ut fermentum libero. Mauris eu   libero sollicitudin, pulvinar nunc id, facilisis odio.</p>
+	<header>
+		<h2>Basic dropdowns</h2>
+	</header>
 
-  <div class="dropdown focus-within">
-    <button class="primary">Dropdown button (fixed)</button>
-    <nav class="panel arrow">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
-  &nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>
+  <p><strong>Basic dropdowns</strong> pair a button with a positioned panel. Use them for compact menus or action lists that complement the trigger. Ensure the button is focusable, toggles <code>aria-expanded</code>, and the panel is labelled via <code>aria-controls</code> so screen readers understand the relationship. Keep options in a simple list and avoid nesting unless the hierarchy is clear.</p>
 
-  <div class="dropdown">
-    <button class="secondary" tabindex="0">Dropdown button (regular)</button>
-    <nav class="panel arrow">
-      <ul>
-        <li><a href="">Food spoilage</a></li>
-        <li><a href="">Pathogenic yeasts</a></li>
-        <li><a href="">Ethanol fermentation</a></li>
-        <li><a href="">Zymology</a></li>
-        <li><a href="">Yeast plasmids</a></li>
-      </ul>
-    </nav>
-  </div>
+	<div class="section-example">
+		<div class="dropdown focus-within">
+			<button class="primary">Dropdown button (fixed)</button>
+			<nav class="panel arrow">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
+		&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>
 
+		<div class="dropdown">
+			<button class="secondary" tabindex="0">Dropdown button (regular)</button>
+			<nav class="panel arrow">
+				<ul>
+					<li><a href="">Food spoilage</a></li>
+					<li><a href="">Pathogenic yeasts</a></li>
+					<li><a href="">Ethanol fermentation</a></li>
+					<li><a href="">Zymology</a></li>
+					<li><a href="">Yeast plasmids</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	<p class="note"><strong>Best practices:</strong> trap focus within the open menu, return focus to the trigger on close, and set a predictable width so labels don’t wrap unpredictably. Avoid using hover-only activation—touch users need a tap target with visible state.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-dropdowns">
-    <label for="code-dropdowns" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="dropdown"&gt;
   &lt;button&gt;...&lt;/button&gt;
   &lt;nav class="panel arrow"&gt;
@@ -58,103 +63,100 @@
   
   </div>
 
-  <h2>Dropdown locations</h2>
+</section>
+
+<section>
+	<header>
+		<h2>Dropdown locations</h2>
+	</header>
   
-  <p>
-    Maecenas ut fermentum libero. Mauris eu   libero sollicitudin, pulvinar nunc id, facilisis odio.
-  </p>
+  <p><strong>Dropdown placement</strong> should mirror the trigger position and available space: place the panel below by default, flip above when near the viewport bottom, and align left/center/right to the trigger so the arrow points back to its source. Keep the open state anchored to the trigger for keyboard users (Down Arrow to open, Esc to close).</p>
   
-  <div class="dropdown">
-    <button tabindex="0">Top left dropdown</button>
-    <nav class="panel arrow bottom right">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
+	<div class="section-example">
+		<div class="dropdown">
+			<button tabindex="0">Top left dropdown</button>
+			<nav class="panel arrow bottom right">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
 
-  <div class="dropdown">
-    <button tabindex="0">Top center dropdown</button>
-    <nav class="panel arrow bottom center">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
+		<div class="dropdown">
+			<button tabindex="0">Top center dropdown</button>
+			<nav class="panel arrow bottom center">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
 
-  <div class="dropdown">
-    <button tabindex="0">Top right dropdown</button>
-    <nav class="panel arrow bottom left">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
+		<div class="dropdown">
+			<button tabindex="0">Top right dropdown</button>
+			<nav class="panel arrow bottom left">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
 
-  <br>
+		<br>
 
-  <div class="dropdown">
-    <button tabindex="0">Bottom left dropdown</button>
-    <nav class="panel arrow top right">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
+		<div class="dropdown">
+			<button tabindex="0">Bottom left dropdown</button>
+			<nav class="panel arrow top right">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
 
-  <div class="dropdown">
-    <button tabindex="0">Bottom center dropdown</button>
-    <nav class="panel arrow top center">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
+		<div class="dropdown">
+			<button tabindex="0">Bottom center dropdown</button>
+			<nav class="panel arrow top center">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
 
-  <div class="dropdown">
-    <button tabindex="0">Bottom right dropdown</button>
-    <nav class="panel arrow top left">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
+		<div class="dropdown">
+			<button tabindex="0">Bottom right dropdown</button>
+			<nav class="panel arrow top left">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	<p class="note"><strong>Positioning & references:</strong> adjust placement responsively to prevent clipping and ensure the menu stays within the viewport. Style triggers using patterns from <a href="/documentation/elements/buttons">Buttons</a>, and learn more about the panel surface and arrow treatments on the <a href="/documentation/components/panels">Panels</a> page.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-dropdown-arrows">
-    <label for="code-dropdown-arrows" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
     
     <pre><code class="html">&lt;div class="dropdown"&gt;
   &lt;button&gt;...&lt;/button&gt;
@@ -187,84 +189,84 @@
 &lt;/div&gt;</code></pre>
   
   </div>
+</section>
 
-  <h2>Dropdown links</h2>
+<section>
+	<header>
+		<h2>Dropdown links</h2>
+	</header>
+
+	<p><strong>Link-triggered dropdowns</strong> are handy in navigation bars or inline contexts where the control should still behave like a link (e.g., a section title with quick actions). Knob triggers add pill styling for touch-friendly menus. Make sure anchors have <code>href</code> or <code>role="button"</code> plus keyboard handlers (Enter/Space) so activation isn’t mouse-only.</p>
   
-  <div class="dropdown">
-    <a tabindex="0">Dropdown link</a>
-    <nav class="panel yellow arrow">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
+	<div class="section-example">
+		<div class="dropdown">
+			<a tabindex="0">Dropdown link</a>
+			<nav class="panel yellow arrow">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="dropdown">
+			<a tabindex="0">Another dropdown link</a>
+			<nav class="panel blue arrow bottom center">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<br><br>
+
+		<div class="dropdown">
+			<a class="knob red" tabindex="0">
+				Dropdown knob
+				<svg class="icon last">
+					<use xlink:href="/images/icons.svg#chevron-down"></use>
+				</svg>
+			</a>
+			<nav class="panel red arrow">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="dropdown">
+			<a class="knob purple" tabindex="0">
+				Another dropdown knob
+				<svg class="icon last" style="">
+					<use xlink:href="/images/icons.svg#chevron-down"></use>
+				</svg>
+			</a>
+			<nav class="panel purple arrow bottom center">
+				<ul>
+					<li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
+					<li><a href="">Bioremediation</a></li>
+					<li><a href="">Yeast extract</a></li>
+					<li><a href="">Nonalcoholic beverages</a></li>
+					<li><a href="">Scientific research</a></li>
+				</ul>
+			</nav>
+		</div>
   </div>
 
-  <div class="dropdown">
-    <a tabindex="0">Another dropdown link</a>
-    <nav class="panel blue arrow bottom center">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <br><br>
-
-  <div class="dropdown">
-    <a class="knob red" tabindex="0">
-      Dropdown knob
-      <svg class="icon last">
-        <use xlink:href="/images/icons.svg#chevron-down"></use>
-      </svg>
-    </a>
-    <nav class="panel red arrow">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <div class="dropdown">
-    <a class="knob purple" tabindex="0">
-      Another dropdown knob
-      <svg class="icon last" style="">
-        <use xlink:href="/images/icons.svg#chevron-down"></use>
-      </svg>
-    </a>
-    <nav class="panel purple arrow bottom center">
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Yeast#Aquarium_hobby">Aquarium hobby</a></li>
-        <li><a href="">Bioremediation</a></li>
-        <li><a href="">Yeast extract</a></li>
-        <li><a href="">Nonalcoholic beverages</a></li>
-        <li><a href="">Scientific research</a></li>
-      </ul>
-    </nav>
-  </div>
+	<p class="note"><strong>Further reading:</strong> see <a href="/documentation/elements/links">Links</a> and <a href="/documentation/elements/links#knobs">Knobs</a> for styling guidance. Always manage focus like a button trigger, announce expanded state via <code>aria-expanded</code>, and avoid relying solely on color to indicate openness.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-dropdown-links">
-    <label for="code-dropdown-links" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
     
     <pre><code class="html">&lt;div class="dropdown"&gt;
   &lt;a tabindex="..."&gt;...&lt;/a&gt;
@@ -278,108 +280,104 @@
   
   </div>
 
-  <header>
+</section>
+
+<section>
+	<header>
     <h2>Dropdown filters</h2>
-  </header>
+	</header>
 
+  <p><strong>Filter dropdowns</strong> bundle checkboxes or radios into a compact panel so users can adjust criteria without leaving the page. Group related options, add a header for context, and keep inputs keyboard-focusable with visible states. For radios, ensure a single selection per group; for checkboxes, consider a clear-all action when lists are long.</p>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis nemo modi fuga fugit, cumque voluptas cum animi dolore accusamus ducimus tenetur hic rem nostrum dolor, voluptatem commodi iusto amet perspiciatis?</p>
+	<div class="section-example">
+		<div class="dropdown">
+			<button>
+				Dropdown with filter (checkboxes)
+				<svg class="icon last">
+					<use xlink:href="/images/icons.svg#chevron-down"></use>
+				</svg>
+			</button>
+			<nav class="panel arrow bottom center">
+				<div class="header">Filter title</div>
+				<ul class="checkboxes">
+					<li>
+						<input id="labelOne1" type="checkbox" checked="">
+						<label for="labelOne1">Label 1 <small>checked</small></label>
+					</li>
+					<li>
+						<input id="labelTwo1" type="checkbox">
+						<label for="labelTwo1">Label 2</label>
+					</li>
+					<li>
+						<input id="labelThree1" type="checkbox">
+						<label for="labelThree1">Label 3</label>
+					</li>
+					<li>
+						<input id="labelFour1" type="checkbox">
+						<label for="labelFour1">Label 4</label>
+					</li>
+					<li>
+						<input id="labelFive1" type="checkbox">
+						<label for="labelFive1">Label 5</label>
+					</li>
+					<li>
+						<input id="labelSix1" type="checkbox">
+						<label for="labelSix1">Label 6</label>
+					</li>
+					<li>
+						<input id="labelSeven1" type="checkbox" disabled="">
+						<label for="labelSeven1">Label 7 <small>disabled</small></label>
+					</li>
+				</ul>
+			</nav>
+		</div>
 
-  <div class="dropdown">
-    <button>
-      Dropdown with filter (checkboxes)
-      <svg class="icon last">
-        <use xlink:href="/images/icons.svg#chevron-down"></use>
-      </svg>
-    </button>
-    <nav class="panel arrow bottom center">
-      <div class="header">Filter title</div>
-      <ul class="checkboxes">
-        <li>
-          <input id="labelOne1" type="checkbox" checked="">
-          <label for="labelOne1">Label 1 <small>checked</small></label>
-        </li>
-        <li>
-          <input id="labelTwo1" type="checkbox">
-          <label for="labelTwo1">Label 2</label>
-        </li>
-        <li>
-          <input id="labelThree1" type="checkbox">
-          <label for="labelThree1">Label 3</label>
-        </li>
-        <li>
-          <input id="labelFour1" type="checkbox">
-          <label for="labelFour1">Label 4</label>
-        </li>
-        <li>
-          <input id="labelFive1" type="checkbox">
-          <label for="labelFive1">Label 5</label>
-        </li>
-        <li>
-          <input id="labelSix1" type="checkbox">
-          <label for="labelSix1">Label 6</label>
-        </li>
-        <li>
-          <input id="labelSeven1" type="checkbox" disabled="">
-          <label for="labelSeven1">Label 7 <small>disabled</small></label>
-        </li>
-      </ul>
-    </nav>
-  </div>
+		<div class="dropdown">
+			<button class="primary">
+				Dropdown with filter (radio buttons)
+				<svg class="icon last">
+					<use xlink:href="/images/icons.svg#chevron-down"></use>
+				</svg>
+			</button>
+			<nav class="panel arrow bottom center">
+				<div class="header">Filter title</div>
+				<ul class="checkboxes">
+					<li>
+						<input id="labelOne2" name="radio1" type="radio" checked="">
+						<label for="labelOne2">Label 1 <small>checked</small></label>
+					</li>
+					<li>
+						<input id="labelTwo2" name="radio1" type="radio">
+						<label for="labelTwo2">Label 2</label>
+					</li>
+					<li>
+						<input id="labelThree2" name="radio1" type="radio">
+						<label for="labelThree2">Label 3</label>
+					</li>
+					<li>
+						<input id="labelFour2" name="radio1" type="radio">
+						<label for="labelFour2">Label 4</label>
+					</li>
+					<li>
+						<input id="labelFive2" name="radio1" type="radio">
+						<label for="labelFive2">Label 5</label>
+					</li>
+					<li>
+						<input id="labelSix2" name="radio1" type="radio">
+						<label for="labelSix2">Label 6</label>
+					</li>
+					<li>
+						<input id="labelSeven2" name="radio1" type="radio" disabled="">
+						<label for="labelSeven2">Label 7 <small>disabled</small></label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 
-  <div class="dropdown">
-    <button class="primary">
-      Dropdown with filter (radio buttons)
-      <svg class="icon last">
-        <use xlink:href="/images/icons.svg#chevron-down"></use>
-      </svg>
-    </button>
-    <nav class="panel arrow bottom center">
-      <div class="header">Filter title</div>
-      <ul class="checkboxes">
-        <li>
-          <input id="labelOne2" name="radio1" type="radio" checked="">
-          <label for="labelOne2">Label 1 <small>checked</small></label>
-        </li>
-        <li>
-          <input id="labelTwo2" name="radio1" type="radio">
-          <label for="labelTwo2">Label 2</label>
-        </li>
-        <li>
-          <input id="labelThree2" name="radio1" type="radio">
-          <label for="labelThree2">Label 3</label>
-        </li>
-        <li>
-          <input id="labelFour2" name="radio1" type="radio">
-          <label for="labelFour2">Label 4</label>
-        </li>
-        <li>
-          <input id="labelFive2" name="radio1" type="radio">
-          <label for="labelFive2">Label 5</label>
-        </li>
-        <li>
-          <input id="labelSix2" name="radio1" type="radio">
-          <label for="labelSix2">Label 6</label>
-        </li>
-        <li>
-          <input id="labelSeven2" name="radio1" type="radio" disabled="">
-          <label for="labelSeven2">Label 7 <small>disabled</small></label>
-        </li>
-      </ul>
-    </nav>
-  </div>
+	<p class="note"><strong>Filtering tips:</strong> announce filter changes inline (e.g., selected count) and debounce any live queries to avoid flicker. See <a href="/documentation/elements/checkboxes-radios">Checkboxes &amp; radios</a> for input styling and accessibility guidance.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-dropdown-filters">
-    <label for="code-dropdown-filters" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
     
     <pre><code class="html">&lt;div class="dropdown"&gt;
   &lt;nav class="panel arrow"&gt;

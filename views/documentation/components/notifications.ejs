@@ -2,65 +2,57 @@
   <h1>Notifications</h1>
 </header>
 
-<section>
-
-  <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-
+<section id="introduction">
+	<p class="introduction">
+		<strong>Notifications</strong> surface timely feedback—successes, warnings, errors, and neutral updates—without derailing the current task. Keep them short, scannable, and dismissible so they inform rather than interrupt.
+	</p>
+	<p class="introduction">
+		Tailor the tone to the message: confirm completed actions, warn about risks, or highlight required follow-up. Ensure keyboard users can reach controls, and place notifications near the action that triggered them when context matters.
+	</p>
 </section>
+
 <section id="regular">
   <header>
     <h2>Regular</h2>
   </header>
 
-  <div class="notification">
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium. Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum.</p>
-  </div>
+	<p><strong>Regular notifications</strong> sit inline with surrounding content or at the top of a region to deliver status. Use them sparingly so each message feels relevant, and favor concise copy that states what happened and what to do next.</p>
+
+	<div class="section-example">
+		<div class="notification">
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium. Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum.</p>
+		</div>
+	</div>
+
+	<p class="note"><strong>Accessibility:</strong> announce important alerts via polite or assertive ARIA live regions (<code>aria-live="polite|assertive"</code>) and give every notification a clear role. Provide enough color contrast and avoid relying on color alone to convey meaning.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-notification-regular">
-    <label for="code-notification-regular" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="notification"&gt;&lt;/div&gt;</code></pre>
-  
   </div>
 
 </section>
 <section id="close">
-
   <header>
     <h2>Close</h2>
   </header>
 
-  <div class="notification">
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium. Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum.</p>
+	<p><strong>Closable notifications</strong> give users agency to clear messages that linger after they are read. Position the close control consistently (top-right), make it keyboard-focusable, and preserve padding so text doesn’t jump when the icon is present.</p>
 
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </div>
+	<div class="section-example">
+		<div class="notification">
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium. Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum.</p>
+
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+	</div>
+
+	<p class="note"><strong>Close control tips:</strong> set an accessible name (e.g., <code>aria-label="Dismiss notification"</code>), ensure focus returns to a logical element after dismissal, and consider auto-dismiss for low-severity messages with enough dwell time to be read.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-notification-close">
-    <label for="code-notification-close" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="notification"&gt;
   ...
   &lt;a class="control close"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/a&gt;
@@ -69,35 +61,29 @@
   </div>
 
 </section>
+
 <section id="icons">
   <header>
     <h2>Icons</h2>
   </header>
 
-  <div class="notification">
-    <svg class="icon">
-      <use xlink:href="/images/icons.svg#warning"></use>
-    </svg>
-    <p>Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum sapien malesuada et. Duis elementum arcu nec enim. Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum sapien malesuada et. Duis elementum arcu nec enim.</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </div>
+	<p><strong>Iconified notifications</strong> pair a glyph with copy to convey severity at a glance—warnings, info, success. Keep icon styles consistent with your typography, and ensure they don’t overpower the headline or body text.</p>
+
+	<div class="section-example">
+		<div class="notification">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<p>Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum sapien malesuada et. Duis elementum arcu nec enim. Duis a ultrices ante. Praesent suscipit porttitor dui ultricies auctor. Nunc pharetra nibh justo, vitae fermentum sapien malesuada et. Duis elementum arcu nec enim.</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+	</div>
 
   <div class="code-example">
-      
-    <input type="checkbox" id="code-notification-icons">
-    <label for="code-notification-icons" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="notification"&gt;
   &lt;svg class="icon"&gt;...&lt;/svg&gt;
   ...
@@ -112,116 +98,224 @@
     <h2>Colors</h2>
   </header>
 
-  <div class="notification yellow">
-    <svg class="icon">
-      <use xlink:href="/images/icons.svg#warning"></use>
-    </svg>
-    <h2>Warning! Achtung!</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </div>
+	<p><strong>Color-coded notifications</strong> lean on the Catppuccin palette to reinforce meaning: warm tones for warnings, cool for info, and greens for success. Maintain readable contrast and reserve saturated hues for higher-severity messages.</p>
+
+	<div class="section-example">
+		<div class="notification rosewater">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification flamingo">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification pink">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification mauve">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification red">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification maroon">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification peach">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification yellow">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification green">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification teal">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification sky">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification sapphire">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification blue">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification lavender">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+
+		<div class="notification gray">
+			<svg class="icon">
+				<use xlink:href="/images/icons.svg#warning"></use>
+			</svg>
+			<h2>Warning! Achtung!</h2>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+			<a class="control close">
+				<svg>
+					<use xlink:href="/images/icons.svg#clear"></use>
+				</svg>
+			</a>
+		</div>
+	</div>
   
-  <div class="notification blue">
-    <svg class="icon">
-      <use xlink:href="/images/icons.svg#info"></use>
-    </svg>
-    <h2>Warning! Achtung!</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </div>
-
-  <div class="notification red">
-    <svg class="icon">
-      <use xlink:href="/images/icons.svg#help"></use>
-    </svg>
-    <h2>Warning! Achtung!</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </div>
-
-  <div class="notification green">
-    <svg class="icon">
-      <use xlink:href="/images/icons.svg#puzzle"></use>
-    </svg>
-    <h2>Warning! Achtung!</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </div>
-
-  <div class="notification purple">
-    <svg class="icon">
-      <use xlink:href="/images/icons.svg#running"></use>
-    </svg>
-    <h2>Warning! Achtung!</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </div>
-
-  <div class="notification orange">
-    <svg class="icon">
-      <use xlink:href="/images/icons.svg#mail"></use>
-    </svg>
-    <h2>Warning! Achtung!</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </div>
-
-  <div class="notification gray">
-    <svg class="icon">
-      <use xlink:href="/images/icons.svg#star"></use>
-    </svg>
-    <h2>Warning! Achtung!</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-    <a class="control close">
-      <svg>
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </a>
-  </div>
+	<p class="note"><strong>Color guidance:</strong> align hues with severity consistently and provide a text label for the state. Review contrast ratios for icons and text against backgrounds, and see the <a href="https://catppuccin.com" target="_blank" rel="noreferrer">Catppuccin palette</a> for the full range.</p>
 
   <div class="code-example">
-      
-    <input type="checkbox" id="code-notification-colors">
-    <label for="code-notification-colors" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
-    <pre><code class="html">&lt;div class="notification yellow"&gt;&lt;/div&gt;
-&lt;div class="notification blue"&gt;&lt;/div&gt;
-&lt;div class="notification red"&gt;&lt;/div&gt;
-&lt;div class="notification green"&gt;&lt;/div&gt;
-&lt;div class="notification purple"&gt;&lt;/div&gt;
-&lt;div class="notification orange"&gt;&lt;/div&gt;
-&lt;div class="notification gray"&gt;&lt;/div&gt;</code></pre>
+
+    <pre><code class="html">&lt;div class="notification rosewater"&gt;...&lt;/div&gt;
+&lt;div class="notification flamingo"&gt;...&lt;/div&gt;
+&lt;div class="notification pink"&gt;...&lt;/div&gt;
+&lt;div class="notification mauve"&gt;...&lt;/div&gt;
+&lt;div class="notification red"&gt;...&lt;/div&gt;
+&lt;div class="notification maroon"&gt;...&lt;/div&gt;
+&lt;div class="notification peach"&gt;...&lt;/div&gt;
+&lt;div class="notification yellow"&gt;...&lt;/div&gt;
+&lt;div class="notification green"&gt;...&lt;/div&gt;
+&lt;div class="notification teal"&gt;...&lt;/div&gt;
+&lt;div class="notification sky"&gt;...&lt;/div&gt;
+&lt;div class="notification sapphire"&gt;...&lt;/div&gt;
+&lt;div class="notification blue"&gt;...&lt;/div&gt;
+&lt;div class="notification lavender"&gt;...&lt;/div&gt;
+&lt;div class="notification gray"&gt;...&lt;/div&gt;</code></pre>
 
   </div>
 
@@ -232,35 +326,29 @@
     <h2>Sticky</h2>
   </header>
 
-  <div class="container browser">
-    <div class="notification sticky yellow">
-      <p>At vero eos et accusamus et <strong>iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</strong> deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
-      <a class="control close">
-        <svg>
-          <use xlink:href="/images/icons.svg#clear"></use>
-        </svg>
-      </a>
-    </div>
-    <main>
-      <p class="sample-text">Suspendisse pharetra euismod diam, a consectetur dui. Pellentesque lacinia ullamcorper gravida. Nulla lorem justo, vehicula et lectus quis.</p>
-      <p class="sample-text">Integer blandit risus libero, eget imperdiet nibh euismod eget. Pellentesque neque felis, feugiat id arcu eget, laoreet posuere diam.</p>
-      <blockquote class="sample-text">Quisque sit amet nunc arcu. Cras porttitor leo semper eleifend pulvinar. Quisque placerat ut quam a convallis.</blockquote>
-      <p class="sample-text">Mauris malesuada arcu ac nisi tincidunt, vitae cursus eros porttitor. Phasellus consequat diam convallis lobortis luctus. Donec sollicitudin mauris posuere eros dapibus.</p>
-    </main>
-  </div>
+	<p><strong>Sticky notifications</strong> remain on screen until explicitly dismissed, useful for critical alerts or messages that require acknowledgment. Anchor them near related content or at the top of a container, and avoid covering essential controls.</p>
+
+	<div class="section-example">
+		<div class="container browser">
+			<div class="notification sticky yellow">
+				<p>At vero eos et accusamus et <strong>iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</strong> deleniti atque corrupti quos dolores et quas molestias excepturi?</p>
+				<a class="control close">
+					<svg>
+						<use xlink:href="/images/icons.svg#clear"></use>
+					</svg>
+				</a>
+			</div>
+			<main>
+				<p >Suspendisse pharetra euismod diam, a consectetur dui. Pellentesque lacinia ullamcorper gravida. Nulla lorem justo, vehicula et lectus quis.</p>
+				<p >Integer blandit risus libero, eget imperdiet nibh euismod eget. Pellentesque neque felis, feugiat id arcu eget, laoreet posuere diam.</p>
+				<blockquote >Quisque sit amet nunc arcu. Cras porttitor leo semper eleifend pulvinar. Quisque placerat ut quam a convallis.</blockquote>
+				<p >Mauris malesuada arcu ac nisi tincidunt, vitae cursus eros porttitor. Phasellus consequat diam convallis lobortis luctus. Donec sollicitudin mauris posuere eros dapibus.</p>
+			</main>
+		</div>
+	</div>
   
   <div class="code-example">
       
-    <input type="checkbox" id="code-notification-sticky">
-    <label for="code-notification-sticky" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;div class="notification sticky"&gt;&lt;/div&gt;</code></pre>
 
   </div>

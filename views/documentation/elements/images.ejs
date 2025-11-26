@@ -2,36 +2,33 @@
   <h1>Images</h1>
 </header>
 
-<section>
-  <p>
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi?
-  </p>
+<section id="introduction">
+	<p class="introduction">
+		<strong>Images</strong> carry the emotional weight of a page: they set context, illustrate workflows, and signal brand voice faster than paragraphs can. Use them sparingly but deliberately—each graphic should earn its space, ship crisp at multiple densities, and cooperate with surrounding typography so the narrative stays <em>lightweight and accessible</em>.
+	</p>
+</section>
 
-  <figure>
-    <img src="/images/Nausicaa_and_her_Maidens_brought_to_Odysseus_food_and_wine.gif" alt="" class="wp-image-870" width="300">
-  </figure>
+
+<section>
+	<header>
+		<h2>Basic Image</h2>
+	</header>
+
+	<p><strong>Plain images</strong> rely on the <code>&lt;img&gt;</code> element paired with thoughtful attributes. Always provide meaningful <code>alt</code> text (or an empty <code>alt</code> when the image is purely decorative), lock in <code>width</code> and <code>height</code> to avoid layout shifts, and lean on CSS for sizing so the asset can adapt fluidly across breakpoints. When performance matters, add <code>loading="lazy"</code> and consider <code>srcset</code>/<code>sizes</code> to deliver the sharpest version without bloating the page.</p>
+
+	<div class="section-example">
+		<figure>
+			<img src="/images/Nausicaa_and_her_Maidens_brought_to_Odysseus_food_and_wine.gif" alt="" class="wp-image-870" width="300">
+		</figure>
+	</div>
 
   <div class="code-example">
-      
-    <input type="checkbox" id="code-images">
-    <label for="code-images" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;figure&gt;
   &lt;img src="..." alt="..."&gt;
 &lt;/figure&gt;</code></pre>
-
   </div>
   
-<p>
-  Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <a href="#">exercitation ullamco</a> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
-</p>
+	<p><strong>Image captions</strong> belong inside a <code>&lt;figure&gt;</code> with a paired <code>&lt;figcaption&gt;</code>, giving screen readers and search engines clear context. Use the caption to state what the image shows and, when relevant, credit the source or license. Keep the copy concise and avoid repeating the <code>alt</code> verbatim—treat it as a complementary layer that anchors the visual inside the story.</p>
 
 <figure>
   <img src="/images/lastman.jpg" alt="Figure Example">
@@ -39,22 +36,12 @@
 </figure>
 
 <div class="code-example">
-    
-    <input type="checkbox" id="code-captions">
-    <label for="code-captions" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;figure&gt;
   &lt;img src="..." alt="..."&gt;
   &lt;figcaption&gt;...&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
-  
   </div>
+
+	<p class="note"><strong>Additional notes:</strong> pick formats that match the job (SVG for UI icons, WebP/AVIF for photos with fallbacks), compress aggressively, and avoid baking text into images so content stays translatable. Ensure every interactive image is wrapped in a semantic element like <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code>, and never rely on color alone—pair visuals with clear labels so the experience remains resilient under high-contrast modes and slow networks.</p>
   
 </section>

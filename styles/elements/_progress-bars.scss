@@ -2,6 +2,8 @@
 @use "../variables" as *;
 @use "sass:color";
 
+$progress-stripe-size: 45px;
+
 @mixin progressMixin($progressBarOne, $progressBarTwo) {
   background-color: $mantle;
   border: 1px solid $crust;
@@ -43,23 +45,29 @@ progress {
   }
 
   &::-moz-progress-bar {
-    background-size: 200% 200%;
-    animation: progressAnimation 8s linear infinite;
+    background-size: $progress-stripe-size $progress-stripe-size;
+    animation: progressAnimation 1s linear infinite;
     border-radius: 2px;
   }
 
   &::-webkit-progress-value {
-    background-size: 200% 200%;
-    animation: progressAnimation 8s linear infinite;
+    background-size: $progress-stripe-size $progress-stripe-size;
+    animation: progressAnimation 1s linear infinite;
     border-radius: 2px;
   }
 
   &.rosewater {
-    @include progressMixin($rosewater3, color.adjust($rosewater3, $lightness: 5%));
+    @include progressMixin(
+      $rosewater3,
+      color.adjust($rosewater3, $lightness: 5%)
+    );
   }
 
   &.flamingo {
-    @include progressMixin($flamingo3, color.adjust($flamingo3, $lightness: 5%));
+    @include progressMixin(
+      $flamingo3,
+      color.adjust($flamingo3, $lightness: 5%)
+    );
   }
 
   &.pink {
@@ -99,7 +107,10 @@ progress {
   }
 
   &.sapphire {
-    @include progressMixin($sapphire3, color.adjust($sapphire3, $lightness: 5%));
+    @include progressMixin(
+      $sapphire3,
+      color.adjust($sapphire3, $lightness: 5%)
+    );
   }
 
   &.blue {
@@ -107,7 +118,10 @@ progress {
   }
 
   &.lavender {
-    @include progressMixin($lavender3, color.adjust($lavender3, $lightness: 5%));
+    @include progressMixin(
+      $lavender3,
+      color.adjust($lavender3, $lightness: 5%)
+    );
   }
 
   &.gray {
@@ -121,6 +135,6 @@ progress {
   }
 
   100% {
-    background-position: 100% 100%;
+    background-position: -$progress-stripe-size 0;
   }
 }

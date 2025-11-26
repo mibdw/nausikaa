@@ -2,147 +2,176 @@
   <h1>Containers</h1>
 </header>
 
+<section id="introduction">
+	<p class="introduction">
+  	<strong>Containers</strong> group related content into clear regions—cards, panels, callouts—so layouts stay readable and consistent. They give typography predictable padding, constrain widths, and let you swap backgrounds or borders to convey emphasis without rewriting every block.
+	</p>
+</section>
+
 <section id="regular">
   <header>
     <h2>Regular</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio excepturi ab iste mollitia dicta possimus vel, molestiae saepe, voluptate totam fugit deleniti necessitatibus sed corrupti dolores rem impedit id. Maiores.</p>
+  <p><strong>Standard containers</strong> provide balanced padding and a neutral surface, ideal for grouping paragraphs, forms, or small widgets. Use them to separate sections on a page without heavy chrome; keep nesting shallow to avoid cramped layouts, and let the container handle spacing instead of adding ad-hoc margins to children.</p>
 
-  <div class="container">
-    <p class="sample-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et iure ducimus voluptas architecto tenetur itaque assumenda vitae fugit doloribus, hic commodi vel molestiae dolore cupiditate distinctio deleniti illo provident ab!</p>
+	<div class="section-example">
+		<div class="container">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et iure ducimus voluptas architecto tenetur itaque assumenda vitae fugit doloribus, hic commodi vel molestiae dolore cupiditate distinctio deleniti illo provident ab!</p>
+		</div>
   </div>
 
-  <div class="code-example">
-    <input type="checkbox" id="code-container-regular">
-    <label for="code-container-regular" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
+	<p class="note"><strong>Tip:</strong> prefer a single container per logical chunk and rely on consistent spacing tokens, so vertical rhythm stays predictable between sections.</p>
 
+  <div class="code-example">
     <pre><code class="html">&lt;div class="container"&gt;...&lt;/div&gt;</code></pre>
   </div>
 </section>
 
 <section id="colors">
-  <header>
+	<header>
     <h2>Colors</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+  <p><strong>Colored containers</strong> use Catppuccin palette hues to add hierarchy—call attention to warnings, highlight tips, or distinguish sidebars from the main thread. Choose a tone that reinforces intent (Peach for notices, Green for success) and keep text contrast high for readability. Explore the full palette at the <a href="https://catppuccin.com" target="_blank" rel="noreferrer">Catppuccin site</a>.</p>
   
-  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 1em;">
+
+  <div class="section-example" style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 1em;">
+		<div style="margin: 0" class="container rosewater">
+			<p><strong>Rosewater container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
     
-    <div class="container yellow" style="margin: 0;">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni minima, quam nesciunt nostrum voluptatum facere assumenda.</p>
-    </div>
+		<div style="margin: 0" class="container flamingo">
+			<p><strong>Flamingo container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
 
-    <div class="container blue" style="margin: 0;">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni minima, quam nesciunt nostrum voluptatum facere assumenda.</p>
-    </div>
+		<div style="margin: 0" class="container pink">
+			<p><strong>Pink container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
 
-    <div class="container red" style="margin: 0;">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni minima, quam nesciunt nostrum voluptatum facere assumenda.</p>
-    </div>
+		<div style="margin: 0" class="container mauve">
+			<p><strong>Mauve container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
 
-    <div class="container green" style="margin: 0;">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni minima, quam nesciunt nostrum voluptatum facere assumenda.</p>
-    </div>
+		<div style="margin: 0" class="container red">
+			<p><strong>Red container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
 
-    <div class="container purple" style="margin: 0;">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni minima, quam nesciunt nostrum voluptatum facere assumenda.</p>
-    </div>
+		<div style="margin: 0" class="container maroon">
+			<p><strong>Maroon container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
 
-    <div class="container orange" style="margin: 0;">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni minima, quam nesciunt nostrum voluptatum facere assumenda.</p>
-    </div>
+		<div style="margin: 0" class="container peach">
+			<p><strong>Peach container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
 
-    <div class="container gray" style="margin: 0;">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni minima, quam nesciunt nostrum voluptatum facere assumenda.</p>
-    </div>
+		<div style="margin: 0" class="container yellow">
+			<p><strong>Yellow container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
+
+		<div style="margin: 0" class="container green">
+			<p><strong>Green container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
+
+		<div style="margin: 0" class="container teal">
+			<p><strong>Teal container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
+
+		<div style="margin: 0" class="container sky">
+			<p><strong>Sky container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
+
+		<div style="margin: 0" class="container sapphire">
+			<p><strong>Sapphire container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
+
+		<div style="margin: 0" class="container blue">
+			<p><strong>Blue container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
+
+		<div style="margin: 0" class="container lavender">
+			<p><strong>Lavender container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
+
+		<div style="margin: 0" class="container gray">
+			<p><strong>Gray container</strong></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure laudantium at fuga vero ad perspiciatis quisquam magnam, optio saepe natus voluptatem, quidem, ab! Provident repellendus modi et accusantium reiciendis.</p>
+		</div>
   </div>
 
 
   <div class="code-example">
-    <input type="checkbox" id="code-container-colors">
-    <label for="code-container-colors" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
-    <pre><code class="html">&lt;div class="container yellow"&gt;...&lt;/div&gt;
-&lt;div class="container blue"&gt;...&lt;/div&gt;
+    <pre><code class="html">&lt;div class="container rosewater"&gt;...&lt;/div&gt;
+&lt;div class="container flamingo"&gt;...&lt;/div&gt;
+&lt;div class="container pink"&gt;...&lt;/div&gt;
+&lt;div class="container mauve"&gt;...&lt;/div&gt;
 &lt;div class="container red"&gt;...&lt;/div&gt;
+&lt;div class="container maroon"&gt;...&lt;/div&gt;
+&lt;div class="container peach"&gt;...&lt;/div&gt;
+&lt;div class="container yellow"&gt;...&lt;/div&gt;
 &lt;div class="container green"&gt;...&lt;/div&gt;
-&lt;div class="container purple"&gt;...&lt;/div&gt;
-&lt;div class="container orange"&gt;...&lt;/div&gt;
+&lt;div class="container teal"&gt;...&lt;/div&gt;
+&lt;div class="container sky"&gt;...&lt;/div&gt;
+&lt;div class="container sapphire"&gt;...&lt;/div&gt;
+&lt;div class="container blue"&gt;...&lt;/div&gt;
+&lt;div class="container lavender"&gt;...&lt;/div&gt;
 &lt;div class="container gray"&gt;...&lt;/div&gt;</code></pre>
   </div>
 
 </section>
 
 <section id="mock-browser">
-  <header>
+	<header>
     <h2>Mock browser</h2>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum laborum eius provident aut. Vero enim nobis rem. Qui molestias, accusamus odit perspiciatis fugit temporibus natus laudantium doloremque. Iure blanditiis, ipsum!</p>
+  <p><strong>Mock browser containers</strong> frame content inside a faux browser window, useful for showcasing UI screenshots, code outputs, or embedded demos without leaving the page. Use them to tell stories about web experiences while keeping the focus on the captured content.</p>
 
+	<div class="section-example">
   <div class="container browser">
     <main>
-      <p class="sample-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem earum temporibus, exercitationem fugit illo placeat qui debitis quos soluta. Iusto a odit libero fugit excepturi numquam sapiente omnis quos unde?</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem earum temporibus, exercitationem fugit illo placeat qui debitis quos soluta. Iusto a odit libero fugit excepturi numquam sapiente omnis quos unde?</p>
     </main>
   </div>
+	</div>
 
 
   <div class="code-example">
-    <input type="checkbox" id="code-container-browser">
-    <label for="code-container-browser" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
     <pre><code class="html">&lt;div class="container browser"&gt;
   &lt;main&gt;...&lt;/main&gt;
 &lt;/div&gt;</code></pre>
   </div>  
 
   <header>
-    <h2>URL</h2>
+    <h3>URL</h3>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum laborum eius provident aut. Vero enim nobis rem. Qui molestias, accusamus odit perspiciatis fugit temporibus natus laudantium doloremque. Iure blanditiis, ipsum!</p>
+  <p><strong>URL labels</strong> reinforce context by displaying the address bar above the content. Populate it with a representative domain or route to help readers understand where the captured view would live, and keep it concise so it doesn’t overpower the mock frame.</p>
 
-  <div class="container browser">
-    <span class="url">http://nausikaa.site</span>
-    <main>  
-      <p class="sample-text">Animi consequatur deleniti accusamus quia, voluptates similique, veniam, asperiores, modi quo odit ratione mollitia rerum autem quod iusto. Odio, voluptas tenetur asperiores delectus quasi saepe adipisci eius quia provident facere.</p>
-    </main>
+	<div class="section-example">
+		<div class="container browser">
+			<span class="url">http://nausikaa.site</span>
+			<main>  
+				<p>Animi consequatur deleniti accusamus quia, voluptates similique, veniam, asperiores, modi quo odit ratione mollitia rerum autem quod iusto. Odio, voluptas tenetur asperiores delectus quasi saepe adipisci eius quia provident facere.</p>
+			</main>
+		</div>
   </div>
 
   <div class="code-example">
-    <input type="checkbox" id="code-container-url">
-    <label for="code-container-url" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-
     <pre><code class="html">&lt;div class="container browser"&gt;
   &lt;span class="url"&gt;http://...&lt;/span&gt;
   &lt;main&gt;...&lt;/main&gt;
