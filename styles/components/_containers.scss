@@ -38,7 +38,7 @@
 }
 
 .container {
-  @include containerMixin($mantle, $crust, $text, $blue3, $text);
+  @include containerMixin($mantle, $surface1, $text, $blue3, $text);
 
   margin: $paragraphSpacer 0;
   padding: 0 1em 1em;
@@ -65,7 +65,7 @@
       right: -1px;
       border-width: 1px;
       border-style: solid;
-      border-color: $crust $crust $surface2;
+      border-color: $surface1;
       border-radius: 6px 6px 0 0;
       background-color: $mantle;
       background-image:
@@ -88,8 +88,8 @@
       right: 1em;
       height: 2em;
       padding: 0.2em 1em;
-      border: 1px solid $surface2;
-      background-color: $surface0;
+      border: 1px solid $surface1;
+      background-color: $base;
       border-radius: 3px;
       cursor: text;
     }

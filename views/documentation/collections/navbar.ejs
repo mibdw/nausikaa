@@ -2,81 +2,81 @@
   <h2>Navbar</h2>
 </header>
 
-<section id="overview">
-  <p>
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+<section id="introduction">
+  <p class="introduction">
+    <strong>Navbars</strong> anchor wayfinding: they surface brand identity, primary links, search, and account actions in a single, predictable row. A well-structured bar keeps page chrome minimal while giving readers a reliable place to start and to recover if they get lost.
   </p>
+  <p class="introduction">
+    Use the navbar whenever a view needs global navigation or key contextual actions. Combine brand marks, knobs, search, and utilities in a consistent order, and rely on toggles to adapt layouts for smaller screens without sacrificing <em>clarity or accessibility</em>.
+  </p>
+</section>
 
-  <div class="container browser">
-    <header class="navbar">
-      <a href="#" id="brand" class="ball  ">
-        <svg class="icon">
-          <use xlink:href="/images/icons.svg#star"></use>
-        </svg>
-      </a>
+<section id="overview">
+  <p><strong>Core layout</strong> flows from left to right: start with the brand, follow with primary navigation, then utility areas like search suggestions and auth links. The checkbox toggle powers responsive menus—pair it with visible icons and labels so touch and keyboard users can open and close the menu confidently.</p>
 
-      <input type="checkbox" class="navbar-toggle" id="navbar-toggler-1">  
-      <label for="navbar-toggler-1">
-        <svg class="icon menu">
-          <use xlink:href="/images/icons.svg#hamburger"></use>
-        </svg>
-        <svg class="icon close">
-          <use xlink:href="/images/icons.svg#clear"></use>
-        </svg>
-      </label>
+	<div class="section-example">
+		<div class="container browser">
+			<header class="navbar">
+				<a href="#" id="brand" class="ball  ">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+				</a>
 
-      <nav>
-        <ul class="knobs">
-          <li class="active"><a href="">Shoes</a></li>
-          <li><a href="">Socks</a></li>
-          <li><a href="">Hats</a></li>
-        </ul>
-      </nav>
+				<input type="checkbox" class="navbar-toggle" id="navbar-toggler-1">  
+				<label for="navbar-toggler-1">
+					<svg class="icon menu">
+						<use xlink:href="/images/icons.svg#hamburger"></use>
+					</svg>
+					<svg class="icon close">
+						<use xlink:href="/images/icons.svg#clear"></use>
+					</svg>
+				</label>
 
-      <div class="spacer"></div>
-      
-      <div class="suggestions">
-        <form action="" class="group">
-          <svg class="icon">
-            <use xlink:href="/images/icons.svg#search"></use>
-          </svg>
-          <input type="search" class="prepend-icon" placeholder="Search...">
-        </form>
-        <div class="panel">
-          <ul>
-            <li><a href="">Lorem ipsum dolor sit amet</a></li>
-            <li><a href="">Earum soluta eum cum iure atque</a></li>
-            <li><a href="">Facere reprehenderit voluptatibus</a></li>
-            <li><a href="">Deleniti aut labore, consequatur</a></li>
-            <li><a href="">Repellendus tenetur</a></li>
-          </ul>
-        </div>
-      </div>
+				<nav>
+					<ul class="knobs">
+						<li class="active"><a href="">Shoes</a></li>
+						<li><a href="">Socks</a></li>
+						<li><a href="">Hats</a></li>
+					</ul>
+				</nav>
 
-      <nav>
-        <ul>
-          <li><a href="">Login</a></li>
-        </ul>
-      </nav>
+				<div class="spacer"></div>
+				
+				<div class="suggestions">
+					<form action="" class="group">
+						<svg class="icon">
+							<use xlink:href="/images/icons.svg#search"></use>
+						</svg>
+						<input type="search" class="prepend-icon" placeholder="Search...">
+					</form>
+					<div class="panel">
+						<ul>
+							<li><a href="">Lorem ipsum dolor sit amet</a></li>
+							<li><a href="">Earum soluta eum cum iure atque</a></li>
+							<li><a href="">Facere reprehenderit voluptatibus</a></li>
+							<li><a href="">Deleniti aut labore, consequatur</a></li>
+							<li><a href="">Repellendus tenetur</a></li>
+						</ul>
+					</div>
+				</div>
 
-    </header>
-    <main class="sample-text">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis dui nec imperdiet tincidunt. Quisque luctus enim nunc, congue venenatis felis auctor in. Ut ut rutrum ipsum. Sed tempor, dolor id dignissim rhoncus, elit purus vestibulum mi, semper vehicula ante ipsum non lectus.</p>
-    </main>
-  </div>
+				<nav>
+					<ul>
+						<li><a href="">Login</a></li>
+					</ul>
+				</nav>
+
+			</header>
+			<main>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis dui nec imperdiet tincidunt. Quisque luctus enim nunc, congue venenatis felis auctor in. Ut ut rutrum ipsum. Sed tempor, dolor id dignissim rhoncus, elit purus vestibulum mi, semper vehicula ante ipsum non lectus.</p>
+			</main>
+		</div>
+	</div>
+
+  <p class="note"><strong>Accessibility:</strong> give the toggle label readable text, keep focus outlines on links and controls, and ensure suggestion panels are navigable with a keyboard and dismissible when focus moves away.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-navbar-overview">
-    <label for="code-navbar-overview" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;header class="navbar"&gt;
   &lt;a href="..." id="brand"&gt;...&lt;/a&gt;
 
@@ -106,8 +106,6 @@
 &lt;/header&gt;</code></pre>
   
   </div>
-
-
 </section>
 
 <section id="branding">
@@ -115,46 +113,42 @@
     <h3>Branding</h3>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, numquam doloremque perspiciatis. Quia, placeat, sunt! Earum repudiandae tenetur recusandae adipisci quos alias ut repellendus perspiciatis, dolorem suscipit possimus aliquid vero.</p>
+  <p><strong>Brand treatments</strong> can be text-only, icon-only, or a combination—choose the variant that reads clearly at navbar height. Keep spacing consistent so the brand doesn’t wobble between pages, and make sure the brand always links back to the home or top-level destination.</p>
 
-  <header class="navbar">
-    <a href="" id="brand">Brand</a>
+	<div class="section-example">
+		<div class="container browser">
+			<header class="navbar">
+				<a href="" id="brand">Brand</a>
 
-    <a href="" id="brand">
-      <svg>
-        <use xlink:href="/images/icons.svg#star"></use>
-      </svg>
-    </a>
+				<a href="" id="brand">
+					<svg>
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+				</a>
 
-    <a href="#" id="brand" class="ball">
-      Brand
-    </a>
+				<a href="#" id="brand" class="ball">
+					Brand
+				</a>
 
-    <a href="#" id="brand" class="ball">
-      <svg>
-        <use xlink:href="/images/icons.svg#star"></use>
-      </svg>
-    </a>
+				<a href="#" id="brand" class="ball">
+					<svg>
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+				</a>
 
-    <a href="#" id="brand">
-      <svg>
-        <use xlink:href="/images/icons.svg#star"></use>
-      </svg>
-      Brand
-    </a>
-  </header>
+				<a href="#" id="brand">
+					<svg>
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+					Brand
+				</a>
+			</header>
+		</div>
+	</div>
+
+  <p class="note"><strong>Keep it identifiable:</strong> supply an <code>aria-label</code> when the brand is icon-only, and avoid repeating the <code>id="brand"</code> on multiple elements in a single navbar to keep markup valid.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-navbar-brand">
-    <label for="code-navbar-brand" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
     
     <pre><code class="html">&lt;header class="navbar"&gt;
   &lt;a href="..." id="brand"&gt;...&lt;/a&gt;
@@ -180,86 +174,81 @@
     <h3>Menu</h3>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis quasi culpa amet autem, magnam asperiores dolore perferendis neque accusantium blanditiis laudantium quam pariatur molestiae fugit, veniam numquam ullam ratione atque.</p>
+  <p><strong>Menu links</strong> organize primary actions into a horizontal list of knobs. Icons help differentiate similar items at a glance, while the dropdown handles overflow options without crowding the bar. On smaller screens, the toggle collapses the list—keep the label readable so people know it controls the menu.</p>
 
-  <header class="navbar">
-    <input type="checkbox" class="navbar-toggle" id="navbar-toggler-2" checked>  
-    <label for="navbar-toggler-2">
-      <svg class="icon menu">
-        <use xlink:href="/images/icons.svg#hamburger"></use>
-      </svg>
-      <svg class="icon close">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
+	<div class="section-example">
+		<div class="container browser">
+			<header class="navbar">
+				<input type="checkbox" class="navbar-toggle" id="navbar-toggler-2" checked>  
+				<label for="navbar-toggler-2">
+					<svg class="icon menu">
+						<use xlink:href="/images/icons.svg#hamburger"></use>
+					</svg>
+					<svg class="icon close">
+						<use xlink:href="/images/icons.svg#clear"></use>
+					</svg>
+				</label>
 
-    <nav>
-      <ul class="knobs">
-        <li class="active">
-          <a href="">
-            <svg class="icon">
-              <use xlink:href="/images/icons.svg#archive"></use>
-            </svg>
-            Archive
-          </a></li>
-        <li>
-          <a href="">
-            <svg class="icon">
-              <use xlink:href="/images/icons.svg#delete"></use>
-            </svg>
-            Delete permanently
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <svg class="icon">
-              <use xlink:href="/images/icons.svg#report-off"></use>
-            </svg>
-            Not spam
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <svg class="icon">
-              <use xlink:href="/images/icons.svg#save-alt"></use>
-            </svg>
-            Move to
-          </a>
-        </li>
-        <li class="dropdown">
-          <a tabindex="1">
-            More
+				<nav>
+					<ul class="knobs">
+						<li class="active">
+							<a href="">
+								<svg class="icon">
+									<use xlink:href="/images/icons.svg#archive"></use>
+								</svg>
+								Archive
+							</a></li>
+						<li>
+							<a href="">
+								<svg class="icon">
+									<use xlink:href="/images/icons.svg#delete"></use>
+								</svg>
+								Delete permanently
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<svg class="icon">
+									<use xlink:href="/images/icons.svg#report-off"></use>
+								</svg>
+								Not spam
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<svg class="icon">
+									<use xlink:href="/images/icons.svg#save-alt"></use>
+								</svg>
+								Move to
+							</a>
+						</li>
+						<li class="dropdown">
+							<a tabindex="1">
+								More
 
-            <svg class="icon last">
-              <use xlink:href="/images/icons.svg#chevron-down"></use>
-            </svg>
-          </a>
-          <nav class="panel arrow">
-            <ul>
-              <li><a href="">Mark as read</a></li>
-              <li><a href="">Mark as unread</a></li>
-              <li><a href="">Pin</a></li>
-              <li><a href="">Unpin</a></li>
-              <li><a href="">Report spam</a></li>
-            </ul>
-          </nav>
-        </li>
-      </ul>
-    </nav>
-  </header>
+								<svg class="icon last">
+									<use xlink:href="/images/icons.svg#chevron-down"></use>
+								</svg>
+							</a>
+							<nav class="panel arrow">
+								<ul>
+									<li><a href="">Mark as read</a></li>
+									<li><a href="">Mark as unread</a></li>
+									<li><a href="">Pin</a></li>
+									<li><a href="">Unpin</a></li>
+									<li><a href="">Report spam</a></li>
+								</ul>
+							</nav>
+						</li>
+					</ul>
+				</nav>
+			</header>
+		</div>
+	</div>
+
+  <p class="note"><strong>Discoverability:</strong> preserve focus rings on every knob, add <code>aria-expanded</code>/<code>aria-controls</code> to the toggle if you manage state with JS, and reference the <a href="/documentation/elements/links#knobs">Knobs</a> guidance for styling and sizing.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-navbar-menu">
-    <label for="code-navbar-menu" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;header class="navbar"&gt;
   &lt;nav&gt;
     &lt;ul class="knobs"&gt;
@@ -294,59 +283,56 @@
     <h3>Search</h3>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores aut voluptas officiis incidunt laborum, illo explicabo recusandae. Velit, unde error minus explicabo ipsa nulla! Accusantium repudiandae at accusamus quia iste.</p>
+  <p><strong>Search bars</strong> inside the navbar let readers jump straight to what they need. Pair the field with a search icon, keep the placeholder concise, and add an optional suggestions panel for frequent queries. Keep the form inline on wide screens and allow it to stack when space tightens.</p>
 
-  <header class="navbar">
+	<div class="section-example">
+		<div class="container browser">
+			<header class="navbar">
 
-    <input type="checkbox" class="navbar-toggle" id="navbar-toggler-3" checked>  
-    <label for="navbar-toggler-3">
-      <svg class="icon menu">
-        <use xlink:href="/images/icons.svg#hamburger"></use>
-      </svg>
-      <svg class="icon close">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
+				<input type="checkbox" class="navbar-toggle" id="navbar-toggler-3" checked>  
+				<label for="navbar-toggler-3">
+					<svg class="icon menu">
+						<use xlink:href="/images/icons.svg#hamburger"></use>
+					</svg>
+					<svg class="icon close">
+						<use xlink:href="/images/icons.svg#clear"></use>
+					</svg>
+				</label>
 
-    <form action="" class="group">
-      <svg class="icon">
-        <use xlink:href="/images/icons.svg#search"></use>
-      </svg>
-      <input type="search" placeholder="Search..." class="prepend-icon">
-    </form>
+				<form action="" class="group">
+					<svg class="icon">
+						<use xlink:href="/images/icons.svg#search"></use>
+					</svg>
+					<input type="search" placeholder="Search..." class="prepend-icon">
+				</form>
 
-    <div class="suggestions">
-      <form action="" class="group">
-        <input type="search" placeholder="Search with suggestions">
-        <button class="primary">
-          <svg class="icon">
-            <use xlink:href="/images/icons.svg#search"></use>
-          </svg>
-        </button>
-      </form>
-      <div class="panel">
-        <ul>
-          <li><a href="">Lorem ipsum dolor sit amet</a></li>
-          <li><a href="">Earum soluta eum cum iure atque</a></li>
-          <li><a href="">Facere reprehenderit voluptatibus</a></li>
-          <li><a href="">Deleniti aut labore, consequatur</a></li>
-          <li><a href="">Repellendus tenetur</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
+				<div class="suggestions">
+					<form action="" class="group">
+						<input type="search" placeholder="Search with suggestions">
+						<button class="primary">
+							<svg class="icon">
+								<use xlink:href="/images/icons.svg#search"></use>
+							</svg>
+						</button>
+					</form>
+					<div class="panel">
+						<ul>
+							<li><a href="">Lorem ipsum dolor sit amet</a></li>
+							<li><a href="">Earum soluta eum cum iure atque</a></li>
+							<li><a href="">Facere reprehenderit voluptatibus</a></li>
+							<li><a href="">Deleniti aut labore, consequatur</a></li>
+							<li><a href="">Repellendus tenetur</a></li>
+						</ul>
+					</div>
+				</div>
+			</header>
+		</div>
+	</div>
+
+  <p class="note"><strong>Input hygiene:</strong> label every search field (via visible text or <code>aria-label</code>), ensure the toggle that reveals suggestions is keyboard reachable, and see the <a href="/documentation/elements/input-fields">Input fields</a> guidance for input groups and states.</p>
+
   <div class="code-example">
-    
-    <input type="checkbox" id="code-navbar-search">
-    <label for="code-navbar-search" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
+
     <pre><code class="html">&lt;header class="navbar"&gt;
   &lt;form class="group"&gt;
     &lt;svg class="icon"&gt;&lt;/svg&gt;
@@ -372,93 +358,85 @@
     <h3>Links</h3>
   </header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit iusto mollitia eos, blanditiis consectetur ipsum nam ex recusandae dicta error porro quas aliquam odio, aperiam inventore veniam autem maxime illum?</p>
+  <p><strong>Simple link lists</strong> fit utility navigation—help, account, legal—without the padding and framing of knobs. Keep labels short, avoid nesting multiple levels, and let the navbar toggle handle overflow on compact layouts.</p>
 
-  <header class="navbar">
-    <input type="checkbox" class="navbar-toggle" id="navbar-toggler-4" checked>  
-    <label for="navbar-toggler-4">
-      <svg class="icon menu">
-        <use xlink:href="/images/icons.svg#hamburger"></use>
-      </svg>
-      <svg class="icon close">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
+	<div class="section-example">
+		<div class="container browser">
+			<header class="navbar">
+				<input type="checkbox" class="navbar-toggle" id="navbar-toggler-4" checked>  
+				<label for="navbar-toggler-4">
+					<svg class="icon menu">
+						<use xlink:href="/images/icons.svg#hamburger"></use>
+					</svg>
+					<svg class="icon close">
+						<use xlink:href="/images/icons.svg#clear"></use>
+					</svg>
+				</label>
 
-    <nav>
-      <ul>
-        <li><a href="">Regular link</a></li>
-        <li><a href="">Another regular link</a></li>
-        <li><a href="">Wait what?</a></li>
-      </ul>
-    </nav>
+				<nav>
+					<ul>
+						<li><a href="">Regular link</a></li>
+						<li><a href="">Another regular link</a></li>
+						<li><a href="">Wait what?</a></li>
+					</ul>
+				</nav>
 
-  </header>
+			</header>
+		</div>
+	</div>
+
+  <p class="note"><strong>Consistency:</strong> maintain focus styles, use semantic lists for the link groups, and revisit the <a href="/documentation/elements/links#links">Links</a> guidance for sizing and state treatments so navbar links align with the broader system.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-navbar-links">
-    <label for="code-navbar-links" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;header class="navbar"&gt;
   &lt;nav&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href="..."&gt;...&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="..."&gt;...&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
 &lt;/header&gt;</code></pre>
   
   </div>
+
+  
+</section>
 
 <section id="spacer">
   <header>
     <h3>Spacer</h3>
   </header>
+	
+  <p><strong>Spacers</strong> are flexible separators that push groups to opposite ends of the bar—ideal for centering navigation while keeping brand and account actions aligned. Use them sparingly to avoid uneven gaps and to maintain predictable scan patterns across pages.</p>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit iusto mollitia eos, blanditiis consectetur ipsum nam ex recusandae dicta error porro quas aliquam odio, aperiam inventore veniam autem maxime illum?</p>
+	<div class="section-example">
+		<div class="container browser">
+			<header class="navbar">
+				<a href="#" id="brand" class="ball">
+					<svg>
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+				</a>
+				
+				<div class="spacer"></div>
 
-  <header class="navbar">
-    <a href="#" id="brand" class="ball">
-      <svg>
-        <use xlink:href="/images/icons.svg#star"></use>
-      </svg>
-    </a>
-    
-    <div class="spacer"></div>
+				<a href="#" id="brand" class="ball">
+					<svg>
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+				</a>
 
-    <a href="#" id="brand" class="ball">
-      <svg>
-        <use xlink:href="/images/icons.svg#star"></use>
-      </svg>
-    </a>
+				<div class="spacer"></div>
 
-    <div class="spacer"></div>
-
-    <a href="#" id="brand" class="ball">
-      <svg>
-        <use xlink:href="/images/icons.svg#star"></use>
-      </svg>
-    </a>
-  </header>
+				<a href="#" id="brand" class="ball">
+					<svg>
+						<use xlink:href="/images/icons.svg#star"></use>
+					</svg>
+				</a>
+			</header>
+		</div>
+	</div>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-navbar-spacer">
-    <label for="code-navbar-spacer" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
     
     <pre><code class="html">&lt;header class="navbar"&gt;
   &lt;div class="spacer"&gt;&lt;/div&gt;

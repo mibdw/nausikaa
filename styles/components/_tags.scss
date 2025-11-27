@@ -60,10 +60,10 @@
 
   &.alt {
     @include tagMixin(
-      $text,
+      $white,
       $overlay1,
       $overlay2,
-      $subtext0
+      color.adjust($white, $lightness: -15%)
     );
   }
 
@@ -83,6 +83,10 @@
     @include tagMixin($white, $mauve3, color.adjust($mauve3, $lightness: -5%), $mauve2);
   }
 
+  &.purple {
+    @include tagMixin($white, #9933ff, #a64dff, #e6ccff);
+  }
+
   &.red {
     @include tagMixin($white, $red3, color.adjust($red3, $lightness: -5%), $red2);
   }
@@ -93,6 +97,10 @@
 
   &.peach {
     @include tagMixin($white, $peach3, color.adjust($peach3, $lightness: -5%), $peach2);
+  }
+
+  &.orange {
+    @include tagMixin($white, #d35400, #e65c00, #ffa366);
   }
 
   &.yellow {
@@ -124,47 +132,51 @@
   }
 
   &.navy {
-    @include tagMixin($white, #000080, #262693, #b2b2d9);
+    @include tagMixin($white, $navy, color.adjust($navy, $lightness: 5%), color.adjust($navy, $lightness: 50%));
   }
 
   &.olive {
-    @include tagMixin($white, #808000, #999933, #d9d9b2);
+    @include tagMixin($white, $olive, color.adjust($olive, $lightness: 5%), color.adjust($olive, $lightness: 15%));
   }
 
   &.salmon {
-    @include tagMixin($white, #fa8072, #fb998e, #fed9d5);
+    @include tagMixin($white, $salmon, color.adjust($salmon, $lightness: 5%), color.adjust($salmon, $lightness: 15%));
   }
 
   &.magenta {
-    @include tagMixin($white, #ff00ff, #ff59ff, #ffccff);
+    @include tagMixin($white, $magenta, color.adjust($magenta, $lightness: 5%), color.adjust($magenta, $lightness: 35%));
   }
 
   &.cyan {
-    @include tagMixin($black, #00ffff, #b2ffff, #00d9d9);
+    @include tagMixin($black, $cyan, color.adjust($cyan, $lightness: 5%), color.adjust($cyan, $lightness: -15%));
   }
 
   &.lightgray {
-    @include tagMixin($black, #ccc, #aaa, #999);
+    @include tagMixin($black, $lightgray, color.adjust($lightgray, $lightness: 5%), color.adjust($lightgray, $lightness: -25%));
+  }
+
+  &.darkgray {
+    @include tagMixin($white, $darkgray, color.adjust($darkgray, $lightness: 5%), color.adjust($darkgray, $lightness: 25%));
   }
 
   &.chocolate {
-    @include tagMixin($white, #663300, #262626, #eee);
+    @include tagMixin($white, $chocolate, color.adjust($chocolate, $lightness: 5%), color.adjust($chocolate, $lightness: 15%));
   }
 
   &.black {
-    @include tagMixin($white, $black, #262626, #eee);
+    @include tagMixin($white, $black, color.adjust($black, $lightness: 5%), color.adjust($black, $lightness: 50%));
   }
 
   &.forest {
-    @include tagMixin(#fff, #006b57, #005746, rgba(255, 255, 255, 0.5));
+    @include tagMixin($white, $olive, color.adjust($olive, $lightness: 5%), color.adjust($olive, $lightness: 15%));
   }
 
   &.royal {
-    @include tagMixin(#fff, #005c90, #005746, rgba(255, 255, 255, 0.5));
+    @include tagMixin($white, $royal, color.adjust($royal, $lightness: 5%), color.adjust($royal, $lightness: 15%));
   }
 
   &.lemon {
-    @include tagMixin($black, #ffff00, #dddd00, rgba(0, 0, 0, 0.5));
+    @include tagMixin($black, $lemon, color.adjust($lemon, $lightness: 5%), color.adjust($lemon, $lightness: -30%));
   }
 }
 
@@ -190,4 +202,8 @@ h5 .tag {
 h6 .tag {
   font-size: 0.7rem;
   line-height: 1.7em;
+}
+
+a.tag {
+  cursor: pointer;
 }

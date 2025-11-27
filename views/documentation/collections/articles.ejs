@@ -1,55 +1,56 @@
 <header>
   <h1>Articles</h1>
 </header>
+
+<section id="introduction">
+  <p class="introduction">
+    <strong>Articles</strong> group long-form narratives—release notes, case studies, deep dives—into a structured, readable block. A clear header, thoughtful metadata, and predictable body styling keep readers oriented while letting the content take center stage.
+  </p>
+  <p class="introduction">
+    Use the article pattern whenever a page needs its own title, byline, and supporting media. Pair text with figures, quotes, and tags only when they clarify the story, and keep semantics tight so assistive tech can follow the <em>publication flow</em>.
+  </p>
+</section>
+
 <section>
+  <p><strong>Article layout</strong> is built on semantic HTML: wrap the story in &lt;article&gt;, place the title and metadata in a header, and close with a footer for tags or related links. Use paragraphs for the main narrative, sprinkle in figures or quotes for emphasis, and keep metadata concise with clear time stamps and author links.</p>
 
-  <p>Sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint  occaecat cupidatat non proident, sunt in culpa qui officia deserunt  mollit anim id est laborum. </p>
+	<div class="section-example">
+		<div class="container browser">
+		
+			<main>
+				<article>
 
-  <div class="container browser">
-  
-    <main>
-      <article>
+					<header>
 
-        <header>
+						<h4>Article header</h4>
+						<div class="meta">
+							<strong>Article meta</strong>: Posted on <time>May 12, 2019</time>. Written by <a href="#">Dwight Eisenhower</a>.</div>
+					</header>
+						
+					<figure style="float: right; margin: 1em 0 0 1em">
+						<img src="/images/Nausicaa_and_her_Maidens_brought_to_Odysseus_food_and_wine.gif" alt="Illustration of Nausicaa offering food and wine to Odysseus" width="250">
+					</figure>
 
-          <h4>Article header</h4>
-          <div class="meta">
-            <strong>Article meta</strong>: Posted on <time>May 12, 2019</time>. Written by <a href="#">Dwight Eisenhower</a>.</div>
-        </header>
-          
-        <figure style="float: right; margin: 1em 0 0 1em">
-          <img src="/images/Nausicaa_and_her_Maidens_brought_to_Odysseus_food_and_wine.gif" alt=""width="250">
-        </figure>
+					<p><em>Article sample content</em>. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis dui nec imperdiet tincidunt. Quisque luctus enim nunc, congue venenatis felis auctor in. Ut ut rutrum ipsum. Sed tempor, dolor id dignissim rhoncus, elit purus vestibulum mi, semper vehicula ante ipsum non lectus. Ut eu viverra neque. Mauris congue efficitur mauris, quis efficitur ante placerat et. Maecenas facilisis molestie massa sit amet sodales. Phasellus rutrum justo quis nulla vestibulum, eget mattis sapien blandit. Cras vitae risus nulla. </p>
+					
+					<p>Sed dictum sem non eros suscipit pharetra. Aliquam posuere turpis at enim sodales, eu malesuada nibh vehicula. Cras dignissim nec lectus et aliquet. Duis sed nulla vitae nisi maximus consequat id a eros. Pellentesque sollicitudin libero at erat maximus, nec ullamcorper mi posuere.</p>
+					
+					<p>Etiam ultrices placerat ligula sed bibendum. Fusce urna metus, sollicitudin at odio vitae, rutrum tincidunt orci. Praesent ultricies justo mi, at vehicula diam posuere eget. Maecenas gravida id nisi quis tempus. Fusce consectetur mauris non ligula aliquam, et fermentum est imperdiet. Cras vitae tortor sed dui mollis blandit. Maecenas aliquet purus ut egestas placerat. Vestibulum pharetra rhoncus nisi. Nunc dictum luctus metus. Donec placerat blandit urna, quis mollis erat fringilla eget.</p>
+					
+					<p>Aliquam scelerisque viverra mi. Aenean eu fringilla dolor. In tristique tincidunt metus vitae interdum. Aliquam eu ante sit amet risus rhoncus finibus non quis lacus. Integer in semper nisl, vitae fringilla nisl. Integer non consectetur risus, fringilla facilisis justo. Donec lacinia id erat at imperdiet. Mauris mattis nunc orci, nec pharetra urna aliquam in.</p>
+					
+					<footer>
+						<strong>Article footer</strong>: Posted in <span class="tag red">Single-player</span> <span class="tag blue">Multiplayer</span> <span class="tag purple">RPG</span>
+					</footer>
 
-        <p><em>Article sample content</em>. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis dui nec imperdiet tincidunt. Quisque luctus enim nunc, congue venenatis felis auctor in. Ut ut rutrum ipsum. Sed tempor, dolor id dignissim rhoncus, elit purus vestibulum mi, semper vehicula ante ipsum non lectus. Ut eu viverra neque. Mauris congue efficitur mauris, quis efficitur ante placerat et. Maecenas facilisis molestie massa sit amet sodales. Phasellus rutrum justo quis nulla vestibulum, eget mattis sapien blandit. Cras vitae risus nulla. </p>
-        
-        <p>Sed dictum sem non eros suscipit pharetra. Aliquam posuere turpis at enim sodales, eu malesuada nibh vehicula. Cras dignissim nec lectus et aliquet. Duis sed nulla vitae nisi maximus consequat id a eros. Pellentesque sollicitudin libero at erat maximus, nec ullamcorper mi posuere.</p>
-        
-        <p>Etiam ultrices placerat ligula sed bibendum. Fusce urna metus, sollicitudin at odio vitae, rutrum tincidunt orci. Praesent ultricies justo mi, at vehicula diam posuere eget. Maecenas gravida id nisi quis tempus. Fusce consectetur mauris non ligula aliquam, et fermentum est imperdiet. Cras vitae tortor sed dui mollis blandit. Maecenas aliquet purus ut egestas placerat. Vestibulum pharetra rhoncus nisi. Nunc dictum luctus metus. Donec placerat blandit urna, quis mollis erat fringilla eget.</p>
-        
-        <p>Aliquam scelerisque viverra mi. Aenean eu fringilla dolor. In tristique tincidunt metus vitae interdum. Aliquam eu ante sit amet risus rhoncus finibus non quis lacus. Integer in semper nisl, vitae fringilla nisl. Integer non consectetur risus, fringilla facilisis justo. Donec lacinia id erat at imperdiet. Mauris mattis nunc orci, nec pharetra urna aliquam in.</p>
-        
-        <footer>
-          <strong>Article footer</strong>: Posted in <span class="tag red">Single-player</span> <span class="tag blue">Multiplayer</span> <span class="tag purple">RPG</span>
-        </footer>
+				</article>
+			</main>
+		</div>
+	</div>
 
-      </article>
-    </main>
-
-  </div>
+  <p class="note"><strong>Keep it navigable:</strong> include a descriptive <code>alt</code> on images, add a <code>datetime</code> attribute to <code>&lt;time&gt;</code> for machine-readable dates, and keep author links accessible with clear focus styles.</p>
 
   <div class="code-example">
-    
-    <input type="checkbox" id="code-article">
-    <label for="code-article" title="Show/hide example code">
-      <svg class="code">
-        <use xlink:href="/images/icons.svg#code"></use>
-      </svg>
-      <svg class="clear">
-        <use xlink:href="/images/icons.svg#clear"></use>
-      </svg>
-    </label>
-    
     <pre><code class="html">&lt;article&gt;
   &lt;header&gt;
     &lt;h2&gt;Article title&lt;/h2&gt;
