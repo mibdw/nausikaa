@@ -497,7 +497,7 @@ const nav = [
         slug: "utilities",
         color: "green",
         description: [
-          "<em>Utilities</em> are helper classes that can be used to quickly style elements without writing custom CSS. They cover common needs such as spacing, colors, display properties, and more. <u>Nausikaä</u> provides a set of utility classes to speed up your development process.",
+          "<em>Utilities</em> are small, single-purpose components that provide additional functionality to a website. They are often used in combination with other elements, components, or collections to enhance the user experience. Most require some JavaScript to function properly.",
         ],
         nav: [
           {
@@ -513,6 +513,13 @@ const nav = [
             icon: "date-picker",
             description:
               "An interactive component for selecting dates from a calendar view.",
+          },
+          {
+            title: "Editor",
+            slug: "editor",
+            icon: "edit",
+            description:
+              "A rich text editor for creating and formatting content directly within the browser.",
           },
         ],
       },
