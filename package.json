@@ -11,13 +11,20 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
     "concurrently": "^9.2.1",
+    "date-fns": "^4.1.0",
     "nodemon": "^3.1.11",
-    "sass": "^1.94.1"
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "sass": "^1.94.1",
+    "vite": "^7.2.7"
   },
   "scripts": {
     "dev": "concurrently \"sass styles/light.scss public/styles/nausikaa-light.min.css --watch --style=compressed --no-source-map --quiet-deps\" \"sass styles/dark.scss public/styles/nausikaa-dark.min.css --watch --style=compressed --no-source-map --quiet-deps\" \"nodemon app -e js,ejs,css --watch\"",
-    "build": "concurrently \"sass styles/light.scss public/styles/nausikaa-light.min.css --style=compressed --no-source-map --quiet-deps\" \"sass styles/dark.scss public/styles/nausikaa-dark.min.css --style=compressed --no-source-map --quiet-deps\""
+    "build": "concurrently \"sass styles/light.scss public/styles/nausikaa-light.min.css --style=compressed --no-source-map --quiet-deps\" \"sass styles/dark.scss public/styles/nausikaa-dark.min.css --style=compressed --no-source-map --quiet-deps\"",
+    "build:calendar-demo": "vite build --config vite.calendar-demo.config.js",
+    "build:calendar-lib": "npm run build --prefix utilities/Calendar"
   },
   "author": "MIBDW",
   "license": "none"

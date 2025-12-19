@@ -9,7 +9,7 @@ const nav = [
         color: "yellow",
         description: [
           "The majority of elements in Hypertext Markup Language (HTML) are covered in the <em>Elements</em> section. These are the building blocks of every website, with no to little CSS classes to be learned. All basic tags like <code>&lt;a&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;table&gt;</code> and <code>&lt;img&gt;</code> are covered. As well as <code>&lt;form&gt;</code> tags like <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> and <code>&lt;textarea&gt;</code>.",
-          'Newer elements from the HTML5 spec are still in development, like <code>&lt;meter&gt;</code>, <code>&lt;input type="range"&gt;</code> and <code>&lt;input type="color"&gt;</code>. The goal is for someday to make <u>Nausikaä</u> HTML5 complete one day. If you have any elements you would like to see, please let me know.',
+          'Newer elements from the HTML5 spec are missing at the moment, like <code>&lt;meter&gt;</code>, <code>&lt;input type="range"&gt;</code> and <code>&lt;input type="color"&gt;</code>. But if you have any requests, please let me know!',
         ],
         nav: [
           {
@@ -497,7 +497,7 @@ const nav = [
         slug: "utilities",
         color: "green",
         description: [
-          "<em>Utilities</em> are small, single-purpose components that provide additional functionality to a website. They are often used in combination with other elements, components, or collections to enhance the user experience. Most require some JavaScript to function properly.",
+          "<em>Utilities</em> are small, single-purpose components that provide additional functionality to a website. They are often used in combination with other elements, components, or collections to enhance the user experience. <strong>React</strong> is required to make use of <em>Utilities</em> in <u>Nausikaä</u>.",
         ],
         nav: [
           {
@@ -519,7 +519,7 @@ const nav = [
             slug: "editor",
             icon: "edit",
             description:
-              "A rich text editor for creating and formatting content directly within the browser.",
+              "A rich text editor for creating and formatting content directly within the browser. Based on <strong>Tiptap</strong>.",
           },
         ],
       },

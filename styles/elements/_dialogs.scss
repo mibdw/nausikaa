@@ -10,6 +10,7 @@ dialog {
   border-radius: 6px;
   background-color: $base;
   color: $text;
+  z-index: 9999;
 
   & > h1,
   & > h2,
@@ -93,6 +94,7 @@ dialog {
     background-color: rgba(0, 0, 0, 0.8);
     animation: showBackdrop 0.3s ease normal;
     backdrop-filter: blur(2px);
+    z-index: 9998;
   }
 
   &.hide::backdrop,

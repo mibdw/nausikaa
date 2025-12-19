@@ -40,6 +40,7 @@
     h1 {
       grid-column: 7 / 12;
       text-decoration: underline solid $yellow3;
+      text-decoration-thickness: 6px;
       -webkit-text-decoration: underline solid $yellow3;
       text-align: right;
     }
@@ -54,6 +55,10 @@
   .site-overview,
   hr {
     grid-column: 1 / 13;
+
+    & > h2 {
+      text-decoration-thickness: 6px;
+    }
   }
 
   @media (min-width: 667px) and (max-width: 900px) {
@@ -131,6 +136,13 @@
   &.collections > article {
     & > header > h1 {
       text-decoration: underline solid $blue3;
+      text-decoration-thickness: 6px;
+    }
+  }
+
+  &.utilities > article {
+    & > header > h1 {
+      text-decoration: underline solid $green3;
       text-decoration-thickness: 6px;
     }
   }

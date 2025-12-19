@@ -1,0 +1,35 @@
+{
+  "name": "@nausikaa/calendar",
+  "version": "0.0.1",
+  "description": "Reusable React calendar component.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17",
+    "date-fns": ">=3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^5.2.0"
+  },
+  "scripts": {
+    "build": "vite build --config vite.config.js",
+    "clean": "rm -rf dist"
+  }
+}

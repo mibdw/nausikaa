@@ -192,6 +192,7 @@
       margin-bottom: 0;
       border: 1px solid transparent;
       text-decoration: none;
+      background-color: transparent;
 
       &:hover,
       &:focus,
@@ -211,7 +212,8 @@
     }
 
     &.active > a {
-      background-color: $base;
+      background-color: rgba($base, 0.9);
+      color: $text;
 
       & > .icon {
         fill: $text;
@@ -233,27 +235,27 @@
         background-color: transparent;
 
         &:hover {
-          background-color: $surface1;
+          background-color: rgba($base, 0.3);
         }
 
         &:focus {
-          border-color: $surface2;
-          box-shadow: 0 0 0 2px $surface2;
+          border-color: rgba($base, 0.6);
+          box-shadow: 0 0 0 2px rgba($base, 0.6);
         }
       }
 
       &:focus-within > a {
         background-color: transparent;
-        border-color: $surface2;
-        box-shadow: 0 0 0 2px $surface2;
+        border-color: rgba($base, 0.6);
+        box-shadow: 0 0 0 2px rgba($base, 0.6);
       }
 
       &.active > a {
-        background-color: $overlay0;
-        color: $white;
+        background-color: rgba($base, 0.5);
+        color: $text;
 
         .icon {
-          fill: rgba($white, 0.8);
+          fill: rgba($base, 0.8);
         }
       }
     }

@@ -47,6 +47,11 @@
 @forward "collections/_users.scss";
 @forward "collections/_editor.scss";
 
+/* UTILITIES */
+@forward "utilities/_calendar.scss";
+@forward "utilities/_date-picker.scss";
+@forward "utilities/_editor.scss";
+
 /* LAYOUT */
 @forward "layout/_responsive.scss";
 @forward "layout/_buildings.scss";
