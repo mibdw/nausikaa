@@ -1,61 +1,61 @@
 
 a,
 .link {
-  color: var(--link-color);
-  text-decoration: underline solid var(--link-line);
-  -webkit-text-decoration: underline solid var(--link-line);
+  color: var(--nausikaa-link-color);
+  text-decoration: underline solid var(--nausikaa-link-line);
+  -webkit-text-decoration: underline solid var(--nausikaa-link-line);
   /* cursor: pointer; */
 
   &.hover,
   &:hover {
-    color: var(--link-hover);
-    text-decoration: underline solid var(--link-line);
-    -webkit-text-decoration: underline solid var(--link-line);
+    color: var(--nausikaa-link-hover);
+    text-decoration: underline solid var(--nausikaa-link-line);
+    -webkit-text-decoration: underline solid var(--nausikaa-link-line);
   }
 
   &.focus,
   &:focus {
     outline-width: 0;
-    color: var(--link-active);
-    text-decoration: underline solid var(--link-line);
-    -webkit-text-decoration: underline solid var(--link-line);
-    outline: 1px dotted var(--subtext0);
+    color: var(--nausikaa-link-active);
+    text-decoration: underline solid var(--nausikaa-link-line);
+    -webkit-text-decoration: underline solid var(--nausikaa-link-line);
+    outline: 1px dotted var(--nausikaa-subtext0);
   }
 
   &.active,
   &:active {
-    color: var(--link-active);
-    text-decoration: underline solid var(--text);
-    -webkit-text-decoration: underline solid var(--text);
+    color: var(--nausikaa-link-active);
+    text-decoration: underline solid var(--nausikaa-text);
+    -webkit-text-decoration: underline solid var(--nausikaa-text);
   }
 
   &.visited,
   &:visited {
-    color: var(--link-visited);
-    text-decoration: underline solid var(--link-visited);
-    -webkit-text-decoration: underline solid var(--link-visited);
+    color: var(--nausikaa-link-visited);
+    text-decoration: underline solid var(--nausikaa-link-visited);
+    -webkit-text-decoration: underline solid var(--nausikaa-link-visited);
 
     &.hover,
     &:hover {
-      color: var(--link-hover);
-      text-decoration: underline solid var(--link-visited);
-      -webkit-text-decoration: underline solid var(--link-visited);
+      color: var(--nausikaa-link-hover);
+      text-decoration: underline solid var(--nausikaa-link-visited);
+      -webkit-text-decoration: underline solid var(--nausikaa-link-visited);
     }
 
     &.focus,
     &:focus {
       outline-width: 0;
-      color: var(--link-active);
-      text-decoration: underline solid var(--link-visited);
-      -webkit-text-decoration: underline solid var(--link-visited);
-      outline: 1px dotted var(--subtext0);
+      color: var(--nausikaa-link-active);
+      text-decoration: underline solid var(--nausikaa-link-visited);
+      -webkit-text-decoration: underline solid var(--nausikaa-link-visited);
+      outline: 1px dotted var(--nausikaa-subtext0);
     }
 
     &.active,
     &:active {
-      color: var(--link-active);
-      text-decoration: underline solid var(--text);
-      -webkit-text-decoration: underline solid var(--text);
+      color: var(--nausikaa-link-active);
+      text-decoration: underline solid var(--nausikaa-text);
+      -webkit-text-decoration: underline solid var(--nausikaa-text);
     }
   }
 
@@ -72,22 +72,22 @@ a,
  */
 .knobs > li > a,
 .knob {
-  --knob-background: var(--base);
-  --knob-text: var(--text);
-  --knob-border: var(--surface1);
-  --knob-hover: var(--surface1);
-  --knob-active: var(--overlay1);
-  --knob-active-text: var(--ink);
-  --knob-text-disabled: rgba(var(--text-rgb), 0.5);
+  --nausikaa-knob-background: var(--nausikaa-base);
+  --nausikaa-knob-text: var(--nausikaa-text);
+  --nausikaa-knob-border: var(--nausikaa-surface1);
+  --nausikaa-knob-hover: var(--nausikaa-surface1);
+  --nausikaa-knob-active: var(--nausikaa-overlay1);
+  --nausikaa-knob-active-text: var(--nausikaa-ink);
+  --nausikaa-knob-text-disabled: rgba(var(--nausikaa-text-rgb), 0.5);
 
-  background-color: var(--knob-background);
-  color: var(--knob-text);
-  border: 1px solid var(--knob-border);
+  background-color: var(--nausikaa-knob-background);
+  color: var(--nausikaa-knob-text);
+  border: 1px solid var(--nausikaa-knob-border);
   cursor: pointer;
   display: inline-block;
-  font-family: var(--utility-text);
-  height: var(--input-height);
-  line-height: var(--input-height);
+  font-family: var(--nausikaa-utility-text);
+  height: var(--nausikaa-input-height);
+  line-height: var(--nausikaa-input-height);
   padding: 0 1em;
   margin: 0 0.4rem 0.4rem 0;
   text-decoration: none;
@@ -96,26 +96,26 @@ a,
 
   &:hover,
   &.hover {
-    background-color: var(--knob-hover);
-    color: var(--knob-text);
+    background-color: var(--nausikaa-knob-hover);
+    color: var(--nausikaa-knob-text);
   }
 
   &:focus,
   &.focus {
-    background-color: var(--knob-hover);
-    color: var(--knob-text);
-    border-color: var(--knob-border);
-    box-shadow: 0 0 0 2px var(--knob-border);
+    background-color: var(--nausikaa-knob-hover);
+    color: var(--nausikaa-knob-text);
+    border-color: var(--nausikaa-knob-border);
+    box-shadow: 0 0 0 2px var(--nausikaa-knob-border);
   }
 
   &:active,
   &.active {
-    background-color: var(--knob-active);
-    border-color: var(--knob-active);
-    color: var(--knob-active-text);
+    background-color: var(--nausikaa-knob-active);
+    border-color: var(--nausikaa-knob-active);
+    color: var(--nausikaa-knob-active-text);
 
     & > .icon {
-      fill: var(--knob-active-text);
+      fill: var(--nausikaa-knob-active-text);
     }
   }
 
@@ -132,7 +132,7 @@ a,
 
   &.disabled,
   &:disabled {
-    color: var(--knob-text-disabled);
+    color: var(--nausikaa-knob-text-disabled);
     pointer-events: none;
     cursor: not-allowed;
 
@@ -143,7 +143,7 @@ a,
   }
 
   & > .icon {
-    fill: var(--knob-active);
+    fill: var(--nausikaa-knob-active);
     transform-origin: center center;
     transform: scale(1.6, 1.6) translateY(0.1em);
     margin-right: 0.5em;
@@ -154,162 +154,162 @@ a,
   }
 
   &.rosewater {
-    --knob-background: var(--rosewater0);
-    --knob-text: var(--ink);
-    --knob-border: var(--rosewater3);
-    --knob-hover: var(--rosewater2);
-    --knob-active: var(--rosewater3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-rosewater0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-rosewater3);
+    --nausikaa-knob-hover: var(--nausikaa-rosewater2);
+    --nausikaa-knob-active: var(--nausikaa-rosewater3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.flamingo {
-    --knob-background: var(--flamingo0);
-    --knob-text: var(--ink);
-    --knob-border: var(--flamingo3);
-    --knob-hover: var(--flamingo2);
-    --knob-active: var(--flamingo3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-flamingo0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-flamingo3);
+    --nausikaa-knob-hover: var(--nausikaa-flamingo2);
+    --nausikaa-knob-active: var(--nausikaa-flamingo3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.pink {
-    --knob-background: var(--pink0);
-    --knob-text: var(--ink);
-    --knob-border: var(--pink3);
-    --knob-hover: var(--pink2);
-    --knob-active: var(--pink3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-pink0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-pink3);
+    --nausikaa-knob-hover: var(--nausikaa-pink2);
+    --nausikaa-knob-active: var(--nausikaa-pink3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.mauve {
-    --knob-background: var(--mauve0);
-    --knob-text: var(--ink);
-    --knob-border: var(--mauve3);
-    --knob-hover: var(--mauve2);
-    --knob-active: var(--mauve3);
-    --knob-active-text: var(--white);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-mauve0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-mauve3);
+    --nausikaa-knob-hover: var(--nausikaa-mauve2);
+    --nausikaa-knob-active: var(--nausikaa-mauve3);
+    --nausikaa-knob-active-text: var(--nausikaa-white);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.red {
-    --knob-background: var(--red0);
-    --knob-text: var(--ink);
-    --knob-border: var(--red3);
-    --knob-hover: var(--red2);
-    --knob-active: var(--red3);
-    --knob-active-text: var(--white);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-red0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-red3);
+    --nausikaa-knob-hover: var(--nausikaa-red2);
+    --nausikaa-knob-active: var(--nausikaa-red3);
+    --nausikaa-knob-active-text: var(--nausikaa-white);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.maroon {
-    --knob-background: var(--maroon0);
-    --knob-text: var(--ink);
-    --knob-border: var(--maroon3);
-    --knob-hover: var(--maroon2);
-    --knob-active: var(--maroon3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-maroon0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-maroon3);
+    --nausikaa-knob-hover: var(--nausikaa-maroon2);
+    --nausikaa-knob-active: var(--nausikaa-maroon3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.peach {
-    --knob-background: var(--peach0);
-    --knob-text: var(--ink);
-    --knob-border: var(--peach3);
-    --knob-hover: var(--peach2);
-    --knob-active: var(--peach3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-peach0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-peach3);
+    --nausikaa-knob-hover: var(--nausikaa-peach2);
+    --nausikaa-knob-active: var(--nausikaa-peach3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.yellow {
-    --knob-background: var(--yellow0);
-    --knob-text: var(--ink);
-    --knob-border: var(--yellow3);
-    --knob-hover: var(--yellow2);
-    --knob-active: var(--yellow3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-yellow0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-yellow3);
+    --nausikaa-knob-hover: var(--nausikaa-yellow2);
+    --nausikaa-knob-active: var(--nausikaa-yellow3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.green {
-    --knob-background: var(--green0);
-    --knob-text: var(--ink);
-    --knob-border: var(--green3);
-    --knob-hover: var(--green2);
-    --knob-active: var(--green3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-green0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-green3);
+    --nausikaa-knob-hover: var(--nausikaa-green2);
+    --nausikaa-knob-active: var(--nausikaa-green3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.teal {
-    --knob-background: var(--teal0);
-    --knob-text: var(--ink);
-    --knob-border: var(--teal3);
-    --knob-hover: var(--teal2);
-    --knob-active: var(--teal3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-teal0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-teal3);
+    --nausikaa-knob-hover: var(--nausikaa-teal2);
+    --nausikaa-knob-active: var(--nausikaa-teal3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.sky {
-    --knob-background: var(--sky0);
-    --knob-text: var(--ink);
-    --knob-border: var(--sky3);
-    --knob-hover: var(--sky2);
-    --knob-active: var(--sky3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-sky0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-sky3);
+    --nausikaa-knob-hover: var(--nausikaa-sky2);
+    --nausikaa-knob-active: var(--nausikaa-sky3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.sapphire {
-    --knob-background: var(--sapphire0);
-    --knob-text: var(--ink);
-    --knob-border: var(--sapphire3);
-    --knob-hover: var(--sapphire2);
-    --knob-active: var(--sapphire3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-sapphire0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-sapphire3);
+    --nausikaa-knob-hover: var(--nausikaa-sapphire2);
+    --nausikaa-knob-active: var(--nausikaa-sapphire3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.blue {
-    --knob-background: var(--blue0);
-    --knob-text: var(--ink);
-    --knob-border: var(--blue3);
-    --knob-hover: var(--blue2);
-    --knob-active: var(--blue3);
-    --knob-active-text: var(--white);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-blue0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-blue3);
+    --nausikaa-knob-hover: var(--nausikaa-blue2);
+    --nausikaa-knob-active: var(--nausikaa-blue3);
+    --nausikaa-knob-active-text: var(--nausikaa-white);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.lavender {
-    --knob-background: var(--lavender0);
-    --knob-text: var(--ink);
-    --knob-border: var(--lavender3);
-    --knob-hover: var(--lavender2);
-    --knob-active: var(--lavender3);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(34, 34, 34, 0.5);
+    --nausikaa-knob-background: var(--nausikaa-lavender0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-lavender3);
+    --nausikaa-knob-hover: var(--nausikaa-lavender2);
+    --nausikaa-knob-active: var(--nausikaa-lavender3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
   &.gray {
-    --knob-background: var(--surface0);
-    --knob-text: var(--text);
-    --knob-border: var(--overlay0);
-    --knob-hover: var(--surface2);
-    --knob-active: var(--overlay0);
-    --knob-active-text: var(--ink);
-    --knob-text-disabled: rgba(var(--text-rgb), 0.5);
+    --nausikaa-knob-background: var(--nausikaa-surface0);
+    --nausikaa-knob-text: var(--nausikaa-text);
+    --nausikaa-knob-border: var(--nausikaa-overlay0);
+    --nausikaa-knob-hover: var(--nausikaa-surface2);
+    --nausikaa-knob-active: var(--nausikaa-overlay0);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(var(--nausikaa-text-rgb), 0.5);
   }
 
   &.transparent {
-    --knob-background: rgba(0, 0, 0, 0);
-    --knob-text: var(--text);
-    --knob-border: var(--overlay0);
-    --knob-hover: var(--surface2);
-    --knob-active: var(--subtext0);
-    --knob-active-text: var(--text-inverse);
-    --knob-text-disabled: rgba(var(--text-rgb), 0.5);
+    --nausikaa-knob-background: rgba(0, 0, 0, 0);
+    --nausikaa-knob-text: var(--nausikaa-text);
+    --nausikaa-knob-border: var(--nausikaa-overlay0);
+    --nausikaa-knob-hover: var(--nausikaa-surface2);
+    --nausikaa-knob-active: var(--nausikaa-subtext0);
+    --nausikaa-knob-active-text: var(--nausikaa-text-inverse);
+    --nausikaa-knob-text-disabled: rgba(var(--nausikaa-text-rgb), 0.5);
   }
 }

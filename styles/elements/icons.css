@@ -1,6 +1,6 @@
 
 .icon {
-  fill: var(--text);
-  width: var(--font-size);
-  height: var(--font-size);
+  fill: var(--nausikaa-text);
+  width: var(--nausikaa-font-size);
+  height: var(--nausikaa-font-size);
 }

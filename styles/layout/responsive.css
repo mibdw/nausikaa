@@ -1,11 +1,11 @@
 
 @media (min-width: 320px) and (max-width: 666px) {
   body {
-    font-size: calc(var(--font-size) * 0.9);
-    line-height: calc(var(--line-height) * 0.9);
+    font-size: calc(var(--nausikaa-font-size) * 0.9);
+    line-height: calc(var(--nausikaa-line-height) * 0.9);
 
     & > main {
-      padding: var(--paragraph-spacer) 0.5em;
+      padding: var(--nausikaa-paragraph-spacer) 0.5em;
       max-width: 100vw;
     }
   }
@@ -13,11 +13,11 @@
 
 @media (min-width: 667px) and (max-width: 900px) {
   body {
-    font-size: calc(var(--font-size) * 0.95);
-    line-height: calc(var(--line-height) * 0.95);
+    font-size: calc(var(--nausikaa-font-size) * 0.95);
+    line-height: calc(var(--nausikaa-line-height) * 0.95);
 
     & > main {
-      padding: var(--paragraph-spacer) 1em;
+      padding: var(--nausikaa-paragraph-spacer) 1em;
       max-width: 100vw;
     }
   }
@@ -29,8 +29,8 @@
     padding: 0;
     max-width: 100vw;
     overflow-x: hidden;
-    font-size: var(--font-size);
-    line-height: var(--line-height);
+    font-size: var(--nausikaa-font-size);
+    line-height: var(--nausikaa-line-height);
 
     & > .navbar {
       padding-left: calc((50vw - 575px) + 1em);
@@ -41,7 +41,7 @@
 
     & > main {
       max-width: 1150px;
-      min-height: calc(100vh - (2 * var(--header-height)));
+      min-height: calc(100vh - (2 * var(--nausikaa-header-height)));
       padding: 2em 1em;
       margin: 0 auto;
       display: grid;
@@ -72,7 +72,7 @@
       max-width: 1150px;
       padding: 0.5em 1em 1.5em;
       margin: 0 auto;
-      border-top: 1px solid var(--mantle);
+      border-top: 1px solid var(--nausikaa-mantle);
       text-align: right;
 
       & > a {

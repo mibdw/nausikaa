@@ -3,14 +3,14 @@
  * rules that use them are written once.
  */
 .tag {
-  --tag-text: var(--text);
-  --tag-background: var(--surface1);
-  --tag-hover: var(--surface1);
-  --tag-icon: var(--subtext0);
+  --nausikaa-tag-text: var(--nausikaa-text);
+  --nausikaa-tag-background: var(--nausikaa-surface1);
+  --nausikaa-tag-hover: var(--nausikaa-surface1);
+  --nausikaa-tag-icon: var(--nausikaa-subtext0);
 
-  color: var(--tag-text);
-  background-color: var(--tag-background);
-  font-family: var(--utility-text);
+  color: var(--nausikaa-tag-text);
+  background-color: var(--nausikaa-tag-background);
+  font-family: var(--nausikaa-utility-text);
   font-weight: 200;
   display: inline-block;
   border-radius: 3px;
@@ -31,7 +31,7 @@
   }
 
   & > .icon {
-    fill: var(--tag-icon);
+    fill: var(--nausikaa-tag-icon);
     width: 1.3em;
     height: 1.3em;
     transform: translateY(0.25em);
@@ -39,11 +39,11 @@
 
   &:hover,
   &.hover {
-    color: var(--tag-text);
-    background-color: var(--tag-hover);
+    color: var(--nausikaa-tag-text);
+    background-color: var(--nausikaa-tag-hover);
 
     & > .icon {
-      fill: var(--tag-text);
+      fill: var(--nausikaa-tag-text);
     }
   }
 
@@ -56,206 +56,206 @@
   }
 
   &.alt {
-    --tag-text: var(--text-inverse);
-    --tag-background: var(--overlay1);
-    --tag-hover: var(--overlay2);
-    --tag-icon: #d9d9d9;
+    --nausikaa-tag-text: var(--nausikaa-text-inverse);
+    --nausikaa-tag-background: var(--nausikaa-overlay1);
+    --nausikaa-tag-hover: var(--nausikaa-overlay2);
+    --nausikaa-tag-icon: #d9d9d9;
   }
 
   &.rosewater {
-    --tag-text: var(--ink);
-    --tag-background: var(--rosewater3);
-    --tag-hover: #d77864;
-    --tag-icon: var(--rosewater2);
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-rosewater3);
+    --nausikaa-tag-hover: #d77864;
+    --nausikaa-tag-icon: var(--nausikaa-rosewater2);
   }
 
   &.flamingo {
-    --tag-text: var(--ink);
-    --tag-background: var(--flamingo3);
-    --tag-hover: #d86464;
-    --tag-icon: var(--flamingo2);
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-flamingo3);
+    --nausikaa-tag-hover: #d86464;
+    --nausikaa-tag-icon: var(--nausikaa-flamingo2);
   }
 
   &.pink {
-    --tag-text: var(--ink);
-    --tag-background: var(--pink3);
-    --tag-hover: #e760c3;
-    --tag-icon: var(--pink2);
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-pink3);
+    --nausikaa-tag-hover: #e760c3;
+    --nausikaa-tag-icon: var(--nausikaa-pink2);
   }
 
   &.mauve {
-    --tag-text: var(--white);
-    --tag-background: var(--mauve3);
-    --tag-hover: #7a21ed;
-    --tag-icon: var(--mauve2);
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-mauve3);
+    --nausikaa-tag-hover: #7a21ed;
+    --nausikaa-tag-icon: var(--nausikaa-mauve2);
   }
 
   &.purple {
-    --tag-text: var(--white);
-    --tag-background: #9933ff;
-    --tag-hover: #a64dff;
-    --tag-icon: #e6ccff;
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: #9933ff;
+    --nausikaa-tag-hover: #a64dff;
+    --nausikaa-tag-icon: #e6ccff;
   }
 
   &.red {
-    --tag-text: var(--white);
-    --tag-background: var(--red3);
-    --tag-hover: #ba0d33;
-    --tag-icon: var(--red2);
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-red3);
+    --nausikaa-tag-hover: #ba0d33;
+    --nausikaa-tag-icon: var(--nausikaa-red2);
   }
 
   &.maroon {
-    --tag-text: var(--white);
-    --tag-background: var(--maroon3);
-    --tag-hover: #e32f3e;
-    --tag-icon: var(--maroon2);
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-maroon3);
+    --nausikaa-tag-hover: #e32f3e;
+    --nausikaa-tag-icon: var(--nausikaa-maroon2);
   }
 
   &.peach {
-    --tag-text: var(--ink);
-    --tag-background: var(--peach3);
-    --tag-hover: #ef5801;
-    --tag-icon: var(--peach2);
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-peach3);
+    --nausikaa-tag-hover: #ef5801;
+    --nausikaa-tag-icon: var(--nausikaa-peach2);
   }
 
   &.orange {
-    --tag-text: var(--ink);
-    --tag-background: #d35400;
-    --tag-hover: #e65c00;
-    --tag-icon: #ffa366;
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: #d35400;
+    --nausikaa-tag-hover: #e65c00;
+    --nausikaa-tag-icon: #ffa366;
   }
 
   &.yellow {
-    --tag-text: var(--ink);
-    --tag-background: var(--yellow3);
-    --tag-hover: #c8801a;
-    --tag-icon: var(--yellow2);
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-yellow3);
+    --nausikaa-tag-hover: #c8801a;
+    --nausikaa-tag-icon: var(--nausikaa-yellow2);
   }
 
   &.green {
-    --tag-text: var(--ink);
-    --tag-background: var(--green3);
-    --tag-hover: #388c26;
-    --tag-icon: var(--green2);
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-green3);
+    --nausikaa-tag-hover: #388c26;
+    --nausikaa-tag-icon: var(--nausikaa-green2);
   }
 
   &.teal {
-    --tag-text: var(--white);
-    --tag-background: var(--teal3);
-    --tag-hover: #147d83;
-    --tag-icon: var(--teal2);
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-teal3);
+    --nausikaa-tag-hover: #147d83;
+    --nausikaa-tag-icon: var(--nausikaa-teal2);
   }
 
   &.sky {
-    --tag-text: var(--ink);
-    --tag-background: var(--sky3);
-    --tag-hover: var(--input-line-focus);
-    --tag-icon: var(--sky2);
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-sky3);
+    --nausikaa-tag-hover: var(--nausikaa-input-line-focus);
+    --nausikaa-tag-icon: var(--nausikaa-sky2);
   }
 
   &.sapphire {
-    --tag-text: var(--ink);
-    --tag-background: var(--sapphire3);
-    --tag-hover: #1c8c9f;
-    --tag-icon: var(--sapphire2);
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-sapphire3);
+    --nausikaa-tag-hover: #1c8c9f;
+    --nausikaa-tag-icon: var(--nausikaa-sapphire2);
   }
 
   &.blue {
-    --tag-text: var(--white);
-    --tag-background: var(--blue3);
-    --tag-hover: #0b57ef;
-    --tag-icon: var(--blue2);
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-blue3);
+    --nausikaa-tag-hover: #0b57ef;
+    --nausikaa-tag-icon: var(--nausikaa-blue2);
   }
 
   &.lavender {
-    --tag-text: var(--ink);
-    --tag-background: var(--lavender3);
-    --tag-hover: #5972fd;
-    --tag-icon: var(--lavender2);
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-lavender3);
+    --nausikaa-tag-hover: #5972fd;
+    --nausikaa-tag-icon: var(--nausikaa-lavender2);
   }
 
   &.navy {
-    --tag-text: var(--white);
-    --tag-background: navy;
-    --tag-hover: #00009a;
-    --tag-icon: #8080ff;
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: navy;
+    --nausikaa-tag-hover: #00009a;
+    --nausikaa-tag-icon: #8080ff;
   }
 
   &.olive {
-    --tag-text: var(--ink);
-    --tag-background: olive;
-    --tag-hover: #9a9a00;
-    --tag-icon: #cdcd00;
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: olive;
+    --nausikaa-tag-hover: #9a9a00;
+    --nausikaa-tag-icon: #cdcd00;
   }
 
   &.salmon {
-    --tag-text: var(--ink);
-    --tag-background: salmon;
-    --tag-hover: #fb968b;
-    --tag-icon: #fdc3bc;
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: salmon;
+    --nausikaa-tag-hover: #fb968b;
+    --nausikaa-tag-icon: #fdc3bc;
   }
 
   &.magenta {
-    --tag-text: var(--ink);
-    --tag-background: var(--magenta);
-    --tag-hover: #ff1aff;
-    --tag-icon: #ffb3ff;
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-magenta);
+    --nausikaa-tag-hover: #ff1aff;
+    --nausikaa-tag-icon: #ffb3ff;
   }
 
   &.cyan {
-    --tag-text: var(--black);
-    --tag-background: aqua;
-    --tag-hover: #1affff;
-    --tag-icon: #00b3b3;
+    --nausikaa-tag-text: var(--nausikaa-black);
+    --nausikaa-tag-background: aqua;
+    --nausikaa-tag-hover: #1affff;
+    --nausikaa-tag-icon: #00b3b3;
   }
 
   &.lightgray {
-    --tag-text: var(--black);
-    --tag-background: var(--lightgray);
-    --tag-hover: #d9d9d9;
-    --tag-icon: #8c8c8c;
+    --nausikaa-tag-text: var(--nausikaa-black);
+    --nausikaa-tag-background: var(--nausikaa-lightgray);
+    --nausikaa-tag-hover: #d9d9d9;
+    --nausikaa-tag-icon: #8c8c8c;
   }
 
   &.darkgray {
-    --tag-text: var(--white);
-    --tag-background: var(--darkgray);
-    --tag-hover: #626262;
-    --tag-icon: #959595;
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-darkgray);
+    --nausikaa-tag-hover: #626262;
+    --nausikaa-tag-icon: #959595;
   }
 
   &.chocolate {
-    --tag-text: var(--white);
-    --tag-background: var(--chocolate);
-    --tag-hover: #804000;
-    --tag-icon: #b35900;
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-chocolate);
+    --nausikaa-tag-hover: #804000;
+    --nausikaa-tag-icon: #b35900;
   }
 
   &.black {
-    --tag-text: var(--white);
-    --tag-background: var(--black);
-    --tag-hover: #222234;
-    --tag-icon: #8989b3;
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-black);
+    --nausikaa-tag-hover: #222234;
+    --nausikaa-tag-icon: #8989b3;
   }
 
   &.forest {
-    --tag-text: var(--white);
-    --tag-background: var(--forest);
-    --tag-hover: #9a9a00;
-    --tag-icon: #00b895;
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-forest);
+    --nausikaa-tag-hover: #9a9a00;
+    --nausikaa-tag-icon: #00b895;
   }
 
   &.royal {
-    --tag-text: var(--white);
-    --tag-background: var(--royal);
-    --tag-hover: #006caa;
-    --tag-icon: #008ddd;
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-royal);
+    --nausikaa-tag-hover: #006caa;
+    --nausikaa-tag-icon: #008ddd;
   }
 
   &.lemon {
-    --tag-text: var(--black);
-    --tag-background: var(--lemon);
-    --tag-hover: #ffff80;
-    --tag-icon: #cccc00;
+    --nausikaa-tag-text: var(--nausikaa-black);
+    --nausikaa-tag-background: var(--nausikaa-lemon);
+    --nausikaa-tag-hover: #ffff80;
+    --nausikaa-tag-icon: #cccc00;
   }
 }
 

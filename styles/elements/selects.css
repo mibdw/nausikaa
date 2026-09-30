@@ -1,8 +1,8 @@
 
 select {
-  font-family: var(--utility-text);
+  font-family: var(--nausikaa-utility-text);
   appearance: none;
-  background-color: var(--input-background);
+  background-color: var(--nausikaa-input-background);
   background-image: url(/images/chevron-down.svg);
   background-repeat: no-repeat;
   background-size: 2em 2em;
@@ -13,7 +13,7 @@ select {
   &:active,
   &:focus,
   &:hover {
-    background-image: var(--chevron-hover);
+    background-image: var(--nausikaa-chevron-hover);
 
     &[disabled] {
       background-image: url(/images/chevron-down.svg);
@@ -21,7 +21,7 @@ select {
   }
 
   &[multiple] {
-    min-height: calc(var(--input-height) * 2);
+    min-height: calc(var(--nausikaa-input-height) * 2);
     background-image: none;
     padding: 0.5em 0 0;
 
@@ -30,7 +30,7 @@ select {
     &[disabled]:focus,
     &[disabled]:hover {
       background-image: none;
-      background-color: var(--input-background-disabled);
+      background-color: var(--nausikaa-input-background-disabled);
     }
   }
 

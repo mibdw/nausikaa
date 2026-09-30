@@ -3,7 +3,7 @@ article,
 .article {
   & > header {
     padding-bottom: 0.5em;
-    border-bottom: 1px dotted var(--crust);
+    border-bottom: 1px dotted var(--nausikaa-crust);
 
     & > h1,
     & > h2,
@@ -15,41 +15,41 @@ article,
     }
 
     .meta {
-      font-family: var(--utility-text);
-      color: var(--subtext0);
+      font-family: var(--nausikaa-utility-text);
+      color: var(--nausikaa-subtext0);
 
       a {
-        color: var(--subtext0);
-        text-decoration: underline solid var(--subtext0);
+        color: var(--nausikaa-subtext0);
+        text-decoration: underline solid var(--nausikaa-subtext0);
       }
 
       time {
-        text-decoration-color: var(--subtext0);
+        text-decoration-color: var(--nausikaa-subtext0);
       }
     }
   }
 
   & > footer {
     clear: both;
-    font-family: var(--utility-text);
-    color: var(--subtext0);
-    border-top: 1px dotted var(--crust);
+    font-family: var(--nausikaa-utility-text);
+    color: var(--nausikaa-subtext0);
+    border-top: 1px dotted var(--nausikaa-crust);
     padding-top: 0.5em;
 
     a {
-      color: var(--subtext0);
-      text-decoration: underline solid var(--subtext0);
+      color: var(--nausikaa-subtext0);
+      text-decoration: underline solid var(--nausikaa-subtext0);
     }
 
     time {
-      text-decoration-color: var(--subtext0);
+      text-decoration-color: var(--nausikaa-subtext0);
     }
   }
 
   & > section,
   & > .section {
     padding-bottom: 1em;
-    border-bottom: 1px solid var(--crust);
+    border-bottom: 1px solid var(--nausikaa-crust);
 
     &:last-child {
       padding-bottom: 1em;

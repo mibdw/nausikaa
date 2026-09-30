@@ -1,13 +1,13 @@
 /*
- * Site overview. A color class only sets the --so-* custom properties.
+ * Site overview. A color class only sets the --nausikaa-so-* custom properties.
  */
 
 .site-overview {
-  --so-icon: var(--crust);
-  --so-header: var(--blue3);
-  --so-border: var(--crust);
-  --so-background: var(--mantle);
-  --so-active-text: var(--text);
+  --nausikaa-so-icon: var(--nausikaa-crust);
+  --nausikaa-so-header: var(--nausikaa-blue3);
+  --nausikaa-so-border: var(--nausikaa-crust);
+  --nausikaa-so-background: var(--nausikaa-mantle);
+  --nausikaa-so-active-text: var(--nausikaa-text);
 
   h1,
   h2,
@@ -15,57 +15,57 @@
   h4,
   h5,
   h6 {
-    text-decoration: underline solid var(--so-header);
+    text-decoration: underline solid var(--nausikaa-so-header);
   }
 
   u {
-    text-decoration: underline solid var(--so-header);
+    text-decoration: underline solid var(--nausikaa-so-header);
   }
 
   & > ul > li > a {
     & > .title {
-      color: var(--text);
-      text-decoration: underline solid var(--so-icon);
+      color: var(--nausikaa-text);
+      text-decoration: underline solid var(--nausikaa-so-icon);
     }
 
     & > .icon {
-      fill: var(--so-icon);
+      fill: var(--nausikaa-so-icon);
     }
 
     &:hover {
       & > .title {
-        text-decoration: underline solid var(--so-header);
+        text-decoration: underline solid var(--nausikaa-so-header);
       }
 
       & > .icon {
-        fill: var(--so-header);
+        fill: var(--nausikaa-so-header);
       }
     }
 
     &:focus {
-      color: var(--so-active-text);
+      color: var(--nausikaa-so-active-text);
       outline-width: 0;
-      border-color: var(--so-border);
-      background-color: var(--so-background);
+      border-color: var(--nausikaa-so-border);
+      background-color: var(--nausikaa-so-background);
 
       & > .title {
-        color: var(--so-active-text);
-        text-decoration: underline solid var(--so-header);
+        color: var(--nausikaa-so-active-text);
+        text-decoration: underline solid var(--nausikaa-so-header);
       }
 
       & > .icon {
-        fill: var(--so-active-text);
+        fill: var(--nausikaa-so-active-text);
       }
 
       & > .description {
-        color: var(--so-active-text);
+        color: var(--nausikaa-so-active-text);
       }
     }
 
     &:active {
       & > .title {
-        color: var(--text);
-        text-decoration: underline solid var(--text);
+        color: var(--nausikaa-text);
+        text-decoration: underline solid var(--nausikaa-text);
       }
     }
   }
@@ -104,14 +104,14 @@
 
       & > .title {
         font-size: 1.5em;
-        font-family: var(--utility-text);
+        font-family: var(--nausikaa-utility-text);
         font-weight: bold;
         line-height: 1.2;
         margin-bottom: 0.25em;
       }
 
       & > .description {
-        color: var(--text);
+        color: var(--nausikaa-text);
       }
 
       &:hover {
@@ -141,58 +141,58 @@
   }
 
   &.yellow {
-    --so-icon: var(--yellow2);
-    --so-header: var(--yellow3);
-    --so-border: var(--yellow1);
-    --so-background: var(--yellow0);
-    --so-active-text: var(--black);
+    --nausikaa-so-icon: var(--nausikaa-yellow2);
+    --nausikaa-so-header: var(--nausikaa-yellow3);
+    --nausikaa-so-border: var(--nausikaa-yellow1);
+    --nausikaa-so-background: var(--nausikaa-yellow0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
   }
 
   &.red {
-    --so-icon: var(--red2);
-    --so-header: var(--red3);
-    --so-border: var(--red1);
-    --so-background: var(--red0);
-    --so-active-text: var(--black);
+    --nausikaa-so-icon: var(--nausikaa-red2);
+    --nausikaa-so-header: var(--nausikaa-red3);
+    --nausikaa-so-border: var(--nausikaa-red1);
+    --nausikaa-so-background: var(--nausikaa-red0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
   }
 
   &.blue {
-    --so-icon: var(--blue2);
-    --so-header: var(--blue3);
-    --so-border: var(--blue1);
-    --so-background: var(--blue0);
-    --so-active-text: var(--black);
+    --nausikaa-so-icon: var(--nausikaa-blue2);
+    --nausikaa-so-header: var(--nausikaa-blue3);
+    --nausikaa-so-border: var(--nausikaa-blue1);
+    --nausikaa-so-background: var(--nausikaa-blue0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
   }
 
   &.green {
-    --so-icon: var(--green2);
-    --so-header: var(--green3);
-    --so-border: var(--green1);
-    --so-background: var(--green0);
-    --so-active-text: var(--black);
+    --nausikaa-so-icon: var(--nausikaa-green2);
+    --nausikaa-so-header: var(--nausikaa-green3);
+    --nausikaa-so-border: var(--nausikaa-green1);
+    --nausikaa-so-background: var(--nausikaa-green0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
   }
 
   &.orange {
-    --so-icon: var(--peach2);
-    --so-header: var(--peach3);
-    --so-border: var(--peach1);
-    --so-background: var(--peach0);
-    --so-active-text: var(--black);
+    --nausikaa-so-icon: var(--nausikaa-peach2);
+    --nausikaa-so-header: var(--nausikaa-peach3);
+    --nausikaa-so-border: var(--nausikaa-peach1);
+    --nausikaa-so-background: var(--nausikaa-peach0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
   }
 
   &.purple {
-    --so-icon: var(--mauve2);
-    --so-header: var(--mauve3);
-    --so-border: var(--mauve1);
-    --so-background: var(--mauve0);
-    --so-active-text: var(--black);
+    --nausikaa-so-icon: var(--nausikaa-mauve2);
+    --nausikaa-so-header: var(--nausikaa-mauve3);
+    --nausikaa-so-border: var(--nausikaa-mauve1);
+    --nausikaa-so-background: var(--nausikaa-mauve0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
   }
 
   &.gray {
-    --so-icon: var(--overlay2);
-    --so-header: var(--subtext0);
-    --so-border: var(--overlay1);
-    --so-background: var(--overlay0);
-    --so-active-text: var(--black);
+    --nausikaa-so-icon: var(--nausikaa-overlay2);
+    --nausikaa-so-header: var(--nausikaa-subtext0);
+    --nausikaa-so-border: var(--nausikaa-overlay1);
+    --nausikaa-so-background: var(--nausikaa-overlay0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
   }
 }

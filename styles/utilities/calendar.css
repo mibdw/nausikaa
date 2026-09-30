@@ -37,14 +37,14 @@
       }
 
       .weekday-name {
-        font-family: var(--utility-text);
+        font-family: var(--nausikaa-utility-text);
         font-weight: 800;
-        color: var(--subtext0);
+        color: var(--nausikaa-subtext0);
         text-align: center;
         text-transform: uppercase;
         border-width: 1px 1px 0 0;
         border-style: solid;
-        border-color: var(--surface1);
+        border-color: var(--nausikaa-surface1);
 
         &:first-child {
           border-left-width: 1px;
@@ -56,8 +56,8 @@
         position: relative;
         border-width: 1px 1px 0 0;
         border-style: solid;
-        border-color: var(--surface1);
-        background-color: var(--base);
+        border-color: var(--nausikaa-surface1);
+        background-color: var(--nausikaa-base);
         padding: 2.3em 0.3em 0.3em;
         min-width: 0;
         cursor: pointer;
@@ -69,7 +69,7 @@
         }
 
         &:hover {
-          background-color: var(--surface0);
+          background-color: var(--nausikaa-surface0);
         }
 
         &.weekday-1 {
@@ -82,7 +82,7 @@
 
         .date-number {
           font-size: 1em;
-          font-family: var(--utility-text);
+          font-family: var(--nausikaa-utility-text);
           position: absolute;
           top: 0.25em;
           left: 0.5em;
@@ -94,7 +94,7 @@
         }
 
         &.today {
-          box-shadow: 0 8px 0 0 var(--link-color) inset;
+          box-shadow: 0 8px 0 0 var(--nausikaa-link-color) inset;
 
           .date-number {
             transform: translateY(4px);
@@ -121,7 +121,7 @@
           & > .panel {
             min-width: 50ch;
             padding-left: 4em;
-            color: var(--text);
+            color: var(--nausikaa-text);
             padding-bottom: 2em;
 
             &.left {

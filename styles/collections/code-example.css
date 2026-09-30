@@ -4,9 +4,9 @@
     padding: 0;
 
     & > code {
-      background-color: var(--mantle);
-      border: 1px solid var(--surface0);
-      color: var(--text);
+      background-color: var(--nausikaa-mantle);
+      border: 1px solid var(--nausikaa-surface0);
+      color: var(--nausikaa-text);
       line-height: 1.4;
 
       &.hljs {

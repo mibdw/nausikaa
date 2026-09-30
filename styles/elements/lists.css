@@ -1,7 +1,7 @@
 
 ol,
 ul {
-  margin: var(--paragraph-spacer) 2em;
+  margin: var(--nausikaa-paragraph-spacer) 2em;
 
   & > ol,
   & > ul,
@@ -20,13 +20,13 @@ dl {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: var(--paragraph-spacer) 0;
+  margin: var(--nausikaa-paragraph-spacer) 0;
 
   dt {
     flex: 0 0 25%;
     padding-right: 1em;
-    font-family: var(--utility-text);
-    color: var(--subtext0);
+    font-family: var(--nausikaa-utility-text);
+    color: var(--nausikaa-subtext0);
     word-spacing: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -39,7 +39,7 @@ dl {
   hr {
     flex: 0 0 100%;
     border-width: 0;
-    margin: 0 0 calc(var(--line-height) / 2);
+    margin: 0 0 calc(var(--nausikaa-line-height) / 2);
   }
 
   &.inverse {

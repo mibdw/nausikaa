@@ -5,8 +5,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--utility-text);
-  margin: var(--paragraph-spacer) 0;
+  font-family: var(--nausikaa-utility-text);
+  margin: var(--nausikaa-paragraph-spacer) 0;
   line-height: 1.2;
 
   small {

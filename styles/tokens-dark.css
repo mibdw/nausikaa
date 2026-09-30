@@ -1,47 +1,47 @@
 /* Dark theme: overrides the neutral tokens from tokens.css. */
 
 :root {
-  --text: #ffffff;
-  --subtext1: #dddddd;
-  --subtext0: #cccccc;
-  --overlay2: #b4b4b4;
-  --overlay1: #9b9b9b;
-  --overlay0: #838383;
-  --surface2: #6b6b6b;
-  --surface1: #535353;
-  --surface0: #3a3a3a;
-  --base: #222222;
-  --mantle: #1a1a1a;
-  --crust: #111111;
+  --nausikaa-text: #ffffff;
+  --nausikaa-subtext1: #dddddd;
+  --nausikaa-subtext0: #cccccc;
+  --nausikaa-overlay2: #b4b4b4;
+  --nausikaa-overlay1: #9b9b9b;
+  --nausikaa-overlay0: #838383;
+  --nausikaa-surface2: #6b6b6b;
+  --nausikaa-surface1: #535353;
+  --nausikaa-surface0: #3a3a3a;
+  --nausikaa-base: #222222;
+  --nausikaa-mantle: #1a1a1a;
+  --nausikaa-crust: #111111;
 
-  --text-rgb: 255, 255, 255;
-  --subtext1-rgb: 221, 221, 221;
-  --subtext0-rgb: 204, 204, 204;
-  --overlay2-rgb: 180, 180, 180;
-  --overlay1-rgb: 155, 155, 155;
-  --overlay0-rgb: 131, 131, 131;
-  --surface2-rgb: 107, 107, 107;
-  --surface1-rgb: 83, 83, 83;
-  --surface0-rgb: 58, 58, 58;
-  --base-rgb: 34, 34, 34;
-  --mantle-rgb: 26, 26, 26;
-  --crust-rgb: 17, 17, 17;
+  --nausikaa-text-rgb: 255, 255, 255;
+  --nausikaa-subtext1-rgb: 221, 221, 221;
+  --nausikaa-subtext0-rgb: 204, 204, 204;
+  --nausikaa-overlay2-rgb: 180, 180, 180;
+  --nausikaa-overlay1-rgb: 155, 155, 155;
+  --nausikaa-overlay0-rgb: 131, 131, 131;
+  --nausikaa-surface2-rgb: 107, 107, 107;
+  --nausikaa-surface1-rgb: 83, 83, 83;
+  --nausikaa-surface0-rgb: 58, 58, 58;
+  --nausikaa-base-rgb: 34, 34, 34;
+  --nausikaa-mantle-rgb: 26, 26, 26;
+  --nausikaa-crust-rgb: 17, 17, 17;
 
   /* A lighter link blue that stays readable on the dark background */
-  --link-color: #598ef8;
+  --nausikaa-link-color: #598ef8;
 
-  /* The opposite of --text: for text on a neutral mid-tone background */
-  --text-inverse: #222222;
-  --text-inverse-rgb: 34, 34, 34;
+  /* The opposite of --nausikaa-text: for text on a neutral mid-tone background */
+  --nausikaa-text-inverse: #222222;
+  --nausikaa-text-inverse-rgb: 34, 34, 34;
 
   /* Component colors that differ per theme */
-  --mantle-light-3: #222222;
-  --mantle-light-4: #242424;
-  --mantle-light-5: #272727;
-  --panel-link-color: #80a8f9;
-  --kbd-text: #222222;
-  --pagination-active-text: #ffffff;
-  --date-picker-today: #ffffff;
-  --date-picker-range: #89affa;
-  --date-picker-range-text: #222222;
+  --nausikaa-mantle-light-3: #222222;
+  --nausikaa-mantle-light-4: #242424;
+  --nausikaa-mantle-light-5: #272727;
+  --nausikaa-panel-link-color: #80a8f9;
+  --nausikaa-kbd-text: #222222;
+  --nausikaa-pagination-active-text: #ffffff;
+  --nausikaa-date-picker-today: #ffffff;
+  --nausikaa-date-picker-range: #89affa;
+  --nausikaa-date-picker-range-text: #222222;
 }

@@ -1,13 +1,13 @@
 
 :root {
-  --outline-stroke: #000;
-  --outline-stroke-width: 0.25;
-  --outline-fill: #000;
-  --east-fill: #f1c40f;
-  --east-top-fill: #c0c0c0;
-  --west-fill: #fdf9e7;
-  --west-top-fill: #dfdfdf;
-  --roof-fill: #e8e8e8;
+  --nausikaa-outline-stroke: #000;
+  --nausikaa-outline-stroke-width: 0.25;
+  --nausikaa-outline-fill: #000;
+  --nausikaa-east-fill: #f1c40f;
+  --nausikaa-east-top-fill: #c0c0c0;
+  --nausikaa-west-fill: #fdf9e7;
+  --nausikaa-west-top-fill: #dfdfdf;
+  --nausikaa-roof-fill: #e8e8e8;
 }
 
 /* BUILDING RATIO */

@@ -6,30 +6,30 @@
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-row-gap: 5px;
-  margin: var(--paragraph-spacer) 0;
+  margin: var(--nausikaa-paragraph-spacer) 0;
 
   legend {
     grid-column: 1/17 !important;
     width: 100%;
     line-height: 1.3em;
-    margin: var(--paragraph-spacer) 0;
+    margin: var(--nausikaa-paragraph-spacer) 0;
     display: block;
-    font-family: var(--utility-text);
+    font-family: var(--nausikaa-utility-text);
     font-size: 1.6rem;
     font-weight: bold;
-    border-bottom: 1px dotted var(--crust);
+    border-bottom: 1px dotted var(--nausikaa-crust);
   }
 
   & > label {
     grid-column: 1/4;
-    line-height: var(--input-height);
+    line-height: var(--nausikaa-input-height);
     padding-right: 1em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
     & > small {
-      color: var(--subtext0);
+      color: var(--nausikaa-subtext0);
     }
   }
 
@@ -48,7 +48,7 @@
 
   & > .checkboxes,
   & > .radios {
-    margin-top: calc(var(--input-height) / 5);
+    margin-top: calc(var(--nausikaa-input-height) / 5);
   }
 
   & > .checkboxes.buttons,
@@ -57,7 +57,7 @@
   }
 
   & > .controls {
-    min-height: var(--button-height);
+    min-height: var(--nausikaa-button-height);
     margin-top: 0.4rem;
     display: flex;
     flex-direction: row-reverse;
@@ -82,7 +82,7 @@
       grid-column: 1/17;
       line-height: 1em;
       padding-top: 0.3em;
-      color: var(--subtext0);
+      color: var(--nausikaa-subtext0);
       overflow: visible;
       white-space: normal;
       text-overflow: clip;
@@ -107,7 +107,7 @@
 .basic-form > fieldset {
   grid-column: 1/17 !important;
   min-width: 0;
-  margin: var(--paragraph-spacer) 0 0;
+  margin: var(--nausikaa-paragraph-spacer) 0 0;
   padding: 0;
 
   /* Chromium ignores a legend's top margin, so the spacing between groups is */
@@ -117,7 +117,7 @@
   }
 
   & + fieldset {
-    margin-top: calc(var(--paragraph-spacer) * 2);
+    margin-top: calc(var(--nausikaa-paragraph-spacer) * 2);
   }
 }
 
@@ -127,12 +127,12 @@
   & > legend {
     width: 100%;
     line-height: 1.3em;
-    margin: 0 0 var(--paragraph-spacer) 0;
+    margin: 0 0 var(--nausikaa-paragraph-spacer) 0;
     display: block;
-    font-family: var(--utility-text);
+    font-family: var(--nausikaa-utility-text);
     font-size: 1.6rem;
     font-weight: bold;
-    border-bottom: 1px dotted var(--crust);
+    border-bottom: 1px dotted var(--nausikaa-crust);
   }
 
   & > label,
@@ -151,7 +151,7 @@
   & > input[type="email"],
   & > input[type="password"],
   & > .group {
-    margin-bottom: calc(var(--paragraph-spacer) / 2);
+    margin-bottom: calc(var(--nausikaa-paragraph-spacer) / 2);
   }
 }
 
@@ -166,7 +166,7 @@
   }
 
   & > .controls {
-    min-height: var(--button-height);
+    min-height: var(--nausikaa-button-height);
     display: flex;
     align-items: baseline;
 
@@ -176,7 +176,7 @@
 
       &:hover,
       &:focus-within {
-        border-bottom: 1px dotted var(--subtext0);
+        border-bottom: 1px dotted var(--nausikaa-subtext0);
       }
     }
 
@@ -198,7 +198,7 @@
 }
 
 :root {
-  --input-height-ig: calc(var(--input-height) * 1.15);
+  --nausikaa-input-height-ig: calc(var(--nausikaa-input-height) * 1.15);
 }
 
 .integrated-label {
@@ -209,7 +209,7 @@
   & > textarea,
   & > .suggestions {
     width: 100%;
-    height: var(--input-height-ig);
+    height: var(--nausikaa-input-height-ig);
     padding-top: 0.9em;
     padding-bottom: 0.1em;
     transition:
@@ -222,7 +222,7 @@
       left: 0.6rem;
       top: 0.1rem;
       pointer-events: none;
-      color: rgba(var(--text-rgb), 0.5);
+      color: rgba(var(--nausikaa-text-rgb), 0.5);
       opacity: 1;
       transition:
         0.3s opacity,
@@ -267,23 +267,23 @@
 
   button,
   .button {
-    height: var(--input-height-ig);
-    line-height: calc(var(--input-height-ig) * 0.9);
+    height: var(--nausikaa-input-height-ig);
+    line-height: calc(var(--nausikaa-input-height-ig) * 0.9);
 
     &:active,
     &.active {
-      height: calc(var(--input-height-ig) - var(--button-shadow-size));
+      height: calc(var(--nausikaa-input-height-ig) - var(--nausikaa-button-shadow-size));
     }
   }
 
   input:checked + button,
   input:checked + .button {
-    height: calc(var(--input-height-ig) - var(--button-shadow-size));
+    height: calc(var(--nausikaa-input-height-ig) - var(--nausikaa-button-shadow-size));
   }
 
   select {
-    height: var(--input-height-ig);
-    line-height: calc(var(--input-height-ig) * 0.9);
+    height: var(--nausikaa-input-height-ig);
+    line-height: calc(var(--nausikaa-input-height-ig) * 0.9);
     width: 100%;
   }
 }

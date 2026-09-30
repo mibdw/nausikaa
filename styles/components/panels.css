@@ -1,44 +1,44 @@
 /*
- * Panels. A color class only sets the --panel-* custom properties; the rules
+ * Panels. A color class only sets the --nausikaa-panel-* custom properties; the rules
  * that use them are written once.
  */
 .panel {
-  --panel-background: var(--base);
-  --panel-border: var(--surface2);
-  --panel-link: var(--panel-link-color);
-  --panel-header: var(--link-color);
-  --panel-subnav-border: var(--overlay0);
-  --panel-subnav-link: var(--text);
-  --panel-hover: var(--surface0);
-  --panel-active: var(--blue3);
-  --panel-active-text: var(--white);
+  --nausikaa-panel-background: var(--nausikaa-base);
+  --nausikaa-panel-border: var(--nausikaa-surface2);
+  --nausikaa-panel-link: var(--nausikaa-panel-link-color);
+  --nausikaa-panel-header: var(--nausikaa-link-color);
+  --nausikaa-panel-subnav-border: var(--nausikaa-overlay0);
+  --nausikaa-panel-subnav-link: var(--nausikaa-text);
+  --nausikaa-panel-hover: var(--nausikaa-surface0);
+  --nausikaa-panel-active: var(--nausikaa-blue3);
+  --nausikaa-panel-active-text: var(--nausikaa-white);
 
-  background-color: var(--panel-background);
-  border: 1px solid var(--panel-border);
-  color: var(--panel-link);
+  background-color: var(--nausikaa-panel-background);
+  border: 1px solid var(--nausikaa-panel-border);
+  color: var(--nausikaa-panel-link);
 
   .seperator {
-    border-color: var(--panel-border);
+    border-color: var(--nausikaa-panel-border);
   }
 
   & > .toggler {
     &:hover {
-      background-color: var(--panel-hover);
+      background-color: var(--nausikaa-panel-hover);
     }
 
     &.active {
-      text-decoration: underline solid var(--panel-header);
+      text-decoration: underline solid var(--nausikaa-panel-header);
     }
   }
 
   & > .header,
   & > header {
-    color: var(--panel-link);
-    text-decoration: underline solid var(--panel-header);
-    -webkit-text-decoration: underline solid var(--panel-header);
+    color: var(--nausikaa-panel-link);
+    text-decoration: underline solid var(--nausikaa-panel-header);
+    -webkit-text-decoration: underline solid var(--nausikaa-panel-header);
 
     & > .icon {
-      fill: var(--panel-active);
+      fill: var(--nausikaa-panel-active);
     }
 
     &.tabs {
@@ -54,8 +54,8 @@
 
         &.active {
           opacity: 1;
-          text-decoration: underline solid var(--panel-header);
-          -webkit-text-decoration: underline solid var(--panel-header);
+          text-decoration: underline solid var(--nausikaa-panel-header);
+          -webkit-text-decoration: underline solid var(--nausikaa-panel-header);
         }
       }
     }
@@ -64,11 +64,11 @@
   a,
   .link,
   .subnav > label {
-    color: var(--panel-link);
+    color: var(--nausikaa-panel-link);
     border: 1px solid transparent;
 
     & > .icon {
-      fill: var(--panel-subnav-border);
+      fill: var(--nausikaa-panel-subnav-border);
     }
   }
 
@@ -77,12 +77,12 @@
   .link:hover,
   label:hover,
   .subnav:focus-within:not(.active) > label {
-    background-color: var(--panel-hover);
+    background-color: var(--nausikaa-panel-hover);
     text-decoration: none;
     border: 1px solid transparent;
 
     & > .icon {
-      fill: var(--panel-subnav-link);
+      fill: var(--nausikaa-panel-subnav-link);
     }
   }
 
@@ -93,11 +93,11 @@
   input[type="radio"]:focus + label {
     outline-width: 0;
     text-decoration: none;
-    background-color: var(--panel-hover);
-    border: 1px solid var(--panel-border);
+    background-color: var(--nausikaa-panel-hover);
+    border: 1px solid var(--nausikaa-panel-border);
 
     & > .icon {
-      fill: var(--panel-subnav-link);
+      fill: var(--nausikaa-panel-subnav-link);
     }
   }
 
@@ -105,30 +105,30 @@
   .active > .link,
   .active > label,
   a.active {
-    color: var(--panel-active-text);
-    background-color: var(--panel-active);
+    color: var(--nausikaa-panel-active-text);
+    background-color: var(--nausikaa-panel-active);
 
     & > .icon {
-      fill: var(--panel-active-text);
+      fill: var(--nausikaa-panel-active-text);
     }
 
     &:focus {
-      color: var(--panel-active-text);
-      background-color: var(--panel-active);
-      border-color: var(--panel-active);
+      color: var(--nausikaa-panel-active-text);
+      background-color: var(--nausikaa-panel-active);
+      border-color: var(--nausikaa-panel-active);
     }
   }
 
   .active > input[type="checkbox"]:focus + label {
-    color: var(--panel-active-text);
-    background-color: var(--panel-active);
-    border-color: var(--panel-active);
+    color: var(--nausikaa-panel-active-text);
+    background-color: var(--nausikaa-panel-active);
+    border-color: var(--nausikaa-panel-active);
   }
 
   .subnav.active > label .icon.chevron,
   .subnav.active > label:hover .icon.chevron,
   .subnav.active > label:focus .icon.chevron {
-    fill: var(--panel-active-text);
+    fill: var(--nausikaa-panel-active-text);
   }
 
   .subnav > ul {
@@ -136,47 +136,47 @@
 
     & > li > a,
     & > li > .link {
-      color: var(--panel-subnav-link);
+      color: var(--nausikaa-panel-subnav-link);
     }
 
     & > li.active > a,
     & > li.active > .link {
-      color: var(--panel-active-text);
+      color: var(--nausikaa-panel-active-text);
     }
   }
 
   .subnav > input:checked + label + ul,
   .subnav:focus-within > ul {
-    border-left: 5px solid var(--panel-subnav-border);
+    border-left: 5px solid var(--nausikaa-panel-subnav-border);
   }
 
   &.arrow:after {
-    background-color: var(--panel-background);
-    border-color: var(--panel-border);
+    background-color: var(--nausikaa-panel-background);
+    border-color: var(--nausikaa-panel-border);
   }
 
   .checkboxes input:checked + label,
   .radios input:checked + label {
-    text-decoration: underline solid var(--panel-header);
-    -webkit-text-decoration: underline solid var(--panel-header);
+    text-decoration: underline solid var(--nausikaa-panel-header);
+    -webkit-text-decoration: underline solid var(--nausikaa-panel-header);
   }
 
   .with-icon {
     &:hover > a,
     &:hover > .link {
-      background-color: var(--panel-hover);
+      background-color: var(--nausikaa-panel-hover);
     }
 
     &.active > a,
     &.active > .link {
-      background-color: var(--panel-active);
+      background-color: var(--nausikaa-panel-active);
 
       &:nth-child(2) > .icon {
-        fill: var(--panel-hover);
+        fill: var(--nausikaa-panel-hover);
       }
 
       &:nth-child(2) > .icon:hover {
-        fill: var(--panel-active-text);
+        fill: var(--nausikaa-panel-active-text);
       }
     }
 
@@ -184,10 +184,10 @@
     & > .link {
       &:nth-child(2) {
         & > .icon {
-          fill: var(--panel-background);
+          fill: var(--nausikaa-panel-background);
 
           &:hover {
-            fill: var(--panel-active);
+            fill: var(--nausikaa-panel-active);
           }
         }
       }
@@ -195,7 +195,7 @@
   }
 
   border-radius: 6px;
-  font-family: var(--utility-text);
+  font-family: var(--nausikaa-utility-text);
   font-size: 0.93rem;
   padding: 0.7em;
   margin-bottom: 1em;
@@ -203,7 +203,7 @@
   text-align: left;
 
   .seperator {
-    border-top: 1px solid var(--crust);
+    border-top: 1px solid var(--nausikaa-crust);
     margin: 0.5em -0.7em;
   }
 
@@ -318,7 +318,7 @@
 
   .subnav > label .icon.chevron {
     float: right;
-    fill: var(--subtext0);
+    fill: var(--nausikaa-subtext0);
     height: 1.3em;
     width: 1.3em;
     margin-top: 0.1em;
@@ -331,7 +331,7 @@
   .subnav > label.hover .icon.chevron,
   .subnav > label:hover .icon.chevron,
   .subnav > label:focus .icon.chevron {
-    fill: var(--black);
+    fill: var(--nausikaa-black);
     pointer-events: none;
   }
 
@@ -512,182 +512,182 @@
   }
 
   &.rosewater {
-    --panel-background: var(--rosewater0);
-    --panel-border: var(--rosewater2);
-    --panel-link: var(--ink);
-    --panel-header: #ad442d;
-    --panel-subnav-border: var(--rosewater3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(220, 138, 120, 0.2);
-    --panel-active: var(--rosewater3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-rosewater0);
+    --nausikaa-panel-border: var(--nausikaa-rosewater2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #ad442d;
+    --nausikaa-panel-subnav-border: var(--nausikaa-rosewater3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(220, 138, 120, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-rosewater3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.flamingo {
-    --panel-background: var(--flamingo0);
-    --panel-border: var(--flamingo2);
-    --panel-link: var(--ink);
-    --panel-header: #9e2828;
-    --panel-subnav-border: var(--flamingo3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(221, 120, 120, 0.2);
-    --panel-active: var(--flamingo3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-flamingo0);
+    --nausikaa-panel-border: var(--nausikaa-flamingo2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #9e2828;
+    --nausikaa-panel-subnav-border: var(--nausikaa-flamingo3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(221, 120, 120, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-flamingo3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.pink {
-    --panel-background: var(--pink0);
-    --panel-border: var(--pink2);
-    --panel-link: var(--ink);
-    --panel-header: #a4197f;
-    --panel-subnav-border: var(--pink3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(234, 118, 203, 0.2);
-    --panel-active: var(--pink3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-pink0);
+    --nausikaa-panel-border: var(--nausikaa-pink2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #a4197f;
+    --nausikaa-panel-subnav-border: var(--nausikaa-pink3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(234, 118, 203, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-pink3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.mauve {
-    --panel-background: var(--mauve0);
-    --panel-border: var(--mauve2);
-    --panel-link: var(--ink);
-    --panel-header: #560fb3;
-    --panel-subnav-border: var(--mauve3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(136, 57, 239, 0.2);
-    --panel-active: var(--mauve3);
-    --panel-active-text: var(--white);
+    --nausikaa-panel-background: var(--nausikaa-mauve0);
+    --nausikaa-panel-border: var(--nausikaa-mauve2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #560fb3;
+    --nausikaa-panel-subnav-border: var(--nausikaa-mauve3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(136, 57, 239, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-mauve3);
+    --nausikaa-panel-active-text: var(--nausikaa-white);
   }
 
   &.red {
-    --panel-background: var(--red0);
-    --panel-border: var(--red2);
-    --panel-link: var(--ink);
-    --panel-header: #73081f;
-    --panel-subnav-border: var(--red3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(210, 15, 57, 0.2);
-    --panel-active: var(--red3);
-    --panel-active-text: var(--white);
+    --nausikaa-panel-background: var(--nausikaa-red0);
+    --nausikaa-panel-border: var(--nausikaa-red2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #73081f;
+    --nausikaa-panel-subnav-border: var(--nausikaa-red3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(210, 15, 57, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-red3);
+    --nausikaa-panel-active-text: var(--nausikaa-white);
   }
 
   &.maroon {
-    --panel-background: var(--maroon0);
-    --panel-border: var(--maroon2);
-    --panel-link: var(--ink);
-    --panel-header: #8a131d;
-    --panel-subnav-border: var(--maroon3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(230, 69, 83, 0.2);
-    --panel-active: var(--maroon3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-maroon0);
+    --nausikaa-panel-border: var(--nausikaa-maroon2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #8a131d;
+    --nausikaa-panel-subnav-border: var(--nausikaa-maroon3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(230, 69, 83, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-maroon3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.peach {
-    --panel-background: var(--peach0);
-    --panel-border: var(--peach2);
-    --panel-link: var(--ink);
-    --panel-header: #7a2d00;
-    --panel-subnav-border: var(--peach3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(254, 100, 11, 0.2);
-    --panel-active: var(--peach3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-peach0);
+    --nausikaa-panel-border: var(--nausikaa-peach2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #7a2d00;
+    --nausikaa-panel-subnav-border: var(--nausikaa-peach3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(254, 100, 11, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-peach3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.yellow {
-    --panel-background: var(--yellow0);
-    --panel-border: var(--yellow2);
-    --panel-link: var(--ink);
-    --panel-header: #855511;
-    --panel-subnav-border: var(--yellow3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(223, 142, 29, 0.2);
-    --panel-active: var(--yellow3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-yellow0);
+    --nausikaa-panel-border: var(--nausikaa-yellow2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #855511;
+    --nausikaa-panel-subnav-border: var(--nausikaa-yellow3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(223, 142, 29, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-yellow3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.green {
-    --panel-background: var(--green0);
-    --panel-border: var(--green2);
-    --panel-link: var(--ink);
-    --panel-header: #26601a;
-    --panel-subnav-border: var(--green3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(64, 160, 43, 0.2);
-    --panel-active: var(--green3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-green0);
+    --nausikaa-panel-border: var(--nausikaa-green2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #26601a;
+    --nausikaa-panel-subnav-border: var(--nausikaa-green3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(64, 160, 43, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-green3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.teal {
-    --panel-background: var(--teal0);
-    --panel-border: var(--teal2);
-    --panel-link: var(--ink);
-    --panel-header: #0f5f64;
-    --panel-subnav-border: var(--teal3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(23, 146, 153, 0.2);
-    --panel-active: var(--teal3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-teal0);
+    --nausikaa-panel-border: var(--nausikaa-teal2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #0f5f64;
+    --nausikaa-panel-subnav-border: var(--nausikaa-teal3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(23, 146, 153, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-teal3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.sky {
-    --panel-background: var(--sky0);
-    --panel-border: var(--sky2);
-    --panel-link: var(--ink);
-    --panel-header: #025d81;
-    --panel-subnav-border: var(--sky3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(4, 165, 229, 0.2);
-    --panel-active: var(--sky3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-sky0);
+    --nausikaa-panel-border: var(--nausikaa-sky2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #025d81;
+    --nausikaa-panel-subnav-border: var(--nausikaa-sky3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(4, 165, 229, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-sky3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.sapphire {
-    --panel-background: var(--sapphire0);
-    --panel-border: var(--sapphire2);
-    --panel-link: var(--ink);
-    --panel-header: #11535e;
-    --panel-subnav-border: var(--sapphire3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(32, 159, 181, 0.2);
-    --panel-active: var(--sapphire3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-sapphire0);
+    --nausikaa-panel-border: var(--nausikaa-sapphire2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #11535e;
+    --nausikaa-panel-subnav-border: var(--nausikaa-sapphire3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(32, 159, 181, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-sapphire3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.blue {
-    --panel-background: var(--blue0);
-    --panel-border: var(--blue2);
-    --panel-link: var(--ink);
-    --panel-header: #073ca6;
-    --panel-subnav-border: var(--blue3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(30, 102, 245, 0.2);
-    --panel-active: var(--blue3);
-    --panel-active-text: var(--white);
+    --nausikaa-panel-background: var(--nausikaa-blue0);
+    --nausikaa-panel-border: var(--nausikaa-blue2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #073ca6;
+    --nausikaa-panel-subnav-border: var(--nausikaa-blue3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(30, 102, 245, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-blue3);
+    --nausikaa-panel-active-text: var(--nausikaa-white);
   }
 
   &.lavender {
-    --panel-background: var(--lavender0);
-    --panel-border: var(--lavender2);
-    --panel-link: var(--ink);
-    --panel-header: #0327f1;
-    --panel-subnav-border: var(--lavender3);
-    --panel-subnav-link: var(--ink);
-    --panel-hover: rgba(114, 135, 253, 0.2);
-    --panel-active: var(--lavender3);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-lavender0);
+    --nausikaa-panel-border: var(--nausikaa-lavender2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #0327f1;
+    --nausikaa-panel-subnav-border: var(--nausikaa-lavender3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(114, 135, 253, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-lavender3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 
   &.gray {
-    --panel-background: var(--surface0);
-    --panel-border: var(--surface2);
-    --panel-link: var(--text);
-    --panel-header: var(--text);
-    --panel-subnav-border: var(--surface2);
-    --panel-subnav-link: var(--text);
-    --panel-hover: rgba(var(--overlay0-rgb), 0.2);
-    --panel-active: var(--overlay0);
-    --panel-active-text: var(--ink);
+    --nausikaa-panel-background: var(--nausikaa-surface0);
+    --nausikaa-panel-border: var(--nausikaa-surface2);
+    --nausikaa-panel-link: var(--nausikaa-text);
+    --nausikaa-panel-header: var(--nausikaa-text);
+    --nausikaa-panel-subnav-border: var(--nausikaa-surface2);
+    --nausikaa-panel-subnav-link: var(--nausikaa-text);
+    --nausikaa-panel-hover: rgba(var(--nausikaa-overlay0-rgb), 0.2);
+    --nausikaa-panel-active: var(--nausikaa-overlay0);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 }

@@ -5,67 +5,67 @@
 
 .editor-wrapper {
   position: relative;
-  background-color: var(--input-background);
-  color: var(--input-text);
-  border: 1px solid var(--input-line);
+  background-color: var(--nausikaa-input-background);
+  color: var(--nausikaa-input-text);
+  border: 1px solid var(--nausikaa-input-line);
   border-radius: 6px;
   outline-width: 0;
-  box-shadow: 0 0 0 0 var(--input-line-hover) inset;
+  box-shadow: 0 0 0 0 var(--nausikaa-input-line-hover) inset;
 
   &:focus,
   &:focus-within {
-    border-color: var(--input-line-hover);
-    box-shadow: 0 0 0 2px var(--input-line-hover) inset;
-    outline: 2px solid var(--input-line-active);
+    border-color: var(--nausikaa-input-line-hover);
+    box-shadow: 0 0 0 2px var(--nausikaa-input-line-hover) inset;
+    outline: 2px solid var(--nausikaa-input-line-active);
   }
 
   &:active,
   &.active {
-    border-color: var(--input-line-active);
-    box-shadow: 0 0 0 2px var(--input-line-active) inset;
+    border-color: var(--nausikaa-input-line-active);
+    box-shadow: 0 0 0 2px var(--nausikaa-input-line-active) inset;
     outline-width: 0;
   }
 
   &:disabled {
-    color: var(--input-vague);
-    background-color: var(--input-background-disabled);
+    color: var(--nausikaa-input-vague);
+    background-color: var(--nausikaa-input-background-disabled);
 
     &:hover {
       cursor: not-allowed;
-      border-color: var(--input-vague);
+      border-color: var(--nausikaa-input-vague);
     }
   }
 
   &[readonly] {
-    color: var(--input-text);
-    background-color: var(--input-background);
+    color: var(--nausikaa-input-text);
+    background-color: var(--nausikaa-input-background);
 
     &:hover {
       cursor: not-allowed;
-      border-color: var(--input-vague);
+      border-color: var(--nausikaa-input-vague);
     }
   }
 
   &:invalid,
   &.invalid {
-    border-color: var(--input-line-error);
+    border-color: var(--nausikaa-input-line-error);
 
     &:focus {
-      border-color: var(--input-line-error);
-      box-shadow: 0 0 0 2px var(--input-line-error) inset;
+      border-color: var(--nausikaa-input-line-error);
+      box-shadow: 0 0 0 2px var(--nausikaa-input-line-error) inset;
       outline-width: 0;
     }
   }
 
   & > .editor-toolbar {
-    font-family: var(--utility-text);
+    font-family: var(--nausikaa-utility-text);
     display: flex;
-    border-bottom: 1px solid var(--crust);
-    height: var(--input-height);
+    border-bottom: 1px solid var(--nausikaa-crust);
+    height: var(--nausikaa-input-height);
     padding: 0 0.4em;
 
     & > .dropdown > button {
-      height: calc(var(--input-height) - 1px);
+      height: calc(var(--nausikaa-input-height) - 1px);
       white-space: nowrap;
       overflow: hidden;
 
@@ -103,7 +103,7 @@
 
     button {
       background-color: transparent;
-      color: var(--text);
+      color: var(--nausikaa-text);
       border-width: 0;
       padding: 0 0.4em;
       margin: 0;
@@ -112,16 +112,16 @@
       height: auto;
 
       & > .icon {
-        fill: rgba(var(--subtext0-rgb), 0.8);
+        fill: rgba(var(--nausikaa-subtext0-rgb), 0.8);
       }
 
       &:disabled,
       &:hover:disabled,
       &:active:disabled {
-        color: var(--crust);
+        color: var(--nausikaa-crust);
 
         & > .icon {
-          fill: var(--crust);
+          fill: var(--nausikaa-crust);
         }
       }
 
@@ -139,15 +139,15 @@
 
       &:hover,
       &:focus {
-        background: rgba(var(--mantle-rgb), 0.8);
+        background: rgba(var(--nausikaa-mantle-rgb), 0.8);
 
         & > .icon {
-          fill: var(--text);
+          fill: var(--nausikaa-text);
         }
       }
 
       &.active > .icon {
-        fill: var(--text);
+        fill: var(--nausikaa-text);
       }
 
       .current-color {
@@ -157,13 +157,13 @@
         border-radius: 50%;
 
         &.nothing {
-          background-color: var(--mantle);
+          background-color: var(--nausikaa-mantle);
           background-image: repeating-linear-gradient(
             -45deg,
-            var(--mantle),
-            var(--mantle) 0.3rem,
-            var(--mantle-light-5) 0.3rem,
-            var(--mantle-light-5) 0.6rem
+            var(--nausikaa-mantle),
+            var(--nausikaa-mantle) 0.3rem,
+            var(--nausikaa-mantle-light-5) 0.3rem,
+            var(--nausikaa-mantle-light-5) 0.6rem
           );
         }
       }
@@ -171,8 +171,8 @@
 
     & > .divider {
       margin: 0 0.3em;
-      border-left: 1px solid var(--crust);
-      height: var(--input-height);
+      border-left: 1px solid var(--nausikaa-crust);
+      height: var(--nausikaa-input-height);
     }
 
     .toolbar-colors {
@@ -192,13 +192,13 @@
           height: 1.8em;
 
           &.nothing {
-            background-color: var(--mantle);
+            background-color: var(--nausikaa-mantle);
             background-image: repeating-linear-gradient(
               -45deg,
-              var(--mantle),
-              var(--mantle) 0.3rem,
-              var(--mantle-light-3) 0.3rem,
-              var(--mantle-light-3) 0.6rem
+              var(--nausikaa-mantle),
+              var(--nausikaa-mantle) 0.3rem,
+              var(--nausikaa-mantle-light-3) 0.3rem,
+              var(--nausikaa-mantle-light-3) 0.6rem
             );
           }
         }
@@ -213,15 +213,15 @@
 
   & > .editor-content > [contenteditable] {
     position: relative;
-    padding: var(--input-padding);
+    padding: var(--nausikaa-input-padding);
     min-height: 15rem;
     resize: vertical;
     overflow: auto;
     /* height: 40em; */
 
     p.is-editor-empty:before {
-      color: var(--crust);
-      font-family: var(--utility-text);
+      color: var(--nausikaa-crust);
+      font-family: var(--nausikaa-utility-text);
       content: attr(data-placeholder);
       float: left;
       height: 0;
@@ -230,7 +230,7 @@
 
     div.ProseMirror-selectednode,
     img.ProseMirror-selectednode {
-      box-shadow: 0 0 0 4px var(--blue3) !important;
+      box-shadow: 0 0 0 4px var(--nausikaa-blue3) !important;
     }
 
     .task-list {
@@ -260,11 +260,11 @@
     table {
       td,
       th {
-        border: 1px solid var(--crust);
+        border: 1px solid var(--nausikaa-crust);
         padding: 0.35em 0.5em;
 
         &.selectedCell {
-          background-color: var(--yellow0);
+          background-color: var(--nausikaa-yellow0);
         }
 
         & > p {
@@ -273,11 +273,11 @@
       }
 
       thead th {
-        border-bottom: 2px solid var(--crust);
+        border-bottom: 2px solid var(--nausikaa-crust);
       }
 
       tfoot th {
-        border-top: 2px solid var(--crust);
+        border-top: 2px solid var(--nausikaa-crust);
       }
 
       p {
@@ -289,7 +289,7 @@
   .editor-tooltip {
     transform: translateY(1em);
     display: flex;
-    height: var(--input-height);
+    height: var(--nausikaa-input-height);
     padding: 0 0.4em;
 
     /* &.link-active { */
@@ -298,13 +298,13 @@
 
     & > .divider {
       margin: 0 0.3em -1px;
-      border-left: 1px solid var(--crust);
-      height: var(--input-height);
+      border-left: 1px solid var(--nausikaa-crust);
+      height: var(--nausikaa-input-height);
     }
 
     button {
       background-color: transparent;
-      color: var(--text);
+      color: var(--nausikaa-text);
       border-width: 0;
       padding: 0 0.4em;
       margin: 0;
@@ -314,16 +314,16 @@
       white-space: nowrap;
 
       & > .icon {
-        fill: rgba(var(--subtext0-rgb), 0.8);
+        fill: rgba(var(--nausikaa-subtext0-rgb), 0.8);
       }
 
       &:disabled,
       &:hover:disabled,
       &:active:disabled {
-        color: var(--crust);
+        color: var(--nausikaa-crust);
 
         & > .icon {
-          fill: var(--crust);
+          fill: var(--nausikaa-crust);
         }
       }
 
@@ -341,15 +341,15 @@
 
       &:hover,
       &:focus {
-        background: rgba(var(--mantle-rgb), 0.8);
+        background: rgba(var(--nausikaa-mantle-rgb), 0.8);
 
         & > .icon {
-          fill: var(--text);
+          fill: var(--nausikaa-text);
         }
       }
 
       &.active > .icon {
-        fill: var(--text);
+        fill: var(--nausikaa-text);
       }
 
       &.color-picker {
@@ -369,13 +369,13 @@
         border-radius: 50%;
 
         &.nothing {
-          background-color: var(--mantle);
+          background-color: var(--nausikaa-mantle);
           background-image: repeating-linear-gradient(
             -45deg,
-            var(--mantle),
-            var(--mantle) 0.3rem,
-            var(--mantle-light-5) 0.3rem,
-            var(--mantle-light-5) 0.6rem
+            var(--nausikaa-mantle),
+            var(--nausikaa-mantle) 0.3rem,
+            var(--nausikaa-mantle-light-5) 0.3rem,
+            var(--nausikaa-mantle-light-5) 0.6rem
           );
         }
       }
@@ -398,7 +398,7 @@
 
     header {
       margin: 0 0 0.7em;
-      font-family: var(--utility-text);
+      font-family: var(--nausikaa-utility-text);
     }
 
     .color-grid {
@@ -417,7 +417,7 @@
 
         &:hover,
         &:focus {
-          box-shadow: 0 0 0 2px var(--blue3);
+          box-shadow: 0 0 0 2px var(--nausikaa-blue3);
         }
 
         &.active {
@@ -426,13 +426,13 @@
         }
 
         &.nothing {
-          background-color: var(--mantle);
+          background-color: var(--nausikaa-mantle);
           background-image: repeating-linear-gradient(
             -45deg,
-            var(--mantle),
-            var(--mantle) 0.3rem,
-            var(--mantle-light-3) 0.3rem,
-            var(--mantle-light-3) 0.6rem
+            var(--nausikaa-mantle),
+            var(--nausikaa-mantle) 0.3rem,
+            var(--nausikaa-mantle-light-3) 0.3rem,
+            var(--nausikaa-mantle-light-3) 0.6rem
           );
         }
       }
@@ -451,7 +451,7 @@
 
     header {
       margin: 0 0 0.7em;
-      font-family: var(--utility-text);
+      font-family: var(--nausikaa-utility-text);
     }
 
     .basic-form > *:not(label) {
@@ -461,7 +461,7 @@
     .image-preview {
       margin-top: 1em;
       padding-top: 1em;
-      border-top: 1px solid var(--crust);
+      border-top: 1px solid var(--nausikaa-crust);
       display: grid;
       grid-template-columns: 35% 65%;
       grid-gap: 1em;
@@ -469,18 +469,18 @@
       .no-images {
         width: 100%;
         padding: 60% 2em;
-        background-color: var(--mantle);
+        background-color: var(--nausikaa-mantle);
         background-image: repeating-linear-gradient(
           -45deg,
-          var(--mantle),
-          var(--mantle) 0.4rem,
-          var(--mantle-light-4) 0.4rem,
-          var(--mantle-light-4) 0.8rem
+          var(--nausikaa-mantle),
+          var(--nausikaa-mantle) 0.4rem,
+          var(--nausikaa-mantle-light-4) 0.4rem,
+          var(--nausikaa-mantle-light-4) 0.8rem
         );
         text-align: center;
         font-weight: bold;
-        color: rgba(var(--text-rgb), 0.5);
-        font-family: var(--utility-text);
+        color: rgba(var(--nausikaa-text-rgb), 0.5);
+        font-family: var(--nausikaa-utility-text);
       }
 
       label {

@@ -1,6 +1,6 @@
 
 form {
-  margin: var(--paragraph-spacer) 0;
+  margin: var(--nausikaa-paragraph-spacer) 0;
 }
 
 fieldset {
@@ -10,17 +10,17 @@ fieldset {
 legend {
   font-size: 2em;
   font-weight: 300;
-  margin: var(--paragraph-spacer) 0;
+  margin: var(--nausikaa-paragraph-spacer) 0;
 }
 
 label {
-  font-family: var(--utility-text);
+  font-family: var(--nausikaa-utility-text);
 }
 
 .help {
   margin-top: -1em;
-  color: var(--subtext0);
-  font-family: var(--utility-text);
+  color: var(--nausikaa-subtext0);
+  font-family: var(--nausikaa-utility-text);
 }
 
 .help input[type="checkbox"] + label:before,
@@ -31,7 +31,7 @@ label {
 }
 
 .help.error {
-  color: var(--input-line-error);
+  color: var(--nausikaa-input-line-error);
 }
 
 .group {
@@ -92,7 +92,7 @@ label {
 
     &.append-icon {
       margin-right: calc(
-        (var(--input-height) * -0.7) - (var(--font-size) * -0.3) - 1px
+        (var(--nausikaa-input-height) * -0.7) - (var(--nausikaa-font-size) * -0.3) - 1px
       );
       padding-right: 2.5em;
       background-position: calc(100% - 2em) center;
@@ -109,7 +109,7 @@ label {
 
     &.prepend-icon {
       margin-right: calc(
-        2 * (var(--input-height) * -0.7) - (var(--font-size) * -0.3) - 1px
+        2 * (var(--nausikaa-input-height) * -0.7) - (var(--nausikaa-font-size) * -0.3) - 1px
       );
 
       & + .icon {
@@ -119,19 +119,19 @@ label {
   }
 
   & > .icon {
-    font-size: var(--input-font-size);
+    font-size: var(--nausikaa-input-font-size);
     position: relative;
-    fill: var(--crust);
-    width: calc((var(--input-height) * 0.7) - (var(--font-size) * 0.3));
-    height: var(--input-height);
+    fill: var(--nausikaa-crust);
+    width: calc((var(--nausikaa-input-height) * 0.7) - (var(--nausikaa-font-size) * 0.3));
+    height: var(--nausikaa-input-height);
     left: 0.6em;
     z-index: 1;
     align-self: stretch;
 
     & + .prepend-icon {
-      right: calc((var(--input-height) * 0.7) - (var(--font-size) * 0.3) - 1px);
+      right: calc((var(--nausikaa-input-height) * 0.7) - (var(--nausikaa-font-size) * 0.3) - 1px);
       margin-right: calc(
-        (var(--input-height) * -0.7) - (var(--font-size) * -0.3) - 1px
+        (var(--nausikaa-input-height) * -0.7) - (var(--nausikaa-font-size) * -0.3) - 1px
       );
       padding-left: 2.5em;
 
@@ -143,7 +143,7 @@ label {
   }
 
   &:focus-within > .icon {
-    fill: var(--blue3);
+    fill: var(--nausikaa-blue3);
   }
 
   button:first-child + :not(button),
@@ -152,12 +152,12 @@ label {
   }
 
   & > label {
-    font-size: var(--input-font-size);
-    height: var(--input-height);
-    color: var(--text);
-    background-color: var(--input-background-disabled);
-    border: 1px solid var(--input-line);
-    line-height: calc(var(--input-height) - 2px);
+    font-size: var(--nausikaa-input-font-size);
+    height: var(--nausikaa-input-height);
+    color: var(--nausikaa-text);
+    background-color: var(--nausikaa-input-background-disabled);
+    border: 1px solid var(--nausikaa-input-line);
+    line-height: calc(var(--nausikaa-input-height) - 2px);
     padding: 0 1em;
 
     &:first-child {
@@ -167,9 +167,9 @@ label {
     .icon {
       position: relative;
       display: inline;
-      width: calc((var(--input-height) * 0.65) - (var(--font-size) * 0.3));
-      height: calc((var(--input-height) * 0.65) - (var(--font-size) * 0.3));
-      top: calc(var(--input-height) * 0.175);
+      width: calc((var(--nausikaa-input-height) * 0.65) - (var(--nausikaa-font-size) * 0.3));
+      height: calc((var(--nausikaa-input-height) * 0.65) - (var(--nausikaa-font-size) * 0.3));
+      top: calc(var(--nausikaa-input-height) * 0.175);
     }
   }
 }

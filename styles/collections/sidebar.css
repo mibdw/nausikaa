@@ -19,26 +19,26 @@ main {
       top: 80vh;
       right: 0;
       display: block;
-      background-color: var(--mantle);
-      width: calc(var(--header-height) * 0.8);
-      height: calc(var(--header-height) * 0.8);
+      background-color: var(--nausikaa-mantle);
+      width: calc(var(--nausikaa-header-height) * 0.8);
+      height: calc(var(--nausikaa-header-height) * 0.8);
       text-decoration: none;
       border-radius: 6px 0 0 6px;
       border-width: 1px 0 1px 1px;
       border-style: solid;
-      border-color: var(--crust);
+      border-color: var(--nausikaa-crust);
       padding: 0;
       margin: 0;
       transition: 0.2s right;
-      box-shadow: -2px 2px 2px rgba(var(--text-rgb), 0.3);
+      box-shadow: -2px 2px 2px rgba(var(--nausikaa-text-rgb), 0.3);
 
       &:hover,
       &:focus {
-        background-color: var(--base);
+        background-color: var(--nausikaa-base);
       }
 
       & .icon {
-        fill: var(--text);
+        fill: var(--nausikaa-text);
         width: 50%;
         height: 50%;
         margin: 25%;
@@ -60,15 +60,15 @@ main {
       padding: 0;
       transform: translateX(100%);
       transition: 0.2s transform;
-      background-color: var(--base);
-      border-left: 1px solid var(--crust);
+      background-color: var(--nausikaa-base);
+      border-left: 1px solid var(--nausikaa-crust);
     }
 
     & > input#sidebar-toggle:checked {
       & + label {
         right: calc(24em - 1px);
         z-index: 999;
-        background-color: var(--base);
+        background-color: var(--nausikaa-base);
 
         & > .icon {
           &.menu {
@@ -87,7 +87,7 @@ main {
           max-width: 100vw;
           z-index: 998;
           padding: 0.5rem;
-          box-shadow: 0 3px 5px rgba(var(--text-rgb), 0.3);
+          box-shadow: 0 3px 5px rgba(var(--nausikaa-text-rgb), 0.3);
           transform: translateX(0);
 
           & > .panel {

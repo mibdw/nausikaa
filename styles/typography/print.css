@@ -1,7 +1,7 @@
 
 :root {
-  --image-width: 12%;
-  --print-gap: 7pt;
+  --nausikaa-image-width: 12%;
+  --nausikaa-print-gap: 7pt;
 }
 
 #pdf-renderer {
@@ -36,7 +36,7 @@
       }
 
       .product-image {
-        width: var(--image-width);
+        width: var(--nausikaa-image-width);
         height: 100%;
         float: left;
 
@@ -46,14 +46,14 @@
       }
 
       .product-title {
-        margin: 0 0 var(--print-gap) var(--image-width);
-        padding-left: calc(2 * var(--print-gap));
+        margin: 0 0 var(--nausikaa-print-gap) var(--nausikaa-image-width);
+        padding-left: calc(2 * var(--nausikaa-print-gap));
         font-size: 11pt;
       }
 
       .product-metadata {
-        margin: 0 0 var(--print-gap) var(--image-width);
-        padding-left: calc(2 * var(--print-gap));
+        margin: 0 0 var(--nausikaa-print-gap) var(--nausikaa-image-width);
+        padding-left: calc(2 * var(--nausikaa-print-gap));
         font-size: 9.5pt;
         line-height: 13pt;
 
@@ -82,19 +82,19 @@
       }
 
       .product-summary {
-        margin-bottom: var(--print-gap) !important;
+        margin-bottom: var(--nausikaa-print-gap) !important;
         font-size: 9.5pt;
         line-height: 13pt;
       }
 
       .product-summary.erasmus {
-        margin: var(--print-gap) 0 var(--print-gap) var(--image-width);
-        padding-left: calc(2 * var(--print-gap));
+        margin: var(--nausikaa-print-gap) 0 var(--nausikaa-print-gap) var(--nausikaa-image-width);
+        padding-left: calc(2 * var(--nausikaa-print-gap));
       }
 
       .product-summary:not(.erasmus) {
-        margin: 0 0 var(--print-gap) var(--image-width);
-        padding-left: calc(2 * var(--print-gap));
+        margin: 0 0 var(--nausikaa-print-gap) var(--nausikaa-image-width);
+        padding-left: calc(2 * var(--nausikaa-print-gap));
         display: -webkit-box !important;
         -webkit-box-orient: vertical;
         overflow: hidden;
@@ -107,7 +107,7 @@
         left: 0;
         right: 0;
         height: 7mm;
-        border-bottom: 1px solid rgba(var(--crust-rgb), 0.6);
+        border-bottom: 1px solid rgba(var(--nausikaa-crust-rgb), 0.6);
         margin: 0;
         padding: 1mm 0;
 
@@ -142,14 +142,14 @@
 
       .product-print-footer {
         display: flex;
-        border-top: 1px solid rgba(var(--crust-rgb), 0.6);
+        border-top: 1px solid rgba(var(--nausikaa-crust-rgb), 0.6);
         position: absolute;
         left: 0;
         bottom: 0;
         right: 0;
         height: 3em;
         padding: 3pt 0 0;
-        background-color: var(--base);
+        background-color: var(--nausikaa-base);
         z-index: 999;
 
         & > div {
@@ -168,7 +168,7 @@
           /* line-height: 10pt; */
           font-style: normal;
           width: 70%;
-          /* padding-left: 2 * var(--print-gap); */
+          /* padding-left: 2 * var(--nausikaa-print-gap); */
           opacity: 0.85;
           text-align: right;
 
@@ -180,7 +180,7 @@
           /* 	display: inline-block; */
 
           /* 	&:last-child { */
-          /* 		padding-left: 2 * var(--print-gap); */
+          /* 		padding-left: 2 * var(--nausikaa-print-gap); */
           /* 	} */
           /* } */
         }

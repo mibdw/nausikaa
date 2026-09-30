@@ -1,7 +1,7 @@
 
 .gallery {
   list-style-type: none;
-  margin: var(--paragraph-spacer) 0;
+  margin: var(--nausikaa-paragraph-spacer) 0;
   padding: 0;
   display: grid;
   grid-gap: 0.5em;
@@ -17,7 +17,7 @@
     padding-top: 100%;
 
     & > a:focus {
-      box-shadow: 0 0 0 3px var(--input-line-hover);
+      box-shadow: 0 0 0 3px var(--nausikaa-input-line-hover);
       outline-width: 0;
     }
 
@@ -43,7 +43,7 @@
         left: 0;
         bottom: 0;
         right: 0;
-        background-color: var(--base);
+        background-color: var(--nausikaa-base);
         padding-top: 0;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -122,14 +122,14 @@
   img.image-contain {
     object-fit: contain;
     -o-object-fit: contain;
-    background-color: var(--mantle);
+    background-color: var(--nausikaa-mantle);
   }
 
   &.image-original img,
   img.image-original {
     object-fit: none;
     -o-object-fit: none;
-    background-color: var(--mantle);
+    background-color: var(--nausikaa-mantle);
   }
 
   &.left-top img,
@@ -192,7 +192,7 @@
   }
 
   &:focus-within {
-    box-shadow: 0 0 0 3px var(--input-line-hover);
+    box-shadow: 0 0 0 3px var(--nausikaa-input-line-hover);
   }
 
   & > li {
@@ -210,16 +210,16 @@
         width: 0.8em;
         height: 0.8em;
         border-radius: 0.4em;
-        background-color: var(--surface2);
+        background-color: var(--nausikaa-surface2);
 
         &:hover {
-          background-color: var(--crust);
+          background-color: var(--nausikaa-crust);
         }
       }
 
       &:focus + label {
-        background-color: var(--blue3);
-        box-shadow: 0 0 0 1px var(--blue3);
+        background-color: var(--nausikaa-blue3);
+        box-shadow: 0 0 0 1px var(--nausikaa-blue3);
       }
 
       & + label ~ * {
@@ -232,7 +232,7 @@
 
     & > input[type="radio"]:checked {
       & + label {
-        background-color: var(--blue3);
+        background-color: var(--nausikaa-blue3);
       }
 
       & + label ~ * {
@@ -258,7 +258,7 @@
       }
 
       & > input[type="radio"]:checked + label {
-        background-color: var(--blue3);
+        background-color: var(--nausikaa-blue3);
       }
 
       & > input[type="radio"]:not(:checked) + label ~ * {

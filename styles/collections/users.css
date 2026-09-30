@@ -2,7 +2,7 @@
 .user-avatar,
 .group-avatar {
   & > .no-avatar {
-    font-family: var(--utility-text);
+    font-family: var(--nausikaa-utility-text);
     font-weight: 200;
     font-size: 1em;
     display: inline-block;
@@ -20,7 +20,7 @@
       width: 1.3em;
       height: 1.3em;
       transform: translateY(0.25em);
-      fill: var(--base);
+      fill: var(--nausikaa-base);
     }
   }
 
@@ -31,7 +31,7 @@
     border-radius: 0.9em 0.9em;
     object-fit: cover;
     -o-object-fit: cover;
-    outline: 2px solid var(--blue3);
+    outline: 2px solid var(--nausikaa-blue3);
 
     &:hover,
     &.hover {
@@ -42,8 +42,8 @@
 
 .user-avatar > .no-avatar,
 .group-avatar > .no-avatar {
-  color: var(--base);
-  background-color: var(--blue3);
+  color: var(--nausikaa-base);
+  background-color: var(--nausikaa-blue3);
   outline: 2px solid #0a4ed6;
 
   &:hover,
@@ -66,22 +66,22 @@
 
     & > .display-list-toggle {
       padding: 0.2em 0.7em;
-      border-bottom: 1px solid var(--crust);
+      border-bottom: 1px solid var(--nausikaa-crust);
 
       & > a {
         text-decoration: none;
-        color: var(--text);
+        color: var(--nausikaa-text);
         padding: 0.2em 1em;
         transform: translateY(2px);
 
         &.active {
           font-weight: bold;
-          background-color: var(--base);
+          background-color: var(--nausikaa-base);
           display: inline-block;
           margin: 0.5em 0.5em -2px 0.5em;
           border-radius: 0.3em 0.3em 0 0;
           border-width: 1px 1px 0 1px;
-          border-color: var(--crust);
+          border-color: var(--nausikaa-crust);
           border-style: solid;
         }
       }
@@ -89,7 +89,7 @@
 
     & > ul {
       padding: 0.7em;
-      background-color: var(--base);
+      background-color: var(--nausikaa-base);
     }
   }
 }

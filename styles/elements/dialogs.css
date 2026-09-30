@@ -1,13 +1,13 @@
 
 dialog {
-  margin: var(--paragraph-spacer) 0;
+  margin: var(--nausikaa-paragraph-spacer) 0;
   min-width: 20rem;
   max-width: 80vw;
   padding: 1.5rem 3rem 1.5rem 2rem;
-  border: 1px solid var(--crust);
+  border: 1px solid var(--nausikaa-crust);
   border-radius: 6px;
-  background-color: var(--base);
-  color: var(--text);
+  background-color: var(--nausikaa-base);
+  color: var(--nausikaa-text);
   z-index: 9999;
 
   & > h1,
@@ -25,10 +25,10 @@ dialog {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: showModal 0.3s ease normal;
+    animation: nausikaa-show-dialog 0.3s ease normal;
 
     &.hide {
-      animation: hideModal 0.3s ease normal;
+      animation: nausikaa-hide-dialog 0.3s ease normal;
     }
   }
 
@@ -50,28 +50,28 @@ dialog {
     svg {
       width: 1.7rem;
       height: 1.7rem;
-      fill: var(--subtext0);
+      fill: var(--nausikaa-subtext0);
     }
 
     &:hover svg,
     &:focus svg {
-      fill: var(--text);
+      fill: var(--nausikaa-text);
     }
 
     &:active svg {
-      fill: var(--text);
+      fill: var(--nausikaa-text);
     }
   }
 
   footer {
     display: flex;
     flex-direction: row;
-    background-color: var(--mantle);
-    border-top: 1px solid var(--crust);
+    background-color: var(--nausikaa-mantle);
+    border-top: 1px solid var(--nausikaa-crust);
     border-radius: 0 0 6px 6px;
     padding: 0.5rem 1rem 0.2rem;
     margin: 2rem -3rem -1.5rem -2rem;
-    line-height: var(--button-height);
+    line-height: var(--nausikaa-button-height);
 
     * {
       flex-grow: 1;
@@ -90,14 +90,14 @@ dialog {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.8);
-    animation: showBackdrop 0.3s ease normal;
+    animation: nausikaa-show-backdrop 0.3s ease normal;
     backdrop-filter: blur(2px);
     z-index: 9998;
   }
 
   &.hide::backdrop,
   &.hide + .backdrop {
-    animation: hideBackdrop 0.3s ease normal;
+    animation: nausikaa-hide-backdrop 0.3s ease normal;
   }
 
   &.small {
@@ -117,7 +117,7 @@ dialog {
   }
 }
 
-@keyframes showModal {
+@keyframes nausikaa-show-dialog {
   0% {
     opacity: 0;
     top: 35%;
@@ -129,7 +129,7 @@ dialog {
   }
 }
 
-@keyframes showBackdrop {
+@keyframes nausikaa-show-backdrop {
   0% {
     opacity: 0;
   }
@@ -139,7 +139,7 @@ dialog {
   }
 }
 
-@keyframes hideModal {
+@keyframes nausikaa-hide-dialog {
   0% {
     opacity: 1;
     top: 40%;
@@ -151,7 +151,7 @@ dialog {
   }
 }
 
-@keyframes hideBackdrop {
+@keyframes nausikaa-hide-backdrop {
   0% {
     opacity: 1;
   }

@@ -3,32 +3,32 @@
  * that use them are written once.
  */
 .container {
-  --container-background: var(--mantle);
-  --container-border: var(--surface1);
-  --container-text: var(--text);
-  --container-link: var(--link-color);
-  --container-header: var(--text);
+  --nausikaa-container-background: var(--nausikaa-mantle);
+  --nausikaa-container-border: var(--nausikaa-surface1);
+  --nausikaa-container-text: var(--nausikaa-text);
+  --nausikaa-container-link: var(--nausikaa-link-color);
+  --nausikaa-container-header: var(--nausikaa-text);
 
-  background-color: var(--container-background);
-  color: var(--container-text);
-  border: 1px solid var(--container-border);
-  margin: var(--paragraph-spacer) 0;
+  background-color: var(--nausikaa-container-background);
+  color: var(--nausikaa-container-text);
+  border: 1px solid var(--nausikaa-container-border);
+  margin: var(--nausikaa-paragraph-spacer) 0;
   padding: 0 1em 1em;
   border-radius: 6px;
   position: relative;
 
   a {
-    color: var(--container-link);
-    text-decoration: underline solid var(--container-link);
+    color: var(--nausikaa-container-link);
+    text-decoration: underline solid var(--nausikaa-container-link);
 
     &:hover {
-      color: var(--container-text);
-      text-decoration: underline solid var(--container-link);
+      color: var(--nausikaa-container-text);
+      text-decoration: underline solid var(--nausikaa-container-link);
     }
 
     &:active {
-      color: var(--container-text);
-      text-decoration: underline solid var(--container-text);
+      color: var(--nausikaa-container-text);
+      text-decoration: underline solid var(--nausikaa-container-text);
     }
   }
 
@@ -38,7 +38,7 @@
   h4,
   h5,
   h6 {
-    color: var(--container-header);
+    color: var(--nausikaa-container-header);
   }
 
   & > main {
@@ -46,10 +46,10 @@
   }
 
   &.browser {
-    margin-top: calc(var(--paragraph-spacer) + 2.9em);
+    margin-top: calc(var(--nausikaa-paragraph-spacer) + 2.9em);
     padding: 0 0 2em;
     border-radius: 0;
-    background-color: var(--base) !important;
+    background-color: var(--nausikaa-base) !important;
 
     &:before {
       content: "";
@@ -61,9 +61,9 @@
       right: -1px;
       border-width: 1px;
       border-style: solid;
-      border-color: var(--surface1);
+      border-color: var(--nausikaa-surface1);
       border-radius: 6px 6px 0 0;
-      background-color: var(--mantle);
+      background-color: var(--nausikaa-mantle);
       background-image:
         url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23eab4ae' /></svg>"),
         url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23fbedb7' /></svg>"),
@@ -84,16 +84,16 @@
       right: 1em;
       height: 2em;
       padding: 0.2em 1em;
-      border: 1px solid var(--surface1);
-      background-color: var(--base);
+      border: 1px solid var(--nausikaa-surface1);
+      background-color: var(--nausikaa-base);
       border-radius: 3px;
       cursor: text;
     }
 
     & > .url {
-      color: var(--text);
+      color: var(--nausikaa-text);
       background-color: transparent;
-      font-family: var(--utility-text);
+      font-family: var(--nausikaa-utility-text);
       position: absolute;
       top: -2.45em;
       left: 6.5em;
@@ -109,144 +109,144 @@
   }
 
   &.rosewater {
-    --container-background: var(--rosewater0);
-    --container-border: var(--rosewater2);
-    --container-text: var(--ink);
-    --container-link: #ab4531;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-rosewater0);
+    --nausikaa-container-border: var(--nausikaa-rosewater2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #ab4531;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.flamingo {
-    --container-background: var(--flamingo0);
-    --container-border: var(--flamingo2);
-    --container-text: var(--ink);
-    --container-link: #a02a2a;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-flamingo0);
+    --nausikaa-container-border: var(--nausikaa-flamingo2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #a02a2a;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.pink {
-    --container-background: var(--pink0);
-    --container-border: var(--pink2);
-    --container-text: var(--ink);
-    --container-link: #951873;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-pink0);
+    --nausikaa-container-border: var(--nausikaa-pink2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #951873;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.mauve {
-    --container-background: var(--mauve0);
-    --container-border: var(--mauve2);
-    --container-text: var(--ink);
-    --container-link: #5710ad;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-mauve0);
+    --nausikaa-container-border: var(--nausikaa-mauve2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #5710ad;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.red {
-    --container-background: var(--red0);
-    --container-border: var(--red2);
-    --container-text: var(--ink);
-    --container-link: #7c0d2c;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-red0);
+    --nausikaa-container-border: var(--nausikaa-red2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #7c0d2c;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.maroon {
-    --container-background: var(--maroon0);
-    --container-border: var(--maroon2);
-    --container-text: var(--ink);
-    --container-link: #7c1a2a;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-maroon0);
+    --nausikaa-container-border: var(--nausikaa-maroon2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #7c1a2a;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.peach {
-    --container-background: var(--peach0);
-    --container-border: var(--peach2);
-    --container-text: var(--ink);
-    --container-link: #873706;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-peach0);
+    --nausikaa-container-border: var(--nausikaa-peach2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #873706;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.yellow {
-    --container-background: var(--yellow0);
-    --container-border: var(--yellow2);
-    --container-text: var(--ink);
-    --container-link: #815c0a;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-yellow0);
+    --nausikaa-container-border: var(--nausikaa-yellow2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #815c0a;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.green {
-    --container-background: var(--green0);
-    --container-border: var(--green2);
-    --container-text: var(--ink);
-    --container-link: #215f1c;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-green0);
+    --nausikaa-container-border: var(--nausikaa-green2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #215f1c;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.teal {
-    --container-background: var(--teal0);
-    --container-border: var(--teal2);
-    --container-text: var(--ink);
-    --container-link: #1c6659;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-teal0);
+    --nausikaa-container-border: var(--nausikaa-teal2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #1c6659;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.sky {
-    --container-background: var(--sky0);
-    --container-border: var(--sky2);
-    --container-text: var(--ink);
-    --container-link: #125f6d;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-sky0);
+    --nausikaa-container-border: var(--nausikaa-sky2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #125f6d;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.sapphire {
-    --container-background: var(--sapphire0);
-    --container-border: var(--sapphire2);
-    --container-text: var(--ink);
-    --container-link: #0d455e;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-sapphire0);
+    --nausikaa-container-border: var(--nausikaa-sapphire2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #0d455e;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.blue {
-    --container-background: var(--blue0);
-    --container-border: var(--blue2);
-    --container-text: var(--ink);
-    --container-link: #073f9c;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-blue0);
+    --nausikaa-container-border: var(--nausikaa-blue2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #073f9c;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.lavender {
-    --container-background: var(--lavender0);
-    --container-border: var(--lavender2);
-    --container-text: var(--ink);
-    --container-link: #0324f7;
-    --container-header: var(--ink);
+    --nausikaa-container-background: var(--nausikaa-lavender0);
+    --nausikaa-container-border: var(--nausikaa-lavender2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #0324f7;
+    --nausikaa-container-header: var(--nausikaa-ink);
   }
 
   &.gray {
-    --container-background: var(--surface0);
-    --container-border: var(--surface1);
-    --container-text: var(--text);
-    --container-link: var(--text);
-    --container-header: var(--text);
+    --nausikaa-container-background: var(--nausikaa-surface0);
+    --nausikaa-container-border: var(--nausikaa-surface1);
+    --nausikaa-container-text: var(--nausikaa-text);
+    --nausikaa-container-link: var(--nausikaa-text);
+    --nausikaa-container-header: var(--nausikaa-text);
   }
 
   &.black {
-    --container-background: var(--aside-base);
-    --container-border: var(--aside-crust);
-    --container-text: var(--aside-text);
-    --container-link: var(--white);
-    --container-header: var(--aside-text);
+    --nausikaa-container-background: var(--nausikaa-aside-base);
+    --nausikaa-container-border: var(--nausikaa-aside-crust);
+    --nausikaa-container-text: var(--nausikaa-aside-text);
+    --nausikaa-container-link: var(--nausikaa-white);
+    --nausikaa-container-header: var(--nausikaa-aside-text);
   }
 
   &.black {
     input,
     select,
     textarea {
-      background-color: var(--subtext1);
-      border-color: var(--subtext0);
+      background-color: var(--nausikaa-subtext1);
+      border-color: var(--nausikaa-subtext0);
       color: white;
     }
 
     table tr:hover td {
-      background-color: rgba(var(--subtext0-rgb), 0.3);
+      background-color: rgba(var(--nausikaa-subtext0-rgb), 0.3);
     }
   }
 }

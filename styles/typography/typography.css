@@ -9,32 +9,32 @@
 
 html {
   box-sizing: border-box;
-  font-family: var(--font-family);
+  font-family: var(--nausikaa-font-family);
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--base);
-  color: var(--text);
+  background-color: var(--nausikaa-base);
+  color: var(--nausikaa-text);
 }
 
 p {
-  margin: var(--paragraph-spacer) 0;
+  margin: var(--nausikaa-paragraph-spacer) 0;
 
   &.sample-text {
-    margin-bottom: calc(var(--paragraph-spacer) * 1.5);
+    margin-bottom: calc(var(--nausikaa-paragraph-spacer) * 1.5);
   }
 }
 
 hr {
   border-width: 0 0 1px 0;
   border-style: dashed;
-  border-color: var(--overlay0);
-  margin: var(--paragraph-spacer) 0;
+  border-color: var(--nausikaa-overlay0);
+  margin: var(--nausikaa-paragraph-spacer) 0;
 
   &.vertical {
     border-width: 0 0 0 1px;
-    margin: 0 var(--paragraph-spacer);
+    margin: 0 var(--nausikaa-paragraph-spacer);
   }
 }
 
@@ -44,11 +44,11 @@ u {
 }
 
 blockquote {
-  border: 1px solid var(--crust);
+  border: 1px solid var(--nausikaa-crust);
   border-radius: 6px;
   padding: 1em;
-  background-color: var(--mantle);
-  margin: var(--paragraph-spacer) 0;
+  background-color: var(--nausikaa-mantle);
+  margin: var(--nausikaa-paragraph-spacer) 0;
 
   & > *:first-child {
     margin-top: 0;
@@ -56,7 +56,7 @@ blockquote {
 
   footer {
     font-size: 0.9em;
-    color: var(--subtext1);
+    color: var(--nausikaa-subtext1);
 
     &:before {
       content: "\02015";
@@ -64,7 +64,7 @@ blockquote {
   }
 
   &.sample-text {
-    color: var(--crust);
+    color: var(--nausikaa-crust);
     padding-top: 0.5rem;
   }
 }
@@ -72,34 +72,34 @@ blockquote {
 abbr,
 time {
   background-color: transparent;
-  text-decoration: underline dotted var(--subtext0);
+  text-decoration: underline dotted var(--nausikaa-subtext0);
   cursor: help;
 }
 
 mark {
   border-radius: 3px;
-  background-color: var(--mark-background);
+  background-color: var(--nausikaa-mark-background);
   box-shadow:
-    5px 0 0 0 rgba(var(--mark-background), .5),
-    -5px 0 0 0 rgba(var(--mark-background), .5);
+    5px 0 0 0 rgba(var(--nausikaa-mark-background), .5),
+    -5px 0 0 0 rgba(var(--nausikaa-mark-background), .5);
   background-size: 2000px 2000px;
   background-image: repeating-linear-gradient(
     -45deg,
-    var(--mark-background),
-    var(--mark-background) 5px,
-    var(--mark-background-alt) 5px,
-    var(--mark-background-alt) 15px
+    var(--nausikaa-mark-background),
+    var(--nausikaa-mark-background) 5px,
+    var(--nausikaa-mark-background-alt) 5px,
+    var(--nausikaa-mark-background-alt) 15px
   );
 }
 
 del {
-  text-decoration: line-through solid var(--input-line-error);
+  text-decoration: line-through solid var(--nausikaa-input-line-error);
 }
 
 code,
 kbd,
 samp {
-  font-family: var(--mono-text);
+  font-family: var(--nausikaa-mono-text);
   font-size: 0.9em;
   line-height: 1.1;
   padding: 0.1em 0.3em;
@@ -108,38 +108,38 @@ samp {
 }
 
 code {
-  color: var(--red3);
-  background-color: var(--base);
-  border: 1px solid var(--red0);
+  color: var(--nausikaa-red3);
+  background-color: var(--nausikaa-base);
+  border: 1px solid var(--nausikaa-red0);
 }
 
 kbd {
-  color: var(--kbd-text);
-  background-color: var(--lavender3);
-  border: 1px solid var(--text);
+  color: var(--nausikaa-kbd-text);
+  background-color: var(--nausikaa-lavender3);
+  border: 1px solid var(--nausikaa-text);
   white-space: nowrap;
 }
 
 samp {
-  color: var(--green1);
-  background-color: var(--subtext1);
-  border: 1px solid var(--subtext1);
+  color: var(--nausikaa-green1);
+  background-color: var(--nausikaa-subtext1);
+  border: 1px solid var(--nausikaa-subtext1);
   white-space: pre-wrap;
   word-break: break-all;
   word-wrap: break-word;
-  margin: var(--paragraph-spacer) 0;
+  margin: var(--nausikaa-paragraph-spacer) 0;
 }
 
 .sample-text {
-  color: var(--subtext0);
+  color: var(--nausikaa-subtext0);
   font-family: "BLOKK";
   font-size: 2em;
   word-spacing: -20px;
 }
 
 .price {
-  font-family: var(--utility-text);
-  border-bottom: 1px dotted var(--crust);
+  font-family: var(--nausikaa-utility-text);
+  border-bottom: 1px dotted var(--nausikaa-crust);
 }
 
 .fetching {
@@ -148,7 +148,7 @@ samp {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(var(--base-rgb), 0.9);
+  background-color: rgba(var(--nausikaa-base-rgb), 0.9);
   padding-top: 4em;
   opacity: 0;
   pointer-events: none;
@@ -180,28 +180,28 @@ samp {
 }
 
 .spinner svg {
-  animation: rotate 1.5s linear infinite;
+  animation: nausikaa-spin 1.5s linear infinite;
   height: 100%;
   width: 100%;
 }
 
 .spinner circle {
-  stroke: var(--blue3);
+  stroke: var(--nausikaa-blue3);
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
-  animation: dash 1.5s ease-in-out infinite 0s;
+  animation: nausikaa-dash 1.5s ease-in-out infinite 0s;
   fill: none;
   stroke-width: 6;
 }
 
-@keyframes rotate {
+@keyframes nausikaa-spin {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 
-@keyframes dash {
+@keyframes nausikaa-dash {
   0% {
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
@@ -218,21 +218,3 @@ samp {
   }
 }
 
-@keyframes color {
-  100%,
-  0% {
-    stroke: #4285f4;
-  }
-
-  25% {
-    stroke: #de3e35;
-  }
-
-  50% {
-    stroke: #f7c223;
-  }
-
-  75% {
-    stroke: #1da760;
-  }
-}

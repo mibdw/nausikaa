@@ -6,18 +6,18 @@ input[type="radio"] {
   & + label {
     display: inline-block;
     cursor: pointer;
-    line-height: calc(var(--line-height) * 1.2);
+    line-height: calc(var(--nausikaa-line-height) * 1.2);
     position: relative;
     padding-left: 0.4em;
     background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0Jz48cGF0aCBkPSdNMTk1djE0aDV2NWgxNG0wLTJoNWMtMS4xMC0yMC45LTIydjE0YzAxLjEuOTIyMmgxNGMxLjEwMi0wLjkyLTJ2NWMwLTEuMS0wLjktMi0yLTJ6JyBmaWxsPSclMjNlYWI0YWUnIC8+PHBhdGggZD0nTTAwaDI0djI0aDB6JyBmaWxsPSclMjNlYWI0YWUnIC8+PC9zdmc+");
   }
 
   &:focus + label {
-    text-decoration: underline dotted var(--subtext0);
+    text-decoration: underline dotted var(--nausikaa-subtext0);
   }
 
   &:disabled + label {
-    color: var(--subtext0);
+    color: var(--nausikaa-subtext0);
     cursor: not-allowed;
   }
 }
@@ -30,8 +30,8 @@ input[type="radio"] {
   }
 
   & > .button {
-    padding: var(--button-padding);
-    line-height: calc(var(--button-height) / 1.15);
+    padding: var(--nausikaa-button-padding);
+    line-height: calc(var(--nausikaa-button-height) / 1.15);
     margin: 0;
   }
 }
@@ -55,11 +55,11 @@ input[type="radio"] {
     li {
       margin: 0;
       flex: 0 0 auto;
-      height: var(--button-height);
+      height: var(--nausikaa-button-height);
 
       .button {
-        padding: var(--button-padding);
-        line-height: calc(var(--button-height) / 1.1);
+        padding: var(--nausikaa-button-padding);
+        line-height: calc(var(--nausikaa-button-height) / 1.1);
         margin-left: 0;
         margin-right: -1px;
         margin-bottom: 0;

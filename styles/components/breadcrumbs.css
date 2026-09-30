@@ -10,10 +10,10 @@
     &:not(:last-child):after {
       content: "";
       display: inline-block;
-      width: calc(var(--line-height) * 1.3);
-      height: var(--line-height);
+      width: calc(var(--nausikaa-line-height) * 1.3);
+      height: var(--nausikaa-line-height);
       background-image: url(/images/chevron-down.svg);
-      color: var(--crust);
+      color: var(--nausikaa-crust);
       font-size: 1.3em;
       display: inline-block;
       transform-origin: center center;
@@ -29,7 +29,7 @@
     background: linear-gradient(
       180deg,
       transparent calc(50% - 1px),
-      var(--crust) calc(50%),
+      var(--nausikaa-crust) calc(50%),
       transparent calc(50% + 1px)
     );
 
@@ -42,16 +42,16 @@
       }
 
       &:last-child {
-        font-family: var(--utility-text);
-        height: var(--input-height);
-        line-height: var(--input-height);
+        font-family: var(--nausikaa-utility-text);
+        height: var(--nausikaa-input-height);
+        line-height: var(--nausikaa-input-height);
         padding: 0 1em;
         margin: 0 0 0.4rem 0;
         text-decoration: none;
         border-radius: 6px;
-        background-color: var(--blue3);
-        color: var(--white);
-        border: 1px solid var(--blue3);
+        background-color: var(--nausikaa-blue3);
+        color: var(--nausikaa-white);
+        border: 1px solid var(--nausikaa-blue3);
       }
     }
   }
@@ -64,7 +64,7 @@
     background: linear-gradient(
       180deg,
       transparent calc(50% - 1px),
-      var(--crust) calc(50%),
+      var(--nausikaa-crust) calc(50%),
       transparent calc(50% + 1px)
     );
 
@@ -93,29 +93,29 @@
       }
 
       & > * {
-        background-color: var(--mantle);
-        border: 1px solid var(--crust);
+        background-color: var(--nausikaa-mantle);
+        border: 1px solid var(--nausikaa-crust);
 
         & > .icon {
-          fill: var(--subtext0);
+          fill: var(--nausikaa-subtext0);
         }
       }
 
       & > a:hover {
-        background-color: var(--surface2);
+        background-color: var(--nausikaa-surface2);
 
         & > .icon {
-          fill: var(--subtext0);
+          fill: var(--nausikaa-subtext0);
         }
       }
 
       & > a:focus {
-        background-color: var(--surface2);
-        box-shadow: 0 0 0 2px var(--crust);
+        background-color: var(--nausikaa-surface2);
+        box-shadow: 0 0 0 2px var(--nausikaa-crust);
         outline-width: 0;
 
         & > .icon {
-          fill: var(--subtext0);
+          fill: var(--nausikaa-subtext0);
         }
       }
 
@@ -125,18 +125,18 @@
       h4,
       h5,
       h6 {
-        margin-top: calc(var(--paragraph-spacer) / 2);
+        margin-top: calc(var(--nausikaa-paragraph-spacer) / 2);
         margin-bottom: 0.2em;
         white-space: nowrap;
       }
 
       &.active > * {
-        background-color: var(--blue3);
-        color: var(--white);
-        border-color: var(--blue3);
+        background-color: var(--nausikaa-blue3);
+        color: var(--nausikaa-white);
+        border-color: var(--nausikaa-blue3);
 
         & > .icon {
-          fill: var(--white);
+          fill: var(--nausikaa-white);
         }
       }
     }
@@ -159,7 +159,7 @@
       background: linear-gradient(
         90deg,
         transparent calc(50% - 1px),
-        var(--crust) calc(50%),
+        var(--nausikaa-crust) calc(50%),
         transparent calc(50% + 1px)
       );
 
@@ -215,7 +215,7 @@
       background: linear-gradient(
         90deg,
         transparent calc(2em - 1px),
-        var(--crust) calc(2em),
+        var(--nausikaa-crust) calc(2em),
         transparent calc(2em + 1px)
       );
 
