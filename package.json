@@ -49,6 +49,7 @@
     "prosemirror-state": "^1.4.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@vitejs/plugin-react": "^5.1.2",
     "concurrently": "^9.2.1",
     "date-fns": "^4.1.0",
@@ -62,7 +63,11 @@
     "dev": "concurrently \"sass styles/light.scss public/styles/nausikaa-light.min.css --watch --style=compressed --no-source-map --quiet-deps\" \"sass styles/dark.scss public/styles/nausikaa-dark.min.css --watch --style=compressed --no-source-map --quiet-deps\" \"nodemon app -e js,ejs,css --watch\"",
     "build": "concurrently \"sass styles/light.scss public/styles/nausikaa-light.min.css --style=compressed --no-source-map --quiet-deps\" \"sass styles/dark.scss public/styles/nausikaa-dark.min.css --style=compressed --no-source-map --quiet-deps\"",
     "build:calendar-demo": "node -e \"require('fs').rmSync('public/scripts/assets', { recursive: true, force: true })\" && vite build --config vite.calendar-demo.config.js",
-    "build:calendar-lib": "npm run build --prefix utilities/Calendar"
+    "build:calendar-lib": "npm run build --prefix utilities/Calendar",
+    "test:visual": "playwright test screenshots",
+    "test:visual:baseline": "playwright test screenshots --update-snapshots",
+    "test:contrast": "playwright test contrast --project=chromium --workers=1",
+    "test:contrast:baseline": "playwright test contrast --project=chromium --workers=1 --update-snapshots"
   },
   "author": "MIBDW",
   "license": "none"

@@ -3,3 +3,6 @@ node_modules
 *.sublime-project
 Session.vim
 
+tests/visual/__screenshots__/
+test-results/
+playwright-report/
