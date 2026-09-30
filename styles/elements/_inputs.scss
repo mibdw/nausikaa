@@ -341,14 +341,27 @@ input[type="range"] {
     background-color: $buttonHover;
   }
 
-  &:focus-visible::-webkit-slider-thumb {
+  // Show the focus ring on :focus, and hide it again for mouse clicks in
+  // browsers that know :focus-visible; older browsers drop that selector
+  // and keep the ring.
+  &:focus::-webkit-slider-thumb {
     border-color: $inputLineFocus;
     box-shadow: 0 -2px 0 0 $buttonShadow inset, 0 0 0 3px rgba($inputLineFocus, 0.5);
   }
 
-  &:focus-visible::-moz-range-thumb {
+  &:focus::-moz-range-thumb {
     border-color: $inputLineFocus;
     box-shadow: 0 -2px 0 0 $buttonShadow inset, 0 0 0 3px rgba($inputLineFocus, 0.5);
+  }
+
+  &:focus:not(:focus-visible)::-webkit-slider-thumb {
+    border-color: $buttonLine;
+    box-shadow: 0 -2px 0 0 $buttonShadow inset;
+  }
+
+  &:focus:not(:focus-visible)::-moz-range-thumb {
+    border-color: $buttonLine;
+    box-shadow: 0 -2px 0 0 $buttonShadow inset;
   }
 
   &:disabled {
@@ -397,9 +410,15 @@ input[type="color"] {
     border-color: $inputLineHover;
   }
 
-  &:focus-visible {
+  // Same approach as the range slider above.
+  &:focus {
     border-color: $inputLineFocus;
     box-shadow: 0 0 0 2px $inputLineFocus inset;
+  }
+
+  &:focus:not(:focus-visible) {
+    border-color: $inputLine;
+    box-shadow: none;
   }
 
   &:disabled {

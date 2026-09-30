@@ -51,6 +51,7 @@
   "devDependencies": {
     "@playwright/test": "^1.63.0",
     "@vitejs/plugin-react": "^5.1.2",
+    "browserslist": "^4.29.3",
     "concurrently": "^9.2.1",
     "date-fns": "^4.1.0",
     "nodemon": "^3.1.11",
@@ -70,5 +71,16 @@
     "test:contrast:baseline": "playwright test contrast --project=chromium --workers=1 --update-snapshots"
   },
   "author": "MIBDW",
-  "license": "none"
+  "license": "none",
+  "browserslist": [
+    "chrome >= 89",
+    "edge >= 89",
+    "firefox >= 75",
+    "safari >= 12.1",
+    "ios_saf >= 12.2",
+    "and_chr >= 89",
+    "and_ff >= 75",
+    "samsung >= 15",
+    "opera >= 75"
+  ]
 }
