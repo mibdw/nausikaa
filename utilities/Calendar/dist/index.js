@@ -2,20 +2,11 @@ import require$$0, { createContext, useContext, useState, useEffect } from "reac
 import { format, isSameMonth, isSameDay, isAfter, sub, startOfISOWeek, endOfISOWeek, endOfMonth, isBefore, add, startOfMonth } from "date-fns";
 var jsxRuntime = { exports: {} };
 var reactJsxRuntime_production = {};
-/**
- * @license React
- * react-jsx-runtime.production.js
- *
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 var hasRequiredReactJsxRuntime_production;
 function requireReactJsxRuntime_production() {
   if (hasRequiredReactJsxRuntime_production) return reactJsxRuntime_production;
   hasRequiredReactJsxRuntime_production = 1;
-  var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
+  var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment");
   function jsxProd(type, config, maybeKey) {
     var key = null;
     void 0 !== maybeKey && (key = "" + maybeKey);
@@ -40,20 +31,11 @@ function requireReactJsxRuntime_production() {
   return reactJsxRuntime_production;
 }
 var reactJsxRuntime_development = {};
-/**
- * @license React
- * react-jsx-runtime.development.js
- *
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 var hasRequiredReactJsxRuntime_development;
 function requireReactJsxRuntime_development() {
   if (hasRequiredReactJsxRuntime_development) return reactJsxRuntime_development;
   hasRequiredReactJsxRuntime_development = 1;
-  "production" !== process.env.NODE_ENV && function() {
+  "production" !== process.env.NODE_ENV && (function() {
     function getComponentNameFromType(type) {
       if (null == type) return null;
       if ("function" === typeof type)
@@ -263,7 +245,7 @@ function requireReactJsxRuntime_development() {
     function isValidElement(object) {
       return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
     }
-    var React = require$$0, REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+    var React = require$$0, REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
       return null;
     };
     React = {
@@ -302,15 +284,21 @@ function requireReactJsxRuntime_development() {
         trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask
       );
     };
-  }();
+  })();
   return reactJsxRuntime_development;
 }
-if (process.env.NODE_ENV === "production") {
-  jsxRuntime.exports = requireReactJsxRuntime_production();
-} else {
-  jsxRuntime.exports = requireReactJsxRuntime_development();
+var hasRequiredJsxRuntime;
+function requireJsxRuntime() {
+  if (hasRequiredJsxRuntime) return jsxRuntime.exports;
+  hasRequiredJsxRuntime = 1;
+  if (process.env.NODE_ENV === "production") {
+    jsxRuntime.exports = requireReactJsxRuntime_production();
+  } else {
+    jsxRuntime.exports = requireReactJsxRuntime_development();
+  }
+  return jsxRuntime.exports;
 }
-var jsxRuntimeExports = jsxRuntime.exports;
+var jsxRuntimeExports = requireJsxRuntime();
 const DEFAULT_CALENDAR_VIEW = "month";
 const CALENDAR_VIEW_OPTIONS = [
   { value: "month", label: "Month" },
@@ -332,7 +320,7 @@ const useCalendar = () => {
   return ctx;
 };
 const CalendarDay = ({ current, day, end, eventList }) => {
-  const { setEventDetail } = useCalendar();
+  const { setEventDetail, MAX_EVENTS_PER_DAY_MONTHLY: MAX_EVENTS_PER_DAY_MONTHLY2 } = useCalendar();
   const relatedEventsEnter = (slug) => {
     const relatedEvents = document.querySelectorAll(
       `.calendar-event-slug-${slug}`
@@ -371,7 +359,7 @@ const CalendarDay = ({ current, day, end, eventList }) => {
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "date-number", children: format(new Date(day), "d") }),
-        eventList && eventList.length > 0 && eventList.filter((_, i) => i < 7).map((event) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "calendar-event-wrapper", children: [
+        eventList && eventList.length > 0 && eventList.filter((_, i) => i < MAX_EVENTS_PER_DAY_MONTHLY2).map((event) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "calendar-event-wrapper", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "a",
             {
@@ -386,27 +374,27 @@ const CalendarDay = ({ current, day, end, eventList }) => {
             },
             format(new Date(day), "yyyy-MM-dd-") + event.slug
           ),
-          event.categories && event.categories.length > 1 && event.categories.filter((_, i) => i > 0).map((event2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          event.categories && event.categories.length > 1 && event.categories.filter((_, i) => i > 0).map((cat) => /* @__PURE__ */ jsxRuntimeExports.jsx(
             "a",
             {
-              title: event2.title,
-              className: `calendar-event calendar-event-category-addition calendar-event-slug-${event2.slug} ${event2.allday ? "tag" : ""} ${cat.color}`,
+              title: event.title,
+              className: `calendar-event calendar-event-category-addition calendar-event-slug-${event.slug} ${event.allday ? "tag" : ""} ${cat.color}`,
               tabIndex: "0",
               role: "button",
-              onClick: () => setEventDetail(event2),
-              onMouseEnter: () => relatedEventsEnter(event2.slug),
-              onMouseLeave: () => relatedEventsLeave(event2.slug)
+              onClick: () => setEventDetail(event),
+              onMouseEnter: () => relatedEventsEnter(event.slug),
+              onMouseLeave: () => relatedEventsLeave(event.slug)
             },
-            format(new Date(day), "yyyy-MM-dd-") + event2.slug + cat.slug
+            format(new Date(day), "yyyy-MM-dd-") + event.slug + cat.slug
           ))
-        ] })),
-        eventList && eventList.length > 7 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "more-events dropdown", children: [
+        ] }, event.slug)),
+        eventList && eventList.length > MAX_EVENTS_PER_DAY_MONTHLY2 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "more-events dropdown", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { tabIndex: "0", role: "button", className: "more-events-button", children: [
             "+",
-            eventList.length - 7,
+            eventList.length - MAX_EVENTS_PER_DAY_MONTHLY2,
             " more"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "panel arrow bottom center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: eventList.filter((_, i) => i > 6).map((event) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "calendar-event-wrapper", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "panel arrow bottom center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: eventList.filter((_, i) => i >= MAX_EVENTS_PER_DAY_MONTHLY2).map((event) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "calendar-event-wrapper", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
@@ -421,17 +409,17 @@ const CalendarDay = ({ current, day, end, eventList }) => {
               },
               format(new Date(day), "yyyy-MM-dd-") + event.slug
             ),
-            event.categories && event.categories.length > 1 && event.categories.filter((_, i) => i > 0).map((cat2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            event.categories && event.categories.length > 1 && event.categories.filter((_, i) => i > 0).map((cat) => /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
                 title: event.title,
-                className: `calendar-event calendar-event-category-addition calendar-event-slug-${event.slug} ${event.allday ? "tag" : ""} ${cat2.color}`,
+                className: `calendar-event calendar-event-category-addition calendar-event-slug-${event.slug} ${event.allday ? "tag" : ""} ${cat.color}`,
                 tabIndex: "0",
                 role: "button",
                 onMouseEnter: () => relatedEventsEnter(event.slug),
                 onMouseLeave: () => relatedEventsLeave(event.slug)
               },
-              format(new Date(day), "yyyy-MM-dd-") + event.slug + cat2.slug
+              format(new Date(day), "yyyy-MM-dd-") + event.slug + cat.slug
             ))
           ] })) }) })
         ] })
@@ -590,7 +578,7 @@ const TaskControls = ({ pos }) => {
               /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "4", children: "April" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "5", children: "May" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "6", children: "June" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "7", children: "Juli" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "7", children: "July" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "8", children: "August" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "9", children: "September" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "10", children: "October" }),
@@ -686,7 +674,7 @@ const Calendar = ({ fetchEvents, createEvent, updateEvent, deleteEvent }) => {
     (async () => {
       const newPeriod = calendarView == "week" ? startOfISOWeek(new Date(period)) : startOfMonth(new Date(period)).toISOString();
       const startDate = calendarView == "week" ? newPeriod : startOfISOWeek(new Date(newPeriod)).toISOString();
-      const endDate = calendarView == "week" ? endOfISOWeek(new Date(startDate)) : endOfISOWeek(endOfMonth(new Date(startDate))).toISOString();
+      const endDate = calendarView == "week" ? endOfISOWeek(new Date(startDate)) : endOfISOWeek(endOfMonth(new Date(newPeriod))).toISOString();
       const eventList = await fetchEvents(startDate, endDate);
       setPeriods((currentPeriods) => {
         if (!currentPeriods || currentPeriods.length == 0) {

@@ -3,54 +3,87 @@
 </header>
 
 <section id="introduction">
-	<p class="introduction">
-		<strong>Calendars</strong> are essential tools for organizing time, scheduling events, and tracking important dates. They provide a visual representation of days, weeks, and months, helping individuals and organizations plan their activities effectively. Whether in physical form or digital applications, calendars facilitate time management and enhance productivity by allowing users to set reminders, mark deadlines, and coordinate with others.
-	</p>
-	<p class="introduction">
-		The <strong>calendar</strong> is a <a href="https://react.dev/" target="_blank">React</a> component and relies on the <a href="https://date-fns.org/" target="_blank" rel="noopener noreferrer">date-fns</a> library for date manipulation and formatting. It is designed to be flexible and customizable, allowing developers to easily integrate it into their applications and tailor its appearance and functionality to meet specific requirements.
-	</p>
+  <p class="introduction">
+    The <strong>Calendar</strong> is a React component for browsing a month and presenting events on their due dates. It includes month and year controls, an animated transition between periods, keyboard-focusable events, and an event detail dialog. Nausikaä provides the layout and event styles; your application provides the data and persistence callbacks.
+  </p>
+  <p class="introduction">
+    The component uses <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">React</a> and <a href="https://date-fns.org/" target="_blank" rel="noopener noreferrer">date-fns</a>. Install the calendar package together with its peer dependencies, import the accompanying Nausikaä stylesheet, and pass an asynchronous <code>fetchEvents</code> function.
+  </p>
 </section>
 
-
-<section>
-	<header>
-		<h2>Basic calendar</h2>
-	</header>
-
-	<!-- TODO: Write a description of how the calendar works -->
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-	<div class="section-example">
-		<div id="calendar-demo-1"></div>
-	</div>
-
-	<!-- TODO: Write additional notes on requirements, best practices, etc. -->
-	<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-
+<section id="basic-calendar">
+  <header><h2>Basic calendar</h2></header>
+  <p><code>fetchEvents(startDate, endDate)</code> is called whenever the displayed period changes. It must resolve to an array of events in that range. The basic example intentionally returns an empty list, which is useful while wiring the calendar to a new data source.</p>
+  <div class="section-example"><div id="calendar-demo-1"></div></div>
   <div class="code-example">
-    <pre><code class="html">&lt;!-- Example calendar code here --&gt;</code></pre>
+    <pre><code class="javascript">import Calendar from "@nausikaa/calendar";
+
+const fetchEvents = async (startDate, endDate) =&gt; {
+  const response = await fetch(`/api/events?start=${encodeURIComponent(startDate)}&amp;end=${encodeURIComponent(endDate)}`);
+  return response.json();
+};
+
+&lt;Calendar
+  fetchEvents={fetchEvents}
+  createEvent={async (event) =&gt; { /* save event */ }}
+  updateEvent={async (event) =&gt; { /* update event */ }}
+  deleteEvent={async (event) =&gt; { /* delete event */ }}
+/&gt;;</code></pre>
   </div>
-  
 </section>
 
-<section>
-	<header>
-		<h2>Calendar events</h2>
-	</header>
-
-	<!-- TODO: Write a description of how calendar events works -->
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-	<div class="section-example">
-		<div id="calendar-demo-2"></div>
-	</div>
-
-	<!-- TODO: Write additional notes on requirements, best practices, etc. -->
-	<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-
+<section id="calendar-events">
+  <header><h2>Calendar events</h2></header>
+  <p>An event needs a stable <code>slug</code>, a <code>title</code>, and a <code>due</code> date that JavaScript can parse. Mark an event as <code>allday</code> to display it as a compact tag. Its first category supplies any Nausikaä tag color class, including <code>rosewater</code>, <code>pink</code>, <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>teal</code>, <code>blue</code>, <code>lavender</code>, and <code>magenta</code>.</p>
+  <p>This demo generates one to five events for every visible date, with a few deliberately busy dates containing eight to twelve events to demonstrate the <code>+x more</code> overflow dropdown. The event data is generated only in the browser, but it is deterministic: a date receives the same events when you leave a month and return to it. No data is saved or sent anywhere.</p>
+  <div class="section-example"><div id="calendar-demo-2"></div></div>
   <div class="code-example">
-    <pre><code class="html">&lt;!-- Example calendar code here --e&gt;</code></pre>
+    <pre><code class="javascript">const event = {
+  slug: "design-review-2026-04-14",
+  title: "Design review",
+  due: "2026-04-14T09:30:00.000Z",
+  allday: true,
+  categories: [{ slug: "design", color: "blue" }],
+};
+
+const fetchEvents = async (startDate, endDate) =&gt; {
+  return events.filter((event) =&gt; {
+    const due = new Date(event.due);
+    return due &gt;= new Date(startDate) &amp;&amp; due &lt;= new Date(endDate);
+  });
+};</code></pre>
   </div>
-  
 </section>
+
+<section id="event-behaviour">
+  <header><h2>Event behaviour</h2></header>
+  <p>Select an event to open the built-in detail dialog. The current version displays the event object there, making it a practical integration point for a read, edit, or delete interface. Clicking an unused part of a day opens the same dialog in its <code>"new"</code> state. The <code>createEvent</code>, <code>updateEvent</code>, and <code>deleteEvent</code> callbacks are reserved for that persistence layer.</p>
+  <p>Keep <code>fetchEvents</code> stable between renders—for example with a module-level function or <code>useCallback</code>—so React does not refetch simply because the callback identity changed. Return ISO date strings from an API when possible to avoid timezone ambiguity.</p>
+</section>
+
+<section id="calendar-props">
+  <header><h2>Props</h2></header>
+  <table class="striped">
+    <thead><tr><th>Prop</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><th><code>fetchEvents</code></th><td><code>(startDate, endDate) =&gt; Promise&lt;Event[]&gt;</code></td><td><strong>Required.</strong> Called whenever the displayed period changes. The dates span the full weeks shown in the grid, so they can fall in the previous or next month. Resolve to the events in that range.</td></tr>
+      <tr><th><code>createEvent</code></th><td><code>(event) =&gt; Promise</code></td><td>Reserved for creating events from the detail dialog. Not called by the current version.</td></tr>
+      <tr><th><code>updateEvent</code></th><td><code>(event) =&gt; Promise</code></td><td>Reserved for editing events from the detail dialog. Not called by the current version.</td></tr>
+      <tr><th><code>deleteEvent</code></th><td><code>(event) =&gt; Promise</code></td><td>Reserved for deleting events from the detail dialog. Not called by the current version.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Event object</h3>
+  <table class="striped">
+    <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><th><code>slug</code></th><td><code>string</code></td><td><strong>Required.</strong> A unique identifier. It is also used in a CSS class name, so use only letters, digits and hyphens.</td></tr>
+      <tr><th><code>title</code></th><td><code>string</code></td><td><strong>Required.</strong> Shown in the day cell and as the tooltip.</td></tr>
+      <tr><th><code>due</code></th><td><code>string</code> or <code>Date</code></td><td><strong>Required.</strong> The day the event is shown on. An ISO 8601 string is recommended.</td></tr>
+      <tr><th><code>allday</code></th><td><code>boolean</code></td><td>Displays the event as a compact, colored tag.</td></tr>
+      <tr><th><code>categories</code></th><td><code>{ slug, color }[]</code></td><td>The first category’s <code>color</code> sets the event color and accepts any tag color class. Further categories are shown as small colored markers.</td></tr>
+    </tbody>
+  </table>
+</section>
+
 <script type="module" src="/scripts/calendar-demo.js"></script>

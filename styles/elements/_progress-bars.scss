@@ -138,3 +138,79 @@ progress {
     background-position: -$progress-stripe-size 0;
   }
 }
+
+progress:indeterminate {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    $mantle,
+    $mantle 1rem,
+    $crust 1rem,
+    $crust 2rem
+  );
+  background-size: $progress-stripe-size $progress-stripe-size;
+  animation: progressAnimation 1s linear infinite;
+
+  &::-webkit-progress-bar {
+    background-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  progress,
+  progress::-webkit-progress-value,
+  progress::-moz-progress-bar {
+    animation: none;
+  }
+}
+
+@mixin meterValue($meterColor) {
+  background-image: none;
+  background-color: $meterColor;
+  border-radius: 2px;
+}
+
+// Chromium ignores the padding when a meter has `appearance: none`, so the
+// default appearance is kept; the background and border below already switch
+// off the native look in every browser.
+meter {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc($lineHeight + 10px);
+  padding: 3px;
+  background: $mantle;
+  border: 1px solid $crust;
+  border-radius: 4px;
+  vertical-align: bottom;
+
+  &::-webkit-meter-bar {
+    height: calc($lineHeight + 2px); // meter height minus padding and border
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+
+  &::-webkit-meter-optimum-value {
+    @include meterValue($green3);
+  }
+
+  &::-webkit-meter-suboptimum-value {
+    @include meterValue($yellow3);
+  }
+
+  &::-webkit-meter-even-less-good-value {
+    @include meterValue($red3);
+  }
+
+  &::-moz-meter-bar {
+    @include meterValue($green3);
+  }
+
+  &:-moz-meter-sub-optimum::-moz-meter-bar {
+    @include meterValue($yellow3);
+  }
+
+  &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    @include meterValue($red3);
+  }
+}

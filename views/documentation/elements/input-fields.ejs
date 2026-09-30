@@ -530,24 +530,65 @@
     <h2>File upload</h2>
   </header>
 
-  <p>Under construction!</p>
+  <p>The browser’s own file input is hard to style, so Nausikaä hides the <code>&lt;input type="file"&gt;</code> visually and lets a <code>&lt;label class="button"&gt;</code> act as the control. The input must come <strong>directly before</strong> its label: the button then shows the input’s focus and disabled states, and clicking the label opens the file dialog. The input stays in the page, so it still works with the keyboard and screen readers and is submitted with the form as usual.</p>
 
-	<div class="section-example">
-  <input type="file" name="upload" id="upload">
-  <label for="upload" class="button">
-    <span class="label">
-      <svg class="icon">
-        <use xlink:href="/images/icons.svg#upload"></use>
-      </svg>
-    </span>
-    File upload
-  </label>
-	</div>
+  <div class="section-example">
+    <input type="file" name="upload" id="upload" accept="image/*" multiple>
+    <label for="upload" class="button">
+      <span class="label">
+        <svg class="icon">
+          <use xlink:href="/images/icons.svg#upload"></use>
+        </svg>
+      </span>
+      Choose images
+    </label>
+    <p><small id="upload-file-names">No files chosen.</small></p>
+
+    <input type="file" name="upload-disabled" id="upload-disabled" disabled>
+    <label for="upload-disabled" class="button">
+      <span class="label">
+        <svg class="icon">
+          <use xlink:href="/images/icons.svg#upload"></use>
+        </svg>
+      </span>
+      Disabled
+    </label>
+  </div>
 
   <div class="code-example">
-    <pre><code class="html">&lt;input type="file" id="..."&gt;
-&lt;label for="..."&gt;...&lt;/label&gt;</code></pre>
+    <pre><code class="html">&lt;input type="file" id="photos" name="photos" accept="image/*" multiple&gt;
+&lt;label for="photos" class="button"&gt;
+  &lt;span class="label"&gt;
+    &lt;svg class="icon"&gt;&lt;use xlink:href="/images/icons.svg#upload"&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;/span&gt;
+  Choose images
+&lt;/label&gt;</code></pre>
   </div>
+
+  <p>Because the native input is hidden, the names of the chosen files are no longer visible. Show them next to the button with a few lines of JavaScript, as the example above does:</p>
+
+  <div class="code-example">
+    <pre><code class="javascript">const input = document.getElementById("photos");
+const output = document.getElementById("photo-names");
+
+input.addEventListener("change", () =&gt; {
+  const names = Array.from(input.files, (file) =&gt; file.name);
+  output.textContent = names.length ? names.join(", ") : "No files chosen.";
+});</code></pre>
+  </div>
+
+  <p class="note"><strong>Useful attributes:</strong> <code>accept</code> limits the file dialog to certain types (<code>image/*</code>, <code>.pdf</code>), <code>multiple</code> allows more than one file, and <code>capture</code> opens the camera directly on phones. Remember to give the surrounding <code>&lt;form&gt;</code> the attribute <code>enctype="multipart/form-data"</code>.</p>
+
+  <script>
+  (function () {
+    var input = document.getElementById("upload");
+    var output = document.getElementById("upload-file-names");
+    input.addEventListener("change", function () {
+      var names = Array.prototype.map.call(input.files, function (file) { return file.name; });
+      output.textContent = names.length ? names.join(", ") : "No files chosen.";
+    });
+  })();
+  </script>
 </section>
 
 <section id="suggestions">
@@ -565,11 +606,11 @@
 				<input type="search" id="suggestions-1" class="prepend-icon" value="Search term (expanded)">
 				<div class="panel">
 					<ul>
-						<li><a href="">Lorem ipsum dolor sit amet</a></li>
-						<li><a href="">Earum soluta eum cum iure atque</a></li>
-						<li><a href="">Facere reprehenderit voluptatibus</a></li>
-						<li><a href="">Deleniti aut labore, consequatur</a></li>
-						<li><a href="">Repellendus tenetur</a></li>
+						<li><a href="">Nausicaä in Greek mythology</a></li>
+						<li><a href="">Nausicaä of the Valley of the Wind</a></li>
+						<li><a href="">Odysseus meets Nausicaä</a></li>
+						<li><a href="">The Phaeacians of Scheria</a></li>
+						<li><a href="">Paintings of Nausicaä</a></li>
 					</ul>
 				</div>
 			</div>
@@ -579,11 +620,11 @@
 				<input type="search" value="Suggestions to bottom (default)" id="suggestions-4">
 				<div class="panel">
 					<ul>
-						<li><a href="">Lorem ipsum dolor sit amet</a></li>
-						<li><a href="">Earum soluta eum cum iure atque</a></li>
-						<li><a href="">Facere reprehenderit voluptatibus</a></li>
-						<li><a href="">Deleniti aut labore, consequatur</a></li>
-						<li><a href="">Repellendus tenetur</a></li>
+						<li><a href="">Nausicaä in Greek mythology</a></li>
+						<li><a href="">Nausicaä of the Valley of the Wind</a></li>
+						<li><a href="">Odysseus meets Nausicaä</a></li>
+						<li><a href="">The Phaeacians of Scheria</a></li>
+						<li><a href="">Paintings of Nausicaä</a></li>
 					</ul>
 				</div>
 			</div>
@@ -593,11 +634,11 @@
 				<input type="search" value="Suggestions to top" id="suggestions-5">
 				<div class="panel">
 					<ul>
-						<li><a href="">Lorem ipsum dolor sit amet</a></li>
-						<li><a href="">Earum soluta eum cum iure atque</a></li>
-						<li><a href="">Facere reprehenderit voluptatibus</a></li>
-						<li><a href="">Deleniti aut labore, consequatur</a></li>
-						<li><a href="">Repellendus tenetur</a></li>
+						<li><a href="">Nausicaä in Greek mythology</a></li>
+						<li><a href="">Nausicaä of the Valley of the Wind</a></li>
+						<li><a href="">Odysseus meets Nausicaä</a></li>
+						<li><a href="">The Phaeacians of Scheria</a></li>
+						<li><a href="">Paintings of Nausicaä</a></li>
 					</ul>
 				</div>
 			</div>
@@ -613,11 +654,11 @@
 				</div>  
 				<div class="panel">
 					<ul>
-						<li><a href="">Lorem ipsum dolor sit amet</a></li>
-						<li><a href="">Earum soluta eum cum iure atque</a></li>
-						<li><a href="">Facere reprehenderit voluptatibus</a></li>
-						<li><a href="">Deleniti aut labore, consequatur</a></li>
-						<li><a href="">Repellendus tenetur</a></li>
+						<li><a href="">Nausicaä in Greek mythology</a></li>
+						<li><a href="">Nausicaä of the Valley of the Wind</a></li>
+						<li><a href="">Odysseus meets Nausicaä</a></li>
+						<li><a href="">The Phaeacians of Scheria</a></li>
+						<li><a href="">Paintings of Nausicaä</a></li>
 					</ul>
 				</div>
 			</div>
@@ -636,11 +677,11 @@
 				</div>  
 				<div class="panel">
 					<ul>
-						<li><a href="">Lorem ipsum dolor sit amet</a></li>
-						<li><a href="">Earum soluta eum cum iure atque</a></li>
-						<li><a href="">Facere reprehenderit voluptatibus</a></li>
-						<li><a href="">Deleniti aut labore, consequatur</a></li>
-						<li><a href="">Repellendus tenetur</a></li>
+						<li><a href="">Nausicaä in Greek mythology</a></li>
+						<li><a href="">Nausicaä of the Valley of the Wind</a></li>
+						<li><a href="">Odysseus meets Nausicaä</a></li>
+						<li><a href="">The Phaeacians of Scheria</a></li>
+						<li><a href="">Paintings of Nausicaä</a></li>
 					</ul>
 				</div>
 			</div>
@@ -655,11 +696,11 @@
 				</div>  
 				<div class="panel">
 					<ul>
-						<li><a href="">Lorem ipsum dolor sit amet</a></li>
-						<li><a href="">Earum soluta eum cum iure atque</a></li>
-						<li><a href="">Facere reprehenderit voluptatibus</a></li>
-						<li><a href="">Deleniti aut labore, consequatur</a></li>
-						<li><a href="">Repellendus tenetur</a></li>
+						<li><a href="">Nausicaä in Greek mythology</a></li>
+						<li><a href="">Nausicaä of the Valley of the Wind</a></li>
+						<li><a href="">Odysseus meets Nausicaä</a></li>
+						<li><a href="">The Phaeacians of Scheria</a></li>
+						<li><a href="">Paintings of Nausicaä</a></li>
 					</ul>
 				</div>
 			</div>
@@ -674,11 +715,11 @@
 				</div>  
 				<div class="panel">
 					<ul>
-						<li><a href="">Lorem ipsum dolor sit amet</a></li>
-						<li><a href="">Earum soluta eum cum iure atque</a></li>
-						<li><a href="">Facere reprehenderit voluptatibus</a></li>
-						<li><a href="">Deleniti aut labore, consequatur</a></li>
-						<li><a href="">Repellendus tenetur</a></li>
+						<li><a href="">Nausicaä in Greek mythology</a></li>
+						<li><a href="">Nausicaä of the Valley of the Wind</a></li>
+						<li><a href="">Odysseus meets Nausicaä</a></li>
+						<li><a href="">The Phaeacians of Scheria</a></li>
+						<li><a href="">Paintings of Nausicaä</a></li>
 					</ul>
 				</div>
 			</div>
@@ -704,4 +745,110 @@
 &lt;/div&gt;</code></pre>
   
   </div>
+</section>
+
+<section id="range">
+  <header>
+    <h2>Range sliders</h2>
+  </header>
+
+  <p>A <strong>range slider</strong> lets people pick a number by dragging, when the exact value matters less than its position within a range: volume, zoom level or a price filter. Set <code>min</code>, <code>max</code>, <code>step</code> and <code>value</code>. The slider can also be moved with the arrow keys, Page Up and Page Down, and Home and End.</p>
+
+  <div class="section-example">
+    <div class="basic-form">
+      <label for="range-example">Volume: <output for="range-example" id="range-example-output">40</output>%</label>
+      <input type="range" id="range-example" min="0" max="100" step="5" value="40">
+
+      <label for="range-example-disabled">Disabled</label>
+      <input type="range" id="range-example-disabled" min="0" max="100" value="70" disabled>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;label for="volume"&gt;Volume: &lt;output for="volume" id="volume-value"&gt;40&lt;/output&gt;%&lt;/label&gt;
+&lt;input type="range" id="volume" min="0" max="100" step="5" value="40"&gt;</code></pre>
+  </div>
+
+  <p>A slider doesn’t show its value by itself. When the number matters, display it in an <code>&lt;output&gt;</code> element and update it on the <code>input</code> event:</p>
+
+  <div class="code-example">
+    <pre><code class="javascript">const volume = document.getElementById("volume");
+volume.addEventListener("input", () =&gt; {
+  document.getElementById("volume-value").textContent = volume.value;
+});</code></pre>
+  </div>
+
+  <p class="note"><strong>When to use a number field instead:</strong> sliders are imprecise with a mouse and slow with a keyboard over large ranges. If people need to enter an exact value, such as an age or an amount, use <code>&lt;input type="number"&gt;</code>, or offer both side by side.</p>
+
+  <script>
+  (function () {
+    var range = document.getElementById("range-example");
+    var output = document.getElementById("range-example-output");
+    range.addEventListener("input", function () { output.textContent = range.value; });
+  })();
+  </script>
+</section>
+
+<section id="color">
+  <header>
+    <h2>Color pickers</h2>
+  </header>
+
+  <p>An <code>&lt;input type="color"&gt;</code> shows the chosen color as a swatch and opens the operating system’s color picker when clicked. Its <code>value</code> is always a lowercase six-digit hex code such as <code>#1e66f5</code>; shorthand codes and color names are not accepted.</p>
+
+  <div class="section-example">
+    <div class="basic-form">
+      <label for="color-example">Accent color</label>
+      <div>
+        <input type="color" id="color-example" value="#1e66f5">
+        <output for="color-example" id="color-example-output">#1e66f5</output>
+      </div>
+
+      <label for="color-example-disabled">Disabled</label>
+      <div>
+        <input type="color" id="color-example-disabled" value="#40a02b" disabled>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;label for="accent"&gt;Accent color&lt;/label&gt;
+&lt;input type="color" id="accent" name="accent" value="#1e66f5"&gt;</code></pre>
+  </div>
+
+  <p>Offer suggested colors with a <code>&lt;datalist&gt;</code>. Browsers that support it show these as swatches in the picker, while still allowing any other color:</p>
+
+  <div class="section-example">
+    <div class="basic-form">
+      <label for="color-example-list">Label color</label>
+      <div>
+        <input type="color" id="color-example-list" value="#d20f39" list="color-example-suggestions">
+        <datalist id="color-example-suggestions">
+          <option value="#d20f39"></option>
+          <option value="#fe640b"></option>
+          <option value="#df8e1d"></option>
+          <option value="#40a02b"></option>
+          <option value="#1e66f5"></option>
+          <option value="#8839ef"></option>
+        </datalist>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;input type="color" id="label-color" value="#d20f39" list="label-colors"&gt;
+&lt;datalist id="label-colors"&gt;
+  &lt;option value="#d20f39"&gt;&lt;/option&gt;
+  &lt;option value="#40a02b"&gt;&lt;/option&gt;
+  ...
+&lt;/datalist&gt;</code></pre>
+  </div>
+
+  <script>
+  (function () {
+    var color = document.getElementById("color-example");
+    var output = document.getElementById("color-example-output");
+    color.addEventListener("input", function () { output.textContent = color.value; });
+  })();
+  </script>
 </section>

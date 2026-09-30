@@ -7,14 +7,14 @@
 		<strong>Progress bars</strong> communicate task status visually, giving users a sense of how much work remains. Use them for lengthy processes like file uploads, installations, or multi-step forms to set expectations and reduce uncertainty. Always pair progress bars with clear labels or percentages so users understand what’s happening at a glance.
 	</p>
 	<p class="introduction">
-		<strong>Progress bars</strong> can be determinate (showing specific progress) or indeterminate (indicating ongoing activity without a set endpoint). Choose the right type based on the task: use determinate bars when you can measure progress, and indeterminate bars for processes where timing is unpredictable. Keep designs simple and avoid overloading users with too many visual cues.
+		<strong>Progress bars</strong> can be determinate (showing specific progress) or indeterminate (indicating ongoing activity without a set endpoint). Choose the right type based on the task: use determinate bars when you can measure progress, and indeterminate bars for processes where timing is unpredictable. For a value that is a measurement rather than a task in progress, such as disk usage or a score, use a <a href="#meters">meter</a> instead.
 	</p>
 	<p class="introduction">
-		Ensure <strong>progress bars</strong> are accessible by providing text alternatives and ensuring they work well with screen readers. Use ARIA attributes like <code>aria-valuenow</code>, <code>aria-valuemin</code>, and <code>aria-valuemax</code> to convey progress information. Test across devices and assistive technologies to ensure a smooth experience for all users.
+		The native <code>&lt;progress&gt;</code> and <code>&lt;meter&gt;</code> elements are already announced correctly by screen readers, so they need no extra ARIA attributes. Give each one an accessible name with a <code>&lt;label&gt;</code>. The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> attributes are only needed when you build a custom progress bar from a <code>&lt;div&gt;</code> with <code>role="progressbar"</code>.
 	</p>
 </section>
 
-<section>
+<section id="default">
   <header>
 		<h2>Default</h2>
   </header>
@@ -33,8 +33,14 @@
   <div class="code-example">
     <pre><code class="html">&lt;progress max="..." value="..."&gt;&lt;/progress&gt;</code></pre>
   </div>
+</section>
 
-	<p>A progress bar <strong>without</strong> a <code>value</code> attribute indicates an indeterminate state, showing that a process is ongoing without specifying how much has been completed.</p>
+<section id="indeterminate">
+  <header>
+		<h2>Indeterminate</h2>
+  </header>
+
+	<p>A progress bar <strong>without</strong> a <code>value</code> attribute is indeterminate: a process is running, but how much of it is complete is unknown. The whole bar shows moving stripes instead of a filled portion. Set a <code>value</code> as soon as progress can be measured, and the bar switches to the determinate style.</p>
 
 	<div class="section-example">
 		<progress></progress>
@@ -44,9 +50,30 @@
     <pre><code class="html">&lt;progress&gt;&lt;/progress&gt;</code></pre>
   </div>
 
+	<p class="note"><strong>Reduced motion:</strong> when the visitor has asked their operating system to reduce motion, the stripes stop animating. Pair an indeterminate bar with a short text such as “Uploading…” so the state is clear without the animation.</p>
 </section>
 
-<section>
+<section id="labels">
+  <header>
+		<h2>Labels</h2>
+  </header>
+
+	<p>Connect a <code>&lt;label&gt;</code> to the progress bar with <code>for</code> and <code>id</code>, so assistive technology can announce what the bar belongs to. The text inside the <code>&lt;progress&gt;</code> element is only shown by browsers that cannot display the bar, which makes it a good place for a plain percentage.</p>
+
+	<div class="section-example">
+		<div class="basic-form">
+			<label for="progress-label-example">Uploading <em>nausikaa-and-her-maids.jpg</em> (70%)</label>
+			<progress id="progress-label-example" max="100" value="70">70%</progress>
+		</div>
+	</div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;label for="upload-progress"&gt;Uploading photo (70%)&lt;/label&gt;
+&lt;progress id="upload-progress" max="100" value="70"&gt;70%&lt;/progress&gt;</code></pre>
+  </div>
+</section>
+
+<section id="colors">
   <header>
 		<h2>Colors</h2>
   </header>
@@ -88,12 +115,52 @@
 &lt;progress class="blue"&gt;&lt;/progress&gt;
 &lt;progress class="lavender"&gt;&lt;/progress&gt;
 &lt;progress class="gray"&gt;&lt;/progress&gt;</code></pre>
-  
+
   </div>
 
 </section>
 
-<section>
+<section id="meters">
+  <header>
+		<h2>Meters</h2>
+  </header>
+
+	<p>A <strong>meter</strong> shows a measurement within a known range, such as storage used, a password’s strength or a rating. Unlike a progress bar it doesn’t describe a task that will finish. Set <code>min</code>, <code>max</code> and <code>value</code>, then use <code>low</code>, <code>high</code> and <code>optimum</code> to tell the browser which part of the range is good. The bar turns green, yellow or red depending on where the value falls.</p>
+
+	<div class="section-example">
+		<div class="basic-form">
+			<label for="meter-example-1">25 of 100 GB used</label>
+			<meter id="meter-example-1" min="0" max="100" low="70" high="90" optimum="0" value="25">25 GB</meter>
+
+			<label for="meter-example-2">80 of 100 GB used</label>
+			<meter id="meter-example-2" min="0" max="100" low="70" high="90" optimum="0" value="80">80 GB</meter>
+
+			<label for="meter-example-3">96 of 100 GB used</label>
+			<meter id="meter-example-3" min="0" max="100" low="70" high="90" optimum="0" value="96">96 GB</meter>
+		</div>
+	</div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;label for="storage"&gt;Storage used: 80 of 100 GB&lt;/label&gt;
+&lt;meter id="storage" min="0" max="100" low="70" high="90" optimum="0" value="80"&gt;80 GB&lt;/meter&gt;</code></pre>
+  </div>
+
+	<table class="striped">
+		<thead>
+			<tr><th>Attribute</th><th>Meaning</th></tr>
+		</thead>
+		<tbody>
+			<tr><th><code>min</code>, <code>max</code></th><td>The bounds of the range. They default to 0 and 1.</td></tr>
+			<tr><th><code>value</code></th><td>The current measurement.</td></tr>
+			<tr><th><code>low</code>, <code>high</code></th><td>Split the range into a low, middle and high part.</td></tr>
+			<tr><th><code>optimum</code></th><td>The preferred value. The part of the range that contains it is shown green, the part next to it yellow and the part furthest away red.</td></tr>
+		</tbody>
+	</table>
+
+	<p>In the example above <code>optimum="0"</code> means that a low value is best. For a value where more is better, such as a battery level, set <code>optimum</code> to the maximum instead.</p>
+</section>
+
+<section id="demo">
   <header>
 		<h2>Demo</h2>
   </header>
@@ -101,26 +168,39 @@
 
 	<div class="section-example">
 		<div style="display: flex; gap: 1rem; align-items: center;">
-			<progress style="flex-grow: 99" max="100" value="0" id="progressBarExample"></progress>
-			<button id="progressButtonExample">Progress!</button>
+			<progress style="flex-grow: 99" max="100" value="0" id="progressBarExample" aria-label="Demo progress"></progress>
+			<button type="button" id="progressButtonExample">Progress!</button>
 		</div>
 	</div>
 
+  <div class="code-example">
+    <pre><code class="javascript">const progressBar = document.getElementById("progress-bar");
+let value = 0;
+
+const timer = setInterval(() =&gt; {
+  value = Math.min(value + 1, 100);
+  progressBar.value = value;
+  if (value === 100) clearInterval(timer);
+}, 20);</code></pre>
+  </div>
+
 <script>
-const progressBar = document.getElementById('progressBarExample');
-const progressButton = document.getElementById('progressButtonExample');
-progressButton.addEventListener('click', function () {
-var num = 0;
-var id = setInterval(frame, 5);
-function frame() {
-if (num== 100) {
-clearInterval(id);
-} else {
-num = num + .2;
-progressBar.setAttribute('value', num);
-}
-}
-});
+(function () {
+  var progressBar = document.getElementById("progressBarExample");
+  var progressButton = document.getElementById("progressButtonExample");
+  var timer = null;
+
+  progressButton.addEventListener("click", function () {
+    var value = 0;
+    clearInterval(timer);
+    progressBar.value = value;
+    timer = setInterval(function () {
+      value = Math.min(value + 1, 100);
+      progressBar.value = value;
+      if (value === 100) clearInterval(timer);
+    }, 20);
+  });
+})();
 </script>
 
 </section>

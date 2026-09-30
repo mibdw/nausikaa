@@ -9,7 +9,7 @@ const nav = [
         color: "yellow",
         description: [
           "The majority of elements in Hypertext Markup Language (HTML) are covered in the <em>Elements</em> section. These are the building blocks of every website, with no to little CSS classes to be learned. All basic tags like <code>&lt;a&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;table&gt;</code> and <code>&lt;img&gt;</code> are covered. As well as <code>&lt;form&gt;</code> tags like <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> and <code>&lt;textarea&gt;</code>.",
-          'Newer elements from the HTML5 spec are missing at the moment, like <code>&lt;meter&gt;</code>, <code>&lt;input type="range"&gt;</code> and <code>&lt;input type="color"&gt;</code>. But if you have any requests, please let me know!',
+          "Newer form controls from the HTML5 spec are covered too: <code>&lt;meter&gt;</code>, <code>&lt;input type=\"range\"&gt;</code> and <code>&lt;input type=\"color\"&gt;</code>. If you have any requests, please let me know!",
         ],
         nav: [
           {
@@ -33,7 +33,7 @@ const nav = [
               },
               {
                 title: "(Un)Ordered lists",
-                slug: "un-ordered-lists",
+                slug: "unordered-lists",
               },
               {
                 title: "Description lists",
@@ -55,6 +55,20 @@ const nav = [
             icon: "link",
             description:
               "Arguably the most important element on the internet. Where would we go without it?",
+            nav: [
+              {
+                title: "Inline links",
+                slug: "inline",
+              },
+              {
+                title: "Knobs",
+                slug: "knobs",
+              },
+              {
+                title: "Buttons",
+                slug: "buttons",
+              },
+            ],
           },
           {
             title: "Buttons",
@@ -132,6 +146,14 @@ const nav = [
                 title: "Suggestions",
                 slug: "suggestions",
               },
+              {
+                title: "Range sliders",
+                slug: "range",
+              },
+              {
+                title: "Color pickers",
+                slug: "color",
+              },
             ],
           },
           {
@@ -165,6 +187,24 @@ const nav = [
             icon: "photo",
             description:
               "Embed graphic representations of cats, among other things.",
+            nav: [
+              {
+                title: "Basic images",
+                slug: "basic",
+              },
+              {
+                title: "Captions",
+                slug: "captions",
+              },
+              {
+                title: "Alignment",
+                slug: "alignment",
+              },
+              {
+                title: "Responsive images",
+                slug: "responsive",
+              },
+            ],
           },
           {
             title: "Tables",
@@ -174,8 +214,8 @@ const nav = [
               "Information presented in a two-dimensional table comprised of rows and columns of cells",
             nav: [
               {
-                title: "Regular",
-                slug: "regular",
+                title: "Basic",
+                slug: "basic",
               },
               {
                 title: "Striped",
@@ -196,7 +236,33 @@ const nav = [
             slug: "progress-bars",
             icon: "progress",
             description:
-              "An indicator showing the completion progress of a task",
+              "Indicators showing the completion of a task, and meters for measurements within a range.",
+            nav: [
+              {
+                title: "Default",
+                slug: "default",
+              },
+              {
+                title: "Indeterminate",
+                slug: "indeterminate",
+              },
+              {
+                title: "Labels",
+                slug: "labels",
+              },
+              {
+                title: "Colors",
+                slug: "colors",
+              },
+              {
+                title: "Meters",
+                slug: "meters",
+              },
+              {
+                title: "Demo",
+                slug: "demo",
+              },
+            ],
           },
         ],
       },
@@ -265,6 +331,10 @@ const nav = [
                 title: "Width",
                 slug: "width",
               },
+              {
+                title: "Demo",
+                slug: "in-action",
+              },
             ],
           },
           {
@@ -273,6 +343,24 @@ const nav = [
             icon: "star",
             description:
               "Toggle contextual overlays for displaying lists of links and more. When you can't give everything at once.",
+            nav: [
+              {
+                title: "Basic",
+                slug: "basic",
+              },
+              {
+                title: "Locations",
+                slug: "locations",
+              },
+              {
+                title: "Links",
+                slug: "links",
+              },
+              {
+                title: "Filters",
+                slug: "filters",
+              },
+            ],
           },
           {
             title: "Notifications",
@@ -364,6 +452,28 @@ const nav = [
             slug: "tags",
             icon: "tag",
             description: "Small tag labels to insert anywhere.",
+            nav: [
+              {
+                title: "Regular",
+                slug: "regular",
+              },
+              {
+                title: "Colors",
+                slug: "color",
+              },
+              {
+                title: "Icons",
+                slug: "icons",
+              },
+              {
+                title: "Links",
+                slug: "links",
+              },
+              {
+                title: "Badges",
+                slug: "badges",
+              },
+            ],
           },
         ],
       },
@@ -381,6 +491,16 @@ const nav = [
             icon: "article",
             description:
               "A self-contained composition which is intended to be independently distributable or reusable.",
+            nav: [
+              {
+                title: "Structure",
+                slug: "structure",
+              },
+              {
+                title: "Sections",
+                slug: "sections",
+              },
+            ],
           },
           {
             title: "Navbar",
@@ -467,6 +587,14 @@ const nav = [
                 title: "Integrated labels",
                 slug: "integrated-labels",
               },
+              {
+                title: "Integrated labels in groups",
+                slug: "integrated-label-groups",
+              },
+              {
+                title: "Fieldsets",
+                slug: "fieldsets",
+              },
             ],
           },
           {
@@ -506,6 +634,24 @@ const nav = [
             icon: "calendar-view",
             description:
               "A simple calendar layout to display dates and events.",
+            nav: [
+              {
+                title: "Basic calendar",
+                slug: "basic-calendar",
+              },
+              {
+                title: "Calendar events",
+                slug: "calendar-events",
+              },
+              {
+                title: "Event behaviour",
+                slug: "event-behaviour",
+              },
+              {
+                title: "Props",
+                slug: "calendar-props",
+              },
+            ],
           },
           {
             title: "Date picker",
@@ -513,6 +659,24 @@ const nav = [
             icon: "date-picker",
             description:
               "An interactive component for selecting dates from a calendar view.",
+            nav: [
+              {
+                title: "Inline",
+                slug: "inline-date-picker",
+              },
+              {
+                title: "Dropdown",
+                slug: "dropdown-date-picker",
+              },
+              {
+                title: "Behaviour",
+                slug: "date-picker-behaviour",
+              },
+              {
+                title: "Props",
+                slug: "date-picker-props",
+              },
+            ],
           },
           {
             title: "Editor",
@@ -520,6 +684,28 @@ const nav = [
             icon: "edit",
             description:
               "A rich text editor for creating and formatting content directly within the browser. Based on <strong>Tiptap</strong>.",
+            nav: [
+              {
+                title: "Large editor",
+                slug: "large-editor",
+              },
+              {
+                title: "Toolbar presets",
+                slug: "editor-sizes",
+              },
+              {
+                title: "Content and synchronization",
+                slug: "editor-state",
+              },
+              {
+                title: "Formatting and media",
+                slug: "editor-features",
+              },
+              {
+                title: "Props",
+                slug: "editor-props",
+              },
+            ],
           },
         ],
       },

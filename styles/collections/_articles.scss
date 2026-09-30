@@ -32,18 +32,19 @@ article,
   }
 
   & > footer {
+    clear: both;
     font-family: $utilityText;
-    color: $crust;
+    color: $subtext0;
     border-top: 1px dotted $crust;
     padding-top: 0.5em;
 
     a {
-      color: $crust;
-      text-decoration: underline solid $crust;
+      color: $subtext0;
+      text-decoration: underline solid $subtext0;
     }
 
     time {
-      text-decoration-color: $crust;
+      text-decoration-color: $subtext0;
     }
   }
 

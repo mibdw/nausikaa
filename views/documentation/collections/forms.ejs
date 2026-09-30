@@ -20,6 +20,7 @@
 
 	<div class="section-example">
 		<form class="basic-form">
+			<fieldset>
 
 			<legend>Legend</legend>
 			
@@ -302,6 +303,8 @@
 					<label for="commercial">Commercial</label></li>
 			</ul>
 
+			</fieldset>
+
 			<div class="controls">
 				<button type="submit" class="primary">Submit</button>
 				<button type="reset">Reset</button>
@@ -357,13 +360,15 @@
 
 	<div class="section-example">
 		<form action="" class="login-form container" >
-			<legend>Login Form</legend>
+			<fieldset>
+				<legend>Login Form</legend>
 
-			<label for="username">Username</label>
-			<input type="text" id="username" required="">
+				<label for="username">Username</label>
+				<input type="text" id="username" required="">
 
-			<label for="password">Password</label>
-			<input type="password" id="password" required="">
+				<label for="password">Password</label>
+				<input type="password" id="password" required="">
+			</fieldset>
 
 			<div class="controls">
 				<label for="remember">
@@ -416,11 +421,15 @@
 
   <div class="code-example">
     <pre><code class="html">&lt;form action="..." class="login-form container" &gt;
-  &lt;label for="username"&gt;Username&lt;/label&gt;
-  &lt;input type="text" id="username" required&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Login Form&lt;/legend&gt;
 
-  &lt;label for="password"&gt;Password&lt;/label&gt;
-  &lt;input type="password" id="password" required&gt;
+    &lt;label for="username"&gt;Username&lt;/label&gt;
+    &lt;input type="text" id="username" required&gt;
+
+    &lt;label for="password"&gt;Password&lt;/label&gt;
+    &lt;input type="password" id="password" required&gt;
+  &lt;/fieldset&gt;
 
   &lt;div class="controls"&gt;
     &lt;label for="remember"&gt;
@@ -556,4 +565,81 @@
 &lt;/div&gt;</code></pre>
   
   </div>
+</section>
+
+<section id="fieldsets">
+  <header>
+    <h2>Fieldsets</h2>
+  </header>
+
+  <p>A <strong>fieldset</strong> groups related fields within a form, such as contact details and a delivery address in a checkout. Its first child is a <code>&lt;legend&gt;</code>, the caption of the group. Screen readers announce the legend when someone moves into the group, so a field labelled “Street” is heard as part of “Delivery address”.</p>
+
+  <p>Inside a <code>basic-form</code>, a fieldset keeps the same two-column grid, so labels and fields line up with the rest of the form. The legend spans the full width as a heading for its group.</p>
+
+  <div class="section-example">
+    <form class="basic-form">
+      <fieldset>
+        <legend>Contact details</legend>
+
+        <label for="fieldset-name">Name</label>
+        <input id="fieldset-name" type="text" autocomplete="name">
+
+        <label for="fieldset-email">Email</label>
+        <input id="fieldset-email" type="email" autocomplete="email">
+      </fieldset>
+
+      <fieldset>
+        <legend>Delivery address</legend>
+
+        <label for="fieldset-street">Street</label>
+        <input id="fieldset-street" type="text" autocomplete="address-line1">
+
+        <label for="fieldset-city">City</label>
+        <input id="fieldset-city" type="text" autocomplete="address-level2">
+      </fieldset>
+
+      <fieldset>
+        <legend>Delivery method</legend>
+
+        <ul class="radios">
+          <li>
+            <input type="radio" name="fieldset-delivery" id="fieldset-standard" checked>
+            <label for="fieldset-standard">Standard <small>(3–5 days)</small></label>
+          </li>
+          <li>
+            <input type="radio" name="fieldset-delivery" id="fieldset-express">
+            <label for="fieldset-express">Express <small>(next day)</small></label>
+          </li>
+          <li>
+            <input type="radio" name="fieldset-delivery" id="fieldset-pickup">
+            <label for="fieldset-pickup">Pick up in store</label>
+          </li>
+        </ul>
+      </fieldset>
+
+      <div class="controls">
+        <button type="submit" class="primary">Place order</button>
+        <div class="spacer"></div>
+      </div>
+    </form>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;form class="basic-form"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Delivery address&lt;/legend&gt;
+    &lt;label for="..."&gt;...&lt;/label&gt;
+    &lt;input type="text" id="..."&gt;
+  &lt;/fieldset&gt;
+
+  &lt;fieldset&gt;
+    &lt;legend&gt;Delivery method&lt;/legend&gt;
+    &lt;ul class="radios"&gt;...&lt;/ul&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+  </div>
+
+  <p>Always use a fieldset for a group of radio buttons or checkboxes. Each option has its own label, but without a legend the question they answer is lost: a screen reader would announce “Express, radio button” without saying what is being chosen.</p>
+
+  <p class="note"><strong>Disabling a group:</strong> add <code>disabled</code> to a fieldset to disable every field inside it at once, for example to lock the delivery address while “Pick up in store” is selected. Disabled fields are not submitted with the form.</p>
 </section>

@@ -3,54 +3,100 @@
 </header>
 
 <section id="introduction">
-	<p class="introduction">
-	<strong>Editors</strong> are essential tools for creating, modifying, and formatting text and code. They provide a user-friendly interface that allows users to input and manipulate content efficiently. Editors often come with features such as syntax highlighting, auto-completion, and error detection, which enhance productivity and reduce the likelihood of mistakes. Whether used for writing documents, coding, or designing web pages, editors play a crucial role in various fields by streamlining the content creation process.
-	</p>
-	<p class="introduction">
-	The <strong>editor</strong> is a <a href="https://react.dev/" target="_blank">React</a> component and relies on the <a href="https://tiptap.dev" target="_blank" rel="noopener noreferrer">Tiptap</a> library for rich text editing. It is designed to be flexible and customizable, allowing developers to easily integrate it into their applications and tailor its appearance and functionality to meet specific requirements.
-	</p>
+  <p class="introduction">
+    The <strong>Editor</strong> is a React rich-text editor built with <a href="https://tiptap.dev/" target="_blank" rel="noopener noreferrer">Tiptap</a>. It supports formatted text, structured blocks, links, color, tables, task lists, images, and YouTube embeds. The toolbar preset can be chosen to suit the space and workflow where the editor appears.
+  </p>
+  <p class="introduction">
+    The component is controlled by an initial HTML value and reports both HTML and plain text as the content changes. It is available from the Nausikaä source at <code>utilities/Editor</code> and requires React plus the <a href="https://tiptap.dev/" target="_blank" rel="noopener noreferrer">Tiptap extensions</a> declared by the project.
+  </p>
 </section>
 
+<section id="large-editor">
+  <header><h2>Large editor</h2></header>
+  <p>The large preset includes the full toolbar and a contextual toolbar when text is selected. It exposes block styles, alignment, table editing, media insertion, text and highlight colors, and link controls.</p>
+  <div class="section-example"><div id="editor-demo-large"></div></div>
+  <div class="code-example"><pre><code class="javascript">import { useState } from "react";
+import Editor from "./utilities/Editor/index.js";
 
-<section>
-	<header>
-		<h2>Basic editor</h2>
-	</header>
+const [content, setContent] = useState({
+  html: "&lt;p&gt;Start writing.&lt;/p&gt;",
+  text: "",
+});
 
-	<!-- TODO: Write a description of how the editor works -->
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-	<div class="section-example">
-		<!-- TODO: Example date picker -->
-		Example date picker here
-	</div>
-
-	<!-- TODO: Write additional notes on requirements, best practices, etc. -->
-	<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-
-  <div class="code-example">
-    <pre><code class="html">&lt;!-- Example editor code here --&gt;</code></pre>
-  </div>
-  
+&lt;Editor
+  editorSize="large"
+  initState={content}
+  updateState={setContent}
+  placeholder="Write something…"
+/&gt;;</code></pre></div>
 </section>
-<section>
-	<header>
-		<h2>Sizes</h2>
-	</header>
 
-	<!-- TODO: Write a description of how the editor sizes works -->
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-	<div class="section-example">
-		<!-- TODO: Example ediors in different sizes -->
-		Example editor sizes here
-	</div>
-
-	<!-- TODO: Write additional notes on requirements, best practices, etc. -->
-	<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-
-  <div class="code-example">
-    <pre><code class="html">&lt;!-- Example editor sizes code here --&gt;</code></pre>
-  </div>
-  
+<section id="editor-sizes">
+  <header><h2>Toolbar presets</h2></header>
+  <p><code>editorSize</code> selects which controls appear. These presets change the toolbar; they do not set a fixed editor height.</p>
+  <table class="striped">
+    <thead><tr><th>Preset</th><th>Controls</th></tr></thead>
+    <tbody>
+      <tr><th><code>large</code></th><td>Full toolbar, contextual selection toolbar, block and alignment menus, tables, media, and color controls.</td></tr>
+      <tr><th><code>medium</code></th><td>Formatting and block menus, alignment, tables, media, and color controls. Link editing is in the additional-options menu; no contextual selection toolbar.</td></tr>
+      <tr><th><code>small</code></th><td>Bold, italic, underline, link, and image insertion.</td></tr>
+      <tr><th><code>mini</code></th><td>No toolbar. Enter is handled as a sync action rather than inserting a new paragraph.</td></tr>
+    </tbody>
+  </table>
+  <h3>Medium</h3>
+  <div class="section-example"><div id="editor-demo-medium"></div></div>
+  <h3>Small</h3>
+  <div class="section-example"><div id="editor-demo-small"></div></div>
+  <h3>Mini</h3>
+  <div class="section-example"><div id="editor-demo-mini"></div></div>
 </section>
+
+<section id="editor-state">
+  <header><h2>Content and synchronization</h2></header>
+  <p><code>initState</code> must contain an <code>html</code> string. <code>updateState</code> receives <code>{ html, text }</code> after editor changes. Store both if the application needs formatted output and a plain-text version.</p>
+  <p><code>syncState</code> is called with the same content object when a non-mini editor loses focus. In mini mode, it is called when Enter is pressed. <code>externalState</code> can replace the editor contents when outside state changes; it accepts <code>html</code> and an optional <code>version</code> value to signal updates. A truthy <code>resetState</code> clears the editor.</p>
+  <div class="code-example"><pre><code class="javascript">const [content, setContent] = useState({ html: "&lt;p&gt;&lt;/p&gt;", text: "" });
+const [remoteContent, setRemoteContent] = useState({ html: "", version: 0 });
+
+&lt;Editor
+  editorSize="medium"
+  initState={content}
+  updateState={setContent}
+  syncState={saveDraft}
+  externalState={remoteContent}
+  resetState={resetCounter}
+  placeholder="Add a note…"
+/&gt;;</code></pre></div>
+</section>
+
+<section id="editor-features">
+  <header><h2>Formatting and media</h2></header>
+  <p>Block styles include paragraphs, three heading levels, ordered and unordered lists, blockquotes, and code blocks. Inline formatting includes bold, italic, underline, strikethrough, inline code, links, text color, and highlighted text. The color chooser includes the named palette provided by the editor.</p>
+  <p>Tables can be inserted and edited with row and column controls, header rows, cell merging, and background colors. Task lists can be inserted from the media menu. Images can be inserted from a URL or uploaded to the configurable <code>imageUploadUrl</code>, which defaults to <code>/api/uploads/images</code>. The host should provide a <code>PUT</code> endpoint that returns either <code>{ src }</code> or <code>{ fileName, folderLocation }</code>. Change the URL for your own backend:</p>
+  <div class="code-example"><pre><code class="javascript">&lt;Editor
+  editorSize="large"
+  initState={content}
+  updateState={setContent}
+  imageUploadUrl="/your-api/media/images"
+/&gt;;</code></pre></div>
+  <p>YouTube videos can be embedded from a video link.</p>
+</section>
+
+<section id="editor-props">
+  <header><h2>Props</h2></header>
+  <table class="striped">
+    <thead><tr><th>Prop</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><th><code>editorSize</code></th><td><code>"large"</code>, <code>"medium"</code>, <code>"small"</code> or <code>"mini"</code></td><td>The <a href="#editor-sizes">toolbar preset</a>. Always set this; without it the editor has no toolbar.</td></tr>
+      <tr><th><code>initState</code></th><td><code>{ html }</code></td><td>The content the editor starts with.</td></tr>
+      <tr><th><code>updateState</code></th><td><code>({ html, text }) =&gt; void</code></td><td>Called after every change with the HTML and a plain-text version.</td></tr>
+      <tr><th><code>syncState</code></th><td><code>({ html, text }) =&gt; void</code></td><td>Called when the editor loses focus, or when Enter is pressed in the mini preset. A good moment to save.</td></tr>
+      <tr><th><code>externalState</code></th><td><code>{ html, version }</code></td><td>Replaces the content when it changes, for example when another user edited the same text. Increase <code>version</code> to apply the same HTML again.</td></tr>
+      <tr><th><code>resetState</code></th><td>any</td><td>Clears the editor whenever this changes to a new truthy value. A counter that you increase works well.</td></tr>
+      <tr><th><code>placeholder</code></th><td><code>string</code></td><td>Shown while the editor is empty. Defaults to “Write something...”.</td></tr>
+      <tr><th><code>imageUploadUrl</code></th><td><code>string</code></td><td>Where uploaded and pasted images are sent with a <code>PUT</code> request, as a form field named <code>file</code>. Defaults to <code>/api/uploads/images</code>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<script type="module" src="/scripts/editor-demo.js?v=6"></script>

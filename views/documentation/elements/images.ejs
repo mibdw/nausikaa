@@ -6,19 +6,31 @@
 	<p class="introduction">
 		<strong>Images</strong> carry the emotional weight of a page: they set context, illustrate workflows, and signal brand voice faster than paragraphs can. Use them sparingly but deliberately—each graphic should earn its space, ship crisp at multiple densities, and cooperate with surrounding typography so the narrative stays <em>lightweight and accessible</em>.
 	</p>
+	<p class="introduction">
+		Nausikaä keeps every image within its container, so a large photo never breaks the layout. Wrap an image in a <code>&lt;figure&gt;</code> to give it a frame and a caption, and use the <code>left</code>, <code>right</code> and <code>center</code> classes to place it within a text.
+	</p>
 </section>
 
-
-<section>
+<section id="basic">
 	<header>
-		<h2>Basic Image</h2>
+		<h2>Basic images</h2>
 	</header>
 
-	<p><strong>Plain images</strong> rely on the <code>&lt;img&gt;</code> element paired with thoughtful attributes. Always provide meaningful <code>alt</code> text (or an empty <code>alt</code> when the image is purely decorative), lock in <code>width</code> and <code>height</code> to avoid layout shifts, and lean on CSS for sizing so the asset can adapt fluidly across breakpoints. When performance matters, add <code>loading="lazy"</code> and consider <code>srcset</code>/<code>sizes</code> to deliver the sharpest version without bloating the page.</p>
+	<p><strong>Plain images</strong> rely on the <code>&lt;img&gt;</code> element paired with thoughtful attributes. Always provide meaningful <code>alt</code> text (or an empty <code>alt</code> when the image is purely decorative), and set <code>width</code> and <code>height</code> so the browser can reserve space before the image loads. Images never grow wider than their container, and keep their proportions when they shrink.</p>
+
+	<div class="section-example">
+		<img src="/images/sandrart.jpg" alt="Odysseus, shipwrecked, meets Nausicaä and her companions on the shore" width="997" height="621">
+	</div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;img src="..." alt="..." width="997" height="621"&gt;</code></pre>
+  </div>
+
+	<p>Wrapping the image in a <code>&lt;figure&gt;</code> adds a subtle frame, which helps photos stand apart from the page background.</p>
 
 	<div class="section-example">
 		<figure>
-			<img src="/images/Nausicaa_and_her_Maidens_brought_to_Odysseus_food_and_wine.gif" alt="" class="wp-image-870" width="300">
+			<img src="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg" alt="Odysseus and Nausicaä in a wide landscape" width="500" height="312">
 		</figure>
 	</div>
 
@@ -27,21 +39,94 @@
   &lt;img src="..." alt="..."&gt;
 &lt;/figure&gt;</code></pre>
   </div>
-  
+</section>
+
+<section id="captions">
+	<header>
+		<h2>Captions</h2>
+	</header>
+
 	<p><strong>Image captions</strong> belong inside a <code>&lt;figure&gt;</code> with a paired <code>&lt;figcaption&gt;</code>, giving screen readers and search engines clear context. Use the caption to state what the image shows and, when relevant, credit the source or license. Keep the copy concise and avoid repeating the <code>alt</code> verbatim—treat it as a complementary layer that anchors the visual inside the story.</p>
 
-<figure>
-  <img src="/images/lastman.jpg" alt="Figure Example">
-  <figcaption>Odysseus en Nausikaä door Pieter Lastman, 1619 [<a href="https://www.pinakothek.de/besuch/alte-pinakothek">Alte Pinakothek, München</a>]</figcaption>
-</figure>
+	<div class="section-example">
+		<figure>
+			<img src="/images/lastman.jpg" alt="Odysseus kneels before Nausicaä while her maids flee" width="721" height="570">
+			<figcaption>Odysseus en Nausikaä door Pieter Lastman, 1619 [<a href="https://www.pinakothek.de/besuch/alte-pinakothek">Alte Pinakothek, München</a>]</figcaption>
+		</figure>
+	</div>
 
-<div class="code-example">
+	<div class="code-example">
     <pre><code class="html">&lt;figure&gt;
   &lt;img src="..." alt="..."&gt;
   &lt;figcaption&gt;...&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
   </div>
+</section>
 
-	<p class="note"><strong>Additional notes:</strong> pick formats that match the job (SVG for UI icons, WebP/AVIF for photos with fallbacks), compress aggressively, and avoid baking text into images so content stays translatable. Ensure every interactive image is wrapped in a semantic element like <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code>, and never rely on color alone—pair visuals with clear labels so the experience remains resilient under high-contrast modes and slow networks.</p>
-  
+<section id="alignment">
+	<header>
+		<h2>Alignment</h2>
+	</header>
+
+	<p>Add the class <code>left</code> or <code>right</code> to a figure or image to let the text flow around it, and <code>center</code> to place it in the middle on a line of its own. On small screens floated images stop floating and are centered instead, so the text next to them doesn’t get squeezed into a narrow column.</p>
+
+	<div class="section-example">
+		<figure class="right">
+			<img src="/images/1878_Frederick_Leighton_-_Nausicaa.jpg" alt="Nausicaä standing against a pillar" width="140" height="317">
+			<figcaption>Frederic Leighton, 1878</figcaption>
+		</figure>
+
+		<p>When Odysseus washes ashore on Scheria, exhausted after days at sea, it is the princess Nausicaä who finds him. Her companions run from the stranger, but she stands her ground, listens to him, and offers him food, clothing and a way to the city.</p>
+		<p>She also gives careful advice: he should approach the palace on his own, so that the people of the town will not gossip about the princess returning with an unknown man. Her help sets him on the last part of his long journey home.</p>
+		<p>Painters have returned to this meeting for centuries. Some focus on the drama of the shipwrecked hero, others on the calm figure of the princess herself.</p>
+
+		<div class="clear-float"></div>
+
+		<figure class="center">
+			<img src="/images/Johann_Anton_Castell_-_Odysseus_und_Nausikaa_(after_Friedrich_Preller),_1861.jpg" alt="Odysseus and Nausicaä in a wide landscape" width="300" height="187">
+			<figcaption>A centered figure</figcaption>
+		</figure>
+	</div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;figure class="right"&gt;
+  &lt;img src="..." alt="..."&gt;
+  &lt;figcaption&gt;...&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Text flowing around the figure...&lt;/p&gt;
+
+&lt;div class="clear-float"&gt;&lt;/div&gt;
+
+&lt;figure class="center"&gt;...&lt;/figure&gt;</code></pre>
+  </div>
+
+	<p class="note"><strong>Ending a float:</strong> text keeps flowing around a floated image until the image ends. Add an element with the class <code>clear-float</code> to start the next content below it.</p>
+</section>
+
+<section id="responsive">
+	<header>
+		<h2>Responsive images</h2>
+	</header>
+
+	<p>No classes are needed to make images responsive; the browser does the work if you describe the available files. List several sizes of the same image in <code>srcset</code> and tell the browser how wide the image will be displayed with <code>sizes</code>. It then downloads the smallest file that still looks sharp on the visitor’s screen.</p>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;img
+  src="nausikaa-800.jpg"
+  srcset="nausikaa-400.jpg 400w, nausikaa-800.jpg 800w, nausikaa-1600.jpg 1600w"
+  sizes="(max-width: 666px) 100vw, 800px"
+  alt="..." width="800" height="500" loading="lazy"&gt;</code></pre>
+  </div>
+
+	<p>Use <code>&lt;picture&gt;</code> when you want to offer modern file formats with a fallback, or show a different crop on small screens. The browser picks the first <code>&lt;source&gt;</code> it supports and falls back to the <code>&lt;img&gt;</code>, which also carries the <code>alt</code> text and the styling.</p>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;picture&gt;
+  &lt;source srcset="nausikaa.avif" type="image/avif"&gt;
+  &lt;source srcset="nausikaa.webp" type="image/webp"&gt;
+  &lt;img src="nausikaa.jpg" alt="..." width="800" height="500"&gt;
+&lt;/picture&gt;</code></pre>
+  </div>
+
+	<p class="note"><strong>Additional notes:</strong> add <code>loading="lazy"</code> to images further down the page so they only load when needed, but not to the first image a visitor sees. Pick formats that match the job (SVG for icons and illustrations, AVIF or WebP for photos), and avoid baking text into images so content stays translatable and readable at any size.</p>
 </section>

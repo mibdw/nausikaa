@@ -1,36 +1,53 @@
-<header>
-  <h1>Date picker</h1>
-</header>
+<header><h1>Date picker</h1></header>
 
 <section id="introduction">
-	<p class="introduction">
-	<strong>Date pickers</strong> are essential tools for booking systems, event scheduling, and any application that requires users to select dates. They provide a user-friendly interface for selecting single dates or date ranges, enhancing the overall user experience by simplifying date input and reducing errors. Date pickers often include features such as month and year navigation, disabled dates, and customizable formats to cater to various use cases.
-	</p>
-	<p class="introduction">
-	The <strong>date picker</strong> is a <a href="https://react.dev/" target="_blank">React</a> component and relies on the <a href="https://date-fns.org/" target="_blank" rel="noopener noreferrer">date-fns</a> library for date manipulation and formatting. It is designed to be flexible and customizable, allowing developers to easily integrate it into their applications and tailor its appearance and functionality to meet specific requirements.
-	</p>
+  <p class="introduction">The <strong>Date picker</strong> is a two-month React date-range control. It supports keyboard-focusable dates, adjacent-month navigation, range preview on hover, clear, today, and an optional Apply step for filters.</p>
+  <p class="introduction">It uses <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">React</a> and <a href="https://date-fns.org/" target="_blank" rel="noopener noreferrer">date-fns</a>. Pass controlled <code>startDate</code> and <code>endDate</code> values (or <code>null</code>) and receive changes through <code>onChange(startDate, endDate)</code>.</p>
 </section>
 
+<section id="inline-date-picker">
+  <header><h2>Inline date picker</h2></header>
+  <p>Set <code>inline</code> when the range picker should be visible as part of a form or dialog. A selection is reported as soon as the second date is chosen; select a new date after completing a range to start over.</p>
+  <div class="section-example"><div id="date-picker-demo-inline"></div></div>
+  <div class="code-example"><pre><code class="javascript">const [range, setRange] = useState({ start: null, end: null });
 
-<section>
-	<header>
-		<h2>Basic date picker</h2>
-	</header>
-
-	<!-- TODO: Write a description of how the date picker works -->
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-	<div class="section-example">
-		<!-- TODO: Example date picker -->
-		Example date picker here
-	</div>
-
-	<!-- TODO: Write additional notes on requirements, best practices, etc. -->
-	<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-
-  <div class="code-example">
-    <pre><code class="html">&lt;!-- Example date picker code here --&gt;</code></pre>
-  </div>
-  
+&lt;DatePicker
+  inline
+  startDate={range.start}
+  endDate={range.end}
+  onChange={(start, end) =&gt; setRange({ start, end })}
+/&gt;;</code></pre></div>
 </section>
 
+<section id="dropdown-date-picker">
+  <header><h2>Dropdown date picker</h2></header>
+  <p>Without <code>inline</code>, the component becomes a compact trigger and dropdown panel, matching the Scout date filter pattern. Picks remain temporary until Apply; Clear resets the controlled range and closes the panel.</p>
+  <div class="section-example"><div id="date-picker-demo-dropdown"></div></div>
+  <div class="code-example"><pre><code class="javascript">&lt;DatePicker
+  startDate={startDate}
+  endDate={endDate}
+  label="Filter by date"
+  onChange={(start, end) =&gt; setFilters({ startDate: start, endDate: end })}
+/&gt;;</code></pre></div>
+</section>
+
+<section id="date-picker-behaviour">
+  <header><h2>Behaviour</h2></header>
+  <p>The picker always displays two consecutive months. Previous and next controls move them together, while Today returns the left calendar to the current month. Use the From and To date fields in the footer when an exact date is quicker to type; entering the dates in reverse order automatically normalizes the selected range. Dates outside a displayed month are shown only to complete the calendar grid and cannot be selected.</p>
+</section>
+
+<section id="date-picker-props">
+  <header><h2>Props</h2></header>
+  <table class="striped">
+    <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><th><code>startDate</code></th><td><code>Date</code> or <code>null</code></td><td><code>null</code></td><td>The first day of the selected range.</td></tr>
+      <tr><th><code>endDate</code></th><td><code>Date</code> or <code>null</code></td><td><code>null</code></td><td>The last day of the selected range.</td></tr>
+      <tr><th><code>onChange</code></th><td><code>(startDate, endDate) =&gt; void</code></td><td></td><td>Called with the new range. Inline pickers call it on every pick; dropdown pickers only when Apply or Clear is pressed. Both values are <code>null</code> after Clear.</td></tr>
+      <tr><th><code>inline</code></th><td><code>boolean</code></td><td><code>false</code></td><td>Shows the calendars directly instead of behind a dropdown button.</td></tr>
+      <tr><th><code>label</code></th><td><code>string</code></td><td><code>"Date range"</code></td><td>Text on the dropdown button while no date is selected.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<script type="module" src="/scripts/date-picker-demo.js"></script>

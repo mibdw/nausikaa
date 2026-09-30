@@ -41,7 +41,7 @@
       .weekday-name {
         font-family: $utilityText;
         font-weight: 800;
-        color: rgba($text, 0.4);
+        color: $subtext0;
         text-align: center;
         text-transform: uppercase;
         border-width: 1px 1px 0 0;
@@ -117,7 +117,7 @@
             text-decoration: none;
             cursor: pointer;
             border-radius: 0;
-            padding: 0;
+            padding: 0 0.4em;
           }
 
           & > .panel {
