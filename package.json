@@ -61,7 +61,7 @@
   "scripts": {
     "dev": "concurrently \"sass styles/light.scss public/styles/nausikaa-light.min.css --watch --style=compressed --no-source-map --quiet-deps\" \"sass styles/dark.scss public/styles/nausikaa-dark.min.css --watch --style=compressed --no-source-map --quiet-deps\" \"nodemon app -e js,ejs,css --watch\"",
     "build": "concurrently \"sass styles/light.scss public/styles/nausikaa-light.min.css --style=compressed --no-source-map --quiet-deps\" \"sass styles/dark.scss public/styles/nausikaa-dark.min.css --style=compressed --no-source-map --quiet-deps\"",
-    "build:calendar-demo": "vite build --config vite.calendar-demo.config.js",
+    "build:calendar-demo": "node -e \"require('fs').rmSync('public/scripts/assets', { recursive: true, force: true })\" && vite build --config vite.calendar-demo.config.js",
     "build:calendar-lib": "npm run build --prefix utilities/Calendar"
   },
   "author": "MIBDW",
