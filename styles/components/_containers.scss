@@ -1,5 +1,6 @@
 @use "../colors" as *;
 @use "../variables" as *;
+@use "../contrast" as *;
 
 @mixin containerMixin(
   $containerBackground,
@@ -8,6 +9,10 @@
   $containerLinkColor,
   $containerHeader
 ) {
+  $containerText: readable($containerText, $containerBackground);
+  $containerLinkColor: readable($containerLinkColor, $containerBackground);
+  $containerHeader: readable($containerHeader, $containerBackground);
+
   background-color: $containerBackground;
   color: $containerText;
   border: 1px solid $containerBorderColor;

@@ -1,5 +1,6 @@
 @use "../colors" as *;
 @use "../variables" as *;
+@use "../contrast" as *;
 
 @mixin panelMixin(
   $panelBackground,
@@ -12,6 +13,11 @@
   $panelActiveBackground,
   $panelActiveText
 ) {
+  $panelLinkColor: readable($panelLinkColor, $panelBackground, $panelHoverBackground);
+  $panelHeaderColor: readable($panelHeaderColor, $panelBackground);
+  $panelSubnavLinkColor: readable($panelSubnavLinkColor, $panelBackground, $panelHoverBackground);
+  $panelActiveText: readable($panelActiveText, $panelActiveBackground);
+
   background-color: $panelBackground;
   border: 1px solid $panelBorderColor;
   color: $panelLinkColor;

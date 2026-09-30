@@ -1,4 +1,5 @@
 @use "../colors" as *;
+@use "../contrast" as *;
 @use "../variables" as *;
 
 .pagination {
@@ -19,7 +20,7 @@
       border-color: $overlay0;
       height: $inputHeight;
       line-height: $inputHeight;
-      color: $blue3;
+      color: $linkColor;
       padding: 0 1em;
       margin: 0 -4px 0 0;
       text-decoration: none;
@@ -60,7 +61,7 @@
     & > a:active,
     &.active > * {
       background-color: $blue3;
-      color: $base;
+      color: readable($base, $blue3);
       border-color: $blue3;
     }
 

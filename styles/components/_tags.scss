@@ -1,8 +1,11 @@
 @use "../colors" as *;
 @use "../variables" as *;
+@use "../contrast" as *;
 @use "sass:color";
 
 @mixin tagMixin($tagText, $tagBackground, $tagHover, $tagIcon) {
+  $tagText: readable($tagText, $tagBackground, $tagHover);
+
   color: $tagText;
   background-color: $tagBackground;
 

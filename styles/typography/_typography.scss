@@ -1,4 +1,5 @@
 @use "../colors" as *;
+@use "../contrast" as *;
 @use "../variables" as *;
 
 *,
@@ -116,7 +117,7 @@ code {
 }
 
 kbd {
-  color: $base;
+  color: readable($base, $lavender3);
   background-color: $lavender3;
   border: 1px solid $text;
   white-space: nowrap;

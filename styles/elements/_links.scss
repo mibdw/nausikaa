@@ -1,5 +1,6 @@
 @use "../colors" as *;
 @use "../variables" as *;
+@use "../contrast" as *;
 @use "sass:color";
 
 a,
@@ -76,6 +77,9 @@ a,
   $knobActiveText,
   $knobBorder
 ) {
+  $knobText: readable($knobText, $knobBackground, $knobHover);
+  $knobActiveText: readable($knobActiveText, $knobActive);
+
   background-color: $knobBackground;
   color: $knobText;
   border: 1px solid $knobBorder;

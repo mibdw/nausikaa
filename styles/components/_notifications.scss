@@ -1,5 +1,6 @@
 @use "../colors" as *;
 @use "../variables" as *;
+@use "../contrast" as *;
 @use "sass:color";
 
 @mixin notificationMixin(
@@ -8,6 +9,9 @@
   $notificationText,
   $notificationHeader
 ) {
+  $notificationText: readable($notificationText, $notificationBackground);
+  $notificationHeader: readable($notificationHeader, $notificationBackground);
+
   background-color: $notificationBackground;
   color: $notificationText;
   border: 1px solid $notificationBorder;
@@ -18,7 +22,7 @@
   h4,
   h5,
   h6 {
-    color: rgba($notificationHeader, 0.6);
+    color: $notificationHeader;
   }
 
   & > svg.icon {
