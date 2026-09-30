@@ -64,7 +64,7 @@
     "vite": "^7.2.7"
   },
   "scripts": {
-    "dev": "concurrently \"node tools/build-css.js --watch\" \"nodemon app -e js,ejs,css --watch --ignore public/\"",
+    "dev": "concurrently \"node tools/build-css.js --watch\" \"nodemon app.js -e js,ejs --ignore public/ --ignore styles/ --ignore tests/\"",
     "build": "node tools/build-css.js",
     "build:calendar-demo": "node -e \"require('fs').rmSync('public/scripts/assets', { recursive: true, force: true })\" && vite build --config vite.calendar-demo.config.js",
     "build:calendar-lib": "npm run build --prefix utilities/Calendar",
