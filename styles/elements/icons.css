@@ -1,0 +1,6 @@
+
+.icon {
+  fill: var(--text);
+  width: var(--font-size);
+  height: var(--font-size);
+}

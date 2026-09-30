@@ -1,0 +1,252 @@
+/*
+ * Containers. A color class only sets the custom properties below; the rules
+ * that use them are written once.
+ */
+.container {
+  --container-background: var(--mantle);
+  --container-border: var(--surface1);
+  --container-text: var(--text);
+  --container-link: var(--link-color);
+  --container-header: var(--text);
+
+  background-color: var(--container-background);
+  color: var(--container-text);
+  border: 1px solid var(--container-border);
+  margin: var(--paragraph-spacer) 0;
+  padding: 0 1em 1em;
+  border-radius: 6px;
+  position: relative;
+
+  a {
+    color: var(--container-link);
+    text-decoration: underline solid var(--container-link);
+
+    &:hover {
+      color: var(--container-text);
+      text-decoration: underline solid var(--container-link);
+    }
+
+    &:active {
+      color: var(--container-text);
+      text-decoration: underline solid var(--container-text);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--container-header);
+  }
+
+  & > main {
+    padding: 0 1em 1em;
+  }
+
+  &.browser {
+    margin-top: calc(var(--paragraph-spacer) + 2.9em);
+    padding: 0 0 2em;
+    border-radius: 0;
+    background-color: var(--base) !important;
+
+    &:before {
+      content: "";
+      display: block;
+      height: 2.9em;
+      position: absolute;
+      top: -2.9em;
+      left: -1px;
+      right: -1px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--surface1);
+      border-radius: 6px 6px 0 0;
+      background-color: var(--mantle);
+      background-image:
+        url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23eab4ae' /></svg>"),
+        url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23fbedb7' /></svg>"),
+        url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23abedc7' /></svg>");
+      background-position:
+        1em 0.9em,
+        2.7em 0.9em,
+        4.4em 0.9em;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -2.45em;
+      left: 6.5em;
+      right: 1em;
+      height: 2em;
+      padding: 0.2em 1em;
+      border: 1px solid var(--surface1);
+      background-color: var(--base);
+      border-radius: 3px;
+      cursor: text;
+    }
+
+    & > .url {
+      color: var(--text);
+      background-color: transparent;
+      font-family: var(--utility-text);
+      position: absolute;
+      top: -2.45em;
+      left: 6.5em;
+      right: 1em;
+      height: 2em;
+      padding: 0.2em 1em;
+      z-index: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: text;
+    }
+  }
+
+  &.rosewater {
+    --container-background: var(--rosewater0);
+    --container-border: var(--rosewater2);
+    --container-text: var(--ink);
+    --container-link: #ab4531;
+    --container-header: var(--ink);
+  }
+
+  &.flamingo {
+    --container-background: var(--flamingo0);
+    --container-border: var(--flamingo2);
+    --container-text: var(--ink);
+    --container-link: #a02a2a;
+    --container-header: var(--ink);
+  }
+
+  &.pink {
+    --container-background: var(--pink0);
+    --container-border: var(--pink2);
+    --container-text: var(--ink);
+    --container-link: #951873;
+    --container-header: var(--ink);
+  }
+
+  &.mauve {
+    --container-background: var(--mauve0);
+    --container-border: var(--mauve2);
+    --container-text: var(--ink);
+    --container-link: #5710ad;
+    --container-header: var(--ink);
+  }
+
+  &.red {
+    --container-background: var(--red0);
+    --container-border: var(--red2);
+    --container-text: var(--ink);
+    --container-link: #7c0d2c;
+    --container-header: var(--ink);
+  }
+
+  &.maroon {
+    --container-background: var(--maroon0);
+    --container-border: var(--maroon2);
+    --container-text: var(--ink);
+    --container-link: #7c1a2a;
+    --container-header: var(--ink);
+  }
+
+  &.peach {
+    --container-background: var(--peach0);
+    --container-border: var(--peach2);
+    --container-text: var(--ink);
+    --container-link: #873706;
+    --container-header: var(--ink);
+  }
+
+  &.yellow {
+    --container-background: var(--yellow0);
+    --container-border: var(--yellow2);
+    --container-text: var(--ink);
+    --container-link: #815c0a;
+    --container-header: var(--ink);
+  }
+
+  &.green {
+    --container-background: var(--green0);
+    --container-border: var(--green2);
+    --container-text: var(--ink);
+    --container-link: #215f1c;
+    --container-header: var(--ink);
+  }
+
+  &.teal {
+    --container-background: var(--teal0);
+    --container-border: var(--teal2);
+    --container-text: var(--ink);
+    --container-link: #1c6659;
+    --container-header: var(--ink);
+  }
+
+  &.sky {
+    --container-background: var(--sky0);
+    --container-border: var(--sky2);
+    --container-text: var(--ink);
+    --container-link: #125f6d;
+    --container-header: var(--ink);
+  }
+
+  &.sapphire {
+    --container-background: var(--sapphire0);
+    --container-border: var(--sapphire2);
+    --container-text: var(--ink);
+    --container-link: #0d455e;
+    --container-header: var(--ink);
+  }
+
+  &.blue {
+    --container-background: var(--blue0);
+    --container-border: var(--blue2);
+    --container-text: var(--ink);
+    --container-link: #073f9c;
+    --container-header: var(--ink);
+  }
+
+  &.lavender {
+    --container-background: var(--lavender0);
+    --container-border: var(--lavender2);
+    --container-text: var(--ink);
+    --container-link: #0324f7;
+    --container-header: var(--ink);
+  }
+
+  &.gray {
+    --container-background: var(--surface0);
+    --container-border: var(--surface1);
+    --container-text: var(--text);
+    --container-link: var(--text);
+    --container-header: var(--text);
+  }
+
+  &.black {
+    --container-background: var(--aside-base);
+    --container-border: var(--aside-crust);
+    --container-text: var(--aside-text);
+    --container-link: var(--white);
+    --container-header: var(--aside-text);
+  }
+
+  &.black {
+    input,
+    select,
+    textarea {
+      background-color: var(--subtext1);
+      border-color: var(--subtext0);
+      color: white;
+    }
+
+    table tr:hover td {
+      background-color: rgba(var(--subtext0-rgb), 0.3);
+    }
+  }
+}

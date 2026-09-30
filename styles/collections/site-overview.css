@@ -1,0 +1,198 @@
+/*
+ * Site overview. A color class only sets the --so-* custom properties.
+ */
+
+.site-overview {
+  --so-icon: var(--crust);
+  --so-header: var(--blue3);
+  --so-border: var(--crust);
+  --so-background: var(--mantle);
+  --so-active-text: var(--text);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-decoration: underline solid var(--so-header);
+  }
+
+  u {
+    text-decoration: underline solid var(--so-header);
+  }
+
+  & > ul > li > a {
+    & > .title {
+      color: var(--text);
+      text-decoration: underline solid var(--so-icon);
+    }
+
+    & > .icon {
+      fill: var(--so-icon);
+    }
+
+    &:hover {
+      & > .title {
+        text-decoration: underline solid var(--so-header);
+      }
+
+      & > .icon {
+        fill: var(--so-header);
+      }
+    }
+
+    &:focus {
+      color: var(--so-active-text);
+      outline-width: 0;
+      border-color: var(--so-border);
+      background-color: var(--so-background);
+
+      & > .title {
+        color: var(--so-active-text);
+        text-decoration: underline solid var(--so-header);
+      }
+
+      & > .icon {
+        fill: var(--so-active-text);
+      }
+
+      & > .description {
+        color: var(--so-active-text);
+      }
+    }
+
+    &:active {
+      & > .title {
+        color: var(--text);
+        text-decoration: underline solid var(--text);
+      }
+    }
+  }
+
+  padding: 2em 1em;
+  margin-bottom: 2em;
+
+  & > .explainer {
+    font-size: 1.1em;
+    line-height: 1.5;
+    padding: 0 25vw 0 0;
+  }
+
+  & > ul {
+    list-style-type: none;
+    margin-left: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    & > li > a {
+      position: relative;
+      padding: 1em 3em 1em 5em;
+      margin: 1em 0;
+      display: block;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 6px;
+
+      & > .icon {
+        position: absolute;
+        top: 1em;
+        left: 0.5em;
+        width: 3.5em;
+        height: 3.5em;
+      }
+
+      & > .title {
+        font-size: 1.5em;
+        font-family: var(--utility-text);
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 0.25em;
+      }
+
+      & > .description {
+        color: var(--text);
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media (min-width: 667px) and (max-width: 900px) {
+    & > .explainer {
+      padding: 0 10vw 0 0;
+    }
+
+    & > ul {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 666px) {
+    & > .explainer {
+      padding: 0;
+    }
+
+    & > ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.yellow {
+    --so-icon: var(--yellow2);
+    --so-header: var(--yellow3);
+    --so-border: var(--yellow1);
+    --so-background: var(--yellow0);
+    --so-active-text: var(--black);
+  }
+
+  &.red {
+    --so-icon: var(--red2);
+    --so-header: var(--red3);
+    --so-border: var(--red1);
+    --so-background: var(--red0);
+    --so-active-text: var(--black);
+  }
+
+  &.blue {
+    --so-icon: var(--blue2);
+    --so-header: var(--blue3);
+    --so-border: var(--blue1);
+    --so-background: var(--blue0);
+    --so-active-text: var(--black);
+  }
+
+  &.green {
+    --so-icon: var(--green2);
+    --so-header: var(--green3);
+    --so-border: var(--green1);
+    --so-background: var(--green0);
+    --so-active-text: var(--black);
+  }
+
+  &.orange {
+    --so-icon: var(--peach2);
+    --so-header: var(--peach3);
+    --so-border: var(--peach1);
+    --so-background: var(--peach0);
+    --so-active-text: var(--black);
+  }
+
+  &.purple {
+    --so-icon: var(--mauve2);
+    --so-header: var(--mauve3);
+    --so-border: var(--mauve1);
+    --so-background: var(--mauve0);
+    --so-active-text: var(--black);
+  }
+
+  &.gray {
+    --so-icon: var(--overlay2);
+    --so-header: var(--subtext0);
+    --so-border: var(--overlay1);
+    --so-background: var(--overlay0);
+    --so-active-text: var(--black);
+  }
+}

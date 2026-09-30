@@ -1,0 +1,60 @@
+/*
+ * All components, in cascade order. The theme entry points (light.css and
+ * dark.css) import the tokens first and then this file.
+ */
+
+/* TYPOGRAPHY */
+@import "typography/normalize.css";
+@import "typography/typography.css";
+@import "typography/print.css";
+
+/* ELEMENTS */
+@import "elements/buttons.css";
+@import "elements/checkboxes-radios.css";
+@import "elements/code.css";
+@import "elements/forms.css";
+@import "elements/headings.css";
+@import "elements/icons.css";
+@import "elements/images.css";
+@import "elements/inputs.css";
+@import "elements/links.css";
+@import "elements/lists.css";
+@import "elements/selects.css";
+@import "elements/tables.css";
+@import "elements/textareas.css";
+@import "elements/progress-bars.css";
+@import "elements/dialogs.css";
+
+/* COMPONENTS */
+@import "components/breadcrumbs.css";
+@import "components/containers.css";
+@import "components/dropdowns.css";
+@import "components/menus.css";
+@import "components/notifications.css";
+@import "components/pagination.css";
+@import "components/panels.css";
+@import "components/tags.css";
+
+/* COLLECTIONS */
+@import "collections/articles.css";
+@import "collections/navbar.css";
+@import "collections/sidebar.css";
+@import "collections/gallery.css";
+@import "collections/forms.css";
+@import "collections/products.css";
+@import "collections/code-example.css";
+@import "collections/site-overview.css";
+@import "collections/users.css";
+@import "collections/editor.css";
+
+/* UTILITIES */
+@import "utilities/calendar.css";
+@import "utilities/date-picker.css";
+@import "utilities/editor.css";
+
+/* LAYOUT */
+@import "layout/responsive.css";
+@import "layout/buildings.css";
+@import "layout/frontpage.css";
+@import "layout/examples.css";
+@import "layout/documentation.css";

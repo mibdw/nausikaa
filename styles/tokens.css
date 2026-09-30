@@ -1,0 +1,196 @@
+/*
+ * Design tokens: colors, typography and sizes shared by every component.
+ * These are the light theme values; tokens-dark.css overrides the neutrals.
+ */
+
+:root {
+  /* Palette: the same in both themes */
+  --black: #181825;
+  --white: #ffffff;
+  --rosewater3: #dc8a78;
+  --rosewater2: #f2d5cf;
+  --rosewater1: #f4dbd6;
+  --rosewater0: #f5e0dc;
+  --flamingo3: #dd7878;
+  --flamingo2: #eebebe;
+  --flamingo1: #f0c6c6;
+  --flamingo0: #f2cdcd;
+  --pink3: #ea76cb;
+  --pink2: #f4b8e4;
+  --pink1: #f5bde6;
+  --pink0: #f5c2e7;
+  --mauve3: #8839ef;
+  --mauve2: #ca9ee6;
+  --mauve1: #c6a0f6;
+  --mauve0: #cba6f7;
+  --red3: #d20f39;
+  --red2: #e78284;
+  --red1: #ed8796;
+  --red0: #f38ba8;
+  --maroon3: #e64553;
+  --maroon2: #ea999c;
+  --maroon1: #ee99a0;
+  --maroon0: #eba0ac;
+  --peach3: #fe640b;
+  --peach2: #ef9f76;
+  --peach1: #f5a97f;
+  --peach0: #fab387;
+  --yellow3: #df8e1d;
+  --yellow2: #e5c890;
+  --yellow1: #eed49f;
+  --yellow0: #f9e2af;
+  --green3: #40a02b;
+  --green2: #a6d189;
+  --green1: #a6da95;
+  --green0: #a6e3a1;
+  --teal3: #179299;
+  --teal2: #81c8be;
+  --teal1: #8bd5ca;
+  --teal0: #94e2d5;
+  --sky3: #04a5e5;
+  --sky2: #99d1db;
+  --sky1: #91d7e3;
+  --sky0: #89dceb;
+  --sapphire3: #209fb5;
+  --sapphire2: #85c1dc;
+  --sapphire1: #7dc4e4;
+  --sapphire0: #74c7ec;
+  --blue3: #1e66f5;
+  --blue2: #8caaee;
+  --blue1: #8aadf4;
+  --blue0: #89b4fa;
+  --lavender3: #7287fd;
+  --lavender2: #babbf1;
+  --lavender1: #b7bdf8;
+  --lavender0: #b4befe;
+  --royal: #005c90;
+  --forest: #006b57;
+  --olive: #808000;
+  --navy: #000080;
+  --cyan: #00ffff;
+  --magenta: #ff00ff;
+  --salmon: #fa8072;
+  --chocolate: #663300;
+  --lightgray: #ccc;
+  --darkgray: #555;
+  --lemon: #ffff66;
+
+  /* Neutrals: text, surfaces and backgrounds, overridden per theme */
+  --text: #222222;
+  --subtext1: #3a3a3a;
+  --subtext0: #535353;
+  --overlay2: #6b6b6b;
+  --overlay1: #838383;
+  --overlay0: #9b9b9b;
+  --surface2: #b4b4b4;
+  --surface1: #cccccc;
+  --surface0: #dddddd;
+  --base: #eff1f5;
+  --mantle: #e6e9ef;
+  --crust: #dce0e8;
+
+  /* The neutrals as RGB channels, for use with rgba() */
+  --text-rgb: 34, 34, 34;
+  --subtext1-rgb: 58, 58, 58;
+  --subtext0-rgb: 83, 83, 83;
+  --overlay2-rgb: 107, 107, 107;
+  --overlay1-rgb: 131, 131, 131;
+  --overlay0-rgb: 155, 155, 155;
+  --surface2-rgb: 180, 180, 180;
+  --surface1-rgb: 204, 204, 204;
+  --surface0-rgb: 221, 221, 221;
+  --base-rgb: 239, 241, 245;
+  --mantle-rgb: 230, 233, 239;
+  --crust-rgb: 220, 224, 232;
+
+  /* Dark aside panels, used on the front page */
+  --aside-base: #222222;
+  --aside-mantle: #111111;
+  --aside-crust: #000000;
+  --aside-text: #eff1f5;
+  --aside-subtext1: #e6e9ef;
+  --aside-subtext0: #dce0e8;
+
+  /* Typography */
+  --block-text: "IBM Plex Serif", Georgia, serif;
+  --utility-text: "IBM Plex Sans", Calibri, Arial, Verdana, sans-serif;
+  --mono-text: "IBM Plex Mono", monospace;
+  --font-family: var(--block-text);
+  --font-size: 15px;
+  --line-height: calc(var(--font-size) * 1.4);
+  --paragraph-spacer: calc(var(--line-height) * 0.75);
+
+  /* Header */
+  --header-background: var(--mantle);
+  --header-text: var(--text);
+  --header-line: var(--crust);
+  --header-height: 55px;
+
+  /* Links */
+  --link-color: #0b59f4;
+  --link-line: var(--sky3);
+  --link-hover: var(--text);
+  --link-active: var(--text);
+  --link-visited: var(--mauve3);
+
+  /* Inputs */
+  --input-font-size: 1em;
+  --input-height: 2.6em;
+  --input-padding-width: 0.6em;
+  --input-padding-height: 0;
+  --input-padding: var(--input-padding-height) var(--input-padding-width);
+  --input-background: var(--base);
+  --input-background-disabled: var(--surface1);
+  --input-text: var(--text);
+  --input-vague: var(--subtext0);
+  --input-line: var(--surface2);
+  --input-line-hover: #0388bd;
+  --input-line-focus: #0493cc;
+  --input-line-active: var(--sky3);
+  --input-line-error: var(--red3);
+
+  /* Buttons */
+  --button-font-size: 1em;
+  --button-height: 2.6em;
+  --button-padding: 0 1.2em 5px;
+  --button-shadow-size: 3px;
+  --button-background: var(--surface0);
+  --button-text: var(--text);
+  --button-text-disabled: var(--overlay2);
+  --button-line: var(--overlay1);
+  --button-hover: var(--surface1);
+  --button-focus: var(--surface1);
+  --button-active: var(--overlay0);
+  --button-disabled: var(--overlay0);
+  --button-shadow: var(--overlay1);
+  --button-pulse-high: var(--overlay1);
+  --button-pulse-low: var(--surface0);
+  --button-refresh: url(../images/refresh-black.svg);
+  --button-check: url(../images/check-black.svg);
+  --button-focus-ring: rgba(var(--surface1-rgb), 0.65);
+  --button-active-ring: rgba(var(--overlay0-rgb), 0.65);
+
+  /* Highlighted text */
+  --mark-background: rgba(229, 200, 144, 0.7);
+  --mark-background-alt: rgba(238, 212, 159, 0.9);
+
+  --chevron-hover: url(/images/chevron-down-blue.svg);
+
+  /* Text on a colored background that must stay dark in both themes */
+  --ink: #222222;
+
+  /* The opposite of --text: for text on a neutral mid-tone background */
+  --text-inverse: #ffffff;
+  --text-inverse-rgb: 255, 255, 255;
+
+  /* Component colors that differ per theme (precomputed, see tokens-dark.css) */
+  --mantle-light-3: #eff1f5;
+  --mantle-light-4: #f2f4f7;
+  --mantle-light-5: #f6f7f9;
+  --panel-link-color: #0a52e0;
+  --kbd-text: #1d232f;
+  --pagination-active-text: #fcfcfd;
+  --date-picker-today: #acacac;
+  --date-picker-range: #3b7af6;
+  --date-picker-range-text: #0e1016;
+}

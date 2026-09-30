@@ -1,0 +1,288 @@
+/*
+ * Tags and badges. A color class only sets the custom properties below; the
+ * rules that use them are written once.
+ */
+.tag {
+  --tag-text: var(--text);
+  --tag-background: var(--surface1);
+  --tag-hover: var(--surface1);
+  --tag-icon: var(--subtext0);
+
+  color: var(--tag-text);
+  background-color: var(--tag-background);
+  font-family: var(--utility-text);
+  font-weight: 200;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0em 0.4em;
+  font-size: 0.7em;
+  line-height: 1.7em;
+  position: relative;
+  top: -0.1em;
+  text-decoration: none;
+
+  &.badge {
+    min-width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8em;
+    text-align: center;
+    border-radius: 0.9em 0.9em;
+    padding: 0 0.3em;
+  }
+
+  & > .icon {
+    fill: var(--tag-icon);
+    width: 1.3em;
+    height: 1.3em;
+    transform: translateY(0.25em);
+  }
+
+  &:hover,
+  &.hover {
+    color: var(--tag-text);
+    background-color: var(--tag-hover);
+
+    & > .icon {
+      fill: var(--tag-text);
+    }
+  }
+
+  &:hover,
+  &.hover,
+  &:active,
+  &:visited,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &.alt {
+    --tag-text: var(--text-inverse);
+    --tag-background: var(--overlay1);
+    --tag-hover: var(--overlay2);
+    --tag-icon: #d9d9d9;
+  }
+
+  &.rosewater {
+    --tag-text: var(--ink);
+    --tag-background: var(--rosewater3);
+    --tag-hover: #d77864;
+    --tag-icon: var(--rosewater2);
+  }
+
+  &.flamingo {
+    --tag-text: var(--ink);
+    --tag-background: var(--flamingo3);
+    --tag-hover: #d86464;
+    --tag-icon: var(--flamingo2);
+  }
+
+  &.pink {
+    --tag-text: var(--ink);
+    --tag-background: var(--pink3);
+    --tag-hover: #e760c3;
+    --tag-icon: var(--pink2);
+  }
+
+  &.mauve {
+    --tag-text: var(--white);
+    --tag-background: var(--mauve3);
+    --tag-hover: #7a21ed;
+    --tag-icon: var(--mauve2);
+  }
+
+  &.purple {
+    --tag-text: var(--white);
+    --tag-background: #9933ff;
+    --tag-hover: #a64dff;
+    --tag-icon: #e6ccff;
+  }
+
+  &.red {
+    --tag-text: var(--white);
+    --tag-background: var(--red3);
+    --tag-hover: #ba0d33;
+    --tag-icon: var(--red2);
+  }
+
+  &.maroon {
+    --tag-text: var(--white);
+    --tag-background: var(--maroon3);
+    --tag-hover: #e32f3e;
+    --tag-icon: var(--maroon2);
+  }
+
+  &.peach {
+    --tag-text: var(--ink);
+    --tag-background: var(--peach3);
+    --tag-hover: #ef5801;
+    --tag-icon: var(--peach2);
+  }
+
+  &.orange {
+    --tag-text: var(--ink);
+    --tag-background: #d35400;
+    --tag-hover: #e65c00;
+    --tag-icon: #ffa366;
+  }
+
+  &.yellow {
+    --tag-text: var(--ink);
+    --tag-background: var(--yellow3);
+    --tag-hover: #c8801a;
+    --tag-icon: var(--yellow2);
+  }
+
+  &.green {
+    --tag-text: var(--ink);
+    --tag-background: var(--green3);
+    --tag-hover: #388c26;
+    --tag-icon: var(--green2);
+  }
+
+  &.teal {
+    --tag-text: var(--white);
+    --tag-background: var(--teal3);
+    --tag-hover: #147d83;
+    --tag-icon: var(--teal2);
+  }
+
+  &.sky {
+    --tag-text: var(--ink);
+    --tag-background: var(--sky3);
+    --tag-hover: var(--input-line-focus);
+    --tag-icon: var(--sky2);
+  }
+
+  &.sapphire {
+    --tag-text: var(--ink);
+    --tag-background: var(--sapphire3);
+    --tag-hover: #1c8c9f;
+    --tag-icon: var(--sapphire2);
+  }
+
+  &.blue {
+    --tag-text: var(--white);
+    --tag-background: var(--blue3);
+    --tag-hover: #0b57ef;
+    --tag-icon: var(--blue2);
+  }
+
+  &.lavender {
+    --tag-text: var(--ink);
+    --tag-background: var(--lavender3);
+    --tag-hover: #5972fd;
+    --tag-icon: var(--lavender2);
+  }
+
+  &.navy {
+    --tag-text: var(--white);
+    --tag-background: navy;
+    --tag-hover: #00009a;
+    --tag-icon: #8080ff;
+  }
+
+  &.olive {
+    --tag-text: var(--ink);
+    --tag-background: olive;
+    --tag-hover: #9a9a00;
+    --tag-icon: #cdcd00;
+  }
+
+  &.salmon {
+    --tag-text: var(--ink);
+    --tag-background: salmon;
+    --tag-hover: #fb968b;
+    --tag-icon: #fdc3bc;
+  }
+
+  &.magenta {
+    --tag-text: var(--ink);
+    --tag-background: var(--magenta);
+    --tag-hover: #ff1aff;
+    --tag-icon: #ffb3ff;
+  }
+
+  &.cyan {
+    --tag-text: var(--black);
+    --tag-background: aqua;
+    --tag-hover: #1affff;
+    --tag-icon: #00b3b3;
+  }
+
+  &.lightgray {
+    --tag-text: var(--black);
+    --tag-background: var(--lightgray);
+    --tag-hover: #d9d9d9;
+    --tag-icon: #8c8c8c;
+  }
+
+  &.darkgray {
+    --tag-text: var(--white);
+    --tag-background: var(--darkgray);
+    --tag-hover: #626262;
+    --tag-icon: #959595;
+  }
+
+  &.chocolate {
+    --tag-text: var(--white);
+    --tag-background: var(--chocolate);
+    --tag-hover: #804000;
+    --tag-icon: #b35900;
+  }
+
+  &.black {
+    --tag-text: var(--white);
+    --tag-background: var(--black);
+    --tag-hover: #222234;
+    --tag-icon: #8989b3;
+  }
+
+  &.forest {
+    --tag-text: var(--white);
+    --tag-background: var(--forest);
+    --tag-hover: #9a9a00;
+    --tag-icon: #00b895;
+  }
+
+  &.royal {
+    --tag-text: var(--white);
+    --tag-background: var(--royal);
+    --tag-hover: #006caa;
+    --tag-icon: #008ddd;
+  }
+
+  &.lemon {
+    --tag-text: var(--black);
+    --tag-background: var(--lemon);
+    --tag-hover: #ffff80;
+    --tag-icon: #cccc00;
+  }
+}
+
+h2 .tag {
+  font-size: 1.25rem;
+  border-radius: 6px;
+}
+
+h3 .tag {
+  font-size: 1.25rem;
+  border-radius: 5px;
+}
+
+h4 .tag {
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+h5 .tag {
+  font-size: 0.7rem;
+}
+
+h6 .tag {
+  font-size: 0.7rem;
+  line-height: 1.7em;
+}
+
+a.tag {
+  cursor: pointer;
+}

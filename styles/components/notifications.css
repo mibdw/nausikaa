@@ -1,0 +1,182 @@
+/*
+ * Notifications. A color class only sets the custom properties below; the
+ * rules that use them are written once.
+ */
+.notification {
+  --notification-background: var(--overlay2);
+  --notification-border: var(--subtext0);
+  --notification-text: var(--text-inverse);
+  --notification-header: var(--text-inverse);
+  --notification-icon: rgba(var(--text-inverse-rgb), 0.6);
+
+  background-color: var(--notification-background);
+  color: var(--notification-text);
+  border: 1px solid var(--notification-border);
+  margin: var(--paragraph-spacer) 0;
+  padding: 0 4rem 0 2rem;
+  border-radius: 6px;
+  position: relative;
+  overflow: auto;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--notification-header);
+  }
+
+  & > svg.icon {
+    fill: var(--notification-icon);
+    width: 4em;
+    height: 4em;
+    float: left;
+    margin: 1em 1em 1em 0;
+  }
+
+  .control.close {
+    cursor: pointer;
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+
+    svg {
+      fill: var(--notification-icon);
+      width: 1.7rem;
+      height: 1.7rem;
+    }
+
+    &:hover svg,
+    &:focus svg {
+      fill: var(--notification-header);
+    }
+  }
+
+  &.sticky {
+    position: relative;
+    border-width: 0 0 1px 0;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  &.rosewater {
+    --notification-background: var(--rosewater3);
+    --notification-border: #d77864;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.flamingo {
+    --notification-background: var(--flamingo3);
+    --notification-border: #d86464;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.pink {
+    --notification-background: var(--pink3);
+    --notification-border: #e760c3;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.mauve {
+    --notification-background: var(--mauve3);
+    --notification-border: #7a21ed;
+    --notification-text: var(--white);
+    --notification-header: var(--white);
+    --notification-icon: rgba(255, 255, 255, 0.6);
+  }
+
+  &.red {
+    --notification-background: var(--red3);
+    --notification-border: #ba0d33;
+    --notification-text: var(--white);
+    --notification-header: var(--white);
+    --notification-icon: rgba(255, 255, 255, 0.6);
+  }
+
+  &.maroon {
+    --notification-background: var(--maroon3);
+    --notification-border: #e32f3e;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.peach {
+    --notification-background: var(--peach3);
+    --notification-border: #ef5801;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.yellow {
+    --notification-background: var(--yellow3);
+    --notification-border: #c8801a;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.green {
+    --notification-background: var(--green3);
+    --notification-border: #388c26;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.teal {
+    --notification-background: var(--teal3);
+    --notification-border: #147d83;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.sky {
+    --notification-background: var(--sky3);
+    --notification-border: var(--input-line-focus);
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.sapphire {
+    --notification-background: var(--sapphire3);
+    --notification-border: #1c8c9f;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.blue {
+    --notification-background: var(--blue3);
+    --notification-border: #0b57ef;
+    --notification-text: var(--white);
+    --notification-header: var(--white);
+    --notification-icon: rgba(255, 255, 255, 0.6);
+  }
+
+  &.lavender {
+    --notification-background: var(--lavender3);
+    --notification-border: #5972fd;
+    --notification-text: var(--ink);
+    --notification-header: var(--ink);
+    --notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.gray {
+    --notification-background: var(--subtext0);
+    --notification-border: var(--subtext1);
+    --notification-text: var(--text-inverse);
+    --notification-header: var(--text-inverse);
+    --notification-icon: rgba(var(--text-inverse-rgb), 0.6);
+  }
+}
