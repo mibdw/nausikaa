@@ -7,9 +7,8 @@ const EditorToolbar = ({
   activeBlock,
   activeAlign,
   setColorPickerActive,
+  imageUploadUrl,
 }) => {
-  if (!editor) return "";
-
   const [imageDialogActive, setImageDialogActive] = useState(false);
   const [youtubeDialogActive, setYoutubeDialogActive] = useState(false);
 
@@ -25,6 +24,8 @@ const EditorToolbar = ({
 
     editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
   }, [editor]);
+
+  if (!editor) return null;
 
   return [
     <div className="editor-toolbar" key="editor-toolbar">
@@ -541,6 +542,7 @@ const EditorToolbar = ({
     <ImageDialog
       key="image-dialog"
       {...{ editor, imageDialogActive, setImageDialogActive }}
+      imageUploadUrl={imageUploadUrl}
     />,
     <YoutubeDialog
       key="youtube-dialog"
@@ -561,7 +563,12 @@ const EditorToolbar = ({
   ];
 };
 
-const ImageDialog = ({ editor, imageDialogActive, setImageDialogActive }) => {
+const ImageDialog = ({
+  editor,
+  imageDialogActive,
+  setImageDialogActive,
+  imageUploadUrl,
+}) => {
   const [imgUrl, setImgUrl] = useState("");
   const [addImage, setAddImage] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -569,7 +576,7 @@ const ImageDialog = ({ editor, imageDialogActive, setImageDialogActive }) => {
   const [altText, setAltText] = useState("");
   const [titleText, setTitleText] = useState("");
 
-  const uploadFile = async (e, filetype) => {
+  const uploadFile = async (e) => {
     if (e.target.files && e.target.files[0]) {
       setAddImage(e.target.files[0]);
       setUploadingImage(true);
@@ -579,24 +586,26 @@ const ImageDialog = ({ editor, imageDialogActive, setImageDialogActive }) => {
       } else {
         let formData = new FormData();
         formData.append("file", e.target.files[0]);
-        const uploadedImage = await fetch(
-          "/api/collections/upload/" + filetype,
-          {
+        try {
+          const uploadedImage = await fetch(imageUploadUrl, {
             method: "PUT",
             body: formData,
-          },
-        )
-          .then((res) => res.json())
-          .then((json) => json)
-          .catch((err) => console.log(err));
+          })
+            .then((res) => res.json())
+            .then((json) => (json.src ? { src: json.src } : json));
 
-        if (
-          uploadedImage &&
-          uploadedImage.fileName &&
-          uploadedImage.folderLocation
-        ) {
-          setImagePreview(uploadedImage);
-          setImgUrl("");
+          if (
+            uploadedImage &&
+            (uploadedImage.src ||
+              (uploadedImage.fileName && uploadedImage.folderLocation))
+          ) {
+            setImagePreview(uploadedImage);
+            setImgUrl("");
+          }
+        } catch (error) {
+          console.error("Image upload failed:", error);
+        } finally {
+          setUploadingImage(false);
         }
       }
     }
@@ -627,7 +636,7 @@ const ImageDialog = ({ editor, imageDialogActive, setImageDialogActive }) => {
           <input
             type="file"
             name="images-upload"
-            onChange={(e) => uploadFile(e, "images")}
+            onChange={uploadFile}
             accept="image/*"
             id="images-upload"
           />
@@ -689,7 +698,7 @@ const ImageDialog = ({ editor, imageDialogActive, setImageDialogActive }) => {
       </div>
       <div className="image-preview">
         {imagePreview ? (
-          <img src={`${imagePreview.folderLocation}${imagePreview.fileName}`} />
+          <img src={imagePreview.src || `${imagePreview.folderLocation}${imagePreview.fileName}`} />
         ) : imgUrl ? (
           <img src={imgUrl} />
         ) : (
@@ -738,7 +747,7 @@ const ImageDialog = ({ editor, imageDialogActive, setImageDialogActive }) => {
           onClick={async () => {
             let imgObj = {
               src: imagePreview
-                ? imagePreview.folderLocation + imagePreview.fileName
+                ? imagePreview.src || imagePreview.folderLocation + imagePreview.fileName
                 : imgUrl && imgUrl.length > 0
                   ? imgUrl
                   : "",

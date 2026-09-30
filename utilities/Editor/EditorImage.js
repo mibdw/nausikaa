@@ -3,7 +3,16 @@ import { formatISO } from "date-fns";
 import Image from "@tiptap/extension-image";
 
 export default Image.extend({
+  addOptions() {
+    return {
+      ...this.parent?.(),
+      uploadUrl: "/api/uploads/images",
+    };
+  },
+
   addProseMirrorPlugins() {
+    const uploadUrl = this.options.uploadUrl;
+
     return [
       new Plugin({
         props: {
@@ -64,29 +73,33 @@ export default Image.extend({
                   formData.append(
                     "file",
                     blob,
-                    `${formatISO(new Date())}.${extension}}`,
+                    `${formatISO(new Date())}.${extension}`,
                   );
 
                   let uploadedImage = await fetch(
-                    "/api/collections/upload/images",
+                    uploadUrl,
                     {
                       method: "PUT",
                       body: formData,
                     },
                   )
                     .then((res) => res.json())
-                    .then((json) => {
-                      if (json.fileName && json.folderLocation)
-                        return `${json.folderLocation}${json.fileName}`;
-                    })
+                    .then((json) =>
+                      json.src ||
+                      (json.fileName && json.folderLocation
+                        ? `${json.folderLocation}${json.fileName}`
+                        : null),
+                    )
                     .catch((err) => console.log(err));
                   // console.log(uploadedImage);
 
-                  const node = schema.nodes.image.create({
-                    src: uploadedImage,
-                  });
-                  const transaction = view.state.tr.replaceSelectionWith(node);
-                  view.dispatch(transaction);
+                  if (uploadedImage) {
+                    const node = schema.nodes.image.create({
+                      src: uploadedImage,
+                    });
+                    const transaction = view.state.tr.replaceSelectionWith(node);
+                    view.dispatch(transaction);
+                  }
                 }
               }
             },

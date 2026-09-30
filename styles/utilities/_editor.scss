@@ -1,6 +1,30 @@
 @use "../colors" as *;
 @use "../variables" as *;
 
-.editor {
-  background-color: green;
-}
+[contenteditable]:focus { outline: 0; }
+.editor-wrapper { position: relative; color: $inputText; background: $inputBackground; border: 1px solid $inputLine; border-radius: 6px; }
+.editor-wrapper:focus-within { border-color: $inputLineHover; box-shadow: 0 0 0 2px $inputLineHover inset; outline: 2px solid $inputLineActive; }
+.editor-wrapper > .editor-toolbar, .editor-wrapper .editor-tooltip { display: flex; min-height: $inputHeight; padding: 0 .4em; font-family: $utilityText; background: $mantle; }
+.editor-wrapper > .editor-toolbar { border-bottom: 1px solid $surface1; flex-wrap: wrap; }
+.editor-wrapper > .editor-toolbar button, .editor-wrapper .editor-tooltip button { height: auto; margin: 0; padding: 0 .45em; border: 0; border-radius: 0; box-shadow: none; background: transparent; color: $text; }
+.editor-wrapper > .editor-toolbar button:hover, .editor-wrapper > .editor-toolbar button:focus, .editor-wrapper > .editor-toolbar button.active, .editor-wrapper .editor-tooltip button:hover, .editor-wrapper .editor-tooltip button:focus { background: $surface0; }
+.editor-wrapper .divider { height: $inputHeight; margin: 0 .3em; border-left: 1px solid $surface1; }
+.editor-wrapper .icon { fill: $subtext0; }
+.editor-wrapper button:hover .icon, .editor-wrapper button:focus .icon, .editor-wrapper button.active .icon { fill: $text; }
+.editor-wrapper > .editor-content > [contenteditable] { min-height: 15rem; padding: $inputPadding; resize: vertical; overflow: auto; }
+.editor-wrapper .ProseMirror p.is-editor-empty:first-child::before { content: attr(data-placeholder); float: left; height: 0; color: $subtext0; pointer-events: none; }
+.editor-wrapper .ProseMirror-selectednode { box-shadow: 0 0 0 3px $linkColor; }
+.editor-wrapper .task-list { list-style: none; }
+.editor-wrapper .task-item { position: relative; }
+.editor-wrapper .task-item > label { position: absolute; left: -1.5em; }
+.editor-wrapper table td, .editor-wrapper table th { padding: .35em .5em; border: 1px solid $surface1; }
+.editor-wrapper table .selectedCell { background: $yellow2; }
+.editor-wrapper .editor-tooltip { position: absolute; z-index: 25; transform: translateY(1em); }
+.editor-wrapper .editor-tooltip-input-link { width: 30ch; margin-top: .3em; }
+.editor-wrapper .editor-color-picker, .editor-wrapper .image-dialog, .editor-wrapper .youtube-dialog { z-index: 40; min-width: 30em; max-width: 90vw; padding: 1em; }
+.editor-wrapper .color-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em; }
+.editor-wrapper .color-grid .tag { height: 4em; line-height: 4em; cursor: pointer; text-align: center; }
+
+#editor-demo-small { max-width: 38rem; }
+#editor-demo-mini { max-width: 24rem; }
+#editor-demo-large .editor-content img { display: block; max-width: 100%; max-height: 24rem; margin: 1rem auto; object-fit: contain; }

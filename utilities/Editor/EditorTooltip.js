@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BubbleMenu } from "@tiptap/react";
+import { BubbleMenu } from "@tiptap/react/menus";
 import { colorTypes } from "./editorUtils.js";
 
 const EditorTooltip = ({
@@ -18,8 +18,7 @@ const EditorTooltip = ({
   return (
     <BubbleMenu
       editor={editor}
-      tippyOptions={{
-        duration: 100,
+      options={{
         onHide: () => {
           setLinkActive(false);
           setCurrentLink("");

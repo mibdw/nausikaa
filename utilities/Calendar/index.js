@@ -58,7 +58,7 @@ const Calendar = ({ fetchEvents, createEvent, updateEvent, deleteEvent }) => {
       const endDate =
         calendarView == "week"
           ? endOfISOWeek(new Date(startDate))
-          : endOfISOWeek(endOfMonth(new Date(startDate))).toISOString();
+          : endOfISOWeek(endOfMonth(new Date(newPeriod))).toISOString();
 
       const eventList = await fetchEvents(startDate, endDate);
 

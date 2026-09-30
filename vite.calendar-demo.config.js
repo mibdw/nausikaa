@@ -7,7 +7,7 @@ const jsxForScripts = {
   name: "jsx-for-scripts",
   enforce: "pre",
   transform(code, id) {
-    if (id.includes("/scripts/") && id.endsWith(".js")) {
+    if ((id.includes("/scripts/") || id.includes("/utilities/DatePicker/") || id.includes("/utilities/Editor/")) && id.endsWith(".js")) {
       const result = transformSync(code, {
         loader: "jsx",
         jsx: "automatic",
@@ -22,13 +22,13 @@ export default defineConfig({
   plugins: [
     jsxForScripts,
     react({
-      include: [/scripts\/.*\.js$/, /scripts\/.*\.jsx$/],
+      include: [/scripts\/.*\.js$/, /scripts\/.*\.jsx$/, /utilities\/(DatePicker|Editor)\/.*\.js$/],
     }),
   ],
   publicDir: false, // prevent copying public/* into outDir
   esbuild: {
     loader: "jsx",
-    include: /scripts\/.*\.jsx?$/,
+    include: /(scripts\/.*\.jsx?$|utilities\/(DatePicker|Editor)\/.*\.js$)/,
   },
   optimizeDeps: {
     esbuildOptions: {
@@ -52,9 +52,13 @@ export default defineConfig({
     minify: false,
     sourcemap: true,
     rollupOptions: {
-      input: resolve(__dirname, "scripts/calendar-demo.js"),
+      input: {
+        "calendar-demo": resolve(__dirname, "scripts/calendar-demo.js"),
+        "date-picker-demo": resolve(__dirname, "scripts/date-picker-demo.js"),
+        "editor-demo": resolve(__dirname, "scripts/editor-demo.js"),
+      },
       output: {
-        entryFileNames: "calendar-demo.js",
+        entryFileNames: "[name].js",
       },
     },
   },

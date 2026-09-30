@@ -22,7 +22,7 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import Paragraph from "@tiptap/extension-paragraph";
 import Placeholder from "@tiptap/extension-placeholder";
 import Strike from "@tiptap/extension-strike";
-import Table from "@tiptap/extension-table";
+import { Table } from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
@@ -30,7 +30,7 @@ import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
 import Text from "@tiptap/extension-text";
 import TextAlign from "@tiptap/extension-text-align";
-import TextStyle from "@tiptap/extension-text-style";
+import { TextStyle } from "@tiptap/extension-text-style";
 import Underline from "@tiptap/extension-underline";
 import Youtube from "@tiptap/extension-youtube";
 import { Extension } from "@tiptap/core";
@@ -96,6 +96,7 @@ const Editor = ({
   syncState,
   placeholder,
   externalState,
+  imageUploadUrl = "/api/uploads/images",
 }) => {
   let extensions = [
     Blockquote,
@@ -108,6 +109,7 @@ const Editor = ({
     Dropcursor,
     EditorImage.configure({
       inline: true,
+      uploadUrl: imageUploadUrl,
     }),
     Gapcursor,
     HardBreak,
@@ -289,6 +291,7 @@ const Editor = ({
             activeBlock,
             activeAlign,
             setColorPickerActive,
+            imageUploadUrl,
           }}
         />
       )}

@@ -3,7 +3,7 @@ import { useCalendar } from "./calendarUtils.js";
 import { sub, format, isAfter, isSameMonth, isSameDay } from "date-fns";
 
 const CalendarDay = ({ current, day, end, eventList }) => {
-  const { setEventDetail } = useCalendar();
+  const { setEventDetail, MAX_EVENTS_PER_DAY_MONTHLY } = useCalendar();
 
   const relatedEventsEnter = (slug) => {
     const relatedEvents = document.querySelectorAll(
@@ -55,9 +55,9 @@ const CalendarDay = ({ current, day, end, eventList }) => {
       {eventList &&
         eventList.length > 0 &&
         eventList
-          .filter((_, i) => i < 7)
+          .filter((_, i) => i < MAX_EVENTS_PER_DAY_MONTHLY)
           .map((event) => (
-            <div className="calendar-event-wrapper">
+            <div className="calendar-event-wrapper" key={event.slug}>
               <a
                 title={event.title}
                 className={`calendar-event calendar-event-slug-${event.slug} ${
@@ -81,7 +81,7 @@ const CalendarDay = ({ current, day, end, eventList }) => {
                 event.categories.length > 1 &&
                 event.categories
                   .filter((_, i) => i > 0)
-                  .map((event) => (
+                  .map((cat) => (
                     <a
                       title={event.title}
                       className={`calendar-event calendar-event-category-addition calendar-event-slug-${event.slug} ${
@@ -102,15 +102,15 @@ const CalendarDay = ({ current, day, end, eventList }) => {
             </div>
           ))}
 
-      {eventList && eventList.length > 7 && (
+      {eventList && eventList.length > MAX_EVENTS_PER_DAY_MONTHLY && (
         <div className="more-events dropdown">
           <a tabIndex="0" role="button" className="more-events-button">
-            +{eventList.length - 7} more
+            +{eventList.length - MAX_EVENTS_PER_DAY_MONTHLY} more
           </a>
           <div className="panel arrow bottom center">
             <ul>
               {eventList
-                .filter((_, i) => i > 6)
+                .filter((_, i) => i >= MAX_EVENTS_PER_DAY_MONTHLY)
                 .map((event) => (
                   <li className="calendar-event-wrapper">
                     <a
