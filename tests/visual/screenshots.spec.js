@@ -5,9 +5,9 @@ import { pages, themes, pageName, openPage } from "./pages.js";
 // Create or refresh the baseline with: npm run test:visual:baseline
 for (const theme of themes) {
   for (const path of pages) {
-    test(`${theme.replace("nausikaa-", "")} ${path}`, async ({ page }) => {
+    test(`${theme} ${path}`, async ({ page }) => {
       await openPage(page, path, theme);
-      await expect(page).toHaveScreenshot(`${theme.replace("nausikaa-", "")}/${pageName(path)}.png`, {
+      await expect(page).toHaveScreenshot(`${theme}/${pageName(path)}.png`, {
         fullPage: true,
         timeout: 30000,
       });

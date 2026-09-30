@@ -2,19 +2,14 @@
 <%
   var pageTitle = "Nausikaä";
   var navbar = 'transparent'; 
-  var themeFile = 'nausikaa-light';
-  var highlightFile = 'github-light';
+  // theme is "light", "dark" or "auto" (follow the system setting)
+  var themes = [
+    { value: 'auto', title: 'Automatic', icon: 'automode' },
+    { value: 'light', title: 'Light', icon: 'lightmode' },
+    { value: 'dark', title: 'Dark', icon: 'darkmode' }
+  ];
+  var currentTheme = themes.find(function (t) { return t.value == theme; });
 
-  if (theme) {
-    themeFile = theme;
-
-		if (theme == "nausikaa-dark") {
-			highlightFile = "github-dark";
-		} else {
-			highlightFile = "github-light";
-		}
-  }
-  
   if (lane == 'frontpage') {
     pageTitle = pageTitle + ", a CSS framework for accessible websites";
 
@@ -45,7 +40,7 @@
 %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"<% if (theme != 'auto') { %> data-theme="<%= theme %>"<% } %>>
   <head>
 
     <meta charset="UTF-8">
@@ -61,11 +56,16 @@
 
     <link href='https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,300i,400,400i,700,700i|IBM+Plex+Sans:300,300i,400,400i,500,500i,700,700i|IBM+Plex+Serif:300,300i,400,400i,700,700i' rel='stylesheet'>
     <link href='/fonts/blokkfont.css' rel='stylesheet' type='text/css'>
-    <link rel='stylesheet' href='/styles/<%= themeFile %>.min.css'>
+    <link rel='stylesheet' href='/styles/nausikaa.min.css'>
 
     <script src="/scripts/dialog-polyfill.js"></script>
 
-		<link rel="stylesheet" href="/styles/<%= highlightFile %>.css">
+		<% if (theme == 'auto') { %>
+		<link rel="stylesheet" href="/styles/github-light.css" media="(prefers-color-scheme: light)">
+		<link rel="stylesheet" href="/styles/github-dark.css" media="(prefers-color-scheme: dark)">
+		<% } else { %>
+		<link rel="stylesheet" href="/styles/github-<%= theme %>.css">
+		<% } %>
 		<script src="/scripts/highlight.min.js"></script> 
 		<script>hljs.highlightAll();</script>
 
@@ -159,22 +159,26 @@
         </ul>
       </nav>
 
-      <form action="/theme-switch" method="POST" class="theme-switcher">
-        <% if (themeFile == "nausikaa-dark") { %>
-        <input type="hidden" name="theme" value="nausikaa-light" />
-        <button type="submit">
+      <form action="/theme-switch" method="POST" class="theme-switcher dropdown">
+        <button type="button" class="secondary" aria-label="Theme: <%= currentTheme.title %>" title="Theme: <%= currentTheme.title %>">
           <svg class="icon">
-            <use xlink:href="/images/icons.svg#lightmode"></use>
+            <use xlink:href="/images/icons.svg#<%= currentTheme.icon %>"></use>
           </svg>
         </button>
-       <% } else { %>
-        <input type="hidden" name="theme" value="nausikaa-dark" />
-        <button type="submit" class="secondary">
-          <svg class="icon">
-            <use xlink:href="/images/icons.svg#darkmode"></use>
-          </svg>
-        </button>
-       <% } %>
+        <nav class="panel arrow top right" aria-label="Theme">
+          <ul>
+            <% themes.forEach(function (t) { %>
+            <li class="<%= t.value == theme ? 'active' : '' %>">
+              <button type="submit" name="theme" value="<%= t.value %>" class="link" <%= t.value == theme ? 'aria-current=true' : '' %>>
+                <svg class="icon">
+                  <use xlink:href="/images/icons.svg#<%= t.icon %>"></use>
+                </svg>
+                <%= t.title %>
+              </button>
+            </li>
+            <% }); %>
+          </ul>
+        </nav>
       </form>
 
       

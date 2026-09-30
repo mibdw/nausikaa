@@ -71,7 +71,8 @@
     "test:visual": "playwright test screenshots",
     "test:visual:baseline": "playwright test screenshots --update-snapshots",
     "test:contrast": "playwright test contrast --project=chromium --workers=1",
-    "test:contrast:baseline": "playwright test contrast --project=chromium --workers=1 --update-snapshots"
+    "test:contrast:baseline": "playwright test contrast --project=chromium --workers=1 --update-snapshots",
+    "test:theme": "playwright test theme --project=chromium"
   },
   "author": "MIBDW",
   "license": "none",

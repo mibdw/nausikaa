@@ -1,6 +1,6 @@
 import nav from "../../navigation.js";
 
-export const themes = ["nausikaa-light", "nausikaa-dark"];
+export const themes = ["light", "dark"];
 
 // Every page of the site, derived from the navigation.
 export const pages = ["/", "/about", "/download", "/documentation"];

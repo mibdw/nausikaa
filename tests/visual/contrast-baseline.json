@@ -1,5 +1,5 @@
 {
-  "nausikaa-light": {
+  "light": {
     "/": 0,
     "/about": 0,
     "/download": 0,
@@ -34,7 +34,7 @@
     "/examples/complex-form": 147,
     "/examples/library-services": 52
   },
-  "nausikaa-dark": {
+  "dark": {
     "/": 0,
     "/about": 0,
     "/download": 0,

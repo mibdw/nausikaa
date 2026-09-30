@@ -1,9 +1,13 @@
 /*
  * Design tokens: colors, typography and sizes shared by every component.
- * These are the light theme values; tokens-dark.css overrides the neutrals.
+ * These are the light theme values; tokens-dark.css overrides the neutrals
+ * when the dark theme applies.
  */
 
 :root {
+  /* Native form controls and scrollbars follow the theme */
+  color-scheme: light;
+
   /* Palette: the same in both themes */
   --nausikaa-black: #181825;
   --nausikaa-white: #ffffff;

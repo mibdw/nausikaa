@@ -80,7 +80,7 @@ test.describe("contrast", () => {
 
   for (const theme of themes) {
     for (const path of pages) {
-      test(`${theme.replace("nausikaa-", "")} ${path}`, async ({ page }, testInfo) => {
+      test(`${theme} ${path}`, async ({ page }, testInfo) => {
         await openPage(page, path, theme);
         const failures = await page.evaluate(findLowContrast);
         (measured[theme] ??= {})[path] = failures.length;
