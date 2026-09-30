@@ -1,0 +1,136 @@
+<header>
+  <h1>Getting started</h1>
+</header>
+
+<section id="introduction">
+  <p class="introduction">
+    <strong>Nausikaä</strong> is a single stylesheet. Add it to a page and the plain HTML you already write—headings, paragraphs, lists, tables, forms and buttons—is styled straight away. There is no JavaScript to load for the styling itself, and no build step is needed to use it.
+  </p>
+  <p class="introduction">
+    This page shows how to add Nausikaä to a page, explains the idea of <em>plain HTML first</em> that runs through the whole framework, and lists the browsers it supports.
+  </p>
+</section>
+
+<section id="installation">
+  <header>
+    <h2>Adding Nausikaä</h2>
+  </header>
+
+  <p>Link the stylesheet in the <code>&lt;head&gt;</code> of every page. Nausikaä uses the IBM Plex typefaces; load them from Google Fonts as in the example below, or host them yourself. Without them the text falls back to Georgia and Arial, and everything keeps working.</p>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;My page&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700|IBM+Plex+Sans:300,400,500,700|IBM+Plex+Serif:300,400,700"&gt;
+    &lt;link rel="stylesheet" href="/styles/nausikaa.min.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;main&gt;
+      &lt;article&gt;
+        &lt;h1&gt;Hello, Nausikaä&lt;/h1&gt;
+        &lt;p&gt;This page is already styled.&lt;/p&gt;
+      &lt;/article&gt;
+    &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </div>
+
+  <p>The stylesheet is built from the source in the <a href="https://github.com/mibdw/nausikaa">Nausikaä repository</a>: run <code>npm install</code> and <code>npm run build</code>, and it appears as <code>public/styles/nausikaa.min.css</code>. A ready-made download will be available on the <a href="/download">Download</a> page.</p>
+
+  <p class="note"><strong>The viewport tag matters:</strong> without <code>&lt;meta name="viewport"&gt;</code>, phones show a zoomed-out desktop page and the layouts for small screens never apply. See <a href="/documentation/foundations/responsive-design">Responsive design</a>.</p>
+</section>
+
+<section id="plain-html">
+  <header>
+    <h2>Plain HTML first</h2>
+  </header>
+
+  <p>Nausikaä styles HTML elements directly. A <code>&lt;button&gt;</code> looks like a button, a <code>&lt;table&gt;</code> like a table and a <code>&lt;dialog&gt;</code> like a dialog, without any classes. Classes are only needed where HTML has no word for something: a color, a size, or a layout pattern such as a navbar or a product card.</p>
+
+  <div class="section-example">
+    <form class="basic-form">
+      <label for="getting-started-name">Name</label>
+      <input id="getting-started-name" type="text">
+
+      <label for="getting-started-email">Email</label>
+      <input id="getting-started-email" type="email">
+
+      <div class="controls">
+        <button type="submit" class="primary">Subscribe</button>
+        <button type="reset">Cancel</button>
+        <div class="spacer"></div>
+      </div>
+    </form>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;form class="basic-form"&gt;
+  &lt;label for="name"&gt;Name&lt;/label&gt;
+  &lt;input id="name" type="text"&gt;
+
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input id="email" type="email"&gt;
+
+  &lt;div class="controls"&gt;
+    &lt;button type="submit" class="primary"&gt;Subscribe&lt;/button&gt;
+    &lt;button type="reset"&gt;Cancel&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+  </div>
+
+  <p>The inputs, labels and buttons need no classes at all. <code>basic-form</code> arranges them in two columns, and <code>primary</code> gives the main action its color. Writing plain, semantic HTML also means that browsers, search engines and assistive technology understand the page without extra work—see <a href="/documentation/foundations/accessibility">Accessibility</a>.</p>
+</section>
+
+<section id="icons">
+  <header>
+    <h2>Icons</h2>
+  </header>
+
+  <p>The icons in these examples come from a single SVG sprite, <code>/images/icons.svg</code>, based on Google’s <a href="https://fonts.google.com/icons">Material icons</a>. Refer to an icon by its id with <code>&lt;use&gt;</code>, and give the <code>&lt;svg&gt;</code> the class <code>icon</code> so it takes on the size and color of the surrounding text.</p>
+
+  <div class="section-example">
+    <button type="button">
+      <svg class="icon" aria-hidden="true"><use xlink:href="/images/icons.svg#save"></use></svg>
+      Save
+    </button>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;button type="button"&gt;
+  &lt;svg class="icon" aria-hidden="true"&gt;&lt;use xlink:href="/images/icons.svg#save"&gt;&lt;/use&gt;&lt;/svg&gt;
+  Save
+&lt;/button&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Decorative or meaningful?</strong> When an icon sits next to a text that says the same thing, hide it from screen readers with <code>aria-hidden="true"</code>. When an icon is the only content of a button, give the button an <code>aria-label</code> instead.</p>
+</section>
+
+<section id="browser-support">
+  <header>
+    <h2>Browser support</h2>
+  </header>
+
+  <p>Nausikaä works in every browser released since early 2021, which covers the vast majority of visitors worldwide. The stylesheet is written in modern CSS and compiled so that these browsers understand it:</p>
+
+  <table class="striped">
+    <thead>
+      <tr><th>Browser</th><th>From version</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Chrome and Edge</th><td>89</td></tr>
+      <tr><th>Firefox</th><td>75</td></tr>
+      <tr><th>Safari (macOS and iOS)</th><td>12.1 (iOS 12.2)</td></tr>
+      <tr><th>Samsung Internet</th><td>15</td></tr>
+      <tr><th>Opera</th><td>75</td></tr>
+    </tbody>
+  </table>
+
+  <p>A few details are added only for browsers that support them, such as hiding the focus ring after a mouse click. Older browsers simply skip those details; nothing breaks.</p>
+
+  <p class="note"><strong>Dialogs in older browsers:</strong> the <code>&lt;dialog&gt;</code> element arrived in Safari 15.4 and Firefox 98. For older versions, load the <a href="https://github.com/GoogleChrome/dialog-polyfill">dialog polyfill</a>, as this site does.</p>
+</section>

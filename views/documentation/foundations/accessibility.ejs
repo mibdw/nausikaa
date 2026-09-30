@@ -1,0 +1,101 @@
+<header>
+  <h1>Accessibility</h1>
+</header>
+
+<section id="introduction">
+  <p class="introduction">
+    A website is accessible when everyone can use it: people who navigate with a keyboard, people who rely on a screen reader or magnification, people with low vision or color blindness, and people on a slow connection or a small screen. <strong>Nausikaä</strong> is built to make that the default outcome rather than extra work.
+  </p>
+  <p class="introduction">
+    A stylesheet can only do part of the job, though. This page describes what Nausikaä takes care of, what remains up to you, and where Nausikaä still falls short. The guidelines referred to are the <a href="https://www.w3.org/WAI/standards-guidelines/wcag/">Web Content Accessibility Guidelines (WCAG)</a>, level AA.
+  </p>
+</section>
+
+<section id="what-nausikaa-does">
+  <header>
+    <h2>What Nausikaä does</h2>
+  </header>
+
+  <table class="striped">
+    <tbody>
+      <tr>
+        <th>Native elements</th>
+        <td>Nausikaä styles the HTML elements themselves instead of replacing them with look-alikes. A styled <code>&lt;button&gt;</code>, <code>&lt;select&gt;</code> or <code>&lt;dialog&gt;</code> keeps all the keyboard behavior and screen reader support the browser gives it.</td>
+      </tr>
+      <tr>
+        <th>Readable contrast</th>
+        <td>Text colors are chosen to reach a contrast ratio of at least 4.5:1 against their background in both themes, the WCAG AA level for normal text. Colored components such as panels, tags and notifications pick dark or light text depending on their background. Every page of this documentation is checked for this automatically. The exceptions are listed under <a href="#limitations">Known limitations</a>.</td>
+      </tr>
+      <tr>
+        <th>Visible focus</th>
+        <td>Links, buttons, knobs and form fields show a clear focus style, so keyboard users always see where they are. On range sliders and color pickers, the focus ring appears for keyboard use and stays hidden after a mouse click.</td>
+      </tr>
+      <tr>
+        <th>Light and dark</th>
+        <td>The theme follows the visitor’s system setting, and built-in controls such as scrollbars and checkboxes follow the theme. See <a href="/documentation/foundations/theming">Theming</a>.</td>
+      </tr>
+      <tr>
+        <th>Reduced motion</th>
+        <td>When the visitor has asked their system to reduce motion, the moving stripes of progress bars stand still.</td>
+      </tr>
+      <tr>
+        <th>Zoom</th>
+        <td>Layouts adapt to the available width, so pages stay usable when zoomed in to 200% or more. See <a href="/documentation/foundations/responsive-design">Responsive design</a>.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="your-part">
+  <header>
+    <h2>Your part</h2>
+  </header>
+
+  <p>Most of accessibility is in the HTML itself. The examples in this documentation follow these practices; use them as a starting point.</p>
+
+  <ul>
+    <li><strong>Set the language</strong> of the page with <code>&lt;html lang="en"&gt;</code>, so screen readers pronounce the text correctly.</li>
+    <li><strong>Use headings in order.</strong> One <code>&lt;h1&gt;</code> per page, and no skipped levels: many screen reader users navigate by headings. Choose a heading for its level, not for its size.</li>
+    <li><strong>Label every form field</strong> with a <code>&lt;label&gt;</code>. A placeholder is not a label: it disappears as soon as someone starts typing. Group related radio buttons and checkboxes in a <a href="/documentation/collections/forms#fieldsets">fieldset with a legend</a>.</li>
+    <li><strong>Describe images</strong> with an <code>alt</code> text, or use an empty <code>alt=""</code> for decorative images. See <a href="/documentation/elements/images">Images</a>.</li>
+    <li><strong>Write link texts that make sense on their own.</strong> “Read the installation guide” helps; “click here” doesn’t, especially in a list of links.</li>
+    <li><strong>Don’t rely on color alone.</strong> A red border on a field isn’t enough to explain an error: add a text that says what is wrong and how to fix it.</li>
+    <li><strong>Use buttons for actions and links for navigation.</strong> A <code>&lt;button&gt;</code> works with the keyboard out of the box; a clickable <code>&lt;div&gt;</code> does not.</li>
+    <li><strong>Add ARIA only where HTML falls short.</strong> Native elements already tell assistive technology what they are. ARIA is for custom widgets, for example <code>aria-expanded</code> on a button that opens a menu.</li>
+  </ul>
+
+  <p class="note"><strong>Test it yourself:</strong> put the mouse aside and use the page with only the keyboard (<kbd>Tab</kbd>, <kbd>Shift</kbd>+<kbd>Tab</kbd>, <kbd>Enter</kbd>, <kbd>Space</kbd>), zoom in to 200%, and try a screen reader such as NVDA on Windows or VoiceOver on macOS and iOS. Automated checkers like <a href="https://wave.webaim.org/">WAVE</a> catch many common problems, but not all of them.</p>
+</section>
+
+<section id="limitations">
+  <header>
+    <h2>Known limitations</h2>
+  </header>
+
+  <p>Nausikaä doesn’t get everything right yet. These are the known issues; keep them in mind when you use the affected parts.</p>
+
+  <table class="striped">
+    <tbody>
+      <tr>
+        <th>Contrast of some colors</th>
+        <td>White text on <em>primary</em> buttons reaches a contrast of 4.1:1, and on <em>positive</em> buttons 2.7:1, below the 4.5:1 guideline. The Maroon, Orange and Teal tags and active knobs reach between 3.8:1 and 4.3:1: at these brightnesses neither white nor dark text is quite enough. Prefer other colors for small text, or use these for large text only.</td>
+      </tr>
+      <tr>
+        <th>Dropdowns</th>
+        <td>Dropdown panels open when their trigger has focus and close when focus moves away. They work without JavaScript, but they don’t close with <kbd>Escape</kbd> and don’t announce whether they are open. Add <code>aria-expanded</code> with a few lines of JavaScript where that matters.</td>
+      </tr>
+      <tr>
+        <th>Menu toggles</th>
+        <td>The navbar menu on small screens and the sidebar toggle are built with a hidden checkbox. Screen readers announce them as a checkbox rather than as a menu button.</td>
+      </tr>
+      <tr>
+        <th>Text size</th>
+        <td>The base text size is set in pixels. Zooming in works, but a larger default font size chosen in the browser settings has no effect.</td>
+      </tr>
+      <tr>
+        <th>Reduced motion</th>
+        <td>Only progress bars respond to the reduced motion setting so far. The short transitions of dialogs, dropdowns and loading buttons still play.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

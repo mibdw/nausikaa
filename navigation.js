@@ -4,6 +4,116 @@ const nav = [
     slug: "documentation",
     nav: [
       {
+        title: "Foundations",
+        slug: "foundations",
+        color: "gray",
+        description: [
+          "The <em>Foundations</em> explain how Nausikaä works as a whole: how to add it to a page, how the light and dark themes and the colors work, and what Nausikaä does for accessibility and different screen sizes.",
+        ],
+        nav: [
+          {
+            title: "Getting started",
+            slug: "getting-started",
+            icon: "flag",
+            description:
+              "Add Nausikaä to a page and learn the principles behind it.",
+            nav: [
+              {
+                title: "Adding Nausikaä",
+                slug: "installation",
+              },
+              {
+                title: "Plain HTML first",
+                slug: "plain-html",
+              },
+              {
+                title: "Icons",
+                slug: "icons",
+              },
+              {
+                title: "Browser support",
+                slug: "browser-support",
+              },
+            ],
+          },
+          {
+            title: "Theming",
+            slug: "theming",
+            icon: "color-fill",
+            description:
+              "Light and dark themes, the color palette, and how to adjust colors and sizes.",
+            nav: [
+              {
+                title: "Light and dark",
+                slug: "light-and-dark",
+              },
+              {
+                title: "Color palette",
+                slug: "colors",
+              },
+              {
+                title: "Customizing",
+                slug: "customizing",
+              },
+              {
+                title: "Component colors",
+                slug: "component-colors",
+              },
+            ],
+          },
+          {
+            title: "Accessibility",
+            slug: "accessibility",
+            icon: "users",
+            description:
+              "What Nausikaä takes care of, what is up to you, and its known limitations.",
+            nav: [
+              {
+                title: "What Nausikaä does",
+                slug: "what-nausikaa-does",
+              },
+              {
+                title: "Your part",
+                slug: "your-part",
+              },
+              {
+                title: "Known limitations",
+                slug: "limitations",
+              },
+            ],
+          },
+          {
+            title: "Responsive design",
+            slug: "responsive-design",
+            icon: "fullscreen",
+            description:
+              "How layouts and components adapt to phones, tablets and large screens.",
+            nav: [
+              {
+                title: "Viewport",
+                slug: "viewport",
+              },
+              {
+                title: "Breakpoints",
+                slug: "breakpoints",
+              },
+              {
+                title: "Page layout",
+                slug: "layout",
+              },
+              {
+                title: "Components",
+                slug: "components",
+              },
+              {
+                title: "Tips",
+                slug: "tips",
+              },
+            ],
+          },
+        ],
+      },
+      {
         title: "Elements",
         slug: "elements",
         color: "yellow",

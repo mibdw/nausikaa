@@ -1,0 +1,106 @@
+<header>
+  <h1>Responsive design</h1>
+</header>
+
+<section id="introduction">
+  <p class="introduction">
+    Visitors arrive on phones, tablets, laptops and large monitors, and they zoom in when text is too small. <strong>Nausikaä</strong> adapts its layouts and components to the width of the screen, so the same HTML works everywhere.
+  </p>
+  <p class="introduction">
+    Most of this happens without any work on your side. This page explains the screen widths Nausikaä distinguishes, how the page layout and the components change, and a few things to keep in mind in your own pages.
+  </p>
+</section>
+
+<section id="viewport">
+  <header>
+    <h2>Viewport</h2>
+  </header>
+
+  <p>Add the viewport meta tag to the <code>&lt;head&gt;</code> of every page. Without it, phones pretend to be a desktop screen of about 980 pixels wide and shrink the whole page to fit, so the text becomes tiny and the layouts for small screens never apply.</p>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Don’t disable zooming:</strong> avoid <code>maximum-scale=1</code> or <code>user-scalable=no</code> in this tag. Many people depend on zooming in to read comfortably.</p>
+</section>
+
+<section id="breakpoints">
+  <header>
+    <h2>Breakpoints</h2>
+  </header>
+
+  <p>Nausikaä distinguishes three widths. The boundaries between them are called <em>breakpoints</em>.</p>
+
+  <table class="striped">
+    <thead>
+      <tr><th>Width</th><th>Typical devices</th><th>What changes</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Up to 666px</th><td>Phones</td><td>Single column, text at 90% of the base size, navbar collapsed into a menu button, form labels above their fields.</td></tr>
+      <tr><th>667px to 900px</th><td>Tablets, small windows</td><td>Single column, text at 95% of the base size, navbar collapsed into a menu button.</td></tr>
+      <tr><th>901px and wider</th><td>Laptops and desktops</td><td>Page content on a twelve-column grid, full navbar, optional sidebar next to the content.</td></tr>
+    </tbody>
+  </table>
+
+  <p>A few components have their own breakpoint where their content needs one, such as breadcrumbs (680px) and the date picker, which shows one month instead of two below 768px.</p>
+
+  <p class="note"><strong>Zooming counts too:</strong> breakpoints respond to the width in CSS pixels, not to the physical screen. A visitor who zooms a desktop page to 200% gets the tablet or phone layout, which keeps the text readable without scrolling sideways.</p>
+</section>
+
+<section id="layout">
+  <header>
+    <h2>Page layout</h2>
+  </header>
+
+  <p>On screens of 901px and wider, the <code>&lt;main&gt;</code> element directly inside <code>&lt;body&gt;</code> becomes a centered grid of twelve columns, at most 1150px wide. Add the class <code>sidebar-right</code> or <code>sidebar-left</code> to place an <code>&lt;aside class="sidebar"&gt;</code> next to the content, as on this page. On smaller screens the sidebar moves out of view and opens with a button at the edge of the screen.</p>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;body&gt;
+  &lt;header class="navbar"&gt;...&lt;/header&gt;
+
+  &lt;main class="sidebar-right"&gt;
+    &lt;article&gt;...&lt;/article&gt;
+    &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre>
+  </div>
+</section>
+
+<section id="components">
+  <header>
+    <h2>Components</h2>
+  </header>
+
+  <p>Components adapt to the space they get, without extra classes:</p>
+
+  <table class="striped">
+    <tbody>
+      <tr><th><a href="/documentation/collections/navbar">Navbar</a></th><td>Below 902px the links fold away behind a menu button.</td></tr>
+      <tr><th><a href="/documentation/collections/forms">Forms</a></th><td>In a <code>basic-form</code>, labels sit next to their fields on wide screens and above them on phones.</td></tr>
+      <tr><th><a href="/documentation/elements/images">Images</a></th><td>Images never grow wider than their container. Floated images stop floating on phones and are centered instead.</td></tr>
+      <tr><th><a href="/documentation/collections/products">Products</a></th><td>Product cards, lists and detail views rearrange their image, text and buttons for narrower screens.</td></tr>
+      <tr><th><a href="/documentation/components/breadcrumbs">Breadcrumbs</a></th><td>Steps get less spacing on tablets and are stacked more compactly on phones.</td></tr>
+      <tr><th><a href="/documentation/utilities/date-picker">Date picker</a></th><td>Shows one month instead of two on narrow screens.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="tips">
+  <header>
+    <h2>Tips</h2>
+  </header>
+
+  <ul>
+    <li><strong>Wide tables</strong> don’t scroll by themselves. Wrap a table with many columns in an element with <code>overflow-x: auto</code>, so it can scroll sideways on a phone without widening the whole page.</li>
+    <li><strong>Serve images at the right size</strong> with <code>srcset</code> and <code>sizes</code>, so phones don’t download images meant for large screens. See <a href="/documentation/elements/images#responsive">Responsive images</a>.</li>
+    <li><strong>Leave room for fingers.</strong> On touch screens, links and buttons that sit close together are easy to miss. Nausikaä’s buttons and form fields are large enough; keep a similar size for your own controls.</li>
+    <li><strong>Test on real devices</strong> as well as in the browser’s responsive design mode. Also try a phone in landscape orientation, and zoom a desktop page to 200%.</li>
+  </ul>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div style="overflow-x: auto"&gt;
+  &lt;table&gt;...&lt;/table&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</section>

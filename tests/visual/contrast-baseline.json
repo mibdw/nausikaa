@@ -3,7 +3,7 @@
     "/": 0,
     "/about": 0,
     "/download": 0,
-    "/documentation": 4,
+    "/documentation": 5,
     "/documentation/elements/typography": 0,
     "/documentation/elements/links": 3,
     "/documentation/elements/buttons": 25,
@@ -32,7 +32,11 @@
     "/examples/order-tracing": 5,
     "/examples/product-detail": 0,
     "/examples/complex-form": 147,
-    "/examples/library-services": 52
+    "/examples/library-services": 52,
+    "/documentation/foundations/getting-started": 1,
+    "/documentation/foundations/theming": 0,
+    "/documentation/foundations/accessibility": 0,
+    "/documentation/foundations/responsive-design": 0
   },
   "dark": {
     "/": 0,
@@ -67,6 +71,10 @@
     "/examples/order-tracing": 5,
     "/examples/product-detail": 0,
     "/examples/complex-form": 121,
-    "/examples/library-services": 55
+    "/examples/library-services": 55,
+    "/documentation/foundations/getting-started": 1,
+    "/documentation/foundations/theming": 0,
+    "/documentation/foundations/accessibility": 0,
+    "/documentation/foundations/responsive-design": 0
   }
 }

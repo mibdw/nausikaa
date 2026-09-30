@@ -145,3 +145,37 @@
     }
   }
 }
+
+/* Color swatches on the Theming page */
+.swatches {
+  --nausikaa-swatch-size: 1.4em;
+
+  .swatch {
+    display: inline-block;
+    width: var(--nausikaa-swatch-size);
+    height: var(--nausikaa-swatch-size);
+    border: 1px solid var(--nausikaa-crust);
+    border-radius: 4px;
+    vertical-align: middle;
+  }
+
+  code {
+    font-size: 0.8em;
+  }
+}
+
+table.swatches {
+  width: 100%;
+
+  td {
+    white-space: nowrap;
+  }
+}
+
+ul.swatches {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
+  grid-gap: 0.5em 1em;
+}

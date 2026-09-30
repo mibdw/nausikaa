@@ -1,0 +1,195 @@
+<%
+  var accents = ["rosewater", "flamingo", "pink", "mauve", "red", "maroon", "peach", "yellow", "green", "teal", "sky", "sapphire", "blue", "lavender"];
+  var flavors = [
+    { step: 3, name: "Latte" },
+    { step: 2, name: "Frappé" },
+    { step: 1, name: "Macchiato" },
+    { step: 0, name: "Mocha" }
+  ];
+  var neutrals = ["text", "subtext1", "subtext0", "overlay2", "overlay1", "overlay0", "surface2", "surface1", "surface0", "base", "mantle", "crust"];
+%>
+
+<header>
+  <h1>Theming</h1>
+</header>
+
+<section id="introduction">
+  <p class="introduction">
+    <strong>Nausikaä</strong> comes with a light and a dark theme, and follows the visitor’s system setting by default. All colors, fonts and sizes are <em>custom properties</em> (CSS variables), so you can adjust them to your own design without touching the framework.
+  </p>
+  <p class="introduction">
+    Every custom property starts with <code>--nausikaa-</code>, for example <code>--nausikaa-base</code> or <code>--nausikaa-link-color</code>. The prefix keeps them apart from the variables of other stylesheets on the same page.
+  </p>
+</section>
+
+<section id="light-and-dark">
+  <header>
+    <h2>Light and dark</h2>
+  </header>
+
+  <p>Out of the box, Nausikaä follows the appearance chosen in the visitor’s operating system: a dark system setting shows the dark theme, a light one the light theme. Nothing needs to be configured for this.</p>
+
+  <p>To choose a theme yourself, set <code>data-theme</code> on the <code>&lt;html&gt;</code> element. Leave the attribute out to follow the system again.</p>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;!-- Follow the system setting --&gt;
+&lt;html lang="en"&gt;
+
+&lt;!-- Always light --&gt;
+&lt;html lang="en" data-theme="light"&gt;
+
+&lt;!-- Always dark --&gt;
+&lt;html lang="en" data-theme="dark"&gt;</code></pre>
+  </div>
+
+  <p>Nausikaä also tells the browser which theme is active, so built-in parts of the page—scrollbars, checkboxes, the date picker of a date field—match the theme too.</p>
+
+  <p class="note"><strong>Remembering a visitor’s choice:</strong> this website offers <em>Automatic</em>, <em>Light</em> and <em>Dark</em> in the navbar. The choice is stored in a cookie, and the server writes the matching <code>data-theme</code> into every page. Because the attribute is already in the HTML, the page never flashes in the wrong theme while it loads. If you store the choice with JavaScript instead, set the attribute in a small script at the top of the <code>&lt;head&gt;</code>, before the stylesheet is applied.</p>
+</section>
+
+<section id="colors">
+  <header>
+    <h2>Color palette</h2>
+  </header>
+
+  <p>The accent colors of Nausikaä come from <a href="https://catppuccin.com">Catppuccin</a>, an open-source color scheme by the Catppuccin community, published under the MIT license. Catppuccin offers four <em>flavors</em> of the same fourteen colors, from the light Latte to the dark Mocha. Nausikaä includes all four, numbered from 3 down to 0: the custom property for the Latte version of rosewater is <code>--nausikaa-rosewater3</code>, for the Mocha version <code>--nausikaa-rosewater0</code>. The full specification is available in the <a href="https://github.com/catppuccin/catppuccin">Catppuccin repository on GitHub</a>.</p>
+
+  <div class="section-example" style="overflow-x: auto">
+    <table class="swatches">
+      <thead>
+        <tr>
+          <th>Color</th>
+          <% flavors.forEach(function (f) { %>
+          <th><%= f.name %> <small>(<%= f.step %>)</small></th>
+          <% }); %>
+        </tr>
+      </thead>
+      <tbody>
+        <% accents.forEach(function (c) { %>
+        <tr>
+          <th><%= c.charAt(0).toUpperCase() + c.slice(1) %></th>
+          <% flavors.forEach(function (f) { %>
+          <td><span class="swatch" style="background-color: var(--nausikaa-<%= c %><%= f.step %>)"></span> <code><%= c %><%= f.step %></code></td>
+          <% }); %>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The accent colors are the same in both themes. The step with the number 3 is the most saturated and works well for buttons, tags and progress bars; the lighter steps suit backgrounds, such as those of containers and panels.</p>
+
+  <p>The <strong>neutral colors</strong> for text, surfaces and backgrounds are Nausikaä’s own. They follow Catppuccin’s names, and the light backgrounds are taken from Latte. These are the colors that change between the light and dark theme; the swatches below show the theme you are viewing now.</p>
+
+  <div class="section-example">
+    <ul class="swatches">
+      <% neutrals.forEach(function (n) { %>
+      <li><span class="swatch" style="background-color: var(--nausikaa-<%= n %>)"></span> <code>--nausikaa-<%= n %></code></li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <p>Text uses <code>--nausikaa-text</code> on the <code>--nausikaa-base</code> background. The <code>subtext</code> colors are for secondary text, the <code>overlay</code> colors for borders and icons, and the <code>surface</code> colors for raised areas such as buttons. <code>mantle</code> and <code>crust</code> are slightly darker backgrounds, for areas such as the navbar and code examples.</p>
+</section>
+
+<section id="customizing">
+  <header>
+    <h2>Customizing</h2>
+  </header>
+
+  <p>Override any custom property in your own stylesheet, loaded after Nausikaä. Changes on <code>:root</code> apply to the whole page; sizes derived from the one you change, such as the line height from the font size, follow automatically.</p>
+
+  <div class="code-example">
+    <pre><code class="css">:root {
+  --nausikaa-font-size: 16px;
+  --nausikaa-link-color: #8839ef;
+  --nausikaa-block-text: "Source Serif 4", Georgia, serif;
+}</code></pre>
+  </div>
+
+  <p>To change a color in one theme only, use the same selectors as Nausikaä: <code>[data-theme="dark"]</code> for a chosen dark theme, and a media query for the system setting.</p>
+
+  <div class="code-example">
+    <pre><code class="css">/* A warmer dark background */
+:root[data-theme="dark"] {
+  --nausikaa-base: #1e1e2e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --nausikaa-base: #1e1e2e;
+  }
+}</code></pre>
+  </div>
+
+  <table class="striped">
+    <thead>
+      <tr><th>Custom property</th><th>What it sets</th></tr>
+    </thead>
+    <tbody>
+      <tr><th><code>--nausikaa-font-size</code></th><td>The base text size; the line height and paragraph spacing are derived from it.</td></tr>
+      <tr><th><code>--nausikaa-block-text</code>, <code>--nausikaa-utility-text</code>, <code>--nausikaa-mono-text</code></th><td>The typefaces for running text, interface elements and code.</td></tr>
+      <tr><th><code>--nausikaa-link-color</code></th><td>The color of links.</td></tr>
+      <tr><th><code>--nausikaa-input-height</code></th><td>The height of text fields, selects and the rows of forms.</td></tr>
+      <tr><th><code>--nausikaa-button-height</code>, <code>--nausikaa-button-padding</code></th><td>The size of buttons.</td></tr>
+      <tr><th><code>--nausikaa-header-height</code></th><td>The height of the navbar.</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note"><strong>Keep it readable:</strong> Nausikaä’s colors are chosen so that text meets the contrast guidelines in both themes, with a few exceptions listed under <a href="/documentation/foundations/accessibility#limitations">Accessibility</a>. When you change colors, check the contrast of text against its background, for example with the <a href="https://webaim.org/resources/contrastchecker/">WebAIM contrast checker</a>.</p>
+</section>
+
+<section id="component-colors">
+  <header>
+    <h2>Component colors</h2>
+  </header>
+
+  <p>Components such as buttons, panels, tags and notifications read their colors from custom properties of their own. A color class like <code>primary</code> or <code>rosewater</code> does nothing more than set those properties. That means you can add a color of your own in a few lines, and it gets every state—hover, focus, active, disabled—for free.</p>
+
+  <div class="section-example">
+    <style>
+      .theming-brand {
+        --nausikaa-button-background: #8839ef;
+        --nausikaa-button-line: #5a1fa8;
+        --nausikaa-button-shadow: #6a24c4;
+        --nausikaa-button-text: #ffffff;
+        --nausikaa-button-hover: #7a2ee0;
+        --nausikaa-button-focus: #7a2ee0;
+        --nausikaa-button-active: #6a24c4;
+        --nausikaa-button-focus-ring: rgba(136, 57, 239, 0.5);
+      }
+    </style>
+    <button type="button" class="theming-brand">Brand button</button>
+    <button type="button" class="theming-brand active">Active</button>
+    <button type="button" class="theming-brand" disabled>Disabled</button>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="css">button.brand,
+.button.brand {
+  --nausikaa-button-background: #8839ef;
+  --nausikaa-button-line: #5a1fa8;
+  --nausikaa-button-shadow: #6a24c4;
+  --nausikaa-button-text: #ffffff;
+  --nausikaa-button-hover: #7a2ee0;
+  --nausikaa-button-focus: #7a2ee0;
+  --nausikaa-button-active: #6a24c4;
+  --nausikaa-button-focus-ring: rgba(136, 57, 239, 0.5);
+}</code></pre>
+  </div>
+
+  <table class="striped">
+    <thead>
+      <tr><th>Component</th><th>Custom properties</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Buttons</th><td><code>--nausikaa-button-background</code>, <code>-line</code>, <code>-shadow</code>, <code>-text</code>, <code>-hover</code>, <code>-focus</code>, <code>-active</code>, <code>-disabled</code>, <code>-text-disabled</code>, <code>-focus-ring</code></td></tr>
+      <tr><th>Panels</th><td><code>--nausikaa-panel-background</code>, <code>-border</code>, <code>-link</code>, <code>-header</code>, <code>-hover</code>, <code>-active</code>, <code>-active-text</code>, <code>-subnav-border</code>, <code>-subnav-link</code></td></tr>
+      <tr><th>Containers</th><td><code>--nausikaa-container-background</code>, <code>-border</code>, <code>-text</code>, <code>-link</code>, <code>-header</code></td></tr>
+      <tr><th>Notifications</th><td><code>--nausikaa-notification-background</code>, <code>-border</code>, <code>-text</code>, <code>-header</code>, <code>-icon</code></td></tr>
+      <tr><th>Tags</th><td><code>--nausikaa-tag-background</code>, <code>-text</code>, <code>-hover</code>, <code>-icon</code></td></tr>
+      <tr><th>Knobs</th><td><code>--nausikaa-knob-background</code>, <code>-text</code>, <code>-border</code>, <code>-hover</code>, <code>-active</code>, <code>-active-text</code>, <code>-text-disabled</code></td></tr>
+      <tr><th>Progress bars</th><td><code>--nausikaa-progress-one</code>, <code>--nausikaa-progress-two</code> (the two stripe colors)</td></tr>
+    </tbody>
+  </table>
+</section>
