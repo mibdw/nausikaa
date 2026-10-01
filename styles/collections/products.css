@@ -74,6 +74,39 @@
       object-fit: contain;
       -o-object-fit: contain;
     }
+
+    /* Stands in for a product without an image */
+    & > .no-images {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 60% 1em;
+      border-radius: 6px;
+      background-color: var(--nausikaa-mantle);
+      background-image: repeating-linear-gradient(
+        -45deg,
+        var(--nausikaa-mantle),
+        var(--nausikaa-mantle) 1rem,
+        var(--nausikaa-crust) 1rem,
+        var(--nausikaa-crust) 2rem
+      );
+      color: var(--nausikaa-subtext0);
+      font-family: var(--nausikaa-utility-text);
+      font-weight: bold;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    &.image-cover > .no-images,
+    &.image-contain > .no-images {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 1em;
+    }
   }
 
   & > .product-metadata {
@@ -702,5 +735,139 @@
         }
       }
     }
+  }
+}
+
+/*
+ * Smaller products: a compact row for long lists and for a product that is
+ * mentioned inside something else, such as an order. Put the class on a
+ * single product, or on a product list to make all its products smaller.
+ */
+.product.small,
+.products.list.small > .product,
+.product.mini,
+.products.list.mini > .product {
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 0;
+  align-items: start;
+  margin: 0;
+
+  & > .product-image {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    max-width: none;
+    margin: 0;
+  }
+
+  & > .product-metadata {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    min-width: 0;
+
+    & > * {
+      margin: 0;
+    }
+
+    .product-title {
+      font-weight: 500;
+    }
+
+    & > p {
+      color: var(--nausikaa-subtext0);
+      font-size: 0.9em;
+      line-height: 1.35;
+    }
+  }
+
+  & > .product-controls {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    & > *,
+    & > *:first-child,
+    & > *:last-child {
+      flex-basis: auto;
+      margin: 0 0 0.3em;
+    }
+  }
+}
+
+.product.small,
+.products.list.small > .product {
+  grid-template-columns: 6em 1fr auto;
+  grid-column-gap: 1em;
+  padding: 1.2em 0;
+
+  & > .product-image > .no-images {
+    font-size: 0.75em;
+    padding: 55% 0.5em;
+  }
+
+  & > .product-metadata {
+    & > * + * {
+      margin-top: 0.3em;
+    }
+
+    .product-title {
+      font-size: 1.15em;
+    }
+  }
+
+  @media (max-width: 499px) {
+    grid-template-columns: 4.5em 1fr;
+
+    & > .product-controls {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      flex-direction: row;
+      align-items: baseline;
+      margin-top: 0.5em;
+
+      & > *,
+      & > *:first-child,
+      & > *:last-child {
+        margin: 0 1em 0 0;
+      }
+    }
+  }
+}
+
+.product.mini,
+.products.list.mini > .product {
+  grid-template-columns: 3em 1fr auto;
+  grid-column-gap: 0.8em;
+  align-items: center;
+  padding: 0.6em 0;
+
+  & > .product-image > .no-images {
+    /* Too small for words */
+    font-size: 0;
+    padding: 65% 0;
+    border-radius: 3px;
+  }
+
+  & > .product-metadata {
+    /* One line for the title, one for the rest */
+    & > *,
+    .product-title {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  & > .product-controls > * {
+    font-size: 0.9em;
+  }
+
+  @media (max-width: 499px) {
+    grid-template-columns: 2.5em 1fr auto;
   }
 }

@@ -355,6 +355,61 @@
 &lt;/header&gt;</code></pre>
   
   </div>
+
+  <h3>Expanding search</h3>
+
+  <p>A search field takes a lot of room in a navbar. Add the class <code>search</code> to the suggestions and the field folds up into a knob with a search icon. It widens into a field as soon as it gets the focus, and stays wide while there is text in it. This needs no JavaScript: the knob <em>is</em> the search field, only narrower. The search at the top of this page works this way; click it, or press <kbd>/</kbd>.</p>
+
+  <p>The panel with suggestions shows only while the wrapper has the class <code>open</code>. Your script adds that class when it has suggestions to show, and removes it when the field is emptied.</p>
+
+  <div class="section-example">
+    <div class="container browser" style="padding-bottom: 9em;">
+      <header class="navbar">
+        <nav>
+          <ul class="knobs">
+            <li class="active"><a href="#search">Catalogue</a></li>
+            <li><a href="#search">Orders</a></li>
+          </ul>
+        </nav>
+
+        <div class="spacer"></div>
+
+        <div class="suggestions search open" role="search">
+          <form action="#search" class="group">
+            <svg class="icon">
+              <use xlink:href="/images/icons.svg#search"></use>
+            </svg>
+            <input type="search" class="prepend-icon" placeholder="Search the catalogue" aria-label="Search the catalogue" autocomplete="off">
+          </form>
+          <nav class="panel" aria-label="Suggestions">
+            <ul>
+              <li><a href="#search">Nausicaä in Greek mythology</a></li>
+              <li><a href="#search">Odysseus meets Nausicaä</a></li>
+              <li><a href="#search">The Phaeacians of Scheria</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;header class="navbar"&gt;
+  ...
+  &lt;div class="spacer"&gt;&lt;/div&gt;
+
+  &lt;div class="suggestions search" role="search"&gt;
+    &lt;form action="/search" class="group"&gt;
+      &lt;svg class="icon"&gt;&lt;use xlink:href="/images/icons.svg#search"&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;input type="search" name="q" class="prepend-icon" placeholder="Search the catalogue"
+             aria-label="Search the catalogue" autocomplete="off"&gt;
+    &lt;/form&gt;
+    &lt;nav class="panel" aria-label="Suggestions"&gt;...&lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Keep the placeholder:</strong> the field decides whether it is in use by looking at its placeholder, so it needs one. Give it an <code>aria-label</code> as well; while the field is folded up the placeholder can't be seen. Let the form lead to a page with all results, so the search also works for visitors without JavaScript.</p>
 </section>
 
 <section id="links">

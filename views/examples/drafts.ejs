@@ -1,0 +1,151 @@
+<%
+  // Example: a dense table with a selection. The tabs filter on the state in
+  // the address (?state=review); selecting rows is the one thing on this page
+  // that needs a little JavaScript.
+  var state = data.draftCounts.find(function (count) { return count.key == query.state; });
+  var rows = data.drafts.filter(function (draft) { return !state || draft.state.key == state.key; });
+  var initials = function (name) { return name.split(' ').map(function (part) { return part[0]; }).join(''); };
+%>
+<main>
+
+  <article style="grid-column: 1 / 13">
+
+    <header>
+      <h2>Drafts</h2>
+    </header>
+
+    <p>New titles that are being described. A draft goes to the customers when a colleague has reviewed it.</p>
+
+    <nav class="tabs" aria-label="Drafts by state">
+      <ul>
+        <li class="<%= state ? '' : 'active' %>">
+          <a href="/examples/drafts" <%= state ? '' : 'aria-current=page' %>>All <span class="tag badge <%= state ? '' : 'blue' %>"><%= data.drafts.length %></span></a>
+        </li>
+        <% data.draftCounts.forEach(function (count) { %>
+        <li class="<%= count == state ? 'active' : '' %>">
+          <a href="/examples/drafts?state=<%= count.key %>" <%= count == state ? 'aria-current=page' : '' %>><%= count.name %> <span class="tag badge <%= count == state ? 'blue' : '' %>"><%= count.count %></span></a>
+        </li>
+        <% }); %>
+      </ul>
+    </nav>
+
+    <div class="dropdown">
+      <a class="knob" tabindex="0" role="button" aria-haspopup="true" title="Selected drafts">
+        <svg class="icon"><use xlink:href="/images/icons.svg#checklist"></use></svg>
+        Selection <span class="tag badge blue" id="selection-count">0</span>
+      </a>
+      <nav class="panel arrow top left" aria-label="Selection">
+        <ul>
+          <li><button type="button" class="link" data-select="all">Select all</button></li>
+          <li><button type="button" class="link" data-select="none">Deselect all</button></li>
+          <li><button type="button" class="link" data-select="invert">Invert the selection</button></li>
+          <li class="seperator"></li>
+          <li><button type="button" class="link" data-needs-selection disabled>Send selected to review</button></li>
+          <li><button type="button" class="link" data-needs-selection id="delete-button" disabled>Delete selected…</button></li>
+        </ul>
+      </nav>
+    </div>
+
+    <%# A wide table scrolls sideways on a small screen %>
+    <div style="overflow-x: auto">
+      <table class="dense striped" id="drafts" style="min-width: 62em">
+        <thead>
+          <tr>
+            <th><span aria-hidden="true">✓</span></th>
+            <th>Draft</th>
+            <th>Title</th>
+            <th>Subject</th>
+            <th>State</th>
+            <th>Complete</th>
+            <th>Editor</th>
+            <th>Changed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% rows.forEach(function (draft) { var product = draft.product; %>
+          <tr>
+            <td><input type="checkbox" id="draft-<%= draft.id %>" aria-label="Select draft <%= draft.id %>"></td>
+            <td>
+              <span class="tag" title="Draft number">
+                <svg class="icon"><use xlink:href="/images/icons.svg#post-add"></use></svg>
+                <%= draft.id %>
+              </span>
+            </td>
+            <td>
+              <a href="/examples/drafts<%= state ? '?state=' + state.key : '' %>"><%= product.title %></a><br>
+              <small><%= product.author %>. <%= product.publisher.name %>, <%= product.year %></small>
+            </td>
+            <td><%= draft.subject %></td>
+            <td>
+              <span class="tag <%= draft.state.color %>"><%= draft.state.name %></span>
+              <% if (draft.summoning) { %>
+              <span class="spinner small gray" role="status" aria-label="Asking the publisher for details" title="Asking the publisher for details">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="20" />
+                </svg>
+              </span>
+              <% } %>
+            </td>
+            <td style="min-width: 9em">
+              <progress class="<%= draft.complete == 100 ? 'green' : draft.complete < 50 ? 'yellow' : '' %>" value="<%= draft.complete %>" max="100" aria-label="<%= draft.complete %>% complete" title="<%= draft.complete %>% complete"><%= draft.complete %>%</progress>
+            </td>
+            <td>
+              <span class="user-avatar" title="<%= draft.editor %>"><span class="no-avatar"><%= initials(draft.editor) %></span></span>
+            </td>
+            <td><time datetime="<%= draft.changed.toISOString().slice(0, 10) %>"><%= data.formatDate(draft.changed) %></time></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+
+    <p><small><%= rows.length %> of <%= data.drafts.length %> drafts<%= state ? ' in the state “' + state.name + '”' : '' %>.</small></p>
+
+    <dialog id="delete-dialog" class="medium" aria-labelledby="delete-dialog-title">
+      <h4 id="delete-dialog-title">Delete <span id="delete-count">0</span> drafts?</h4>
+      <p>The drafts are removed for everyone. This can't be undone.</p>
+
+      <%# Buttons of a form with method="dialog" close the dialog without a script %>
+      <form method="dialog" id="delete-form"></form>
+      <footer>
+        <div class="spacer"></div>
+        <button form="delete-form" class="negative" value="delete">Delete</button>
+        <button form="delete-form" value="cancel">Keep them</button>
+      </footer>
+    </dialog>
+
+  </article>
+
+</main>
+
+<script>
+(function () {
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("#drafts tbody input[type='checkbox']"));
+  var count = document.getElementById("selection-count");
+  var dialog = document.getElementById("delete-dialog");
+  dialogPolyfill.registerDialog(dialog);
+
+  var update = function () {
+    var selected = boxes.filter(function (box) { return box.checked; }).length;
+    count.textContent = selected;
+    document.getElementById("delete-count").textContent = selected;
+    document.querySelectorAll("[data-needs-selection]").forEach(function (button) {
+      button.disabled = selected === 0;
+    });
+  };
+
+  document.querySelectorAll("[data-select]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      boxes.forEach(function (box) {
+        box.checked = button.dataset.select === "all" || (button.dataset.select === "invert" && !box.checked);
+      });
+      update();
+    });
+  });
+  boxes.forEach(function (box) { box.addEventListener("change", update); });
+  document.getElementById("delete-button").addEventListener("click", function () {
+    dialog.showModal();
+  });
+  update();
+})();
+</script>

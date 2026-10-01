@@ -24,6 +24,7 @@
 @import "elements/textareas.css";
 @import "elements/progress-bars.css";
 @import "elements/dialogs.css";
+@import "elements/upload.css";
 
 /* COMPONENTS */
 @import "components/breadcrumbs.css";
@@ -33,6 +34,8 @@
 @import "components/notifications.css";
 @import "components/pagination.css";
 @import "components/panels.css";
+@import "components/spinners.css";
+@import "components/tabs.css";
 @import "components/tags.css";
 
 /* COLLECTIONS */
@@ -42,6 +45,7 @@
 @import "collections/gallery.css";
 @import "collections/forms.css";
 @import "collections/products.css";
+@import "collections/charts.css";
 @import "collections/code-example.css";
 @import "collections/site-overview.css";
 @import "collections/users.css";

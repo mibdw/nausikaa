@@ -1,0 +1,151 @@
+/*
+ * Tabs: a row of links that switch between the views of one subject. The
+ * active tab is cut out of the line below the row, so it needs to know the
+ * color of the surface it sits on: --nausikaa-tabs-background.
+ */
+.tabs {
+  --nausikaa-tabs-background: var(--nausikaa-base);
+  --nausikaa-tabs-line: var(--nausikaa-surface2);
+  --nausikaa-tabs-text: var(--nausikaa-subtext0);
+  --nausikaa-tabs-hover: var(--nausikaa-surface0);
+  --nausikaa-tabs-active: var(--nausikaa-text);
+
+  font-family: var(--nausikaa-utility-text);
+  margin: var(--nausikaa-paragraph-spacer) 0;
+
+  & > ul {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 1em;
+    /* The line is a background, so the active tab can cover it and it stays
+       in place while a long row of tabs scrolls sideways */
+    background-image: linear-gradient(var(--nausikaa-tabs-line), var(--nausikaa-tabs-line));
+    background-size: 100% 1px;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    overflow-x: auto;
+    scrollbar-width: thin;
+
+    & > li {
+      flex: 0 0 auto;
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      white-space: nowrap;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      & > a,
+      & > span {
+        display: block;
+        padding: 0.5em 1em;
+        border-width: 1px 1px 0 1px;
+        border-style: solid;
+        border-color: transparent;
+        border-radius: 0.5em 0.5em 0 0;
+        color: var(--nausikaa-tabs-text);
+        text-decoration: none;
+        -webkit-text-decoration: none;
+
+        & > .icon {
+          fill: var(--nausikaa-tabs-text);
+          width: 1.3em;
+          height: 1.3em;
+          transform: translateY(0.25em);
+          margin-right: 0.2em;
+        }
+
+        & > .tag {
+          margin-left: 0.3em;
+        }
+      }
+
+      & > a {
+        cursor: pointer;
+
+        &:visited {
+          color: var(--nausikaa-tabs-text);
+          text-decoration: none;
+          -webkit-text-decoration: none;
+        }
+
+        &:hover,
+        &:focus {
+          color: var(--nausikaa-tabs-active);
+          background-color: var(--nausikaa-tabs-hover);
+          text-decoration: none;
+          -webkit-text-decoration: none;
+
+          & > .icon {
+            fill: var(--nausikaa-tabs-active);
+          }
+        }
+
+        &:focus {
+          outline: 1px dotted var(--nausikaa-subtext0);
+          outline-offset: -3px;
+        }
+      }
+
+      &.active > a,
+      &.active > span,
+      & > a[aria-current] {
+        color: var(--nausikaa-tabs-active);
+        font-weight: bold;
+        background-color: var(--nausikaa-tabs-background);
+        border-color: var(--nausikaa-tabs-line);
+
+        & > .icon {
+          fill: var(--nausikaa-tabs-active);
+        }
+      }
+
+      /* A name in front of the tabs */
+      &.title > * {
+        color: var(--nausikaa-tabs-active);
+        font-weight: bold;
+        padding-left: 0;
+      }
+
+      /* Pushes the tabs that follow to the right */
+      &.spacer {
+        flex: 1 0 1em;
+        margin: 0;
+      }
+
+      &.disabled > * {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &.small {
+    font-size: 0.85em;
+  }
+
+  &.large {
+    font-size: 1.15em;
+  }
+}
+
+/* On a container the cut-out takes the color of that surface. The line is
+   drawn in the text color, so it shows on every container color. */
+.container .tabs {
+  --nausikaa-tabs-background: var(--nausikaa-container-background);
+  --nausikaa-tabs-line: var(--nausikaa-container-text);
+  --nausikaa-tabs-text: var(--nausikaa-container-text);
+  --nausikaa-tabs-hover: rgba(var(--nausikaa-overlay0-rgb), 0.2);
+  --nausikaa-tabs-active: var(--nausikaa-container-header);
+}
+
+/* Not to be confused with the tabs in a panel header */
+.panel > header.tabs,
+.panel > .header.tabs {
+  margin: 0 0 0.3em;
+}

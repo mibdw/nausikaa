@@ -1,0 +1,61 @@
+<%
+  // Wraps the words that were searched for in <mark>, in text that is escaped first.
+  var escapeHtml = function (text) {
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  };
+  var marked = function (text) {
+    var html = escapeHtml(text);
+    if (!found.words.length) return html;
+    var words = found.words.map(function (word) {
+      return escapeHtml(word).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    });
+    return html.replace(new RegExp("(" + words.join("|") + ")", "gi"), "<mark>$1</mark>");
+  };
+%>
+<main>
+
+  <article style="grid-column: 1 / 10">
+    <header>
+      <h1>Search</h1>
+    </header>
+
+    <form action="/search" method="GET" class="group" role="search">
+      <input type="search" name="q" size="40" value="<%= found.query %>" placeholder="Search the documentation" aria-label="Search the documentation" autocomplete="off" <%= found.query ? '' : 'autofocus' %>>
+      <button class="primary" type="submit">
+        <span class="label">
+          <svg class="icon">
+            <use xlink:href="/images/icons.svg#search"></use>
+          </svg>
+        </span>
+        Search
+      </button>
+    </form>
+
+    <% if (!found.query) { %>
+
+      <p>Search all pages of the documentation: type one or more words. Every word has to appear in a page or section for it to be found.</p>
+
+    <% } else if (!found.total) { %>
+
+      <p>Nothing found for <strong><%= found.query %></strong>. Try fewer or shorter words, or browse the <a href="/documentation">documentation</a>.</p>
+
+    <% } else { %>
+
+      <p>
+        <strong><%= found.total %></strong> <%= found.total == 1 ? 'result' : 'results' %> for <strong><%= found.query %></strong><% if (found.total > found.results.length) { %>; these are the best <%= found.results.length %><% } %>.
+      </p>
+
+      <% found.results.forEach(function (result) { %>
+        <section>
+          <h5>
+            <a href="<%= result.url %>"><%- marked(result.title) %></a>
+            <span class="tag"><%= result.group %><% if (result.page) { %> &rsaquo; <%= result.page %><% } %></span>
+          </h5>
+          <p><%- marked(result.snippet) %></p>
+        </section>
+      <% }); %>
+
+    <% } %>
+  </article>
+
+</main>

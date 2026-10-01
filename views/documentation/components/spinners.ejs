@@ -1,0 +1,174 @@
+<header>
+  <h1>Spinners</h1>
+</header>
+
+<section id="introduction">
+  <p class="introduction">
+    A <strong>spinner</strong> is a turning circle that tells your visitor something is on its way: a page, a list of search results, a number that is still being counted. It asks for patience without saying how long it will take.
+  </p>
+  <p class="introduction">
+    Use a spinner when you don't know how long the wait is. When you do know, a <a href="/documentation/elements/progress-bars">progress bar</a> says more. For a button that is busy, use the <a href="/documentation/elements/buttons/#loading">loading button</a>.
+  </p>
+  <p class="note"><strong>In use:</strong> the <a href="/examples/orders?state=loading">order overview</a> example shows a list under a veil while it loads, and the <a href="/examples/drafts">drafts table</a> has small spinners in its rows.</p>
+</section>
+
+<section id="page">
+  <header>
+    <h2>Page</h2>
+  </header>
+
+  <p>A spinner is a small SVG with one circle in it, inside an element with the class <code>spinner</code>. Without any other class the spinner is large and <strong>fixed to the middle of the page</strong>, on top of everything else. Use it while a whole page or view is loading.</p>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="spinner" role="status" aria-label="Loading"&gt;
+  &lt;svg viewBox="0 0 100 100"&gt;
+    &lt;circle cx="50" cy="50" r="20" /&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p>To dim the page behind the spinner, wrap it in an element with the classes <code>fetching page</code>. This veil covers the whole screen, the navigation included, so nothing can be clicked while the page is loading. Add the class <code>active</code> to show the veil, and remove it when the page is ready.</p>
+
+  <div class="section-example">
+    <button type="button" id="page-spinner-button">Show the page spinner for five seconds</button>
+    <div class="fetching page" id="page-spinner">
+      <div class="spinner" role="status" aria-label="Loading" hidden>
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="20" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="fetching page active"&gt;
+  &lt;div class="spinner" role="status" aria-label="Loading"&gt;
+    &lt;svg viewBox="0 0 100 100"&gt;
+      &lt;circle cx="50" cy="50" r="20" /&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Accessibility:</strong> a spinner has no text, so give it <code>role="status"</code> and an <code>aria-label</code> such as “Loading”. Remove the spinner from the page, or set the <code>hidden</code> attribute, as soon as the wait is over. For visitors who prefer reduced motion the circle keeps turning, but slowly and without growing and shrinking.</p>
+
+  <script>
+  (function () {
+    var button = document.getElementById("page-spinner-button");
+    var veil = document.getElementById("page-spinner");
+    var spinner = veil.querySelector(".spinner");
+    button.addEventListener("click", function () {
+      spinner.hidden = false;
+      veil.classList.add("active");
+      setTimeout(function () {
+        veil.classList.remove("active");
+        spinner.hidden = true;
+      }, 5000);
+    });
+  })();
+  </script>
+</section>
+
+<section id="inside">
+  <header>
+    <h2>Inside</h2>
+  </header>
+
+  <p>Add <code>inside</code> to keep the spinner in the middle of one part of the page. It centers itself in the nearest element with <code>position: relative</code>.</p>
+
+  <p>To cover content that is being replaced, wrap the spinner in an element with the class <code>fetching</code>, this time without <code>page</code>. This puts the veil over the nearest positioned element only; the content stays in place, so the page doesn't jump. Add the class <code>active</code> to show the veil, and remove it when the new content is there.</p>
+
+  <div class="section-example">
+    <div class="container" style="position: relative; min-height: 12em;">
+      <h5>Orders</h5>
+      <p>Found 1,284 orders. The list below is replaced while the next page is being fetched.</p>
+      <p>The content keeps its place under the veil.</p>
+
+      <div class="fetching active">
+        <div class="spinner inside" role="status" aria-label="Loading">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="20" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div style="position: relative"&gt;
+  ... the content ...
+
+  &lt;div class="fetching active"&gt;
+    &lt;div class="spinner inside" role="status" aria-label="Loading"&gt;
+      &lt;svg viewBox="0 0 100 100"&gt;
+        &lt;circle cx="50" cy="50" r="20" /&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</section>
+
+<section id="sizes">
+  <header>
+    <h2>Sizes</h2>
+  </header>
+
+  <p>With <code>small</code>, <code>medium</code> or <code>large</code> the spinner takes its place in the flow of the page, like an image. A small spinner is as high as a line of text, so it fits in a sentence, a table cell or a heading.</p>
+
+  <div class="section-example">
+    <p>
+      <span class="spinner small" role="status" aria-label="Loading">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="20" />
+        </svg>
+      </span>
+      Counting the orders of this customer…
+    </p>
+
+    <p>
+      <span class="spinner medium" role="status" aria-label="Loading">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="20" />
+        </svg>
+      </span>
+      <span class="spinner large" role="status" aria-label="Loading">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="20" />
+        </svg>
+      </span>
+    </p>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;span class="spinner small" role="status" aria-label="Loading"&gt;...&lt;/span&gt;
+&lt;span class="spinner medium" role="status" aria-label="Loading"&gt;...&lt;/span&gt;
+&lt;span class="spinner large" role="status" aria-label="Loading"&gt;...&lt;/span&gt;</code></pre>
+  </div>
+</section>
+
+<section id="colors">
+  <header>
+    <h2>Colors</h2>
+  </header>
+
+  <p>A spinner is blue. Add the name of a color from the <a href="/documentation/foundations/theming/#colors">palette</a>, or <code>gray</code>, to change it. For any other color, set the custom property <code>--nausikaa-spinner-color</code>.</p>
+
+  <div class="section-example">
+    <p>
+      <% ["rosewater", "flamingo", "pink", "mauve", "red", "maroon", "peach", "yellow", "green", "teal", "sky", "sapphire", "blue", "lavender", "gray"].forEach(function (color) { %>
+      <span class="spinner medium <%= color %>" role="status" aria-label="Loading" title="<%= color %>">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="20" />
+        </svg>
+      </span>
+      <% }); %>
+    </p>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;span class="spinner medium green" role="status" aria-label="Loading"&gt;...&lt;/span&gt;
+
+&lt;span class="spinner medium" style="--nausikaa-spinner-color: currentColor" ...&gt;...&lt;/span&gt;</code></pre>
+  </div>
+</section>

@@ -1,0 +1,255 @@
+<header>
+  <h1>Tabs</h1>
+</header>
+
+<section id="introduction">
+  <p class="introduction">
+    <strong>Tabs</strong> split one subject into a few views: the details of a customer, their orders, their invoices. The row of tabs sits on a line, and the active tab is cut out of that line so it reads as part of the content below.
+  </p>
+  <p class="introduction">
+    A tab is a link. Each tab leads to its own page or URL, and the page marks the tab it belongs to as active. That keeps every view linkable and makes the back button work, without any JavaScript.
+  </p>
+  <p class="note"><strong>In use:</strong> the <a href="/examples/invoice">invoice detail</a> example switches its tabs with a link per tab, and the <a href="/examples/drafts">drafts table</a> uses tabs with counts as a filter.</p>
+</section>
+
+<section id="regular">
+  <header>
+    <h2>Regular</h2>
+  </header>
+
+  <p>Put the class <code>tabs</code> on a <code>&lt;nav&gt;</code> with a list of links in it. Mark the current tab with <code>class="active"</code> on the list item, <code>aria-current="page"</code> on the link, or both. A list item with the class <code>disabled</code> can't be chosen.</p>
+
+  <div class="section-example">
+    <nav class="tabs" aria-label="Customer">
+      <ul>
+        <li class="active"><a href="#regular" aria-current="page">Details</a></li>
+        <li><a href="#regular">Orders</a></li>
+        <li><a href="#regular">Invoices</a></li>
+        <li><a href="#regular">Notes</a></li>
+        <li class="disabled"><a>Statistics</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;nav class="tabs" aria-label="Customer"&gt;
+  &lt;ul&gt;
+    &lt;li class="active"&gt;&lt;a href="/customers/42" aria-current="page"&gt;Details&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/customers/42/orders"&gt;Orders&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/customers/42/invoices"&gt;Invoices&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/customers/42/notes"&gt;Notes&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="disabled"&gt;&lt;a&gt;Statistics&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Accessibility:</strong> give the <code>&lt;nav&gt;</code> an <code>aria-label</code> that says what the tabs belong to, and set <code>aria-current="page"</code> on the active link so screen readers announce it. When the row is wider than the screen it scrolls sideways; the tabs never wrap onto a second line.</p>
+</section>
+
+<section id="icons-and-counts">
+  <header>
+    <h2>Icons and counts</h2>
+  </header>
+
+  <p>An <a href="/documentation/foundations/getting-started/#icons">icon</a> in front of the text and a <a href="/documentation/components/tags/#badges">badge</a> behind it both find their place without extra classes. Use a badge to show how many items a tab holds.</p>
+
+  <div class="section-example">
+    <nav class="tabs" aria-label="Order">
+      <ul>
+        <li>
+          <a href="#icons-and-counts">
+            <svg class="icon">
+              <use xlink:href="/images/icons.svg#receipt"></use>
+            </svg>
+            Order
+          </a>
+        </li>
+        <li class="active">
+          <a href="#icons-and-counts" aria-current="page">
+            <svg class="icon">
+              <use xlink:href="/images/icons.svg#book"></use>
+            </svg>
+            Products <span class="tag badge blue">12</span>
+          </a>
+        </li>
+        <li>
+          <a href="#icons-and-counts">
+            <svg class="icon">
+              <use xlink:href="/images/icons.svg#comments"></use>
+            </svg>
+            Notes <span class="tag badge">3</span>
+          </a>
+        </li>
+        <li>
+          <a href="#icons-and-counts">
+            <svg class="icon">
+              <use xlink:href="/images/icons.svg#history"></use>
+            </svg>
+            History
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;nav class="tabs" aria-label="Order"&gt;
+  &lt;ul&gt;
+    &lt;li class="active"&gt;
+      &lt;a href="..." aria-current="page"&gt;
+        &lt;svg class="icon"&gt;&lt;use xlink:href="/images/icons.svg#book"&gt;&lt;/use&gt;&lt;/svg&gt;
+        Products &lt;span class="tag badge blue"&gt;12&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    ...
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+  </div>
+</section>
+
+<section id="title-and-spacer">
+  <header>
+    <h2>Title and spacer</h2>
+  </header>
+
+  <p>A list item with the class <code>title</code> names the subject in front of the tabs. An empty list item with the class <code>spacer</code> takes up the room that is left, and pushes the tabs after it to the right.</p>
+
+  <div class="section-example">
+    <nav class="tabs" aria-label="Statistics">
+      <ul>
+        <li class="title"><span>Statistics</span></li>
+        <li class="active"><a href="#title-and-spacer" aria-current="page">Customers</a></li>
+        <li><a href="#title-and-spacer">Publishers</a></li>
+        <li><a href="#title-and-spacer">Orders</a></li>
+        <li class="spacer"></li>
+        <li><a href="#title-and-spacer">Settings</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;nav class="tabs" aria-label="Statistics"&gt;
+  &lt;ul&gt;
+    &lt;li class="title"&gt;&lt;span&gt;Statistics&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="active"&gt;&lt;a href="..." aria-current="page"&gt;Customers&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="..."&gt;Publishers&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="..."&gt;Orders&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="spacer"&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="..."&gt;Settings&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+  </div>
+</section>
+
+<section id="sizes">
+  <header>
+    <h2>Sizes</h2>
+  </header>
+
+  <p>Add <code>small</code> or <code>large</code> to make the tabs smaller or larger than the text around them.</p>
+
+  <div class="section-example">
+    <nav class="tabs small" aria-label="Small tabs">
+      <ul>
+        <li class="active"><a href="#sizes" aria-current="page">Small</a></li>
+        <li><a href="#sizes">Orders</a></li>
+        <li><a href="#sizes">Invoices</a></li>
+      </ul>
+    </nav>
+
+    <nav class="tabs" aria-label="Regular tabs">
+      <ul>
+        <li class="active"><a href="#sizes" aria-current="page">Regular</a></li>
+        <li><a href="#sizes">Orders</a></li>
+        <li><a href="#sizes">Invoices</a></li>
+      </ul>
+    </nav>
+
+    <nav class="tabs large" aria-label="Large tabs">
+      <ul>
+        <li class="active"><a href="#sizes" aria-current="page">Large</a></li>
+        <li><a href="#sizes">Orders</a></li>
+        <li><a href="#sizes">Invoices</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;nav class="tabs small"&gt;...&lt;/nav&gt;
+&lt;nav class="tabs"&gt;...&lt;/nav&gt;
+&lt;nav class="tabs large"&gt;...&lt;/nav&gt;</code></pre>
+  </div>
+</section>
+
+<section id="container">
+  <header>
+    <h2>On a container</h2>
+  </header>
+
+  <p>The active tab has the color of the surface behind it. Inside a <a href="/documentation/components/containers">container</a> the tabs take over the colors of that container. On any other surface, set the custom property <code>--nausikaa-tabs-background</code> to the color of that surface.</p>
+
+  <div class="section-example">
+    <div class="container">
+      <nav class="tabs" aria-label="Publisher">
+        <ul>
+          <li class="active"><a href="#container" aria-current="page">Details</a></li>
+          <li><a href="#container">Imprints</a></li>
+          <li><a href="#container">Suppliers</a></li>
+        </ul>
+      </nav>
+      <p>The details of the publisher are shown here.</p>
+    </div>
+
+    <div class="container blue">
+      <nav class="tabs" aria-label="Supplier">
+        <ul>
+          <li><a href="#container">Details</a></li>
+          <li class="active"><a href="#container" aria-current="page">Deliveries</a></li>
+          <li><a href="#container">Invoices</a></li>
+        </ul>
+      </nav>
+      <p>The deliveries of the supplier are shown here.</p>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="container"&gt;
+  &lt;nav class="tabs"&gt;...&lt;/nav&gt;
+  ...
+&lt;/div&gt;
+
+&lt;!-- On a surface of your own --&gt;
+&lt;nav class="tabs" style="--nausikaa-tabs-background: var(--nausikaa-mantle)"&gt;...&lt;/nav&gt;</code></pre>
+  </div>
+
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Custom property</th>
+        <th>Sets</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>--nausikaa-tabs-background</code></td>
+        <td>The background of the active tab: the color of the surface behind the tabs.</td>
+      </tr>
+      <tr>
+        <td><code>--nausikaa-tabs-line</code></td>
+        <td>The line below the tabs and around the active tab.</td>
+      </tr>
+      <tr>
+        <td><code>--nausikaa-tabs-text</code></td>
+        <td>The text of the tabs that are not active.</td>
+      </tr>
+      <tr>
+        <td><code>--nausikaa-tabs-active</code></td>
+        <td>The text of the active tab, and of a tab under the pointer.</td>
+      </tr>
+      <tr>
+        <td><code>--nausikaa-tabs-hover</code></td>
+        <td>The background of a tab under the pointer.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

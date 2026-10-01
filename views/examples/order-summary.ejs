@@ -1,0 +1,156 @@
+<%
+  // One order, as a row of a list of orders. It needs: order, data, and
+  // links: the addresses that the title and the three names lead to.
+  var product = order.product, customer = order.customer, publisher = product.publisher, supplier = order.supplier;
+  var iso = function (date) { return date.toISOString().slice(0, 10); };
+  var date = function (value) { return data.formatDate(value).replace(/-/g, '/'); };
+
+  // An identifier: the location it belongs to, an icon and the number
+  var identifier = function (id, branch, icon) {
+    var location = data.branches[branch];
+    return '<span class="tag ' + location.color + '" title="' + location.name + '"><strong>' + branch + '</strong></span> ' +
+      '<span class="tag">' + (icon ? '<svg class="icon"><use xlink:href="/images/icons.svg#' + icon + '"></use></svg>' : '') + id + '</span>';
+  };
+%>
+<li class="order-summary" id="order-summary-<%= order.id %>">
+
+  <div class="order-summary-header">
+    <div class="order-id"><%- identifier(order.id, order.branch, 'cart') %></div>
+
+    <div class="order-summary-quantity">
+      <span title="Quantity ordered" class="ordered <%= order.quantity ? 'non-zero' : 'zero' %>"><%= order.quantity %> &times; ordered</span>
+      /
+      <span title="Quantity received" class="received <%= order.received ? 'non-zero' : 'zero' %>"><%= order.received %> &times; received</span>
+    </div>
+
+    <div class="spacer"></div>
+
+    <span class="tag order-position <%= order.position.color %>" title="Order position: <%= order.position.name %> (<%= order.position.id %>)"><strong><%= order.position.id %>:</strong> <%= order.position.name %></span>
+    <span class="tag alt order-method" title="Order method: <%= order.method %>"><%= order.method %></span>
+    <span class="tag order-status" title="Order status: <%= order.type %>"><%= order.type %></span>
+
+    <% if (order.notes) { %>
+    <div class="note-summary-tag dropdown">
+      <a class="tag black" tabindex="0" role="button" title="<%= order.notes.count %> note<%= order.notes.count > 1 ? 's' : '' %>">
+        <svg class="icon"><use xlink:href="/images/icons.svg#comments"></use></svg>
+        <%= order.notes.count %>
+      </a>
+      <div class="panel arrow top right">
+        <div class="note-summary-wrapper">
+          <span class="user-avatar"><span class="no-avatar" title="<%= order.notes.author %>"><%= order.notes.author.split(' ').map(function (part) { return part[0]; }).join('') %></span></span>
+          <div class="note-summary-header"><strong><%= order.notes.author %></strong> <time><%= order.notes.ago %></time></div>
+          <div class="note-summary-text"><%= order.notes.text %></div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+  <div class="order-product">
+    <div class="product-info-wrapper">
+      <% if (product.newTitle) { %><span class="tag green nts-tag" title="Offered as a new title">NTS</span><% } else if (product.ebook) { %><span class="tag blue ebook-tag" title="E-book">EBK</span><% } %>
+
+      <div class="product-image">
+        <% if (product.image) { %>
+        <a href="<%= product.image %>"><img src="<%= product.image %>" alt=""></a>
+        <% } else { %>
+        <div class="no-images" role="img" aria-label="No images available"></div>
+        <% } %>
+      </div>
+
+      <div class="product-title">
+        <a href="<%= links.product %>"><%= product.title %></a>
+      </div>
+
+      <div class="product-metadata">
+        <% if (product.series) { %><em><%= product.series %></em>. <% } %>
+        <% if (product.edition) { %><span class="product-edition-dd">Edition: <%= product.edition %></span>. <% } %>
+        <span class="product-contributors"><%= product.author %></span>.
+        <span class="product-publication"><%= publisher.city %>: <%= publisher.name %>, <%= product.year %></span>.
+        <span class="product-isbn-span"><%= product.isbn %></span>.
+        <span class="product-medium-span"><%= product.binding %>.</span>
+
+        <div class="product-prices-availabilities">
+          <% product.prices.forEach(function (price, i) { %><span class="product-price"><span class="currency"><%= price[0] %></span> <strong class="amount"><%= price[1].toFixed(2) %></strong></span><%= i < product.prices.length - 1 ? ', ' : ' ' %><% }); %>
+          <span class="tag <%= product.availability[1] %>"><%= product.availability[0] %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-metadata">
+    <div class="order-entities">
+      <div class="customer">
+        <div class="tag label">Customer</div>
+        <span class="country-flag" title="<%= customer.country %>"><%= customer.flag %></span>
+        <%- identifier(customer.id, customer.branch, 'user') %>
+        <div class="customer-main-name"><a href="<%= links.customer %>"><%= customer.name %></a></div>
+        <div class="customer-additional-names"><%= [customer.department, customer.city].filter(Boolean).join(', ') %></div>
+      </div>
+
+      <div class="publisher">
+        <div class="tag label">Publisher</div>
+        <%- identifier(publisher.id, publisher.branch, 'shipping') %>
+        <div class="publisher-main-name"><a href="<%= links.publisher %>"><%= publisher.name %></a></div>
+        <div class="publisher-additional-names"><%= publisher.city %>, <%= publisher.country %></div>
+      </div>
+
+      <div class="supplier">
+        <div class="tag label">Supplier</div>
+        <%- identifier(supplier.id, supplier.branch, 'shipping') %>
+        <div class="supplier-main-name"><a href="<%= links.supplier %>"><%= supplier.name %></a></div>
+        <div class="supplier-additional-names"><%= supplier.city %>, <%= supplier.country %></div>
+      </div>
+    </div>
+
+    <div class="order-additional-info">
+      <dl class="order-dates">
+        <dt>Order date</dt>
+        <dd><time datetime="<%= iso(order.customerOrdered) %>"><%= date(order.customerOrdered) %></time></dd>
+
+        <dt>Entry date</dt>
+        <dd><time datetime="<%= iso(order.date) %>"><%= date(order.date) %></time> by <strong class="tag"><%= order.enteredBy %></strong></dd>
+
+        <% if (order.purchasedAt) { %>
+        <dt>Purchase date</dt>
+        <dd><time datetime="<%= iso(order.purchasedAt) %>"><%= date(order.purchasedAt) %></time> by <strong class="tag"><%= order.purchasedBy %></strong></dd>
+
+        <dt>Purchase price</dt>
+        <dd class="price"><span class="currency">EUR</span> <strong class="amount"><%= order.purchasePrice.toFixed(2) %></strong> (<%= order.discount %>% discount)</dd>
+        <% } %>
+
+        <% if (order.purchaseInvoice) { %>
+        <dt>Purchase invoice</dt>
+        <dd><time datetime="<%= iso(order.purchaseInvoice.date) %>"><%= date(order.purchaseInvoice.date) %></time>, <%- identifier(order.purchaseInvoice.id, order.branch, 'credit-card') %></dd>
+        <% } %>
+
+        <% if (order.salesInvoice) { %>
+        <dt>Sales invoice</dt>
+        <dd><time datetime="<%= iso(order.salesInvoice.date) %>"><%= date(order.salesInvoice.date) %></time> by <strong class="tag"><%= order.salesInvoice.by %></strong>, <%- identifier(order.salesInvoice.id, order.branch, 'receipt') %></dd>
+        <% } %>
+      </dl>
+
+      <dl class="order-references">
+        <% if (product.series) { %>
+        <dt>Part of</dt>
+        <dd class="order-part-of"><%= product.series.split(',')[0] %> &middot; <time><%= product.year %></time></dd>
+        <% } %>
+
+        <% if (customer.department) { %>
+        <dt>Department</dt>
+        <dd><%= customer.department %></dd>
+        <% } %>
+
+        <% if (order.budget) { %>
+        <dt>Budget</dt>
+        <dd><%= order.budget %></dd>
+        <% } %>
+
+        <% if (order.reference) { %>
+        <dt>Order ref.</dt>
+        <dd><%= order.reference %></dd>
+        <% } %>
+      </dl>
+    </div>
+  </div>
+</li>

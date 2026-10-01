@@ -50,6 +50,9 @@ input[type="radio"] {
   &.buttons {
     margin-right: 0.4rem;
     display: inline-flex;
+    /* A long row continues on the next line instead of leaving the screen */
+    flex-wrap: wrap;
+    row-gap: 0.3em;
     vertical-align: bottom;
 
     li {

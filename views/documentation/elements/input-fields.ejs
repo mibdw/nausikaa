@@ -591,6 +591,198 @@ input.addEventListener("change", () =&gt; {
   </script>
 </section>
 
+<section id="drop-zone">
+  <header>
+    <h2>Drop zone</h2>
+  </header>
+
+  <p>A <strong>drop zone</strong> is a large target to drop files on. Wrap the file input and its label in an element with the class <code>upload</code>. The input covers the whole zone, invisibly, so the browser does the work: dropping files on it and clicking it both work without JavaScript, and the files are sent with the form like those of any other file input.</p>
+
+  <div class="section-example">
+    <div class="upload" id="dropzone-example">
+      <input type="file" name="attachments" id="attachments" multiple>
+      <label for="attachments">
+        <svg class="icon">
+          <use xlink:href="/images/icons.svg#upload"></use>
+        </svg>
+        <strong>Drop files here</strong> or click to choose
+        <small>PDF or image, up to 25 MB each</small>
+      </label>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="upload"&gt;
+  &lt;input type="file" name="attachments" id="attachments" multiple&gt;
+  &lt;label for="attachments"&gt;
+    &lt;svg class="icon"&gt;&lt;use xlink:href="/images/icons.svg#upload"&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;strong&gt;Drop files here&lt;/strong&gt; or click to choose
+    &lt;small&gt;PDF or image, up to 25 MB each&lt;/small&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p>Add <code>small</code> for a drop zone of one line, <code>invalid</code> when the chosen files can't be accepted, and <code>disabled</code> together with the <code>disabled</code> attribute on the input when uploading isn't possible.</p>
+
+  <div class="section-example">
+    <div class="upload small">
+      <input type="file" name="attachment-small" id="attachment-small">
+      <label for="attachment-small">
+        <svg class="icon">
+          <use xlink:href="/images/icons.svg#attachment"></use>
+        </svg>
+        <strong>Drop a file here</strong> or click to choose
+      </label>
+    </div>
+
+    <div class="upload small invalid">
+      <input type="file" name="attachment-invalid" id="attachment-invalid" aria-describedby="attachment-invalid-help">
+      <label for="attachment-invalid">
+        <svg class="icon">
+          <use xlink:href="/images/icons.svg#warning"></use>
+        </svg>
+        <strong>That file is too large.</strong> Choose another one
+        <small id="attachment-invalid-help">25 MB at most</small>
+      </label>
+    </div>
+
+    <div class="upload small disabled">
+      <input type="file" name="attachment-disabled" id="attachment-disabled" disabled>
+      <label for="attachment-disabled">
+        <svg class="icon">
+          <use xlink:href="/images/icons.svg#attachment"></use>
+        </svg>
+        Uploading is switched off
+      </label>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="upload small"&gt;...&lt;/div&gt;
+&lt;div class="upload small invalid"&gt;...&lt;/div&gt;
+&lt;div class="upload small disabled"&gt;
+  &lt;input type="file" id="..." disabled&gt;
+  ...
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p>A browser doesn't show that files are being dragged over an element. To highlight the drop zone at that moment, add the class <code>dragover</code> with a few lines of JavaScript. Try it by dragging a file over the first drop zone above.</p>
+
+  <div class="code-example">
+    <pre><code class="javascript">const zone = document.querySelector(".upload");
+
+["dragenter", "dragover"].forEach((type) =&gt;
+  zone.addEventListener(type, () =&gt; zone.classList.add("dragover")));
+
+["dragleave", "drop"].forEach((type) =&gt;
+  zone.addEventListener(type, () =&gt; zone.classList.remove("dragover")));</code></pre>
+  </div>
+
+  <h3>Chosen files</h3>
+
+  <p>A list with the class <code>files</code> shows the files that were chosen or uploaded. Each item has an icon, the <code>name</code>, and optionally the size in a <code>&lt;small&gt;</code> and a <code>control</code> to remove the file. A long name is cut off. A <code>&lt;progress&gt;</code> in the item gets a line of its own.</p>
+
+  <p>The state of a file is a class on the item: <code>done</code> colors the icon green, <code>error</code> colors it red and makes the remark behind the name stand out. While a file is on its way, give its icon the class <code>uploading</code> to make it turn.</p>
+
+  <div class="section-example">
+    <ul class="files">
+      <li class="done">
+        <svg class="icon">
+          <use xlink:href="/images/icons.svg#check"></use>
+        </svg>
+        <a href="#drop-zone" class="name">invoice-2024-0318.pdf</a>
+        <small>184 kB</small>
+        <a class="control" tabindex="0" role="button" aria-label="Remove invoice-2024-0318.pdf" title="Remove">
+          <svg class="icon">
+            <use xlink:href="/images/icons.svg#clear"></use>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <svg class="icon uploading">
+          <use xlink:href="/images/icons.svg#refresh"></use>
+        </svg>
+        <span class="name">nausicaa-and-her-maidens-high-resolution-scan.tiff</span>
+        <small>18.2 MB</small>
+        <a class="control" tabindex="0" role="button" aria-label="Cancel the upload" title="Cancel">
+          <svg class="icon">
+            <use xlink:href="/images/icons.svg#clear"></use>
+          </svg>
+        </a>
+        <progress value="62" max="100">62%</progress>
+      </li>
+      <li class="error">
+        <svg class="icon">
+          <use xlink:href="/images/icons.svg#warning"></use>
+        </svg>
+        <span class="name">catalogue-complete.zip</span>
+        <small>Too large: 25 MB at most</small>
+        <a class="control" tabindex="0" role="button" aria-label="Remove catalogue-complete.zip" title="Remove">
+          <svg class="icon">
+            <use xlink:href="/images/icons.svg#clear"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ul class="files"&gt;
+  &lt;li class="done"&gt;
+    &lt;svg class="icon"&gt;&lt;use xlink:href="/images/icons.svg#check"&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;a href="..." class="name"&gt;invoice-2024-0318.pdf&lt;/a&gt;
+    &lt;small&gt;184 kB&lt;/small&gt;
+    &lt;a class="control" tabindex="0" role="button" aria-label="Remove invoice-2024-0318.pdf"&gt;
+      &lt;svg class="icon"&gt;&lt;use xlink:href="/images/icons.svg#clear"&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;svg class="icon uploading"&gt;&lt;use xlink:href="/images/icons.svg#refresh"&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;span class="name"&gt;nausicaa-and-her-maidens.tiff&lt;/span&gt;
+    &lt;small&gt;18.2 MB&lt;/small&gt;
+    &lt;progress value="62" max="100"&gt;62%&lt;/progress&gt;
+  &lt;/li&gt;
+  &lt;li class="error"&gt;
+    &lt;svg class="icon"&gt;&lt;use xlink:href="/images/icons.svg#warning"&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;span class="name"&gt;catalogue-complete.zip&lt;/span&gt;
+    &lt;small&gt;Too large: 25 MB at most&lt;/small&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+
+  <p>The turning icon also works inside an input <a href="#icons">with an icon</a>, for a field that shows the file being uploaded:</p>
+
+  <div class="section-example">
+    <div class="group">
+      <input type="text" class="append-icon" size="32" value="odyssey-book-6.pdf (2.4 MB)" aria-label="File being uploaded" readonly>
+      <svg class="icon uploading">
+        <use xlink:href="/images/icons.svg#refresh"></use>
+      </svg>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="group"&gt;
+  &lt;input type="text" class="append-icon" value="odyssey-book-6.pdf" readonly&gt;
+  &lt;svg class="icon uploading"&gt;&lt;use xlink:href="/images/icons.svg#refresh"&gt;&lt;/use&gt;&lt;/svg&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Accessibility:</strong> the label of the drop zone is the label of the file input, so keep the <code>for</code> and <code>id</code> pair. Don't rely on dropping alone: the zone must also work with a click and with the keyboard, which it does as long as the input stays in place. Tell what went wrong in words, not only with the red color.</p>
+
+  <script>
+  (function () {
+    var zone = document.getElementById("dropzone-example");
+    ["dragenter", "dragover"].forEach(function (type) {
+      zone.addEventListener(type, function () { zone.classList.add("dragover"); });
+    });
+    ["dragleave", "drop"].forEach(function (type) {
+      zone.addEventListener(type, function () { zone.classList.remove("dragover"); });
+    });
+  })();
+  </script>
+</section>
+
 <section id="suggestions">
   <header>
     <h2>Suggestions</h2>

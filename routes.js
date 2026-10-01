@@ -1,6 +1,8 @@
 import { Router } from "express";
 const router = Router();
 import nav from "./navigation.js";
+import { search } from "./search.js";
+import data from "./examples-data.js";
 
 // The chosen theme: "light", "dark", or "auto" to follow the system setting.
 // Also accepts the cookie values used before the single stylesheet.
@@ -37,7 +39,22 @@ router.use("/documentation", (req, res) => {
   });
 });
 
-router.use("/examples/:s1", (req, res) => {
+// An example gets sample data and the query, so its filters, tabs and
+// pages really work.
+const examples = nav.find((lane) => lane.slug === "examples").nav;
+router.get("/examples/:s1", (req, res, next) => {
+  if (!examples.some((example) => example.slug === req.params.s1)) return next();
+  res.render("main", {
+    nav,
+    theme: themeOf(req),
+    lane: "examples",
+    params: req.params,
+    query: req.query,
+    data,
+  });
+});
+
+router.get("/examples", (req, res) => {
   res.render("main", {
     nav,
     theme: themeOf(req),
@@ -46,12 +63,19 @@ router.use("/examples/:s1", (req, res) => {
   });
 });
 
-router.use("/about", (req, res) => {
+// Suggestions for the search field in the navbar
+router.get("/search.json", (req, res) => {
+  res.json(search(req.query.q, 8));
+});
+
+// All results on a page of their own; this also works without JavaScript
+router.get("/search", (req, res) => {
   res.render("main", {
     nav,
     theme: themeOf(req),
-    lane: "about",
+    lane: "search",
     params: req.params,
+    found: search(req.query.q, 50),
   });
 });
 

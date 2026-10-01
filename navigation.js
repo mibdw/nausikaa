@@ -253,6 +253,10 @@ const nav = [
                 slug: "file-upload",
               },
               {
+                title: "Drop zone",
+                slug: "drop-zone",
+              },
+              {
                 title: "Suggestions",
                 slug: "suggestions",
               },
@@ -552,8 +556,66 @@ const nav = [
                 slug: "filters",
               },
               {
+                title: "Expandable",
+                slug: "expandable",
+              },
+              {
                 title: "Forms",
                 slug: "forms",
+              },
+            ],
+          },
+          {
+            title: "Spinners",
+            slug: "spinners",
+            icon: "refresh",
+            description:
+              "A turning circle for the moments your visitor has to wait.",
+            nav: [
+              {
+                title: "Page",
+                slug: "page",
+              },
+              {
+                title: "Inside",
+                slug: "inside",
+              },
+              {
+                title: "Sizes",
+                slug: "sizes",
+              },
+              {
+                title: "Colors",
+                slug: "colors",
+              },
+            ],
+          },
+          {
+            title: "Tabs",
+            slug: "tabs",
+            icon: "tabs",
+            description:
+              "A row of links to switch between the views of one subject.",
+            nav: [
+              {
+                title: "Regular",
+                slug: "regular",
+              },
+              {
+                title: "Icons and counts",
+                slug: "icons-and-counts",
+              },
+              {
+                title: "Title and spacer",
+                slug: "title-and-spacer",
+              },
+              {
+                title: "Sizes",
+                slug: "sizes",
+              },
+              {
+                title: "On a container",
+                slug: "container",
               },
             ],
           },
@@ -582,6 +644,10 @@ const nav = [
               {
                 title: "Badges",
                 slug: "badges",
+              },
+              {
+                title: "Labels",
+                slug: "labels",
               },
             ],
           },
@@ -723,8 +789,61 @@ const nav = [
                 slug: "list",
               },
               {
+                title: "Small",
+                slug: "small",
+              },
+              {
+                title: "Mini",
+                slug: "mini",
+              },
+              {
                 title: "Detail",
                 slug: "detail",
+              },
+              {
+                title: "No image",
+                slug: "no-image",
+              },
+            ],
+          },
+          {
+            title: "Charts",
+            slug: "charts",
+            icon: "chart",
+            description:
+              "Key figures, bars, columns, donuts and lines, drawn with lists and inline SVG.",
+            nav: [
+              {
+                title: "Stats",
+                slug: "stats",
+              },
+              {
+                title: "Bars",
+                slug: "bars",
+              },
+              {
+                title: "Columns",
+                slug: "columns",
+              },
+              {
+                title: "Ranked",
+                slug: "ranked",
+              },
+              {
+                title: "Donut",
+                slug: "donut",
+              },
+              {
+                title: "Lines",
+                slug: "lines",
+              },
+              {
+                title: "Legend",
+                slug: "legend",
+              },
+              {
+                title: "Colors",
+                slug: "colors",
               },
             ],
           },
@@ -826,30 +945,41 @@ const nav = [
     slug: "examples",
     nav: [
       {
-        title: "Checkout form",
-        slug: "checkout-form",
+        title: "Order overview",
+        slug: "orders",
+        icon: "cart",
+        description:
+          "A long list that can be searched, filtered, sorted and paged through, with a filter sidebar and states for nothing found and loading.",
       },
       {
-        title: "Order tracing",
-        slug: "order-tracing",
+        title: "Invoice detail",
+        slug: "invoice",
+        icon: "receipt",
+        description:
+          "One record in full: a header with identifiers and key facts, tabs for its parts, the lines with their products, and the totals.",
       },
       {
-        title: "Product detail",
-        slug: "product-detail",
+        title: "New title form",
+        slug: "new-title",
+        icon: "post-add",
+        description:
+          "A long data-entry form in fieldsets, with suggestions, help texts, a drop zone for the cover, a text editor and a dialog to confirm.",
       },
       {
-        title: "Complex form",
-        slug: "complex-form",
+        title: "Drafts table",
+        slug: "drafts",
+        icon: "table",
+        description:
+          "A dense table with a status per row, progress, selecting rows and acting on the selection, and a dialog before anything is deleted.",
       },
       {
-        title: "Library services",
-        slug: "library-services",
+        title: "Statistics dashboard",
+        slug: "statistics",
+        icon: "chart",
+        description:
+          "Key figures and charts on one page: stats, bars, columns, a donut, a line chart and ranked lists, with a table of the numbers.",
       },
     ],
-  },
-  {
-    title: "About",
-    slug: "about",
   },
   {
     title: "Download",

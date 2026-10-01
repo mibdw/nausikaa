@@ -667,3 +667,54 @@
   </div>
 
 </section>
+
+<section id="labels">
+  <header>
+    <h2>Labels</h2>
+  </header>
+
+  <p>A tag with the class <code>label</code> is turned a quarter, so it reads from bottom to top. It names a block from the side, which takes far less room than a heading above it. That helps where several small blocks sit next to each other: the customer, publisher and supplier of an order, for example.</p>
+
+  <p>Put the label first in an element with the class <code>with-label</code>. The label goes on the left edge and everything else is placed next to it. Colors work as on any other tag.</p>
+
+  <div class="section-example">
+    <div style="display: flex; flex-wrap: wrap;">
+      <div class="with-label" style="flex: 1 1 14em; margin: 0 1em 1em 0;">
+        <span class="tag label">Customer</span>
+        <strong>Alcinous University Library</strong>
+        <span>Palace Road 1</span>
+        <span>491 00 Scheria, Greece</span>
+      </div>
+
+      <div class="with-label" style="flex: 1 1 14em; margin: 0 1em 1em 0;">
+        <span class="tag forest label">Publisher</span>
+        <strong>Halius Verlag</strong>
+        <span>Hafenstraße 12</span>
+        <span>80331 Munich, Germany</span>
+      </div>
+
+      <div class="with-label" style="flex: 1 1 14em; margin: 0 0 1em 0;">
+        <span class="tag blue label">Supplier</span>
+        <strong>Mentor Wholesale</strong>
+        <span>Kade 44</span>
+        <span>3011 Rotterdam, Netherlands</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="with-label"&gt;
+  &lt;span class="tag label"&gt;Customer&lt;/span&gt;
+  &lt;strong&gt;Alcinous University Library&lt;/strong&gt;
+  &lt;span&gt;Palace Road 1&lt;/span&gt;
+  &lt;span&gt;491 00 Scheria, Greece&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="with-label"&gt;
+  &lt;span class="tag forest label"&gt;Publisher&lt;/span&gt;
+  ...
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Keep it short:</strong> text that is turned is harder to read, so use one or two words. The label comes first in the HTML, which means a screen reader reads it before the block it names.</p>
+</section>

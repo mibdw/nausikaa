@@ -1,0 +1,209 @@
+/*
+ * Spinners: a turning circle that tells something is loading. A color class
+ * only sets --nausikaa-spinner-color. Without a size class the spinner is
+ * fixed to the middle of the page.
+ */
+.spinner {
+  --nausikaa-spinner-color: var(--nausikaa-blue3);
+  --nausikaa-spinner-width: 6;
+
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-55%);
+
+  /* In the middle of the nearest positioned element */
+  &.inside {
+    width: 10em;
+    height: 10em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* In the flow of the text. Here the circle fills its box, so the size of
+     the box is the size you see. */
+  &.small,
+  &.medium,
+  &.large {
+    display: inline-block;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    vertical-align: middle;
+    margin: 0 0.2em;
+
+    circle {
+      transform: scale(2.2);
+      transform-origin: 50px 50px;
+    }
+  }
+
+  &.small {
+    --nausikaa-spinner-width: 6;
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  &.medium {
+    --nausikaa-spinner-width: 4.5;
+    width: 2.5em;
+    height: 2.5em;
+  }
+
+  &.large {
+    --nausikaa-spinner-width: 3;
+    width: 5em;
+    height: 5em;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  svg {
+    animation: nausikaa-spin 1.5s linear infinite;
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+
+  circle {
+    stroke: var(--nausikaa-spinner-color);
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: nausikaa-dash 1.5s ease-in-out infinite 0s;
+    fill: none;
+    stroke-width: var(--nausikaa-spinner-width);
+  }
+
+  &.rosewater {
+    --nausikaa-spinner-color: var(--nausikaa-rosewater3);
+  }
+
+  &.flamingo {
+    --nausikaa-spinner-color: var(--nausikaa-flamingo3);
+  }
+
+  &.pink {
+    --nausikaa-spinner-color: var(--nausikaa-pink3);
+  }
+
+  &.mauve {
+    --nausikaa-spinner-color: var(--nausikaa-mauve3);
+  }
+
+  &.red {
+    --nausikaa-spinner-color: var(--nausikaa-red3);
+  }
+
+  &.maroon {
+    --nausikaa-spinner-color: var(--nausikaa-maroon3);
+  }
+
+  &.peach {
+    --nausikaa-spinner-color: var(--nausikaa-peach3);
+  }
+
+  &.yellow {
+    --nausikaa-spinner-color: var(--nausikaa-yellow3);
+  }
+
+  &.green {
+    --nausikaa-spinner-color: var(--nausikaa-green3);
+  }
+
+  &.teal {
+    --nausikaa-spinner-color: var(--nausikaa-teal3);
+  }
+
+  &.sky {
+    --nausikaa-spinner-color: var(--nausikaa-sky3);
+  }
+
+  &.sapphire {
+    --nausikaa-spinner-color: var(--nausikaa-sapphire3);
+  }
+
+  &.blue {
+    --nausikaa-spinner-color: var(--nausikaa-blue3);
+  }
+
+  &.lavender {
+    --nausikaa-spinner-color: var(--nausikaa-lavender3);
+  }
+
+  &.gray {
+    --nausikaa-spinner-color: var(--nausikaa-overlay1);
+  }
+}
+
+/*
+ * Fetching: a veil over the nearest positioned element while its content is
+ * being replaced, or over the whole page. Add the class "active" to show it.
+ */
+.fetching {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(var(--nausikaa-base-rgb), 0.9);
+  padding-top: 4em;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s opacity;
+  z-index: 2;
+
+  &.active {
+    opacity: 0.8;
+    pointer-events: auto;
+  }
+
+  /* Covers the whole page, navigation included, for the page spinner */
+  &.page {
+    position: fixed;
+    z-index: 9990;
+  }
+}
+
+/* A spinner that stands still says nothing, so it keeps turning: slower, and
+   without the circle growing and shrinking */
+@media (prefers-reduced-motion: reduce) {
+  .spinner svg {
+    animation-duration: 6s;
+  }
+
+  .spinner circle {
+    animation: none;
+    stroke-dasharray: 89, 200;
+  }
+}
+
+@keyframes nausikaa-spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nausikaa-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}

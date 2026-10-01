@@ -55,10 +55,19 @@
     text-decoration: none;
   }
 
+  /* A label along the side of a block: it reads from bottom to top */
+  &.label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    top: 0;
+    padding: 0.4em 0;
+    white-space: nowrap;
+  }
+
   &.alt {
     --nausikaa-tag-text: var(--nausikaa-text-inverse);
-    --nausikaa-tag-background: var(--nausikaa-overlay1);
-    --nausikaa-tag-hover: var(--nausikaa-overlay2);
+    --nausikaa-tag-background: var(--nausikaa-overlay2);
+    --nausikaa-tag-hover: var(--nausikaa-subtext0);
     --nausikaa-tag-icon: #d9d9d9;
   }
 
@@ -285,4 +294,36 @@ h6 .tag {
 
 a.tag {
   cursor: pointer;
+}
+
+/* A container colors its links; a tag that is a link keeps its own colors */
+.container a.tag,
+.container a.tag:hover,
+.container a.tag:active {
+  color: var(--nausikaa-tag-text);
+  text-decoration: none;
+  -webkit-text-decoration: none;
+}
+
+/* A block with a label along its left side: the label is the first child,
+   everything else goes next to it */
+.with-label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 0.8em;
+  align-items: start;
+
+  & > * {
+    grid-column: 2 / 3;
+    min-width: 0;
+  }
+
+  & > .tag.label {
+    grid-column: 1 / 2;
+    grid-row: 1 / span 20;
+  }
+
+  & > *:nth-child(2) {
+    margin-top: 0;
+  }
 }

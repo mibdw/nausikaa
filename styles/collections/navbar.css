@@ -184,6 +184,105 @@
     margin-bottom: 0;
   }
 
+  /* Search: looks like a knob with a search icon until it is used, then it
+     widens into a search field with suggestions below it */
+  & > .search {
+    margin-right: 0.5em;
+
+    & > .group {
+      position: relative;
+      margin: 0;
+
+      /* The icon lies on top of the field, so the field alone decides how
+         wide the whole is */
+      & > .icon {
+        position: absolute;
+        top: 0;
+        left: 0.75em;
+        fill: var(--nausikaa-text);
+        pointer-events: none;
+        transform: scale(1.1);
+      }
+
+      & > input {
+        position: static;
+        margin: 0;
+        width: 3em;
+        padding-right: 0;
+        /* The colors of a transparent knob, like the theme menu next to it */
+        background-color: transparent;
+        border-color: var(--nausikaa-overlay0);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.25s width;
+
+        &::placeholder {
+          color: transparent;
+        }
+
+        &:hover {
+          background-color: var(--nausikaa-surface2);
+        }
+      }
+    }
+
+    /* In use: the field has the focus, or there is something in it */
+    &:focus-within > .group > input,
+    & > .group > input:not(:placeholder-shown) {
+      width: 24em;
+      padding-right: var(--nausikaa-input-padding-width);
+      background-color: var(--nausikaa-input-background);
+      cursor: text;
+
+      &::placeholder {
+        color: var(--nausikaa-input-vague);
+      }
+    }
+
+    /* The suggestions only show while there are any */
+    & > .panel {
+      display: none;
+      max-width: none;
+    }
+
+    &.open > .panel {
+      display: block;
+    }
+
+    &:not(.open) > .group > input {
+      border-radius: 6px !important;
+    }
+
+    & > .panel ul > li > a > small {
+      color: var(--nausikaa-subtext0);
+      margin-left: 0.3em;
+    }
+  }
+
+  /* The theme menu: a knob with the icon of the current theme */
+  & > .theme-switcher {
+    & > .knob {
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+      padding: 0 0.7em;
+
+      & > .icon {
+        transform: scale(1.6) translateX(0.15em);
+      }
+    }
+
+    & > .panel ul > li > a,
+    & > .panel ul > li > .link {
+      padding-right: 5em;
+
+      & > .icon {
+        /* 5px above where a panel puts its icons */
+        transform: translateY(calc(0.2em - 5px));
+      }
+    }
+  }
+
   .knobs > li {
     margin-right: 0.5em;
 
@@ -410,6 +509,49 @@
 
     form > * {
       width: auto;
+    }
+
+    /* In the opened menu the search field is always a field */
+    & > .search {
+      margin-right: 0;
+
+      & > .group,
+      & > .group > input,
+      &:focus-within > .group > input {
+        width: 100%;
+        flex: 1 1 auto;
+      }
+
+      & > .group > input {
+        padding-right: var(--nausikaa-input-padding-width);
+        background-color: var(--nausikaa-input-background);
+        cursor: text;
+
+        &::placeholder {
+          color: var(--nausikaa-input-vague);
+        }
+      }
+    }
+
+    /* The theme menu opens below its knob, from the left edge */
+    & > .theme-switcher {
+      & > .knob {
+        margin: 0.5rem;
+      }
+
+      & > .panel.arrow.top.right {
+        left: 0.5rem;
+        transform: translate(0, -0.5rem);
+
+        &:after {
+          left: calc(1.6em - 0.6em);
+          right: auto;
+        }
+      }
+
+      &:focus-within > .panel.arrow.top.right {
+        transform: translate(0, 0);
+      }
     }
   }
 }

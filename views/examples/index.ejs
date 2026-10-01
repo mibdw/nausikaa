@@ -1,1 +1,39 @@
+<% if (params.s1) { %>
+
 <%- include(params.s1); %>
+
+<% } else {
+  var examples = nav.find(function (lane) { return lane.slug == 'examples'; }).nav;
+%>
+
+<main>
+
+  <article style="grid-column: 1 / 13">
+    <header>
+      <h1>Examples</h1>
+    </header>
+
+    <p class="introduction">The examples show how the parts of Nausikaä come together in the kind of pages people work in all day: a long list, a detailed record, a large form, a table and a dashboard.</p>
+
+    <p>Each example is built from what the <a href="/documentation">documentation</a> describes, with no styles of its own. The filters, tabs, sorting and pages work without JavaScript; the address in your browser holds the state. The names, titles and numbers on these pages are sample content.</p>
+
+    <div class="site-overview blue">
+      <ul>
+        <% examples.forEach(function (example) { %>
+        <li>
+          <a href="/examples/<%= example.slug %>">
+            <svg class="icon">
+              <use xlink:href="/images/icons.svg#<%= example.icon %>"></use>
+            </svg>
+            <div class="title"><%= example.title %></div>
+            <div class="description"><%= example.description %></div>
+          </a>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+  </article>
+
+</main>
+
+<% } %>

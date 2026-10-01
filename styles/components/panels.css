@@ -17,7 +17,8 @@
   border: 1px solid var(--nausikaa-panel-border);
   color: var(--nausikaa-panel-link);
 
-  .seperator {
+  .seperator,
+  .separator {
     border-color: var(--nausikaa-panel-border);
   }
 
@@ -70,6 +71,12 @@
     & > .icon {
       fill: var(--nausikaa-panel-subnav-border);
     }
+  }
+
+  /* A button that looks like a link has no border of its own. Give it the
+     invisible border of the other items, or it grows when it is hovered. */
+  button.link {
+    border: 1px solid transparent;
   }
 
   .hover > a,
@@ -202,7 +209,10 @@
   transition: 0.3s top;
   text-align: left;
 
-  .seperator {
+  /* A line between groups of items. "seperator" is the original spelling
+     and keeps working. */
+  .seperator,
+  .separator {
     border-top: 1px solid var(--nausikaa-crust);
     margin: 0.5em -0.7em;
   }
@@ -284,6 +294,53 @@
 
       & + .toggler-content {
         display: block;
+      }
+    }
+  }
+
+  /* A group that opens and closes without a script: <details> with a
+     <summary>. It looks like the toggler above. */
+  & > details {
+    & > summary {
+      display: block;
+      list-style: none;
+      font-size: 1.1em;
+      cursor: pointer;
+      padding: 0.1em 0.3em 0.1em 0;
+      border: 1px solid transparent;
+      border-radius: 4px;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &:hover {
+        background-color: var(--nausikaa-panel-hover);
+      }
+
+      &:focus {
+        outline-width: 0;
+        background-color: var(--nausikaa-panel-hover);
+        border-color: var(--nausikaa-panel-border);
+      }
+
+      & > .icon.chevron {
+        width: 1.2em;
+        height: 1.2em;
+        fill: var(--nausikaa-panel-subnav-border);
+        margin-right: 0.1em;
+        position: relative;
+        top: 0.2em;
+        transform: rotate(180deg);
+        transition: 0.2s transform;
+      }
+    }
+
+    &[open] > summary {
+      margin-bottom: 0.4em;
+
+      & > .icon.chevron {
+        transform: rotate(0);
       }
     }
   }
@@ -461,7 +518,8 @@
       pointer-events: none;
 
       &:checked {
-        & + * + ul > .more {
+        & + * + ul > .more,
+        & + details > ul > .more {
           display: none;
 
           & ~ * {
@@ -474,13 +532,11 @@
     .more,
     .less {
       & > label {
-        opacity: 0.75;
         display: flex;
         flex-direction: row-reverse;
 
         &:hover,
         &:focus {
-          opacity: 1;
           background-color: transparent;
           text-decoration: underline;
           cursor: pointer;

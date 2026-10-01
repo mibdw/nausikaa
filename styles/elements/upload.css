@@ -1,0 +1,222 @@
+/*
+ * Upload: a drop zone for files and a list of the files that were chosen.
+ *
+ * The file input covers the whole drop zone, invisibly, so the browser takes
+ * care of clicking and dropping; no JavaScript is needed to choose files.
+ */
+.upload {
+  --nausikaa-upload-background: var(--nausikaa-mantle);
+  --nausikaa-upload-line: var(--nausikaa-input-line);
+  --nausikaa-upload-text: var(--nausikaa-subtext0);
+
+  position: relative;
+  display: block;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+  padding: 2em 1em;
+  border: 2px dashed var(--nausikaa-upload-line);
+  border-radius: 6px;
+  background-color: var(--nausikaa-upload-background);
+  color: var(--nausikaa-upload-text);
+  font-family: var(--nausikaa-utility-text);
+  text-align: center;
+  transition:
+    0.15s border-color,
+    0.15s background-color;
+
+  & > input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  & > label {
+    display: block;
+    margin: 0;
+
+    & > .icon {
+      display: block;
+      width: 3em;
+      height: 3em;
+      margin: 0 auto 0.5em;
+      fill: var(--nausikaa-overlay0);
+      transition: 0.15s fill;
+    }
+
+    & > strong {
+      color: var(--nausikaa-text);
+    }
+
+    & > small {
+      display: block;
+      margin-top: 0.3em;
+    }
+  }
+
+  &:hover,
+  &.hover {
+    border-color: var(--nausikaa-input-line-hover);
+
+    & > label > .icon {
+      fill: var(--nausikaa-input-line-hover);
+    }
+  }
+
+  &:focus-within {
+    border-color: var(--nausikaa-input-line-focus);
+    box-shadow: 0 0 0 3px var(--nausikaa-button-focus-ring);
+  }
+
+  /* While files are dragged over the drop zone; set by a script */
+  &.dragover {
+    border-style: solid;
+    border-color: var(--nausikaa-input-line-active);
+    background-color: var(--nausikaa-base);
+    box-shadow: 0 0 0 2px var(--nausikaa-input-line-active) inset;
+
+    & > label > .icon {
+      fill: var(--nausikaa-input-line-active);
+    }
+  }
+
+  &.invalid {
+    border-color: var(--nausikaa-input-line-error);
+
+    & > label > .icon {
+      fill: var(--nausikaa-input-line-error);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+
+    &:hover {
+      border-color: var(--nausikaa-upload-line);
+
+      & > label > .icon {
+        fill: var(--nausikaa-overlay0);
+      }
+    }
+  }
+
+  &.small {
+    padding: 0.8em 1em;
+
+    & > label > .icon {
+      display: inline-block;
+      width: 1.5em;
+      height: 1.5em;
+      margin: 0 0.3em 0 0;
+      transform: translateY(0.35em);
+    }
+
+    & > label > small {
+      display: inline;
+      margin: 0 0 0 0.5em;
+    }
+  }
+}
+
+/* An icon that turns while its file is on the way */
+.icon.uploading {
+  transform-origin: center center;
+  animation: nausikaa-spin 2s linear infinite;
+}
+
+/* The files that were chosen */
+.files {
+  list-style-type: none;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+  padding: 0;
+  font-family: var(--nausikaa-utility-text);
+
+  & > li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.4em 0;
+    border-bottom: 1px solid var(--nausikaa-surface0);
+
+    &:last-child {
+      border-bottom-width: 0;
+    }
+
+    & > * {
+      flex: 0 0 auto;
+      margin: 0 0.6em 0 0;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    & > .icon {
+      width: 1.4em;
+      height: 1.4em;
+      fill: var(--nausikaa-overlay1);
+    }
+
+    /* The name takes the room that is left, and is cut off when it is long */
+    & > .name {
+      flex: 1 1 0;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    & > small {
+      color: var(--nausikaa-subtext0);
+      white-space: nowrap;
+    }
+
+    & > .control {
+      display: inline-flex;
+      cursor: pointer;
+      border-radius: 4px;
+
+      & > .icon {
+        width: 1.4em;
+        height: 1.4em;
+        fill: var(--nausikaa-overlay1);
+      }
+
+      &:hover > .icon,
+      &:focus > .icon {
+        fill: var(--nausikaa-text);
+      }
+    }
+
+    /* A progress bar gets a line of its own, below the name */
+    & > progress {
+      flex: 0 0 100%;
+      height: 10px;
+      padding: 1px;
+      margin: 0.4em 0 0;
+    }
+
+    &.done > .icon:first-child {
+      fill: var(--nausikaa-green3);
+    }
+
+    /* Only the icon turns red: red text is hard to read in the dark theme */
+    &.error {
+      & > .icon:first-child {
+        fill: var(--nausikaa-red3);
+      }
+
+      & > small {
+        color: var(--nausikaa-text);
+        font-weight: bold;
+      }
+    }
+  }
+}

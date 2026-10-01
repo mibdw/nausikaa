@@ -1,0 +1,22 @@
+<%# The theme menu of the navbar: a knob with the icon of the current theme. %>
+<form action="/theme-switch" method="POST" class="theme-switcher dropdown">
+  <a class="knob transparent" tabindex="0" role="button" aria-haspopup="true" aria-label="Theme: <%= currentTheme.title %>" title="Theme: <%= currentTheme.title %>">
+    <svg class="icon">
+      <use xlink:href="/images/icons.svg#<%= currentTheme.icon %>"></use>
+    </svg>
+  </a>
+  <nav class="panel arrow top right" aria-label="Theme">
+    <ul>
+      <% themes.forEach(function (t) { %>
+      <li class="<%= t.value == theme ? 'active' : '' %>">
+        <button type="submit" name="theme" value="<%= t.value %>" class="link" <%= t.value == theme ? 'aria-current=true' : '' %>>
+          <svg class="icon">
+            <use xlink:href="/images/icons.svg#<%= t.icon %>"></use>
+          </svg>
+          <%= t.title %>
+        </button>
+      </li>
+      <% }); %>
+    </ul>
+  </nav>
+</form>

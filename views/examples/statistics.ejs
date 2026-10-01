@@ -1,0 +1,220 @@
+<%
+  // Example: a dashboard. All figures are counted from the sample orders. The charts are lists and inline SVG; the sizes of the
+  // bars and the points of the line are worked out here, on the server.
+  var stats = data.statistics;
+  var view = query.view == 'top' ? 'top' : 'overview';
+  var money = function (amount) { return data.formatMoney(Math.round(amount)).replace('.00', ''); };
+
+  // Donut: every part starts where the one before it ends
+  var before = 0;
+  var parts = stats.byStatus.map(function (status) {
+    var offset = 25 - before;
+    before += status.share;
+    return { status: status, offset: offset < 0 ? offset + 100 : offset };
+  });
+
+  // Line chart: twelve points from left (0) to right (100); in SVG the
+  // vertical axis runs downward, so the highest amount is at 0
+  var highest = Math.max.apply(null, stats.perMonth.map(function (month) { return month.amount; }));
+  var points = stats.perMonth.map(function (month, i) {
+    return (i / (stats.perMonth.length - 1) * 100).toFixed(1) + ',' + (100 - month.amount / highest * 100).toFixed(1);
+  }).join(' ');
+%>
+<main>
+
+  <article style="grid-column: 1 / 13">
+
+    <nav class="tabs" aria-label="Statistics">
+      <ul>
+        <li class="title"><span>📊 Statistics</span></li>
+        <li class="<%= view == 'overview' ? 'active' : '' %>">
+          <a href="/examples/statistics" <%= view == 'overview' ? 'aria-current=page' : '' %>>Orders</a>
+        </li>
+        <li class="<%= view == 'top' ? 'active' : '' %>">
+          <a href="/examples/statistics?view=top" <%= view == 'top' ? 'aria-current=page' : '' %>>Customers and publishers</a>
+        </li>
+        <li class="spacer"></li>
+        <li class="disabled"><span>October 2025 – September 2026</span></li>
+      </ul>
+    </nav>
+
+    <ul class="stats">
+      <li class="stat blue">
+        <span class="label">Orders</span>
+        <span class="value"><%= stats.orders %></span>
+        <span class="note">in the last twelve months</span>
+      </li>
+      <li class="stat">
+        <span class="label">Order value</span>
+        <span class="value"><%= money(stats.amount) %></span>
+        <span class="note">without cancelled orders</span>
+      </li>
+      <li class="stat green">
+        <span class="label">Delivered</span>
+        <span class="value"><%= stats.delivered %></span>
+        <span class="note"><%= Math.round(stats.delivered / stats.orders * 100) %>% of all orders</span>
+      </li>
+      <li class="stat yellow">
+        <span class="label">Still open</span>
+        <span class="value"><%= stats.open %></span>
+        <span class="note">on order or claimed</span>
+      </li>
+    </ul>
+
+  </article>
+
+  <% if (view == 'overview') { %>
+
+  <section style="grid-column: 1 / 8">
+    <h4>Orders per month</h4>
+
+    <ul class="chart columns" style="--nausikaa-chart-height: 10em">
+      <% stats.perMonth.forEach(function (month) { %>
+      <li>
+        <span class="bar gray" style="--nausikaa-chart-value: <%= Math.round(month.before / stats.maxPerMonth * 100) %>%" title="<%= month.label %>, a year earlier: <%= month.before %>"></span>
+        <span class="bar blue" style="--nausikaa-chart-value: <%= Math.round(month.count / stats.maxPerMonth * 100) %>%" title="<%= month.label %> <%= month.year %>: <%= month.count %>"></span>
+        <span class="value"><%= month.count %></span>
+        <span class="label"><%= month.label %></span>
+      </li>
+      <% }); %>
+    </ul>
+    <ul class="chart legend right">
+      <li class="gray">A year earlier</li>
+      <li class="blue">This year</li>
+    </ul>
+  </section>
+
+  <section style="grid-column: 8 / 13">
+    <h4>By status</h4>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: center;">
+      <svg class="chart donut" viewBox="0 0 42 42" role="img" style="margin-right: 1.5em" aria-label="Orders by status: <%= stats.byStatus.map(function (s) { return s.share + '% ' + s.name.toLowerCase(); }).join(', ') %>">
+        <circle class="track" cx="21" cy="21" r="15.915" />
+        <% parts.forEach(function (part) { %>
+        <circle class="<%= part.status.color %>" cx="21" cy="21" r="15.915" stroke-dasharray="<%= part.status.share %> <%= 100 - part.status.share %>" stroke-dashoffset="<%= part.offset %>" />
+        <% }); %>
+        <text x="21" y="20"><%= stats.orders %></text>
+        <text x="21" y="25.5" class="label">orders</text>
+      </svg>
+
+      <ul class="chart legend" style="flex-direction: column">
+        <% stats.byStatus.forEach(function (status) { %>
+        <li class="<%= status.color %>"><%= status.name %>: <%= status.count %> (<%= status.share %>%)</li>
+        <% }); %>
+      </ul>
+    </div>
+  </section>
+
+  <section style="grid-column: 1 / 8">
+    <h4>Order value per month</h4>
+
+    <svg class="chart lines" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" style="--nausikaa-chart-height: 9em" aria-label="Order value per month; the highest month is <%= money(highest) %>. The numbers are in the table below.">
+      <line x1="0" y1="0" x2="100" y2="0" />
+      <line x1="0" y1="50" x2="100" y2="50" />
+      <line x1="0" y1="100" x2="100" y2="100" />
+      <polygon points="0,100 <%= points %> 100,100" />
+      <polyline points="<%= points %>" />
+    </svg>
+    <ul class="chart legend right">
+      <li>Order value, up to <%= money(highest) %> a month</li>
+    </ul>
+  </section>
+
+  <section style="grid-column: 8 / 13">
+    <h4>By country</h4>
+
+    <ul class="chart bars" style="--nausikaa-chart-label-width: 10em; --nausikaa-chart-value-width: 3ch">
+      <% stats.byCountry.forEach(function (country) { %>
+      <li>
+        <span class="label"><%= country.flag %> <%= country.name %></span>
+        <span class="bar" style="--nausikaa-chart-value: <%= country.value %>%"></span>
+        <span class="value"><%= country.count %></span>
+      </li>
+      <% }); %>
+    </ul>
+  </section>
+
+  <section style="grid-column: 1 / 13">
+    <h4>The numbers</h4>
+
+    <div style="overflow-x: auto">
+      <table class="dense striped">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Orders</th>
+            <th>A year earlier</th>
+            <th>Difference</th>
+            <th>Order value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% stats.perMonth.forEach(function (month) { var difference = month.count - month.before; %>
+          <tr>
+            <th><%= month.label %> <%= month.year %></th>
+            <td><%= month.count %></td>
+            <td><%= month.before %></td>
+            <td>
+              <% if (difference > 0) { %><span class="tag green">+<%= difference %></span>
+              <% } else if (difference < 0) { %><span class="tag red">&minus;<%= -difference %></span>
+              <% } else { %><span class="tag">0</span><% } %>
+            </td>
+            <td><span class="price"><%= data.formatMoney(month.amount) %></span></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <% } else { %>
+
+  <section style="grid-column: 1 / 7">
+    <h4>Top customers</h4>
+
+    <ol class="chart ranked">
+      <% stats.topCustomers.forEach(function (top) { %>
+      <li>
+        <span class="label"><%= top.item.flag %> <%= top.item.name %></span>
+        <span class="value"><%= data.formatMoney(top.amount) %></span>
+      </li>
+      <% }); %>
+    </ol>
+  </section>
+
+  <section style="grid-column: 7 / 13">
+    <h4>Top publishers</h4>
+
+    <ol class="chart ranked">
+      <% stats.topPublishers.forEach(function (top) { %>
+      <li>
+        <span class="label"><%= top.item.name %></span>
+        <span class="value"><%= data.formatMoney(top.amount) %></span>
+      </li>
+      <% }); %>
+    </ol>
+  </section>
+
+  <section style="grid-column: 1 / 13">
+    <h4>Average order</h4>
+
+    <ul class="stats">
+      <li class="stat">
+        <span class="label">Average value of a delivered order</span>
+        <span class="value"><%= data.formatMoney(stats.average) %></span>
+      </li>
+      <li class="stat">
+        <span class="label">Customers</span>
+        <span class="value"><%= data.customers.length %></span>
+        <span class="note">in <%= stats.byCountry.length %> countries</span>
+      </li>
+      <li class="stat">
+        <span class="label">Publishers</span>
+        <span class="value"><%= data.publishers.length %></span>
+      </li>
+    </ul>
+  </section>
+
+  <% } %>
+
+</main>

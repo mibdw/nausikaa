@@ -1,0 +1,301 @@
+<%
+  // Example: a data-entry form. Nothing is stored: saving leads back to this
+  // page with ?saved=1, which shows the notification.
+  var saved = query.saved == '1';
+  var publishers = data.publishers;
+  var subjects = ['Art history', 'Classics', 'Archaeology', 'Literature', 'Philosophy', 'History'];
+  var sections = [
+    { id: 'identification', title: 'Identification' },
+    { id: 'title', title: 'Title' },
+    { id: 'publication', title: 'Publication' },
+    { id: 'description', title: 'Description' },
+    { id: 'cover', title: 'Cover' }
+  ];
+%>
+<main class="sidebar-right">
+
+  <article>
+
+    <ul class="breadcrumbs steps">
+      <li class="active">
+        <span>
+          <h5>Describe</h5>
+          Enter the details of the title
+        </span>
+      </li>
+      <li>
+        <a href="/examples/new-title">
+          <h5>Review</h5>
+          A colleague checks the draft
+        </a>
+      </li>
+      <li>
+        <a href="/examples/new-title">
+          <h5>Send</h5>
+          Offer it to the customers
+        </a>
+      </li>
+    </ul>
+
+    <% if (saved) { %>
+    <div class="notification green" role="status">
+      <p><strong>Draft saved.</strong> A colleague can now review it.</p>
+      <a class="control close" href="/examples/new-title" aria-label="Dismiss this message">
+        <svg>
+          <use xlink:href="/images/icons.svg#clear"></use>
+        </svg>
+      </a>
+    </div>
+    <% } %>
+
+    <header>
+      <h2>New title <span class="tag">Draft</span></h2>
+    </header>
+
+    <%# Most fields have no name, so little more than "saved" ends up in the address %>
+    <form action="/examples/new-title" method="GET" class="basic-form">
+      <input type="hidden" name="saved" value="1">
+
+      <fieldset id="identification">
+        <legend>Identification</legend>
+
+        <label for="isbn">ISBN</label>
+        <div class="group">
+          <input type="text" id="isbn" inputmode="numeric" value="9789024680022" aria-describedby="isbn-help">
+          <button type="button" class="secondary">Look up</button>
+        </div>
+        <small class="help" id="isbn-help">
+          <span class="spinner small gray" role="status" aria-label="Looking up">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="20" />
+            </svg>
+          </span>
+          Asking the publisher for the details of this ISBN…
+        </small>
+
+        <label for="book-in-hand">In hand</label>
+        <ul class="checkboxes">
+          <li>
+            <input type="checkbox" id="book-in-hand" checked>
+            <label for="book-in-hand">The book is on my desk</label>
+          </li>
+          <li>
+            <input type="checkbox" id="no-isbn">
+            <label for="no-isbn">This title has no ISBN</label>
+          </li>
+        </ul>
+      </fieldset>
+
+      <fieldset id="title">
+        <legend>Title</legend>
+
+        <label for="title-main">Title <small>required</small></label>
+        <input type="text" id="title-main" value="The Princess on the Shore" required>
+
+        <label for="title-sub">Subtitle</label>
+        <input type="text" id="title-sub" value="Nausicaä in Art and Literature">
+
+        <label for="author">Author <small>required</small></label>
+        <input type="text" id="author" class="invalid" value="" placeholder="Last name, first name" required aria-describedby="author-help">
+        <small class="help" id="author-help">Fill in at least one author or editor.</small>
+
+        <label for="series">Series</label>
+        <div class="group">
+          <input type="text" id="series" placeholder="Name of the series">
+          <label for="series-number">No.</label>
+          <input type="number" id="series-number" min="1" style="width: 6em">
+        </div>
+      </fieldset>
+
+      <fieldset id="publication">
+        <legend>Publication</legend>
+
+        <label for="publisher">Publisher</label>
+        <div class="suggestions">
+          <input type="text" id="publisher" value="Hal" autocomplete="off" aria-describedby="publisher-help">
+          <div class="panel">
+            <ul>
+              <% publishers.forEach(function (publisher) { %>
+              <li>
+                <a href="#publisher" data-fill="<%= publisher.name %>">
+                  <%= publisher.name %> <small><%= publisher.city %></small>
+                </a>
+              </li>
+              <% }); %>
+            </ul>
+          </div>
+        </div>
+        <small class="help" id="publisher-help">Type to search the publishers, then pick one.</small>
+
+        <label for="published">Publication date</label>
+        <input type="date" id="published" value="2025-03-14">
+
+        <label for="binding">Binding</label>
+        <ul class="radios buttons">
+          <li>
+            <input type="radio" name="binding" value="hardcover" id="binding-hardcover" checked>
+            <label class="button" for="binding-hardcover">Hardcover</label>
+          </li>
+          <li>
+            <input type="radio" name="binding" value="paperback" id="binding-paperback">
+            <label class="button" for="binding-paperback">Paperback</label>
+          </li>
+          <li>
+            <input type="radio" name="binding" value="ebook" id="binding-ebook">
+            <label class="button" for="binding-ebook">E-book</label>
+          </li>
+        </ul>
+
+        <label for="price">Price</label>
+        <div class="group">
+          <select id="currency" aria-label="Currency">
+            <option>EUR</option>
+            <option>GBP</option>
+            <option>USD</option>
+          </select>
+          <input type="number" id="price" value="39.95" step="0.01" min="0">
+        </div>
+
+        <label for="pages">Pages</label>
+        <input type="number" id="pages" value="208" min="1">
+      </fieldset>
+
+      <fieldset id="description">
+        <legend>Description</legend>
+
+        <label>Subjects</label>
+        <ul class="checkboxes buttons">
+          <% subjects.forEach(function (subject, i) { %>
+          <li>
+            <input type="checkbox" id="subject-<%= i %>" <%= i < 2 ? 'checked' : '' %>>
+            <label class="button" for="subject-<%= i %>"><%= subject %></label>
+          </li>
+          <% }); %>
+        </ul>
+
+        <label for="summary">Summary</label>
+        <%# The editor replaces this textarea when JavaScript is available %>
+        <div id="editor-demo-medium">
+          <textarea id="summary" rows="6">A study of the princess who finds Odysseus on the shore, and of the painters and poets who kept returning to that scene.</textarea>
+        </div>
+        <small class="help">Two or three sentences a librarian can read in the catalogue.</small>
+      </fieldset>
+
+      <fieldset id="cover">
+        <legend>Cover</legend>
+
+        <label for="cover-file">Image</label>
+        <div class="upload">
+          <input type="file" id="cover-file" accept="image/*">
+          <label for="cover-file">
+            <svg class="icon">
+              <use xlink:href="/images/icons.svg#upload"></use>
+            </svg>
+            <strong>Drop the cover here</strong> or click to choose
+            <small>JPEG or PNG, at least 600 pixels wide</small>
+          </label>
+        </div>
+
+        <label>Uploaded</label>
+        <ul class="files">
+          <li class="done">
+            <svg class="icon">
+              <use xlink:href="/images/icons.svg#check"></use>
+            </svg>
+            <span class="name">princess-on-the-shore-front.jpg</span>
+            <small>412 kB</small>
+          </li>
+          <li>
+            <svg class="icon uploading">
+              <use xlink:href="/images/icons.svg#refresh"></use>
+            </svg>
+            <span class="name">princess-on-the-shore-back.jpg</span>
+            <small>1.8 MB</small>
+            <progress value="45" max="100">45%</progress>
+          </li>
+        </ul>
+      </fieldset>
+
+      <div class="controls">
+        <button type="submit" class="primary">Save draft</button>
+        <button type="button" id="send-button">Send to review…</button>
+        <div class="spacer"></div>
+        <a href="/examples/new-title">Cancel</a>
+      </div>
+    </form>
+
+    <dialog id="send-dialog" class="medium" aria-labelledby="send-dialog-title">
+      <h4 id="send-dialog-title">Send to review?</h4>
+      <p>One field still needs your attention: <strong>Author</strong>. A colleague can't approve the draft without it.</p>
+
+      <%# Buttons of a form with method="dialog" close the dialog without a script %>
+      <form method="dialog" id="send-form"></form>
+      <footer>
+        <div class="spacer"></div>
+        <button form="send-form" class="primary" value="send">Send anyway</button>
+        <button form="send-form" value="cancel">Back to the form</button>
+      </footer>
+    </dialog>
+
+  </article>
+
+  <input type="checkbox" id="sidebar-toggle">
+  <label for="sidebar-toggle">
+    <svg class="icon menu">
+      <use xlink:href="/images/icons.svg#sidebar-toggle"></use>
+    </svg>
+    <svg class="icon close">
+      <use xlink:href="/images/icons.svg#clear"></use>
+    </svg>
+  </label>
+
+  <aside class="sidebar">
+    <nav class="panel" aria-label="Parts of the form">
+      <header>New title</header>
+      <ul>
+        <% sections.forEach(function (section) { %>
+        <li><a href="#<%= section.id %>"><%= section.title %></a></li>
+        <% }); %>
+      </ul>
+    </nav>
+
+    <div class="panel gray">
+      <div class="header">Progress</div>
+      <ul class="chart bars thin" style="--nausikaa-chart-label-width: 6.5em; --nausikaa-chart-value-width: 4ch">
+        <li class="green">
+          <span class="label">Required</span>
+          <span class="bar" style="--nausikaa-chart-value: 67%"></span>
+          <span class="value">2/3</span>
+        </li>
+        <li>
+          <span class="label">Optional</span>
+          <span class="bar" style="--nausikaa-chart-value: 70%"></span>
+          <span class="value">7/10</span>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+</main>
+
+<script type="module" src="/scripts/editor-demo.js?v=6"></script>
+<script>
+(function () {
+  // Opens the dialog; closing it is done by the form inside it
+  var dialog = document.getElementById("send-dialog");
+  dialogPolyfill.registerDialog(dialog);
+  document.getElementById("send-button").addEventListener("click", function () {
+    dialog.showModal();
+  });
+
+  // Picking a suggestion fills in the field
+  document.querySelectorAll("[data-fill]").forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      var input = link.closest(".suggestions").querySelector("input");
+      input.value = link.dataset.fill;
+      link.blur();
+    });
+  });
+})();
+</script>

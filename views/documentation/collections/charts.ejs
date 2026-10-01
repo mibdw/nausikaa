@@ -1,0 +1,448 @@
+<%
+  var countries = [
+    { name: "Netherlands", count: 1204, value: 100 },
+    { name: "Germany", count: 987, value: 82 },
+    { name: "France", count: 655, value: 54 },
+    { name: "United Kingdom", count: 402, value: 33 },
+    { name: "Italy", count: 96, value: 8 }
+  ];
+  var years = [
+    { year: 2019, count: 4210, value: 62 },
+    { year: 2020, count: 3180, value: 47 },
+    { year: 2021, count: 4975, value: 73 },
+    { year: 2022, count: 5630, value: 83 },
+    { year: 2023, count: 6120, value: 90 },
+    { year: 2024, count: 6790, value: 100 }
+  ];
+  var months = [
+    { month: "Jan", last: 48, now: 55 },
+    { month: "Feb", last: 52, now: 61 },
+    { month: "Mar", last: 70, now: 66 },
+    { month: "Apr", last: 64, now: 79 },
+    { month: "May", last: 58, now: 88 },
+    { month: "Jun", last: 81, now: 100 }
+  ];
+%>
+<header>
+  <h1>Charts</h1>
+</header>
+
+<section id="introduction">
+  <p class="introduction">
+    <strong>Charts</strong> show numbers at a glance: how many orders came in, which countries they came from, how this year compares to the last. Nausikaä draws them with plain lists and a little inline SVG. The numbers are in the HTML, so a chart can be read without its styling, by a screen reader, and when printed.
+  </p>
+  <p class="introduction">
+    These charts need no JavaScript. Your server, or your own script, works out the sizes; Nausikaä takes care of how the chart looks. For charts with many data points, zooming or tooltips, a charting library is the better tool.
+  </p>
+  <p class="note"><strong>In use:</strong> the <a href="/examples/statistics">statistics dashboard</a> example combines all of these charts on one page, with numbers counted on the server.</p>
+</section>
+
+<section id="stats">
+  <header>
+    <h2>Stats</h2>
+  </header>
+
+  <p>A <strong>stat</strong> is one key figure: a <code>label</code> that says what is counted, the <code>value</code>, and an optional <code>note</code>. Put several in a list with the class <code>stats</code> to place them next to each other; they share the width equally and wrap on a small screen. A <a href="#colors">color</a> class colors the left edge.</p>
+
+  <div class="section-example">
+    <ul class="stats">
+      <li class="stat blue">
+        <span class="label">Orders</span>
+        <span class="value">6,790</span>
+        <span class="note">11% more than last year</span>
+      </li>
+      <li class="stat green">
+        <span class="label">Delivered</span>
+        <span class="value">5,912</span>
+        <span class="note">87% of all orders</span>
+      </li>
+      <li class="stat yellow">
+        <span class="label">On order</span>
+        <span class="value">804</span>
+        <span class="note">Oldest: 14 March</span>
+      </li>
+      <li class="stat">
+        <span class="label">Cancelled</span>
+        <span class="value">74</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ul class="stats"&gt;
+  &lt;li class="stat blue"&gt;
+    &lt;span class="label"&gt;Orders&lt;/span&gt;
+    &lt;span class="value"&gt;6,790&lt;/span&gt;
+    &lt;span class="note"&gt;11% more than last year&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li class="stat green"&gt;...&lt;/li&gt;
+  &lt;li class="stat"&gt;...&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+</section>
+
+<section id="bars">
+  <header>
+    <h2>Bars</h2>
+  </header>
+
+  <p>A list with the classes <code>chart bars</code> shows one row per item: a <code>label</code>, a <code>bar</code> and the <code>value</code>. The length of a bar comes from the custom property <code>--nausikaa-chart-value</code>, a percentage you set in the <code>style</code> attribute. Give the longest bar 100% and the others their share of it.</p>
+
+  <div class="section-example">
+    <ul class="chart bars">
+      <% countries.forEach(function (c) { %>
+      <li>
+        <span class="label"><%= c.name %></span>
+        <span class="bar" style="--nausikaa-chart-value: <%= c.value %>%"></span>
+        <span class="value"><%= c.count.toLocaleString("en") %></span>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ul class="chart bars"&gt;
+  &lt;li&gt;
+    &lt;span class="label"&gt;Netherlands&lt;/span&gt;
+    &lt;span class="bar" style="--nausikaa-chart-value: 100%"&gt;&lt;/span&gt;
+    &lt;span class="value"&gt;1,204&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;span class="label"&gt;Germany&lt;/span&gt;
+    &lt;span class="bar" style="--nausikaa-chart-value: 82%"&gt;&lt;/span&gt;
+    &lt;span class="value"&gt;987&lt;/span&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ul&gt;</code></pre>
+  </div>
+
+  <p>Add <code>thin</code> for slimmer bars. A <a href="#colors">color</a> class on the list colors all bars, a color class on one item or bar colors only that one. The columns for the labels and the values have a fixed width, so the bars line up; change them with <code>--nausikaa-chart-label-width</code> and <code>--nausikaa-chart-value-width</code>.</p>
+
+  <div class="section-example">
+    <ul class="chart bars thin green" style="--nausikaa-chart-label-width: 7em; --nausikaa-chart-value-width: 4ch">
+      <li>
+        <span class="label">Delivered</span>
+        <span class="bar" style="--nausikaa-chart-value: 87%"></span>
+        <span class="value">87%</span>
+      </li>
+      <li class="yellow">
+        <span class="label">On order</span>
+        <span class="bar" style="--nausikaa-chart-value: 12%"></span>
+        <span class="value">12%</span>
+      </li>
+      <li class="red">
+        <span class="label">Cancelled</span>
+        <span class="bar" style="--nausikaa-chart-value: 1%"></span>
+        <span class="value">1%</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ul class="chart bars thin green" style="--nausikaa-chart-label-width: 7em"&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li class="yellow"&gt;...&lt;/li&gt;
+  &lt;li class="red"&gt;...&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Accessibility:</strong> always show the number next to the bar. A bar has no meaning for a screen reader, and color alone should never carry the message.</p>
+</section>
+
+<section id="columns">
+  <header>
+    <h2>Columns</h2>
+  </header>
+
+  <p>With <code>chart columns</code> the bars stand up, next to each other. This suits a series over time. Put the <code>bar</code> first, then the <code>value</code> and the <code>label</code>; here <code>--nausikaa-chart-value</code> sets the height of the bar. The chart is as high as <code>--nausikaa-chart-height</code>, which is <code>12em</code> unless you change it.</p>
+
+  <div class="section-example">
+    <ul class="chart columns">
+      <% years.forEach(function (y) { %>
+      <li>
+        <span class="bar" style="--nausikaa-chart-value: <%= y.value %>%" title="<%= y.year %>: <%= y.count.toLocaleString("en") %>"></span>
+        <span class="value"><%= y.count.toLocaleString("en") %></span>
+        <span class="label"><%= y.year %></span>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ul class="chart columns"&gt;
+  &lt;li&gt;
+    &lt;span class="bar" style="--nausikaa-chart-value: 62%"&gt;&lt;/span&gt;
+    &lt;span class="value"&gt;4,210&lt;/span&gt;
+    &lt;span class="label"&gt;2019&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;span class="bar" style="--nausikaa-chart-value: 47%"&gt;&lt;/span&gt;
+    &lt;span class="value"&gt;3,180&lt;/span&gt;
+    &lt;span class="label"&gt;2020&lt;/span&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ul&gt;</code></pre>
+  </div>
+
+  <h3>Groups</h3>
+
+  <p>Several bars in one item form a group, to compare two or more series. Give each series its own <a href="#colors">color</a> and explain the colors with a <a href="#legend">legend</a>. The values no longer fit below the bars, so put them in the <code>title</code> attribute and offer the numbers in a table as well.</p>
+
+  <div class="section-example">
+    <ul class="chart columns" style="--nausikaa-chart-height: 9em">
+      <% months.forEach(function (m) { %>
+      <li>
+        <span class="bar gray" style="--nausikaa-chart-value: <%= m.last %>%" title="<%= m.month %> last year"></span>
+        <span class="bar blue" style="--nausikaa-chart-value: <%= m.now %>%" title="<%= m.month %> this year"></span>
+        <span class="label"><%= m.month %></span>
+      </li>
+      <% }); %>
+    </ul>
+    <ul class="chart legend right">
+      <li class="gray">Last year</li>
+      <li class="blue">This year</li>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ul class="chart columns" style="--nausikaa-chart-height: 9em"&gt;
+  &lt;li&gt;
+    &lt;span class="bar gray" style="--nausikaa-chart-value: 48%" title="Last year: 480"&gt;&lt;/span&gt;
+    &lt;span class="bar blue" style="--nausikaa-chart-value: 55%" title="This year: 550"&gt;&lt;/span&gt;
+    &lt;span class="label"&gt;Jan&lt;/span&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ul&gt;
+
+&lt;ul class="chart legend right"&gt;
+  &lt;li class="gray"&gt;Last year&lt;/li&gt;
+  &lt;li class="blue"&gt;This year&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+</section>
+
+<section id="ranked">
+  <header>
+    <h2>Ranked</h2>
+  </header>
+
+  <p>An ordered list with <code>chart ranked</code> is a top list: the position is numbered for you, the <code>label</code> can be a link, and the <code>value</code> lines up on the right. A long label is cut off rather than wrapped.</p>
+
+  <div class="section-example">
+    <ol class="chart ranked">
+      <li>
+        <a href="#ranked" class="label">Alcinous University Library</a>
+        <span class="value">&euro; 48,210</span>
+      </li>
+      <li>
+        <a href="#ranked" class="label">Bibliothek der Phäaken</a>
+        <span class="value">&euro; 41,675</span>
+      </li>
+      <li>
+        <a href="#ranked" class="label">Bibliothèque Nausicaa</a>
+        <span class="value">&euro; 39,020</span>
+      </li>
+      <li>
+        <a href="#ranked" class="label">Aeolus School of Navigation</a>
+        <span class="value">&euro; 27,340</span>
+      </li>
+      <li>
+        <a href="#ranked" class="label">Scylla &amp; Charybdis Reading Room</a>
+        <span class="value">&euro; 19,885</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ol class="chart ranked"&gt;
+  &lt;li&gt;
+    &lt;a href="..." class="label"&gt;Alcinous University Library&lt;/a&gt;
+    &lt;span class="value"&gt;&amp;euro; 48,210&lt;/span&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ol&gt;</code></pre>
+  </div>
+</section>
+
+<section id="donut">
+  <header>
+    <h2>Donut</h2>
+  </header>
+
+  <p>A <strong>donut</strong> shows the parts of a whole. It is an inline SVG with the classes <code>chart donut</code> and one <code>&lt;circle&gt;</code> per part. Every circle has a radius of <code>15.915</code>, which makes its circumference exactly 100. That turns the two SVG attributes into simple sums:</p>
+
+  <ul>
+    <li><code>stroke-dasharray</code> is the share of the part and the rest: <code>"54 46"</code> for 54%.</li>
+    <li><code>stroke-dashoffset</code> is where the part starts: <code>25</code> minus the sum of the parts before it, plus <code>100</code> when that is below zero. The first part starts at the top with <code>25</code>; a part that comes after 54% starts at <code>71</code>.</li>
+  </ul>
+
+  <p>A circle with the class <code>track</code> draws the full ring behind the parts. Text in the middle is optional: a <code>&lt;text&gt;</code> for the figure, and one with the class <code>label</code> for what it means.</p>
+
+  <div class="section-example">
+    <div style="display: flex; flex-wrap: wrap; align-items: center;">
+      <svg class="chart donut" viewBox="0 0 42 42" role="img" aria-label="Orders by status: 54% delivered, 31% on order, 15% cancelled" style="margin-right: 2em">
+        <circle class="track" cx="21" cy="21" r="15.915" />
+        <circle class="green" cx="21" cy="21" r="15.915" stroke-dasharray="54 46" stroke-dashoffset="25" />
+        <circle class="yellow" cx="21" cy="21" r="15.915" stroke-dasharray="31 69" stroke-dashoffset="71" />
+        <circle class="red" cx="21" cy="21" r="15.915" stroke-dasharray="15 85" stroke-dashoffset="40" />
+        <text x="21" y="20">6,790</text>
+        <text x="21" y="25.5" class="label">orders</text>
+      </svg>
+
+      <ul class="chart legend" style="flex-direction: column">
+        <li class="green">Delivered, 54%</li>
+        <li class="yellow">On order, 31%</li>
+        <li class="red">Cancelled, 15%</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;svg class="chart donut" viewBox="0 0 42 42" role="img"
+     aria-label="Orders by status: 54% delivered, 31% on order, 15% cancelled"&gt;
+  &lt;circle class="track" cx="21" cy="21" r="15.915" /&gt;
+  &lt;circle class="green" cx="21" cy="21" r="15.915" stroke-dasharray="54 46" stroke-dashoffset="25" /&gt;
+  &lt;circle class="yellow" cx="21" cy="21" r="15.915" stroke-dasharray="31 69" stroke-dashoffset="71" /&gt;
+  &lt;circle class="red" cx="21" cy="21" r="15.915" stroke-dasharray="15 85" stroke-dashoffset="40" /&gt;
+  &lt;text x="21" y="20"&gt;6,790&lt;/text&gt;
+  &lt;text x="21" y="25.5" class="label"&gt;orders&lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+  </div>
+
+  <p>The donut is <code>10em</code> wide. Add <code>small</code> or <code>large</code> for another size. One part on a track makes a simple gauge.</p>
+
+  <div class="section-example">
+    <svg class="chart donut small" viewBox="0 0 42 42" role="img" aria-label="87% delivered" style="display: inline-block">
+      <circle class="track" cx="21" cy="21" r="15.915" />
+      <circle class="green" cx="21" cy="21" r="15.915" stroke-dasharray="87 13" stroke-dashoffset="25" />
+      <text x="21" y="21">87%</text>
+    </svg>
+    <svg class="chart donut small" viewBox="0 0 42 42" role="img" aria-label="12% on order" style="display: inline-block">
+      <circle class="track" cx="21" cy="21" r="15.915" />
+      <circle class="yellow" cx="21" cy="21" r="15.915" stroke-dasharray="12 88" stroke-dashoffset="25" />
+      <text x="21" y="21">12%</text>
+    </svg>
+  </div>
+
+  <p class="note"><strong>Accessibility:</strong> give the SVG <code>role="img"</code> and an <code>aria-label</code> that states the numbers, or list them in a legend next to it. Keep a donut to a handful of parts; small differences are easier to compare with <a href="#bars">bars</a>.</p>
+</section>
+
+<section id="lines">
+  <header>
+    <h2>Lines</h2>
+  </header>
+
+  <p>A <strong>line chart</strong> is an inline SVG with the classes <code>chart lines</code> and a <code>&lt;polyline&gt;</code> for each series. You choose the coordinate system with the <code>viewBox</code>; the example uses 0 to 100 in both directions, with one point for every month. Mind that in SVG the vertical axis runs downward: a value of 80 on a scale of 100 is drawn at <code>y="20"</code>.</p>
+
+  <p>With <code>preserveAspectRatio="none"</code> the chart stretches to the width of its container and to the height of <code>--nausikaa-chart-height</code>, while the lines keep their thickness. A <code>&lt;line&gt;</code> draws a grid line and a <code>&lt;polygon&gt;</code> fills the area below a series.</p>
+
+  <div class="section-example">
+    <svg class="chart lines" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="Orders per month, this year compared to last year" style="--nausikaa-chart-height: 10em">
+      <line x1="0" y1="0" x2="100" y2="0" />
+      <line x1="0" y1="25" x2="100" y2="25" />
+      <line x1="0" y1="50" x2="100" y2="50" />
+      <line x1="0" y1="75" x2="100" y2="75" />
+      <line x1="0" y1="100" x2="100" y2="100" />
+      <polygon class="blue" points="0,100 0,45 9,39 18,34 27,21 36,12 45,0 55,8 64,15 73,10 82,22 91,18 100,5 100,100" />
+      <polyline class="gray" points="0,52 9,48 18,30 27,36 36,42 45,19 55,31 64,38 73,27 82,40 91,33 100,29" />
+      <polyline class="blue" points="0,45 9,39 18,34 27,21 36,12 45,0 55,8 64,15 73,10 82,22 91,18 100,5" />
+    </svg>
+    <ul class="chart legend right">
+      <li class="gray">Last year</li>
+      <li class="blue">This year</li>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;svg class="chart lines" viewBox="0 0 100 100" preserveAspectRatio="none" role="img"
+     aria-label="Orders per month, this year compared to last year"&gt;
+  &lt;line x1="0" y1="50" x2="100" y2="50" /&gt;
+  &lt;line x1="0" y1="100" x2="100" y2="100" /&gt;
+  &lt;polygon class="blue" points="0,100 0,45 9,39 18,34 ... 100,5 100,100" /&gt;
+  &lt;polyline class="gray" points="0,52 9,48 18,30 ... 100,29" /&gt;
+  &lt;polyline class="blue" points="0,45 9,39 18,34 ... 100,5" /&gt;
+&lt;/svg&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Accessibility:</strong> a line chart can't be read by a screen reader. Describe what it shows in the <code>aria-label</code> and offer the numbers in a <a href="/documentation/elements/tables">table</a> nearby.</p>
+</section>
+
+<section id="legend">
+  <header>
+    <h2>Legend</h2>
+  </header>
+
+  <p>A list with the classes <code>chart legend</code> explains the colors of a chart. Every item gets a dot in the <a href="#colors">color</a> of its class. Add <code>right</code> to align the legend to the right.</p>
+
+  <div class="section-example">
+    <ul class="chart legend">
+      <li class="green">Delivered</li>
+      <li class="yellow">On order</li>
+      <li class="red">Cancelled</li>
+      <li class="gray">Unknown</li>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ul class="chart legend"&gt;
+  &lt;li class="green"&gt;Delivered&lt;/li&gt;
+  &lt;li class="yellow"&gt;On order&lt;/li&gt;
+  &lt;li class="red"&gt;Cancelled&lt;/li&gt;
+  &lt;li class="gray"&gt;Unknown&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+</section>
+
+<section id="colors">
+  <header>
+    <h2>Colors</h2>
+  </header>
+
+  <p>Charts are blue. Every color of the <a href="/documentation/foundations/theming/#colors">palette</a>, and <code>gray</code>, is available as a class. Put it on the chart to color everything in it, or on a single item, bar, circle or line. For a color of your own, set <code>--nausikaa-chart-color</code>.</p>
+
+  <div class="section-example">
+    <ul class="chart columns" style="--nausikaa-chart-height: 6em">
+      <% ["rosewater", "flamingo", "pink", "mauve", "red", "maroon", "peach", "yellow", "green", "teal", "sky", "sapphire", "blue", "lavender", "gray"].forEach(function (color, i) { %>
+      <li class="<%= color %>">
+        <span class="bar" style="--nausikaa-chart-value: <%= 40 + ((i * 37) % 60) %>%" title="<%= color %>"></span>
+        <span class="label"><%= color %></span>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Custom property</th>
+        <th>Sets</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>--nausikaa-chart-value</code></td>
+        <td>The length of a bar or the height of a column, as a percentage.</td>
+      </tr>
+      <tr>
+        <td><code>--nausikaa-chart-color</code></td>
+        <td>The color of bars, columns, circles, lines, legend dots and the edge of a stat.</td>
+      </tr>
+      <tr>
+        <td><code>--nausikaa-chart-height</code></td>
+        <td>The height of columns and of a line chart. <code>12em</code> by default.</td>
+      </tr>
+      <tr>
+        <td><code>--nausikaa-chart-label-width</code></td>
+        <td>The width of the labels in a bar chart. <code>9em</code> by default.</td>
+      </tr>
+      <tr>
+        <td><code>--nausikaa-chart-value-width</code></td>
+        <td>The width of the values in a bar chart. <code>5ch</code> by default.</td>
+      </tr>
+      <tr>
+        <td><code>--nausikaa-chart-track</code></td>
+        <td>The background of a bar, the track of a donut and the grid lines of a line chart.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

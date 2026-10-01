@@ -3,18 +3,19 @@ import nav from "../../navigation.js";
 export const themes = ["light", "dark"];
 
 // Every page of the site, derived from the navigation.
-export const pages = ["/", "/about", "/download", "/documentation"];
+export const pages = ["/", "/download", "/search?q=color", "/documentation"];
 for (const lane of nav) {
   if (lane.slug === "documentation") {
     for (const group of lane.nav) {
       for (const page of group.nav) pages.push(`/documentation/${group.slug}/${page.slug}`);
     }
   } else if (lane.slug === "examples") {
+    pages.push("/examples");
     for (const page of lane.nav) pages.push(`/examples/${page.slug}`);
   }
 }
 
-export const pageName = (path) => (path === "/" ? "frontpage" : path.slice(1).replaceAll("/", "--"));
+export const pageName = (path) => (path === "/" ? "frontpage" : path.slice(1).replaceAll("/", "--").replace(/[?=]/g, "-"));
 
 // Calendars and date pickers show the current date, and the front page draws
 // a random skyline; freeze both so screenshots stay comparable between runs.

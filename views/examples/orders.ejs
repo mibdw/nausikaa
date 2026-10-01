@@ -1,0 +1,251 @@
+<%
+  // Example: an order overview. The search term, the filters, the sorting,
+  // the page and its length are all in the address, so they work with plain
+  // links and forms. data.ordersView() works out what to show.
+  var view = data.ordersView(query);
+  // The page links, above and below the list
+  var pagination = function (position) {
+    if (view.pages < 2) return '';
+    var item = function (page, label, icon, turn) {
+      return '<li><a href="' + view.url({ p: page }) + '" aria-label="' + label + '" title="' + label + '">' +
+        '<svg' + (turn ? ' style="transform: rotate(' + turn + 'deg)"' : '') + '><use xlink:href="/images/icons.svg#' + icon + '"></use></svg></a></li>';
+    };
+    return '<ul class="pagination ' + position + '" aria-label="Pages">' +
+      (view.page > 2 ? item(1, 'First page', 'first-page') : '') +
+      (view.page > 1 ? item(view.page - 1, 'Previous page', 'chevron-down', 90) : '') +
+      '<li><span>' + view.page + ' of ' + view.pages + '</span></li>' +
+      (view.page < view.pages ? item(view.page + 1, 'Next page', 'chevron-down', -90) : '') +
+      '</ul>';
+  };
+%>
+<main id="orders">
+
+  <% if (view.total) { %>
+
+  <div class="orders-controls top">
+    <div>
+      <div class="orders-totals">
+        Found <strong><%= view.total.toLocaleString('en') %></strong> orders
+        <span>in <em><%= view.milliseconds() %></em>ms</span>
+      </div>
+
+      <% if (view.q || view.active.length) { %>
+      <div class="order-searched-for">
+        <% if (view.q) { %>
+        <span class="tag pink">
+          Searched for: "<%= view.q %>"
+          <a href="<%= view.url({ q: '' }) %>" aria-label="Remove the search term" title="Remove the search term"><svg class="icon"><use xlink:href="/images/icons.svg#clear"></use></svg></a>
+        </span>
+        <% } %>
+        <% view.active.forEach(function (filter) { %>
+        <span class="tag salmon">
+          <%= filter.group %>: <strong><%= filter.name %></strong>
+          <a href="<%= filter.url %>" aria-label="Remove this filter" title="Remove this filter"><svg class="icon"><use xlink:href="/images/icons.svg#clear"></use></svg></a>
+        </span>
+        <% }); %>
+      </div>
+      <% } %>
+    </div>
+
+    <div class="spacer"></div>
+
+    <%- pagination('top') %>
+
+    <div class="display-settings dropdown">
+      <a class="knob transparent" tabindex="0" role="button" aria-haspopup="true" aria-label="Display settings" title="Display settings">
+        <svg class="icon"><use xlink:href="/images/icons.svg#settings"></use></svg>
+      </a>
+
+      <nav class="panel arrow top right" aria-label="Display settings">
+        <ul>
+          <li>
+            <%# Changing the page length keeps the search term, the filters and the sorting %>
+            <form action="/examples/orders" method="GET">
+              <label for="page-length"><strong>Page length</strong></label>
+              <input type="number" id="page-length" name="size" value="<%= view.size %>" min="1" max="200" step="1">
+              <% if (view.q) { %><input type="hidden" name="q" value="<%= view.q %>"><% } %>
+              <% view.facets.forEach(function (facet) { view.filters[facet.key].forEach(function (value) { %>
+              <input type="hidden" name="<%= facet.key %>" value="<%= value %>">
+              <% }); }); %>
+              <% if (view.sort != 'entry-date') { %><input type="hidden" name="sort" value="<%= view.sort %>"><% } %>
+              <% if (view.dir != 'desc') { %><input type="hidden" name="dir" value="<%= view.dir %>"><% } %>
+            </form>
+          </li>
+          <li class="seperator"></li>
+          <li><strong>Sort by</strong></li>
+          <% view.sorts.forEach(function (sort) { %>
+          <li class="<%= sort.active ? 'active' : '' %>"><a href="<%= sort.url %>"><%= sort.name %></a></li>
+          <% }); %>
+          <li class="seperator"></li>
+          <li><strong>Sort direction</strong></li>
+          <li class="<%= view.dir == 'asc' ? 'active' : '' %>"><a href="<%= view.url({ dir: 'asc' }) %>">Ascending</a></li>
+          <li class="<%= view.dir == 'desc' ? 'active' : '' %>"><a href="<%= view.url({ dir: 'desc' }) %>">Descending</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <ul class="orders-overview">
+    <% view.rows.forEach(function (order) { %>
+    <%- include('order-summary', { order: order, data: data, links: {
+      product: view.url({ q: order.product.isbn }),
+      customer: view.url({ customer: [order.customer.name] }),
+      publisher: view.url({ publisher: [order.product.publisher.name] }),
+      supplier: view.url({ supplier: [order.supplier.name] })
+    } }); %>
+    <% }); %>
+  </ul>
+
+  <div class="orders-controls bottom">
+    <div class="spacer"></div>
+    <%- pagination('bottom') %>
+  </div>
+
+  <aside class="orders-sidebar">
+    <%# One form holds all filters. It is sent as soon as one changes; the
+        button is for visitors without JavaScript. %>
+    <form action="/examples/orders" method="GET" id="order-filters">
+      <% if (view.q) { %><input type="hidden" name="q" value="<%= view.q %>"><% } %>
+      <% if (view.sort != 'entry-date') { %><input type="hidden" name="sort" value="<%= view.sort %>"><% } %>
+      <% if (view.dir != 'desc') { %><input type="hidden" name="dir" value="<%= view.dir %>"><% } %>
+      <% if (view.size != 15) { %><input type="hidden" name="size" value="<%= view.size %>"><% } %>
+
+      <% var locations = view.facets[0]; if (locations.options.length > 1) { %>
+      <div class="panel blue">
+        <ul class="radios">
+          <% locations.options.forEach(function (option, i) { %>
+          <li>
+            <input type="radio" id="locations-<%= i %>" name="location" value="<%= option.key %>" <%= view.filters.location.includes(option.key) ? 'checked' : '' %>>
+            <label for="locations-<%= i %>">
+              <span><span class="tag <%= data.branches[option.key].color %>"><strong><%= option.key %></strong></span> <%= option.name %></span>
+              <span><%= option.count %></span>
+            </label>
+          </li>
+          <% }); %>
+          <% if (view.filters.location.length) { %>
+          <li class="seperator"></li>
+          <li><a href="<%= view.url({ location: [] }) %>">Clear location filter</a></li>
+          <% } %>
+        </ul>
+      </div>
+      <% } %>
+
+      <div class="panel expandable">
+        <% var groups = view.facets.slice(1).filter(function (facet) { return facet.options.length; }); %>
+        <% groups.forEach(function (facet, g) {
+          var checked = view.filters[facet.key];
+          // The checked options come first
+          var options = facet.options.filter(function (o) { return checked.includes(o.key); }).concat(facet.options.filter(function (o) { return !checked.includes(o.key); }));
+        %>
+        <input type="checkbox" id="<%= facet.key %>-expand" <%= options.slice(8).some(function (o) { return checked.includes(o.key); }) ? 'checked' : '' %>>
+        <details <%= g < 3 || checked.length ? 'open' : '' %>>
+          <summary>
+            <svg class="icon chevron"><use xlink:href="/images/icons.svg#chevron-down"></use></svg>
+            <strong><%= facet.name %></strong>
+            <small>(<%= options.length %>)</small>
+          </summary>
+          <% if (facet.searchable) { %>
+          <div class="group order-filter-search">
+            <svg class="icon"><use xlink:href="/images/icons.svg#search"></use></svg>
+            <input type="text" class="prepend-icon" placeholder="Filter <%= facet.name.toLowerCase() %>" aria-label="Filter <%= facet.name.toLowerCase() %>" data-filter-options>
+          </div>
+          <% } %>
+          <ul class="checkboxes">
+            <% options.forEach(function (option, i) { %>
+            <li>
+              <input type="checkbox" id="<%= facet.key %>-<%= i %>" name="<%= facet.key %>" value="<%= option.key %>" <%= checked.includes(option.key) ? 'checked' : '' %>>
+              <label for="<%= facet.key %>-<%= i %>">
+                <span>
+                  <% if (facet.key == 'position') { %><span class="tag badge <%= data.positions[option.key].color %>"></span> <strong><%= option.key %></strong>: <% } %><%= option.name %>
+                </span>
+                <span><%= option.count %></span>
+              </label>
+            </li>
+            <% if (i == 7 && options.length > 8) { %>
+            <li class="more"><label for="<%= facet.key %>-expand"><small>(<%= options.length - 8 %>)</small> More options</label></li>
+            <% } %>
+            <% }); %>
+            <% if (options.length > 8) { %>
+            <li class="less"><label for="<%= facet.key %>-expand">Less options</label></li>
+            <% } %>
+          </ul>
+        </details>
+        <% if (g < groups.length - 1) { %><div class="seperator"></div><% } %>
+        <% }); %>
+      </div>
+
+      <noscript><button type="submit" class="primary">Apply filters</button></noscript>
+    </form>
+
+    <% if (view.active.length) { %>
+    <a class="clear-filters" href="<%= view.clearUrl %>">Clear all filters</a>
+    <% } %>
+  </aside>
+
+  <% } else { %>
+
+  <div class="no-orders-found-wrapper">
+    <h4 class="no-orders-found">
+      No orders found
+      <% if (view.q) { %>for <span class="tag pink"><%= view.q %></span><% } %>
+      🚜
+    </h4>
+
+    <% if (view.active.length) { %>
+    Checked filters:
+    <% view.active.forEach(function (filter) { %>
+    <span class="tag salmon">
+      <%= filter.group %>: <strong><%= filter.name %></strong>
+      <a href="<%= filter.url %>" aria-label="Remove this filter" title="Remove this filter"><svg class="icon"><use xlink:href="/images/icons.svg#clear"></use></svg></a>
+    </span>
+    <% }); %>
+    <% } %>
+  </div>
+
+  <% } %>
+
+  <%# The veil over the page while the next orders are being fetched %>
+  <div class="order-fetching fetching <%= view.loading ? 'active' : '' %>">
+    <div class="spinner" role="status" aria-label="Loading the orders" <%= view.loading ? '' : 'hidden' %>>
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="20" />
+      </svg>
+    </div>
+  </div>
+
+</main>
+
+<script>
+(function () {
+  // Apply a filter as soon as it is checked
+  var form = document.getElementById("order-filters");
+  if (form) {
+    form.addEventListener("change", function (event) {
+      if (event.target.name) form.submit();
+    });
+  }
+
+  // The page length applies when its field loses the focus
+  var length = document.getElementById("page-length");
+  if (length) {
+    length.addEventListener("change", function () { length.form.submit(); });
+  }
+
+  // The small search field in a long filter hides the options that don't match
+  document.querySelectorAll("[data-filter-options]").forEach(function (input) {
+    input.addEventListener("input", function () {
+      var term = input.value.toLowerCase();
+      // While searching, every option that matches shows, also the ones
+      // behind "More options"
+      input.closest("details").querySelectorAll("li").forEach(function (option) {
+        var extra = option.classList.contains("more") || option.classList.contains("less");
+        var matches = !extra && option.textContent.toLowerCase().indexOf(term) !== -1;
+        option.style.display = !term ? "" : matches ? "block" : "none";
+      });
+    });
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") event.preventDefault();
+    });
+  });
+})();
+</script>

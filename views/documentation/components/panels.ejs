@@ -44,6 +44,8 @@
   
   </div>
 
+  <p>A <strong>separator</strong> is an empty element with the class <code>seperator</code>: a list item inside a list, or a <code>&lt;div&gt;</code> between other parts of the panel. It draws a line from edge to edge, in every panel, including the panel of a <a href="/documentation/components/dropdowns">dropdown</a>. The class has been spelled this way from the start; the regular spelling <code>separator</code> works as well.</p>
+
 
 </section>
 <section id="subnav">
@@ -1502,6 +1504,175 @@
 &lt;/nav&gt;</code></pre>
   
   </div>
+</section>
+
+<section id="expandable">
+  <header>
+    <h2>Expandable</h2>
+  </header>
+
+  <p>A filter can have more options than you want to show at once. In an <strong>expandable panel</strong> the list stops at an item with the class <code>more</code>; everything after it stays hidden until that item is chosen. The last item, with the class <code>less</code>, hides them again. A checkbox at the start of the panel remembers the state, so this works without JavaScript: the labels in <code>more</code> and <code>less</code> point to that checkbox.</p>
+
+  <p>The options in the example also show a count. Put the name and the number in a <code>&lt;span&gt;</code> each; the number then lines up on the right.</p>
+
+  <div class="section-example">
+    <div class="panel expandable" style="max-width: 20em;">
+      <input type="checkbox" id="expand-languages">
+      <div class="header">Language</div>
+      <ul class="checkboxes">
+        <li>
+          <input id="expand-language-0" type="checkbox">
+          <label for="expand-language-0"><span>English</span> <span>1,204</span></label>
+        </li>
+        <li>
+          <input id="expand-language-1" type="checkbox">
+          <label for="expand-language-1"><span>German</span> <span>987</span></label>
+        </li>
+        <li>
+          <input id="expand-language-2" type="checkbox">
+          <label for="expand-language-2"><span>French</span> <span>655</span></label>
+        </li>
+        <li class="more">
+          <label for="expand-languages">All 8 options</label>
+        </li>
+        <li>
+          <input id="expand-language-3" type="checkbox">
+          <label for="expand-language-3"><span>Italian</span> <span>402</span></label>
+        </li>
+        <li>
+          <input id="expand-language-4" type="checkbox">
+          <label for="expand-language-4"><span>Dutch</span> <span>318</span></label>
+        </li>
+        <li>
+          <input id="expand-language-5" type="checkbox">
+          <label for="expand-language-5"><span>Spanish</span> <span>96</span></label>
+        </li>
+        <li>
+          <input id="expand-language-6" type="checkbox">
+          <label for="expand-language-6"><span>Latin</span> <span>41</span></label>
+        </li>
+        <li>
+          <input id="expand-language-7" type="checkbox">
+          <label for="expand-language-7"><span>Greek</span> <span>12</span></label>
+        </li>
+        <li class="less">
+          <label for="expand-languages">Fewer options</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="panel expandable"&gt;
+  &lt;input type="checkbox" id="all-languages"&gt;
+  &lt;div class="header"&gt;Language&lt;/div&gt;
+  &lt;ul class="checkboxes"&gt;
+    &lt;li&gt;
+      &lt;input id="english" type="checkbox"&gt;
+      &lt;label for="english"&gt;&lt;span&gt;English&lt;/span&gt; &lt;span&gt;1,204&lt;/span&gt;&lt;/label&gt;
+    &lt;/li&gt;
+    ...
+    &lt;li class="more"&gt;
+      &lt;label for="all-languages"&gt;All 8 options&lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;input id="dutch" type="checkbox"&gt;
+      &lt;label for="dutch"&gt;&lt;span&gt;Dutch&lt;/span&gt; &lt;span&gt;318&lt;/span&gt;&lt;/label&gt;
+    &lt;/li&gt;
+    ...
+    &lt;li class="less"&gt;
+      &lt;label for="all-languages"&gt;Fewer options&lt;/label&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>Groups that open and close</h3>
+
+  <p>A panel with several filters gets long. Wrap each filter in a <code>&lt;details&gt;</code> element, with its name in the <code>&lt;summary&gt;</code>, to let people open only the groups they need. Add the <code>open</code> attribute to a group that should start opened. An icon with the class <code>chevron</code> in the summary turns when the group opens. A <a href="#regular">separator</a> between the groups keeps them apart.</p>
+
+  <div class="section-example">
+    <div class="panel" style="max-width: 20em;">
+      <details open>
+        <summary>
+          <svg class="icon chevron">
+            <use xlink:href="/images/icons.svg#chevron-down"></use>
+          </svg>
+          <strong>Status</strong> <small>(3)</small>
+        </summary>
+        <ul class="checkboxes">
+        <li>
+          <input id="details-status-0" type="checkbox">
+          <label for="details-status-0"><span>Delivered</span> <span>5,912</span></label>
+        </li>
+        <li>
+          <input id="details-status-1" type="checkbox">
+          <label for="details-status-1"><span>On order</span> <span>804</span></label>
+        </li>
+        <li>
+          <input id="details-status-2" type="checkbox">
+          <label for="details-status-2"><span>Cancelled</span> <span>74</span></label>
+        </li>
+        </ul>
+      </details>
+      <div class="seperator"></div>
+      <details>
+        <summary>
+          <svg class="icon chevron">
+            <use xlink:href="/images/icons.svg#chevron-down"></use>
+          </svg>
+          <strong>Binding</strong> <small>(3)</small>
+        </summary>
+        <ul class="checkboxes">
+        <li>
+          <input id="details-binding-0" type="checkbox">
+          <label for="details-binding-0"><span>Hardcover</span> <span>2,310</span></label>
+        </li>
+        <li>
+          <input id="details-binding-1" type="checkbox">
+          <label for="details-binding-1"><span>Paperback</span> <span>1,845</span></label>
+        </li>
+        <li>
+          <input id="details-binding-2" type="checkbox">
+          <label for="details-binding-2"><span>E-book</span> <span>377</span></label>
+        </li>
+        </ul>
+      </details>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="panel"&gt;
+  &lt;details open&gt;
+    &lt;summary&gt;
+      &lt;svg class="icon chevron"&gt;&lt;use xlink:href="/images/icons.svg#chevron-down"&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;strong&gt;Status&lt;/strong&gt; &lt;small&gt;(3)&lt;/small&gt;
+    &lt;/summary&gt;
+    &lt;ul class="checkboxes"&gt;...&lt;/ul&gt;
+  &lt;/details&gt;
+
+  &lt;div class="seperator"&gt;&lt;/div&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;...&lt;/summary&gt;
+    &lt;ul class="checkboxes"&gt;...&lt;/ul&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p>When a script keeps track of which groups are open, as in a React application, use the classes instead: an element with the class <code>toggler</code>, followed by one with the class <code>toggler-content</code>. The content shows when the toggler has the class <code>active</code>.</p>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="panel"&gt;
+  &lt;div class="toggler active" tabindex="0" role="button" aria-expanded="true"&gt;
+    &lt;svg class="icon chevron"&gt;&lt;use xlink:href="/images/icons.svg#chevron-down"&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;strong&gt;Status&lt;/strong&gt;
+  &lt;/div&gt;
+  &lt;ul class="checkboxes toggler-content"&gt;...&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Accessibility:</strong> <code>&lt;details&gt;</code> can be opened with the keyboard and tells a screen reader whether it is open, with nothing to add. For a <code>toggler</code> you do that yourself: make it focusable, give it <code>role="button"</code> and keep <code>aria-expanded</code> up to date.</p>
 </section>
 
 <section id="forms">

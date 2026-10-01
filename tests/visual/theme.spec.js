@@ -8,7 +8,7 @@ const background = (page) =>
   page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--nausikaa-base").trim());
 
 const choose = async (page, title) => {
-  await page.locator(".theme-switcher > button").focus();
+  await page.locator(".theme-switcher > .knob").focus();
   await page.locator(".theme-switcher .panel button", { hasText: title }).click();
   await page.waitForLoadState("networkidle");
 };
@@ -44,7 +44,7 @@ test("the theme menu opens with the keyboard", async ({ page }) => {
   await page.goto("/documentation");
   const panel = page.locator(".theme-switcher .panel");
   await expect(panel).toHaveCSS("opacity", "0");
-  await page.locator(".theme-switcher > button").focus();
+  await page.locator(".theme-switcher > .knob").focus();
   await expect(panel).toHaveCSS("opacity", "1");
   await page.keyboard.press("Tab");
   await expect(page.locator(".theme-switcher .panel button").first()).toBeFocused();

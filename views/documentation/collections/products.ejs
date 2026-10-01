@@ -500,6 +500,191 @@
 </section>
 
 
+<section id="small">
+  <header>
+    <h2>Small</h2>
+  </header>
+
+  <p>Add <code>small</code> to a product list for <strong>compact rows</strong>: a thumbnail, the title with a few lines of details, and a narrow column for the price or a status. The HTML is the same as that of the regular <a href="#list">list</a>, so you can switch between the two by changing one class. Use it for long result lists, where seeing many products at once matters more than large covers.</p>
+
+  <div class="section-example">
+    <ul class="products list small">
+      <li class="product">
+        <div class="product-image">
+          <a href="">
+            <img src="/images/sandrart.jpg" alt="">
+          </a>
+        </div>
+
+        <div class="product-metadata">
+          <a href="" title="Painting the Odyssey: Scenes from Homer, 1600–1900" class="product-title">Painting the Odyssey: Scenes from Homer, 1600–1900</a>
+          <p>
+            <a href="">Guillaume Bounoure</a>, <a href="">Chloe Genevaux</a><br>
+            Gingko Press, 2019. 176 pages, hardcover<br>
+            9783943330328
+          </p>
+        </div>
+
+        <div class="product-controls">
+          <h5><span class="price">&euro; 112.50</span></h5>
+          <span class="tag green">Available</span>
+        </div>
+      </li>
+
+      <li class="product">
+        <div class="product-image">
+          <div class="no-images">No image</div>
+        </div>
+
+        <div class="product-metadata">
+          <a href="" title="Washing Day at the River: Everyday Life in the Odyssey" class="product-title">Washing Day at the River: Everyday Life in the Odyssey</a>
+          <p>
+            <a href="">Helen Thomas</a><br>
+            Lexington Books, 2019. 420 pages, paperback<br>
+            9781498578011
+          </p>
+        </div>
+
+        <div class="product-controls">
+          <h5><span class="price">&euro; 48.75</span></h5>
+          <span class="tag yellow">On order</span>
+        </div>
+      </li>
+
+      <li class="product">
+        <div class="product-image">
+          <a href="">
+            <img src="/images/lastman.jpg" alt="">
+          </a>
+        </div>
+
+        <div class="product-metadata">
+          <a href="" title="Odysseus and Nausicaä: Pieter Lastman and the Dutch History Painters" class="product-title">Odysseus and Nausicaä: Pieter Lastman and the Dutch History Painters</a>
+          <p>
+            <a href="">Katrien Vandermarliere</a><br>
+            Waanders, 2021. 208 pages, hardcover<br>
+            9789462623453
+          </p>
+        </div>
+
+        <div class="product-controls">
+          <h5><span class="price">&euro; 39.95</span></h5>
+          <span class="tag red">Out of print</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ul class="products list small"&gt;
+  &lt;li class="product"&gt;
+    &lt;div class="product-image"&gt;
+      &lt;a href="..."&gt;&lt;img src="..." alt="..."&gt;&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="product-metadata"&gt;
+      &lt;a href="..." title="..." class="product-title"&gt;...&lt;/a&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="product-controls"&gt;
+      &lt;h5&gt;&lt;span class="price"&gt;&amp;euro; 112.50&lt;/span&gt;&lt;/h5&gt;
+      &lt;span class="tag green"&gt;Available&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ul&gt;</code></pre>
+  </div>
+
+  <p>The class also works on a single product, outside a list: <code>&lt;div class="product small"&gt;</code>. That is useful to show the product an order, an invoice line or a message is about.</p>
+</section>
+
+<section id="mini">
+  <header>
+    <h2>Mini</h2>
+  </header>
+
+  <p>With <code>mini</code> a product takes <strong>two lines</strong>: the title on the first, everything else on the second. Both are cut off when they are too long, so every row has the same height. Put the full title in the <code>title</code> attribute of the link, so it can still be read.</p>
+
+  <div class="section-example">
+    <ul class="products list mini">
+      <li class="product">
+        <div class="product-image">
+          <a href="">
+            <img src="/images/sandrart.jpg" alt="">
+          </a>
+        </div>
+
+        <div class="product-metadata">
+          <a href="" title="Painting the Odyssey: Scenes from Homer, 1600–1900" class="product-title">Painting the Odyssey: Scenes from Homer, 1600–1900</a>
+          <p>Guillaume Bounoure, Chloe Genevaux. Gingko Press, 2019. 9783943330328</p>
+        </div>
+
+        <div class="product-controls">
+          <span class="price">&euro; 112.50</span>
+        </div>
+      </li>
+
+      <li class="product">
+        <div class="product-image">
+          <div class="no-images">No image</div>
+        </div>
+
+        <div class="product-metadata">
+          <a href="" title="Washing Day at the River: Everyday Life in the Odyssey" class="product-title">Washing Day at the River: Everyday Life in the Odyssey</a>
+          <p>Helen Thomas. Lexington Books, 2019. 9781498578011</p>
+        </div>
+
+        <div class="product-controls">
+          <span class="price">&euro; 48.75</span>
+        </div>
+      </li>
+
+      <li class="product">
+        <div class="product-image">
+          <a href="">
+            <img src="/images/lastman.jpg" alt="">
+          </a>
+        </div>
+
+        <div class="product-metadata">
+          <a href="" title="Odysseus and Nausicaä: Pieter Lastman and the Dutch History Painters" class="product-title">Odysseus and Nausicaä: Pieter Lastman and the Dutch History Painters</a>
+          <p>Katrien Vandermarliere. Waanders, 2021. 9789462623453</p>
+        </div>
+
+        <div class="product-controls">
+          <span class="price">&euro; 39.95</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;ul class="products list mini"&gt;
+  &lt;li class="product"&gt;
+    &lt;div class="product-image"&gt;
+      &lt;a href="..."&gt;&lt;img src="..." alt="..."&gt;&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="product-metadata"&gt;
+      &lt;a href="..." title="..." class="product-title"&gt;...&lt;/a&gt;
+      &lt;p&gt;Author. Publisher, year. ISBN&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="product-controls"&gt;
+      &lt;span class="price"&gt;&amp;euro; 112.50&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ul&gt;
+
+&lt;!-- A single product, outside a list --&gt;
+&lt;div class="product mini"&gt;...&lt;/div&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Which one to use:</strong> the regular <a href="#list">list</a> when people are choosing what to buy, <code>small</code> when they are looking for one product among many, and <code>mini</code> when the product is a detail of something else.</p>
+</section>
+
 <section id="detail">
   <header>
     <h2>Detail</h2>
@@ -649,4 +834,46 @@
   
   </div>
   
+</section>
+
+<section id="no-image">
+  <header>
+    <h2>No image</h2>
+  </header>
+
+  <p>Not every product has a picture. Put an element with the class <code>no-images</code> in the <code>product-image</code> instead of the link and image. The placeholder has the shape of a book cover, so a list with and without images keeps its rhythm. In a product image with a fixed ratio (<code>image-cover</code> or <code>image-contain</code>) the placeholder takes that ratio.</p>
+
+  <div class="section-example">
+    <div class="products cards medium ratio-3by4">
+      <div class="product card">
+        <div class="product-image image-cover">
+          <div class="no-images">No image available</div>
+        </div>
+
+        <div class="product-metadata">
+          <a href="" title="Washing Day at the River: Everyday Life in the Odyssey" class="product-title">Washing Day at the River: Everyday Life in the Odyssey</a>
+        </div>
+      </div>
+
+      <div class="product card">
+        <div class="product-image image-cover">
+          <a href="">
+            <img src="/images/lastman.jpg" alt="">
+          </a>
+        </div>
+
+        <div class="product-metadata">
+          <a href="" title="Odysseus and Nausicaä: Pieter Lastman and the Dutch History Painters" class="product-title">Odysseus and Nausicaä: Pieter Lastman and the Dutch History Painters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;div class="product-image"&gt;
+  &lt;div class="no-images"&gt;No image available&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p class="note"><strong>Keep the text:</strong> the words in the placeholder tell a screen reader, and anyone who wonders, that the image is missing rather than still loading. In a <a href="#mini">mini</a> product the placeholder is too small for words; there the text is hidden from view but still read aloud.</p>
 </section>

@@ -20,7 +20,7 @@
       width: 1.3em;
       height: 1.3em;
       transform: translateY(0.25em);
-      fill: var(--nausikaa-base);
+      fill: var(--nausikaa-white);
     }
   }
 
@@ -42,7 +42,8 @@
 
 .user-avatar > .no-avatar,
 .group-avatar > .no-avatar {
-  color: var(--nausikaa-base);
+  /* White in both themes: the page background is too dark on this blue */
+  color: var(--nausikaa-white);
   background-color: var(--nausikaa-blue3);
   outline: 2px solid #0a4ed6;
 

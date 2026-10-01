@@ -1,0 +1,344 @@
+<%
+  // Example: the detail page of a sales invoice. The tab is in the address
+  // (?tab=orders), so every tab is a link and the page needs no JavaScript.
+  var invoice = data.invoice, customer = invoice.customer;
+  var tabs = [
+    { key: '', title: 'Sales invoice' },
+    { key: 'customer', title: 'Customer' },
+    { key: 'orders', title: 'Orders', count: invoice.lines.length, color: 'blue' },
+    { key: 'pdf', title: 'PDF' },
+    { key: 'notes', title: 'Notes', count: invoice.notes.length, color: 'black' },
+    { key: 'raw-data', title: 'Raw data' }
+  ];
+  var tab = tabs.find(function (t) { return t.key == query.tab; }) || tabs[0];
+  var iso = function (date) { return date.toISOString().slice(0, 10); };
+  var slashed = function (value) { return data.formatDate(value).replace(/-/g, '/'); };
+  var money = function (amount) { return amount.toFixed(2); };
+  var lat = customer.location[0], lon = customer.location[1];
+
+  // An identifier: the location it belongs to, an icon and the number
+  var identifier = function (id, branch, icon) {
+    var location = data.branches[branch];
+    return '<span class="tag ' + location.color + '" title="' + location.name + '"><strong>' + branch + '</strong></span> ' +
+      '<span class="tag">' + (icon ? '<svg class="icon"><use xlink:href="/images/icons.svg#' + icon + '"></use></svg>' : '') + id + '</span>';
+  };
+
+  // The facts of the invoice; they are shown at the top and at the bottom
+  var facts = function () {
+    return '<dl class="sales-invoice-definition-list">' +
+      '<dt>Invoice no.</dt><dd>' + invoice.id + '/' + customer.id + '</dd>' +
+      '<dt>Invoice date</dt><dd><time datetime="' + iso(invoice.date) + '">' + data.formatDate(invoice.date) + '</time></dd>' +
+      '<dt>Payment due</dt><dd><time datetime="' + iso(invoice.due) + '">' + data.formatDate(invoice.due) + '</time></dd>' +
+      '<dt>Docket</dt><dd>' + invoice.docket + '</dd>' +
+      '<dt>Invoiced by</dt><dd>' + invoice.invoicedBy.name + ' <span class="tag">' + invoice.invoicedBy.initials + '</span></dd>' +
+      '</dl>';
+  };
+%>
+<main id="sales">
+
+  <a class="back-to" href="/examples">&#x27F5; Back to previous page</a>
+
+  <article class="sales-invoice-detail">
+    <div class="sales-invoice-header">
+      <div class="sales-invoice-id"><%- identifier(invoice.id, invoice.branch, 'receipt') %></div>
+      <div class="sales-invoice-type"><span class="tag alt"><%= invoice.type %></span></div>
+
+      <div class="spacer"></div>
+
+      <div class="sales-invoice-counts">
+        <span class="sales-invoice-line-count"><%= invoice.lines.length %> lines</span>
+        <span> / </span>
+        <span class="sales-invoice-item-count"><%= invoice.items %> items</span>
+      </div>
+
+      <div class="sales-invoice-total-price">
+        <%= invoice.currency %> <strong class="positive"><%= money(invoice.total) %></strong>
+      </div>
+    </div>
+
+    <div class="customer-detail-header">
+      <div class="customer-id"><%- identifier(customer.id, customer.branch, 'user') %></div>
+      <h3><span class="customer-name"><%= customer.name %></span></h3>
+      <div class="customer-additional-names"><%= customer.department %></div>
+    </div>
+
+    <dl class="sales-invoice-important-metadata">
+      <% if (customer.contact) { %>
+      <dt>C/O</dt>
+      <dd><a class="internal-link" href="/examples/invoice?tab=customer"><%= customer.contact %></a></dd>
+      <% } %>
+
+      <dt>Address</dt>
+      <dd>
+        <address class="customer-address customer-main-address">
+          <a class="internal-link" href="/examples/invoice?tab=customer"><%= customer.street %></a>, <%= customer.zip %>
+          <a class="internal-link" href="/examples/invoice?tab=customer"><%= customer.city %></a>,
+          <a class="internal-link" href="/examples/invoice?tab=customer"><%= customer.country %></a>
+        </address>
+      </dd>
+
+      <dt>Invoice date</dt>
+      <dd><time datetime="<%= iso(invoice.date) %>"><%= data.formatDate(invoice.date) %></time></dd>
+
+      <dt>Payment due</dt>
+      <dd><time datetime="<%= iso(invoice.due) %>"><%= data.formatDate(invoice.due) %></time></dd>
+
+      <dt>Docket</dt>
+      <dd><%= invoice.docket %></dd>
+
+      <dt>Invoiced by</dt>
+      <dd><%= invoice.invoicedBy.name %> <span class="tag"><%= invoice.invoicedBy.initials %></span></dd>
+
+      <div class="sales-invoice-sync-status">
+        <span class="sales-invoice-last-synced">Last synced with the order system <time><%= invoice.synced %></time></span>,
+        <a href="/examples/invoice">Sync now</a>
+      </div>
+    </dl>
+
+    <div class="sales-invoice-location">
+      <%# A map of OpenStreetMap: free, and it needs no key. The box is the
+          part of the map that is shown: west, south, east, north. %>
+      <iframe
+        title="Map of <%= customer.city %>"
+        loading="lazy"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=<%= [lon - 0.012, lat - 0.006, lon + 0.012, lat + 0.006].map(function (n) { return n.toFixed(4); }).join('%2C') %>&amp;layer=mapnik&amp;marker=<%= lat %>%2C<%= lon %>"></iframe>
+      <small><a href="https://www.openstreetmap.org/?mlat=<%= lat %>&amp;mlon=<%= lon %>#map=15/<%= lat %>/<%= lon %>" target="_blank" rel="noopener">View larger map</a></small>
+    </div>
+  </article>
+
+  <nav class="tabs" aria-label="Sales invoice <%= invoice.id %>">
+    <ul>
+      <% tabs.forEach(function (t) { %>
+      <li class="<%= t == tab ? 'active' : '' %>">
+        <a href="/examples/invoice<%= t.key ? '?tab=' + t.key : '' %>" <%= t == tab ? 'aria-current=page' : '' %>>
+          <%= t.title %>
+          <% if (t.count) { %><span class="tag <%= t.color %>"><%= t.count %></span><% } %>
+        </a>
+      </li>
+      <% }); %>
+    </ul>
+  </nav>
+
+  <% if (tab.key == '') { %>
+
+  <article class="sales-invoice-detail-info">
+    <section class="sales-invoice-line-header top">
+      <div class="invoice-address main-address">
+        <div class="address-label">Address:</div>
+        <div class="customer-id"><%- identifier(customer.id, customer.branch, 'user') %></div>
+        <address>
+          <div class="customer-name"><span><%= customer.name %></span></div>
+          <% if (customer.department) { %><div class="customer-department"><%= customer.department %></div><% } %>
+          <div class="customer-street"><span class="customer-street-name"><%= customer.street %></span></div>
+          <div class="customer-zip-city"><span><%= customer.zip %></span> <span class="customer-city"><%= customer.city %></span></div>
+          <div class="customer-country"><%= customer.country %></div>
+        </address>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="sales-invoice-totals">
+        <%- facts() %>
+        <div class="sales-invoice-total-price">
+          <%= invoice.currency %> <strong class="positive"><%= money(invoice.total) %></strong>
+        </div>
+      </div>
+    </section>
+
+    <% invoice.lines.forEach(function (line) {
+      var order = line.order, product = order.product, publisher = product.publisher;
+    %>
+    <div class="sales-invoice-line">
+      <div class="sales-invoice-line-quantity"><%= line.quantity %>&times;</div>
+
+      <div class="product product-small">
+        <div class="product-image">
+          <% if (product.image) { %>
+          <a href="<%= product.image %>"><img src="<%= product.image %>" alt=""></a>
+          <% } else { %>
+          <div class="no-images" role="img" aria-label="No images available"></div>
+          <% } %>
+        </div>
+
+        <div class="product-title"><%= product.title %></div>
+
+        <div class="product-metadata">
+          <% if (product.series) { %><em><%= product.series %></em><% } %><% if (product.series && product.edition) { %>. <% } %>
+          <% if (product.edition) { %><span class="product-edition-dd">Edition: <%= product.edition %></span><% } %>
+          <div class="product-contributors"><%= product.author %></div>
+          <div class="product-publication"><%= publisher.city %>: <%= publisher.name %>, <%= product.year %></div>
+          <div class="product-isbn-span">
+            <span class="product-ean"><%= product.isbn %></span>
+            <% if (product.newTitle) { %><span class="tag green" title="Offered as a new title">NTS</span><% } %>
+          </div>
+          <span class="product-medium-span"><%= product.binding %>, <%= product.pages %> pages</span>
+          <div class="product-prices product-availabilities">
+            <% product.prices.forEach(function (price, i) { %><span class="product-price"><span class="currency"><%= price[0] %></span> <strong class="amount"><%= price[1].toFixed(2) %></strong></span><%= i < product.prices.length - 1 ? ', ' : ' ' %><% }); %>
+            <span class="tag <%= product.availability[1] %>"><%= product.availability[0] %></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sales-invoice-line-calculation">
+        <% if (line.original) { %>
+        <div class="original-price-per-copy"><%= line.original[0] %> <strong><%= money(line.original[1]) %></strong> = <%= invoice.currency %> <strong><%= money(line.each) %></strong></div>
+        <% } %>
+        <% if (line.quantity > 1) { %>
+        <div class="price-times-company"><%= invoice.currency %> <strong><%= money(line.each) %></strong> &times; <%= line.quantity %> = <%= invoice.currency %> <strong><%= money(line.gross) %></strong></div>
+        <% } %>
+        <% if (line.adjustment) { %>
+        <div class="price-adjustment"><%= invoice.currency %> <strong><%= money(line.gross) %></strong> <%= line.adjustment < 0 ? '-' : '+' %> <%= Math.abs(line.adjustment) %>% = <%= invoice.currency %> <strong><%= money(line.net) %></strong></div>
+        <% } %>
+        <div class="price-plus-vat"><%= invoice.currency %> <strong><%= money(line.net) %></strong> + <%= line.vatRate %>% (<%= line.vatName %>) = <%= invoice.currency %> <strong><%= money(line.total) %></strong></div>
+      </div>
+
+      <div class="sales-invoice-line-price">
+        <span class="currency"><%= invoice.currency %></span> <strong class="positive"><%= money(line.total) %></strong>
+      </div>
+    </div>
+
+    <div class="sales-invoice-line-metadata">
+      <dl>
+        <dt>Order date</dt>
+        <dd><time datetime="<%= iso(order.customerOrdered) %>"><%= slashed(order.customerOrdered) %></time>, <a class="order-id" href="/examples/invoice?tab=orders"><%- identifier(order.id, order.branch, 'cart') %></a></dd>
+
+        <dt>Entry date</dt>
+        <dd><time datetime="<%= iso(order.date) %>"><%= slashed(order.date) %></time> by <strong class="tag"><%= order.enteredBy %></strong></dd>
+
+        <dt>Purchase date</dt>
+        <dd><time datetime="<%= iso(order.purchasedAt) %>"><%= slashed(order.purchasedAt) %></time> by <strong class="tag"><%= order.purchasedBy %></strong></dd>
+      </dl>
+
+      <dl>
+        <% if (order.reference) { %>
+        <dt>Order reference</dt>
+        <dd><%= order.reference %></dd>
+        <% } %>
+        <% if (customer.department) { %>
+        <dt>Department</dt>
+        <dd><%= customer.department %></dd>
+        <% } %>
+        <% if (order.budget) { %>
+        <dt>Budget</dt>
+        <dd><%= order.budget %></dd>
+        <% } %>
+        <% if (line.comment) { %>
+        <dt>Comment</dt>
+        <dd><%= line.comment %></dd>
+        <% } %>
+      </dl>
+    </div>
+    <% }); %>
+
+    <section class="sales-invoice-line-header bottom">
+      <dl class="sales-invoice-definition-list">
+        <dt>Total excl. VAT</dt>
+        <dd><%= invoice.currency %> <strong><%= money(invoice.net) %></strong></dd>
+        <% Object.keys(invoice.vatByRate).forEach(function (rate) { %>
+        <dt>VAT <%= rate %>%</dt>
+        <dd><%= invoice.currency %> <strong><%= money(invoice.vatByRate[rate]) %></strong></dd>
+        <% }); %>
+        <dt>Total incl. VAT</dt>
+        <dd class="sales-invoice-total-price"><%= invoice.currency %> <strong class="positive"><%= money(invoice.total) %></strong></dd>
+      </dl>
+
+      <dl class="sales-invoice-definition-list short">
+        <% if (invoice.lines.length == invoice.items) { %>
+        <dt>Lines / Items</dt>
+        <dd><%= invoice.lines.length %></dd>
+        <% } else { %>
+        <dt>Lines</dt>
+        <dd><%= invoice.lines.length %></dd>
+        <dt>Items</dt>
+        <dd><%= invoice.items %></dd>
+        <% } %>
+      </dl>
+
+      <div class="spacer"></div>
+
+      <div class="sales-invoice-totals">
+        <%- facts() %>
+      </div>
+    </section>
+  </article>
+
+  <% } else if (tab.key == 'customer') { %>
+
+  <div class="sales-invoice-detail-customer">
+    <dl>
+      <dt>Customer</dt>
+      <dd><%- identifier(customer.id, customer.branch, 'user') %> <strong><%= customer.name %></strong></dd>
+      <% if (customer.department) { %>
+      <dt>Department</dt>
+      <dd><%= customer.department %></dd>
+      <% } %>
+      <dt>Address</dt>
+      <dd><%= customer.street %>, <%= customer.zip %> <%= customer.city %>, <%= customer.flag %> <%= customer.country %></dd>
+      <dt>Payment term</dt>
+      <dd>30 days after the invoice date</dd>
+      <dt>Currency</dt>
+      <dd><%= invoice.currency %></dd>
+    </dl>
+  </div>
+
+  <% } else if (tab.key == 'orders') { %>
+
+  <div class="sales-invoice-orders-overview">
+    <div class="orders-controls top">
+      <div>
+        <div class="orders-totals">Found <strong><%= invoice.lines.length %></strong> orders</div>
+      </div>
+    </div>
+
+    <ul class="orders-overview">
+      <% invoice.lines.forEach(function (line) { %>
+      <%- include('order-summary', { order: line.order, data: data, links: {
+        product: '/examples/invoice?tab=orders',
+        customer: '/examples/invoice?tab=customer',
+        publisher: '/examples/invoice?tab=orders',
+        supplier: '/examples/invoice?tab=orders'
+      } }); %>
+      <% }); %>
+    </ul>
+  </div>
+
+  <% } else if (tab.key == 'pdf') { %>
+
+  <div class="sales-invoice-detail-pdf">
+    <div class="container">
+      <h5>Invoice <%= invoice.id %>.pdf</h5>
+      <p>This tab shows the invoice as the customer received it. The example has no document to show.</p>
+    </div>
+  </div>
+
+  <% } else if (tab.key == 'notes') { %>
+
+  <div class="sales-invoice-detail-notes">
+    <% invoice.notes.forEach(function (note) { %>
+    <blockquote>
+      <p><%= note.text %></p>
+      <footer><%= note.author %>, <time datetime="<%= iso(note.date) %>"><%= data.formatDate(note.date) %></time></footer>
+    </blockquote>
+    <% }); %>
+  </div>
+
+  <% } else { %>
+
+  <div class="sales-invoice-detail-raw code-example">
+    <pre><code class="json"><%= JSON.stringify({
+      salesInvoiceId: invoice.id + '-' + invoice.branch,
+      customerId: customer.id + '-' + customer.branch,
+      invoiceType: invoice.type,
+      salesInvoiceDate: iso(invoice.date),
+      paymentDueDate: iso(invoice.due),
+      currency: invoice.currency,
+      lines: invoice.lines.map(function (line) {
+        return { orderId: line.order.id, isbn: line.order.product.isbn, quantity: line.quantity, grossTotal: line.gross, adjustmentPercentage: line.adjustment, netTotalSansVAT: line.net, vatRatePercentage: line.vatRate, netTotalWithVAT: line.total };
+      }),
+      salesInvoiceTotalCustomerCurrency: invoice.total
+    }, null, 2) %></code></pre>
+  </div>
+
+  <% } %>
+
+</main>

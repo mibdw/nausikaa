@@ -13,11 +13,17 @@
   if (lane == 'frontpage') {
     pageTitle = pageTitle + ", a CSS framework for accessible websites";
 
+  } else if (lane == 'search') {
+    navbar = '';
+    pageTitle = "Search \u2014 " + pageTitle;
+
   } else if (lane) {
     var li = nav.findIndex(function (l) {
       return l.slug == lane;
     });
     pageTitle = nav[li].title + " \u2014 " + pageTitle;
+
+    if (lane == 'examples') navbar = '';
 
     if (params.s1) {
       navbar = '';
@@ -68,9 +74,10 @@
 		<% } %>
 		<script src="/scripts/highlight.min.js"></script> 
 		<script>hljs.highlightAll();</script>
+		<script src="/scripts/search.js" defer></script>
 
   </head>
-  <body ontouchstart="">
+  <body ontouchstart=""<% if (lane == 'examples' && params.s1) { %> class="example-<%= params.s1 %>"<% } %>>
     <header class="navbar <%= navbar %>">
 
       <a href="/" id="brand" title="Nausikaä">
@@ -90,7 +97,6 @@
       <nav>
         <ul class="knobs">
           <% nav.forEach(n => { 
-            if (n.slug != 'download') {
               if (n.slug == 'examples') {
                 %>
                   <li class="<%= n.slug == lane ? 'active' : '' %> dropdown">
@@ -107,6 +113,10 @@
                     </a>
                     <nav class="panel arrow">
                       <ul>
+                        <li class="<%= n.slug == lane && !params.s1 ? 'active' : '' %>">
+                          <a href="/<%= n.slug %>" style="padding-right: 3em;">All examples</a>
+                        </li>
+                        <li class="seperator"></li>
                         <% n.nav.forEach(o => { %>
                           <li class="<%= o.slug == params.s1 ? 'active' : '' %>">
                             <a href="/<%= n.slug %>/<%= o.slug %>" title="<%= o.title %>" style="padding-right: 3em;"><%= o.title %></a>
@@ -126,7 +136,6 @@
                   </li>
                 <%
               }
-           }
 
           }); %>
         </ul>
@@ -152,34 +161,17 @@
         </div>
       </div> -->
 
-      <nav>
-        <ul>
-          <li><a href="/download" alt="Download">Download</a></li>
-          <li><a href="https://github.com/mibdw/nausikaa" alt="Github">Github</a></li>
-        </ul>
-      </nav>
-
-      <form action="/theme-switch" method="POST" class="theme-switcher dropdown">
-        <button type="button" class="secondary" aria-label="Theme: <%= currentTheme.title %>" title="Theme: <%= currentTheme.title %>">
+      <div class="suggestions search" id="search" role="search">
+        <form action="/search" method="GET" class="group">
           <svg class="icon">
-            <use xlink:href="/images/icons.svg#<%= currentTheme.icon %>"></use>
+            <use xlink:href="/images/icons.svg#search"></use>
           </svg>
-        </button>
-        <nav class="panel arrow top right" aria-label="Theme">
-          <ul>
-            <% themes.forEach(function (t) { %>
-            <li class="<%= t.value == theme ? 'active' : '' %>">
-              <button type="submit" name="theme" value="<%= t.value %>" class="link" <%= t.value == theme ? 'aria-current=true' : '' %>>
-                <svg class="icon">
-                  <use xlink:href="/images/icons.svg#<%= t.icon %>"></use>
-                </svg>
-                <%= t.title %>
-              </button>
-            </li>
-            <% }); %>
-          </ul>
-        </nav>
-      </form>
+          <input type="search" name="q" class="prepend-icon" placeholder="Search the documentation" aria-label="Search the documentation" title="Search the documentation" autocomplete="off" aria-controls="search-suggestions" aria-keyshortcuts="/">
+        </form>
+        <nav class="panel" id="search-suggestions" aria-label="Suggestions"></nav>
+      </div>
+
+      <%- include('theme-switcher', { themes: themes, currentTheme: currentTheme, theme: theme }); %>
 
       
     </header>

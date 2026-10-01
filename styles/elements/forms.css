@@ -121,7 +121,7 @@ label {
   & > .icon {
     font-size: var(--nausikaa-input-font-size);
     position: relative;
-    fill: var(--nausikaa-crust);
+    fill: var(--nausikaa-surface2);
     width: calc((var(--nausikaa-input-height) * 0.7) - (var(--nausikaa-font-size) * 0.3));
     height: var(--nausikaa-input-height);
     left: 0.6em;
