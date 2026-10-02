@@ -207,7 +207,9 @@
       & > input {
         position: static;
         margin: 0;
-        width: 3em;
+        /* As wide as a knob with only an icon: the icon, 1em on each side
+           of it and the border */
+        width: calc(3em + 2px);
         padding-right: 0;
         /* The colors of a transparent knob, like the theme menu next to it */
         background-color: transparent;
@@ -265,10 +267,9 @@
       display: inline-flex;
       align-items: center;
       margin: 0;
-      padding: 0 0.7em;
 
       & > .icon {
-        transform: scale(1.6) translateX(0.15em);
+        transform: scale(1.6);
       }
     }
 
@@ -465,11 +466,16 @@
             padding: 0 0.5em;
           }
 
+          /* The knob itself stays a row, as wide as the menu */
+          & > a {
+            display: flex;
+          }
+
           &.dropdown {
+            /* The arrow goes to the far end of the row */
             .icon.last {
-              float: right;
+              margin-left: auto;
               position: relative;
-              top: 0.6rem;
               right: 0.5rem;
             }
 

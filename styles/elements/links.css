@@ -84,7 +84,11 @@ a,
   color: var(--nausikaa-knob-text);
   border: 1px solid var(--nausikaa-knob-border);
   cursor: pointer;
-  display: inline-block;
+  /* A flex row, so that the space next to an icon is a gap: an icon with
+     text beside it gets one, an icon on its own gets none */
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
   font-family: var(--nausikaa-utility-text);
   height: var(--nausikaa-input-height);
   line-height: var(--nausikaa-input-height);
@@ -142,15 +146,19 @@ a,
     }
   }
 
+  /* An empty first item keeps the text line that the content stands on, so
+     a knob with only an icon lines up with one that has text. It takes no
+     room: the margin takes back the gap after it. */
+  &::before {
+    content: "\200b";
+    margin-right: -0.5em;
+  }
+
   & > .icon {
     fill: var(--nausikaa-knob-active);
     transform-origin: center center;
     transform: scale(1.6, 1.6) translateY(0.1em);
-    margin-right: 0.5em;
-
-    &.last {
-      margin-right: 0;
-    }
+    flex: 0 0 auto;
   }
 
   &.rosewater {
