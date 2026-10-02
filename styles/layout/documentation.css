@@ -182,6 +182,10 @@
 
   @media (min-width: 320px) and (max-width: 666px) {
     .introduction {
+      /* Beside the text there is no room for the towns: they get room
+         below it instead (see buildings.css) */
+      padding-bottom: calc(6em + 200px);
+
       h1 {
         grid-column: 2 / 12;
         text-align: left;

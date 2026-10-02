@@ -282,8 +282,9 @@
     // thinly: about one plot in five. They stand so low that their roofs
     // stay below the text, and the lower edge cuts them off.
     // With data-townscape-floor="0.9" that row is dense instead, and runs
-    // over the whole width: a town along the bottom edge.
-    var floorDensity = parseFloat(layer.dataset.townscapeFloor || 0);
+    // over the whole width: a town along the bottom edge. The stylesheet
+    // asks for the same with --nausikaa-townscape-floor, on a narrow screen.
+    var floorDensity = parseFloat(layer.dataset.townscapeFloor || getComputedStyle(layer).getPropertyValue("--nausikaa-townscape-floor")) || 0;
     if (text[0] < text[1]) {
       var under = floorDensity ? [x(0), x(page)] : [Math.max(text[0], x(0)), Math.min(text[1], x(page))];
       var lowestFoot = Math.max(bottomAt(under[0]), bottomAt(under[1])) + HOUSE.height * 0.7;

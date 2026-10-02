@@ -396,6 +396,12 @@
 
   @media (max-width: 666px) {
     section {
+      /* Beside the text there is no room for the towns: they get room
+         below it instead (see buildings.css) */
+      &:not(.good-to-know) {
+        padding-bottom: calc(6em + 200px);
+      }
+
       h1,
       h2 {
         grid-column: 2 / 12 !important;

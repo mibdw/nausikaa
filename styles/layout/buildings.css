@@ -90,4 +90,11 @@
   & > svg {
     position: absolute;
   }
+
+  /* On a narrow screen there is no room beside the text. The section makes
+     room below the text, and there the houses stand close together over the
+     whole width; /scripts/townscape.js reads how close. */
+  @media (max-width: 666px) {
+    --nausikaa-townscape-floor: 0.55;
+  }
 }
