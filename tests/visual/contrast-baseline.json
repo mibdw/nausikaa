@@ -38,9 +38,10 @@
     "/examples": 0,
     "/examples/orders": 0,
     "/examples/invoice": 0,
-    "/examples/new-title": 1,
-    "/examples/drafts": 0,
-    "/examples/statistics": 0
+    "/examples/catalogue-progress": 0,
+    "/examples/statistics": 0,
+    "/examples/new-title-drafts": 1,
+    "/examples/shipment-schedule": 0
   },
   "dark": {
     "/": 0,
@@ -81,9 +82,10 @@
     "/examples": 0,
     "/examples/orders": 0,
     "/examples/invoice": 0,
-    "/examples/new-title": 1,
-    "/examples/drafts": 0,
-    "/examples/statistics": 0
+    "/examples/catalogue-progress": 0,
+    "/examples/statistics": 0,
+    "/examples/new-title-drafts": 1,
+    "/examples/shipment-schedule": 0
   },
   "eink": {
     "/": 0,
@@ -124,8 +126,9 @@
     "/examples": 0,
     "/examples/orders": 0,
     "/examples/invoice": 0,
-    "/examples/new-title": 0,
-    "/examples/drafts": 0,
-    "/examples/statistics": 0
+    "/examples/catalogue-progress": 0,
+    "/examples/statistics": 0,
+    "/examples/new-title-drafts": 0,
+    "/examples/shipment-schedule": 0
   }
 }

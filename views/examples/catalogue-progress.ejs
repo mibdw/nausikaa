@@ -2,114 +2,113 @@
   // Example: a dense table with a selection. The tabs filter on the state in
   // the address (?state=review); selecting rows is the one thing on this page
   // that needs a little JavaScript.
-  var state = data.draftCounts.find(function (count) { return count.key == query.state; });
-  var rows = data.drafts.filter(function (draft) { return !state || draft.state.key == state.key; });
+  var state = data.cataloguingCounts.find(function (count) { return count.key == query.state; });
+  var rows = data.cataloguing.filter(function (title) { return !state || title.state.key == state.key; });
   var initials = function (name) { return name.split(' ').map(function (part) { return part[0]; }).join(''); };
+  var keys = function () { return '<span class="keys">' + Array.prototype.map.call(arguments, function (key) { return '<kbd>' + key + '</kbd>'; }).join(' + ') + '</span>'; };
 %>
-<main>
+<main id="cataloguing">
 
   <article style="grid-column: 1 / 13">
 
-    <header>
-      <h2>Drafts</h2>
-    </header>
-
-    <p>New titles that are being described. A draft goes to the customers when a colleague has reviewed it.</p>
-
-    <nav class="tabs" aria-label="Drafts by state">
+    <nav class="tabs" aria-label="Titles by state">
       <ul>
+        <li class="title tabs-title"><span>🗂️ Catalogue progress</span></li>
         <li class="<%= state ? '' : 'active' %>">
-          <a href="/examples/drafts" <%= state ? '' : 'aria-current=page' %>>All <span class="tag badge <%= state ? '' : 'blue' %>"><%= data.drafts.length %></span></a>
+          <a href="/examples/catalogue-progress" <%= state ? '' : 'aria-current=page' %>>All <span class="tag badge navy"><%= data.cataloguing.length %></span></a>
         </li>
-        <% data.draftCounts.forEach(function (count) { %>
+        <% data.cataloguingCounts.forEach(function (count) { %>
         <li class="<%= count == state ? 'active' : '' %>">
-          <a href="/examples/drafts?state=<%= count.key %>" <%= count == state ? 'aria-current=page' : '' %>><%= count.name %> <span class="tag badge <%= count == state ? 'blue' : '' %>"><%= count.count %></span></a>
+          <a href="/examples/catalogue-progress?state=<%= count.key %>" <%= count == state ? 'aria-current=page' : '' %>><%= count.name %> <span class="tag badge <%= count.color %>"><%= count.count %></span></a>
         </li>
         <% }); %>
       </ul>
     </nav>
 
-    <div class="dropdown">
-      <a class="knob" tabindex="0" role="button" aria-haspopup="true" title="Selected drafts">
-        <svg class="icon"><use xlink:href="/images/icons.svg#checklist"></use></svg>
-        Selection <span class="tag badge blue" id="selection-count">0</span>
-      </a>
-      <nav class="panel arrow top left" aria-label="Selection">
-        <ul>
-          <li><button type="button" class="link" data-select="all">Select all</button></li>
-          <li><button type="button" class="link" data-select="none">Deselect all</button></li>
-          <li><button type="button" class="link" data-select="invert">Invert the selection</button></li>
-          <li class="seperator"></li>
-          <li><button type="button" class="link" data-needs-selection disabled>Send selected to review</button></li>
-          <li><button type="button" class="link" data-needs-selection id="delete-button" disabled>Delete selected…</button></li>
-        </ul>
-      </nav>
+    <div class="cataloguing-rows">
+      <%# The selection: it stays in view next to the table while the page scrolls %>
+      <div class="cataloguing-selection dropdown">
+        <a class="knob transparent" tabindex="0" role="button" aria-haspopup="true" aria-label="Selection" title="Selection">
+          <svg class="icon"><use xlink:href="/images/icons.svg#checklist"></use></svg>
+          <span class="tag badge blue" id="selection-count" hidden>0</span>
+        </a>
+        <nav class="panel arrow top left" aria-label="Selection">
+          <ul>
+            <li><button type="button" class="link" data-select="all">Select all titles <%- keys('CTRL', 'ALT', 'A') %></button></li>
+            <li class="disabled"><button type="button" class="link" data-select="none" disabled>Deselect all <%- keys('CTRL', 'ALT', 'D') %></button></li>
+            <li class="disabled"><button type="button" class="link" data-select="invert" disabled>Inverse selection</button></li>
+            <li class="seperator"></li>
+            <li class="disabled"><button type="button" class="link" data-needs-selection disabled>Send selected to review</button></li>
+            <li class="disabled"><button type="button" class="link" data-needs-selection id="delete-button" disabled>Remove selected titles <%- keys('CTRL', 'ALT', 'Backspace') %></button></li>
+          </ul>
+        </nav>
+      </div>
+
+      <%# A wide table scrolls sideways on a small screen %>
+      <div class="cataloguing-table">
+        <table class="dense striped" id="titles" style="min-width: 62em">
+          <thead>
+            <tr>
+              <th><span aria-hidden="true">✓</span></th>
+              <th>Number</th>
+              <th>Title</th>
+              <th>Subject</th>
+              <th>State</th>
+              <th>Complete</th>
+              <th>Editor</th>
+              <th>Changed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% rows.forEach(function (title) { var product = title.product; %>
+            <tr>
+              <td><input type="checkbox" id="title-<%= title.id %>" aria-label="Select title <%= title.id %>"></td>
+              <td>
+                <span class="tag" title="Number">
+                  <svg class="icon"><use xlink:href="/images/icons.svg#post-add"></use></svg>
+                  <%= title.id %>
+                </span>
+              </td>
+              <td>
+                <a href="/examples/catalogue-progress<%= state ? '?state=' + state.key : '' %>"><%= product.title %></a><br>
+                <small><%= product.author %>. <%= product.publisher.name %>, <%= product.year %></small>
+              </td>
+              <td><%= title.subject %></td>
+              <td>
+                <span class="tag <%= title.state.color %>"><%= title.state.name %></span>
+                <% if (title.summoning) { %>
+                <span class="spinner small gray" role="status" aria-label="Asking the publisher for details" title="Asking the publisher for details">
+                  <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="20" />
+                  </svg>
+                </span>
+                <% } %>
+              </td>
+              <td style="min-width: 9em">
+                <progress class="<%= title.complete == 100 ? 'green' : title.complete < 50 ? 'yellow' : '' %>" value="<%= title.complete %>" max="100" aria-label="<%= title.complete %>% complete" title="<%= title.complete %>% complete"><%= title.complete %>%</progress>
+              </td>
+              <td>
+                <span class="user-avatar" title="<%= title.editor %>"><span class="no-avatar"><%= initials(title.editor) %></span></span>
+              </td>
+              <td><time datetime="<%= title.changed.toISOString().slice(0, 10) %>"><%= data.formatDate(title.changed) %></time></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <%# A wide table scrolls sideways on a small screen %>
-    <div style="overflow-x: auto">
-      <table class="dense striped" id="drafts" style="min-width: 62em">
-        <thead>
-          <tr>
-            <th><span aria-hidden="true">✓</span></th>
-            <th>Draft</th>
-            <th>Title</th>
-            <th>Subject</th>
-            <th>State</th>
-            <th>Complete</th>
-            <th>Editor</th>
-            <th>Changed</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% rows.forEach(function (draft) { var product = draft.product; %>
-          <tr>
-            <td><input type="checkbox" id="draft-<%= draft.id %>" aria-label="Select draft <%= draft.id %>"></td>
-            <td>
-              <span class="tag" title="Draft number">
-                <svg class="icon"><use xlink:href="/images/icons.svg#post-add"></use></svg>
-                <%= draft.id %>
-              </span>
-            </td>
-            <td>
-              <a href="/examples/drafts<%= state ? '?state=' + state.key : '' %>"><%= product.title %></a><br>
-              <small><%= product.author %>. <%= product.publisher.name %>, <%= product.year %></small>
-            </td>
-            <td><%= draft.subject %></td>
-            <td>
-              <span class="tag <%= draft.state.color %>"><%= draft.state.name %></span>
-              <% if (draft.summoning) { %>
-              <span class="spinner small gray" role="status" aria-label="Asking the publisher for details" title="Asking the publisher for details">
-                <svg viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="20" />
-                </svg>
-              </span>
-              <% } %>
-            </td>
-            <td style="min-width: 9em">
-              <progress class="<%= draft.complete == 100 ? 'green' : draft.complete < 50 ? 'yellow' : '' %>" value="<%= draft.complete %>" max="100" aria-label="<%= draft.complete %>% complete" title="<%= draft.complete %>% complete"><%= draft.complete %>%</progress>
-            </td>
-            <td>
-              <span class="user-avatar" title="<%= draft.editor %>"><span class="no-avatar"><%= initials(draft.editor) %></span></span>
-            </td>
-            <td><time datetime="<%= draft.changed.toISOString().slice(0, 10) %>"><%= data.formatDate(draft.changed) %></time></td>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
-    </div>
-
-    <p><small><%= rows.length %> of <%= data.drafts.length %> drafts<%= state ? ' in the state “' + state.name + '”' : '' %>.</small></p>
+    <p><small><%= rows.length %> of <%= data.cataloguing.length %> titles<%= state ? ' in the state “' + state.name + '”' : '' %>.</small></p>
 
     <dialog id="delete-dialog" class="medium" aria-labelledby="delete-dialog-title">
-      <h4 id="delete-dialog-title">Delete <span id="delete-count">0</span> drafts?</h4>
-      <p>The drafts are removed for everyone. This can't be undone.</p>
+      <h4 id="delete-dialog-title">Remove <span id="delete-count">0</span> <span id="delete-noun">titles</span>?</h4>
+      <p>They are removed for everyone. This can't be undone.</p>
 
       <%# Buttons of a form with method="dialog" close the dialog without a script %>
       <form method="dialog" id="delete-form"></form>
       <footer>
         <div class="spacer"></div>
-        <button form="delete-form" class="negative" value="delete">Delete</button>
+        <button form="delete-form" class="negative" value="delete">Remove</button>
         <button form="delete-form" value="cancel">Keep them</button>
       </footer>
     </dialog>
@@ -120,31 +119,56 @@
 
 <script>
 (function () {
-  var boxes = Array.prototype.slice.call(document.querySelectorAll("#drafts tbody input[type='checkbox']"));
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("#titles tbody input[type='checkbox']"));
   var count = document.getElementById("selection-count");
   var dialog = document.getElementById("delete-dialog");
   dialogPolyfill.registerDialog(dialog);
 
+  // An option of the menu can be used or not
+  var enable = function (button, enabled) {
+    button.disabled = !enabled;
+    button.parentNode.classList.toggle("disabled", !enabled);
+  };
+
   var update = function () {
     var selected = boxes.filter(function (box) { return box.checked; }).length;
+    // The count only shows while something is selected
     count.textContent = selected;
+    count.hidden = selected === 0;
     document.getElementById("delete-count").textContent = selected;
-    document.querySelectorAll("[data-needs-selection]").forEach(function (button) {
-      button.disabled = selected === 0;
+    document.getElementById("delete-noun").textContent = selected === 1 ? "title" : "titles";
+    boxes.forEach(function (box) { box.closest("tr").classList.toggle("selected", box.checked); });
+    enable(document.querySelector('[data-select="all"]'), selected !== boxes.length);
+    enable(document.querySelector('[data-select="none"]'), selected > 0);
+    enable(document.querySelector('[data-select="invert"]'), selected > 0 && selected !== boxes.length);
+    document.querySelectorAll("[data-needs-selection]").forEach(function (button) { enable(button, selected > 0); });
+    return selected;
+  };
+
+  var select = function (how) {
+    boxes.forEach(function (box) {
+      box.checked = how === "all" || (how === "invert" && !box.checked);
     });
+    update();
+  };
+  var remove = function () {
+    if (update() > 0 && !dialog.open) dialog.showModal();
   };
 
   document.querySelectorAll("[data-select]").forEach(function (button) {
-    button.addEventListener("click", function () {
-      boxes.forEach(function (box) {
-        box.checked = button.dataset.select === "all" || (button.dataset.select === "invert" && !box.checked);
-      });
-      update();
-    });
+    button.addEventListener("click", function () { select(button.dataset.select); });
   });
   boxes.forEach(function (box) { box.addEventListener("change", update); });
-  document.getElementById("delete-button").addEventListener("click", function () {
-    dialog.showModal();
+  document.getElementById("delete-button").addEventListener("click", remove);
+
+  // The same with the keyboard
+  document.addEventListener("keydown", function (event) {
+    if (!event.ctrlKey || !event.altKey) return;
+    if (event.code === "KeyA") select("all");
+    else if (event.code === "KeyD") select("none");
+    else if (event.code === "Backspace") remove();
+    else return;
+    event.preventDefault();
   });
   update();
 })();

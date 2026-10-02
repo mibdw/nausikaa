@@ -1,0 +1,296 @@
+<%
+  // Example: a month of shipments on a calendar, with filters. The month, the
+  // filters and the shipment that is opened are all in the address, so they
+  // work with plain links and forms. data.shipmentScheduleView() works out
+  // what to show.
+  var view = data.shipmentScheduleView(query);
+  var open = view.open;
+  var limit = 7; // shipments on a day before the rest goes behind "more"
+
+  // One shipment on a day: a tag in the color of its carrier, with a strip
+  // in the color of its location. A delivery that comes in is plain text.
+  var title = function (shipment) {
+    return (shipment.time ? shipment.time + ' ' : '') + shipment.party.name + ', ' + shipment.parcels + (shipment.parcels == 1 ? ' parcel' : ' parcels') + ' with ' + shipment.carrier.name;
+  };
+  var event = function (shipment, tag) {
+    var plain = shipment.type == 'incoming';
+    return '<' + tag + ' class="calendar-event-wrapper">' +
+      '<a href="' + view.url({ shipment: shipment.id }) + '" title="' + esc(title(shipment)) + '" class="calendar-event ' + (plain ? '' : 'tag ' + shipment.carrier.color) + '">' +
+      '<span class="calendar-event-title">' + (shipment.time ? '<small>' + shipment.time + '</small> ' : '') + (shipment.type == 'return' ? '↩ ' : '') + esc(shipment.party.name) + '</span></a>' +
+      (plain ? '' : '<span class="calendar-event calendar-event-category-addition tag ' + data.branches[shipment.branch].color + '" title="' + data.branches[shipment.branch].name + '"></span>') +
+      '</' + tag + '>';
+  };
+  var esc = function (text) { return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
+  var chevron = function (turn) { return '<svg style="transform: rotate(' + turn + 'deg)"><use xlink:href="/images/icons.svg#chevron-down"></use></svg>'; };
+%>
+<main id="shipment-schedule">
+
+  <div class="calendar">
+
+    <div class="calendar-controls top">
+      <div class="schedule-totals">
+        <strong><%= view.total %></strong> shipments
+        <span>in the weeks of <%= view.monthName %> <%= view.year %></span>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="calendar-month-controls">
+        <% if (!view.isCurrent) { %>
+        <a class="knob" href="<%= view.todayUrl %>">Today</a>
+        <% } %>
+
+        <%# The month and the year are a form: it is sent as soon as one
+            changes; the button is for visitors without JavaScript. %>
+        <form action="/examples/shipment-schedule" method="GET" id="schedule-period">
+          <% view.facets.forEach(function (facet) { view.filters[facet.key].forEach(function (value) { %>
+          <input type="hidden" name="<%= facet.key %>" value="<%= value %>">
+          <% }); }); %>
+          <ul class="pagination no-toggle">
+            <% if (view.previousUrl) { %>
+            <li><a class="knob" href="<%= view.previousUrl %>" aria-label="Previous month" title="Previous month"><%- chevron(90) %></a></li>
+            <% } %>
+            <li>
+              <select name="m" aria-label="Month">
+                <% view.monthNames.forEach(function (name, i) { %>
+                <option value="<%= i + 1 %>" <%= i + 1 == view.month ? 'selected' : '' %>><%= name %></option>
+                <% }); %>
+              </select>
+            </li>
+            <li>
+              <select name="y" aria-label="Year">
+                <% view.years.forEach(function (year) { %>
+                <option value="<%= year %>" <%= year == view.year ? 'selected' : '' %>><%= year %></option>
+                <% }); %>
+              </select>
+            </li>
+            <% if (view.nextUrl) { %>
+            <li><a class="knob" href="<%= view.nextUrl %>" aria-label="Next month" title="Next month"><%- chevron(-90) %></a></li>
+            <% } %>
+          </ul>
+          <noscript><button type="submit">Show</button></noscript>
+        </form>
+      </div>
+    </div>
+
+    <div class="calendar-wrapper">
+      <div class="calendar-month" data-month="<%= view.year %>-<%= String(view.month).padStart(2, '0') %>">
+        <% ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach(function (name) { %>
+        <div class="weekday-name"><%= name %></div>
+        <% }); %>
+
+        <% view.days.forEach(function (day) { %>
+        <div class="calendar-day <%= day.sameMonth ? 'same-month' : 'other-month' %> <%= day.today ? 'today' : '' %> weekday-<%= day.weekday %> <%= day.lastWeek ? 'last-week' : '' %>">
+          <span class="date-number"><%= day.number %></span>
+          <% day.shipments.slice(0, limit).forEach(function (shipment) { %><%- event(shipment, 'div') %><% }); %>
+
+          <% if (day.shipments.length > limit) { %>
+          <div class="more-events dropdown">
+            <a tabindex="0" role="button" class="more-events-button" aria-haspopup="true">+<%= day.shipments.length - limit %> more</a>
+            <div class="panel arrow bottom <%= day.weekday > 5 ? 'right' : 'center' %>">
+              <ul>
+                <% day.shipments.slice(limit).forEach(function (shipment) { %><%- event(shipment, 'li') %><% }); %>
+              </ul>
+            </div>
+          </div>
+          <% } %>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+
+  </div>
+
+  <aside class="schedule-filters">
+    <%# One form holds all filters. It is sent as soon as one changes; the
+        button is for visitors without JavaScript. %>
+    <form action="/examples/shipment-schedule" method="GET" id="schedule-filters">
+      <% if (!view.isCurrent) { %><input type="hidden" name="month" value="<%= view.year %>-<%= String(view.month).padStart(2, '0') %>"><% } %>
+
+      <div class="panel expandable">
+        <% view.facets.forEach(function (facet, g) {
+          var checked = view.filters[facet.key];
+        %>
+        <input type="checkbox" id="<%= facet.key %>-expand" <%= facet.options.slice(8).some(function (o) { return checked.includes(o.key); }) ? 'checked' : '' %>>
+        <details <%= facet.open || checked.length ? 'open' : '' %>>
+          <summary>
+            <svg class="icon chevron"><use xlink:href="/images/icons.svg#chevron-down"></use></svg>
+            <strong><%= facet.name %></strong>
+            <small>(<%= facet.options.length %>)</small>
+          </summary>
+          <% if (facet.searchable) { %>
+          <div class="group order-filter-search">
+            <svg class="icon"><use xlink:href="/images/icons.svg#search"></use></svg>
+            <input type="text" class="prepend-icon" placeholder="Filter <%= facet.name.toLowerCase() %>" aria-label="Filter <%= facet.name.toLowerCase() %>" data-filter-options>
+          </div>
+          <% } %>
+          <ul class="checkboxes">
+            <% facet.options.forEach(function (option, i) { %>
+            <li>
+              <input type="checkbox" id="<%= facet.key %>-<%= i %>" name="<%= facet.key %>" value="<%= option.key %>" <%= checked.includes(option.key) ? 'checked' : '' %> <%= option.count == 0 && !checked.includes(option.key) ? 'disabled' : '' %>>
+              <label for="<%= facet.key %>-<%= i %>">
+                <span><% if (option.color) { %><span class="tag <%= option.color %>"><%= facet.key == 'location' ? option.key : option.name %></span><%= facet.key == 'location' ? ' ' + option.name : '' %><% } else { %><%= option.name %><% } %></span>
+                <span><%= option.count %></span>
+              </label>
+            </li>
+            <% if (i == 7 && facet.options.length > 8) { %>
+            <li class="more"><label for="<%= facet.key %>-expand"><small>(<%= facet.options.length - 8 %>)</small> More options</label></li>
+            <% } %>
+            <% }); %>
+            <% if (facet.options.length > 8) { %>
+            <li class="less"><label for="<%= facet.key %>-expand">Less options</label></li>
+            <% } %>
+          </ul>
+        </details>
+        <% if (g < view.facets.length - 1) { %><div class="seperator"></div><% } %>
+        <% }); %>
+      </div>
+
+      <noscript><button type="submit" class="primary">Apply filters</button></noscript>
+    </form>
+
+    <% if (view.active) { %>
+    <a class="clear-filters" href="<%= view.clearUrl %>">Clear all filters</a>
+    <% } %>
+  </aside>
+
+  <% if (open) { var party = open.party; %>
+  <%# The shipment that was clicked. It is opened by the address, so it also
+      shows without JavaScript; the cross and the backdrop lead back. %>
+  <dialog open class="schedule-dialog" aria-labelledby="schedule-dialog-title">
+    <a class="control close" href="<%= view.url() %>" aria-label="Close" title="Close"><svg class="icon"><use xlink:href="/images/icons.svg#clear"></use></svg></a>
+
+    <h4 id="schedule-dialog-title"><%= open.type == 'incoming' ? 'Delivery from' : open.type == 'return' ? 'Return from' : 'Shipment to' %> <%= party.name %></h4>
+
+    <p class="schedule-dialog-tags">
+      <span class="tag <%= data.branches[open.branch].color %>" title="<%= data.branches[open.branch].name %>"><strong><%= open.branch %></strong></span>
+      <span class="tag"><svg class="icon"><use xlink:href="/images/icons.svg#shipping"></use></svg><%= open.id %></span>
+      <span class="tag <%= open.carrier.color %>"><%= open.carrier.name %></span>
+      <span class="tag <%= open.status.color %>"><%= open.status.name %></span>
+      <% if (open.service == 'Express') { %><span class="tag red">Express</span><% } %>
+    </p>
+
+    <dl class="schedule-dialog-details">
+      <dt>Date</dt>
+      <dd><time datetime="<%= open.date.toISOString().slice(0, 10) %>"><%= data.formatDate(open.date) %></time><%= open.time ? ', expected at ' + open.time : '' %></dd>
+      <dt><%= open.type == 'outgoing' ? 'Destination' : 'Origin' %></dt>
+      <dd><% if (party.flag) { %><%= party.flag %> <% } %><%= party.city %>, <%= party.country %></dd>
+      <dt>Parcels</dt>
+      <dd><%= open.parcels %>, <%= open.weight.toLocaleString('en') %> kg together</dd>
+      <dt>Orders</dt>
+      <dd><%= open.orders %></dd>
+      <dt>Tracking</dt>
+      <dd><code><%= open.tracking %></code></dd>
+    </dl>
+
+    <footer>
+      <div class="spacer"></div>
+      <a class="button" href="<%= view.url() %>">Close</a>
+    </footer>
+  </dialog>
+  <a class="backdrop" href="<%= view.url() %>" aria-label="Close" tabindex="-1"></a>
+  <% } %>
+
+</main>
+
+<script>
+(function () {
+  var main = document.getElementById("shipment-schedule");
+  var wrapper = main.querySelector(".calendar-wrapper");
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var busy = false;
+
+  // Another month slides in from the side it lies on, while the month that
+  // was shown slides out. The page of that month is fetched; the controls
+  // and the filters are taken over from it, with their counts.
+  var show = function (url, remember) {
+    if (busy) return;
+    busy = true;
+    fetch(url).then(function (response) { return response.text(); }).then(function (html) {
+      var page = new DOMParser().parseFromString(html, "text/html");
+      var outgoing = wrapper.querySelector(".calendar-month");
+      var incoming = document.importNode(page.querySelector(".calendar-month"), true);
+      // The control that was used keeps the focus, in its new copy
+      var used = document.activeElement && document.activeElement.closest(".calendar-month-controls") ? document.activeElement : null;
+      var same = used && (used.name ? '[name="' + used.name + '"]' : used.getAttribute("aria-label") ? '[aria-label="' + used.getAttribute("aria-label") + '"]' : "");
+      ["calendar-controls", "schedule-filters"].forEach(function (part) {
+        main.querySelector("." + part).replaceWith(document.importNode(page.querySelector("." + part), true));
+      });
+      if (same && main.querySelector(".calendar-month-controls " + same)) main.querySelector(".calendar-month-controls " + same).focus();
+      if (remember) history.pushState(null, "", url);
+
+      var later = incoming.dataset.month > outgoing.dataset.month;
+      if (still || incoming.dataset.month === outgoing.dataset.month) {
+        outgoing.replaceWith(incoming);
+        busy = false;
+        return;
+      }
+      incoming.classList.add(later ? "incoming-right" : "incoming-left");
+      wrapper.appendChild(incoming);
+      // The month has to stand at the side before it can start to move
+      incoming.getBoundingClientRect();
+      incoming.classList.remove("incoming-right", "incoming-left");
+      outgoing.classList.add(later ? "outgoing-left" : "outgoing-right");
+      setTimeout(function () {
+        outgoing.remove();
+        busy = false;
+      }, 320);
+    }).catch(function () {
+      window.location = url;
+    });
+  };
+
+  // The links to another month
+  main.addEventListener("click", function (event) {
+    var link = event.target.closest(".calendar-month-controls a");
+    if (!link || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    event.preventDefault();
+    show(link.href, true);
+  });
+
+  main.addEventListener("change", function (event) {
+    var form = event.target.form;
+    if (!form) return;
+    // Another month or year shows as soon as it is chosen
+    if (form.id === "schedule-period") {
+      var params = new URLSearchParams(new FormData(form));
+      params.set("month", params.get("y") + "-" + ("0" + params.get("m")).slice(-2));
+      params.delete("y");
+      params.delete("m");
+      show(form.action + "?" + params.toString(), true);
+    }
+    // A filter applies as soon as it is checked
+    if (form.id === "schedule-filters" && event.target.name) form.submit();
+  });
+
+  // Back and forward in the browser
+  window.addEventListener("popstate", function () {
+    show(window.location.href, false);
+  });
+
+  // The small search field in a long filter hides the options that don't match
+  main.addEventListener("input", function (event) {
+    var input = event.target;
+    if (!input.matches("[data-filter-options]")) return;
+    var term = input.value.toLowerCase();
+    // While searching, every option that matches shows, also the ones
+    // behind "More options"
+    input.closest("details").querySelectorAll("li").forEach(function (option) {
+      var extra = option.classList.contains("more") || option.classList.contains("less");
+      var matches = !extra && option.textContent.toLowerCase().indexOf(term) !== -1;
+      option.style.display = !term ? "" : matches ? "block" : "none";
+    });
+  });
+  main.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" && event.target.matches("[data-filter-options]")) event.preventDefault();
+  });
+
+  // Escape closes the shipment that is open
+  var close = document.querySelector(".schedule-dialog .close");
+  if (close) {
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") window.location = close.href;
+    });
+  }
+})();
+</script>

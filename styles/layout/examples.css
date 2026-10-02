@@ -70,10 +70,8 @@ main#orders,
       & > .knob {
         cursor: pointer;
         margin-right: 0;
-        padding: 0 0.7em;
 
         & > .icon {
-          margin-right: 0;
           transform: scale(1.6) translateY(0.05em);
         }
       }
@@ -161,61 +159,824 @@ main#orders,
       margin-top: 0;
     }
 
-    /* A location and the options of a filter: the name, then the count */
-    .radios label,
-    .checkboxes label {
-      display: flex;
-
-      & > span:first-child {
-        flex: 1 1 auto;
-        min-width: 0;
-      }
-
-      & > span:last-child {
-        flex: 0 0 auto;
-      }
+    @media (max-width: 900px) {
+      margin-top: 2em;
     }
+  }
+}
 
-    /* A dot in the color of the order position */
-    .tag.badge {
-      width: 1.3em;
+/* The filters next to the order overview, the statistics and the shipment
+   schedule */
+main#orders .orders-sidebar,
+main#statistics .statistics-sidebar,
+main#shipment-schedule .schedule-filters {
+  /* A location and the options of a filter: the name, then the count */
+  .radios label,
+  .checkboxes label {
+    display: flex;
+
+    & > span:first-child {
+      flex: 1 1 auto;
       min-width: 0;
-      height: 1.3em;
-      padding: 0;
+    }
+
+    & > span:last-child {
+      flex: 0 0 auto;
+    }
+  }
+
+  /* A dot in the color of the order position */
+  .tag.badge {
+    width: 1.3em;
+    min-width: 0;
+    height: 1.3em;
+    padding: 0;
+    top: 0;
+    vertical-align: middle;
+  }
+
+  /* The search field of a long filter is as wide as the panel. The icon
+     lies on top of the field, so the field alone decides the width. */
+  .order-filter-search {
+    display: flex;
+    position: relative;
+    margin: 0 0 0.5em;
+
+    & > .icon {
+      position: absolute;
       top: 0;
-      vertical-align: middle;
+      left: 0.6em;
     }
 
-    /* The search field of a long filter is as wide as the panel. The icon
-       lies on top of the field, so the field alone decides the width. */
-    .order-filter-search {
-      display: flex;
-      position: relative;
-      margin: 0 0 0.5em;
+    & > input {
+      position: static;
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      border-radius: 6px;
+    }
+  }
 
-      & > .icon {
-        position: absolute;
-        top: 0;
-        left: 0.6em;
-      }
+  .clear-filters {
+    font-family: var(--nausikaa-utility-text);
+  }
+}
 
-      & > input {
-        position: static;
-        flex: 1 1 auto;
-        width: 100%;
-        min-width: 0;
-        margin: 0;
-        border-radius: 6px;
-      }
+/* Shipment schedule: filters on the left, a month of shipments next to them.
+   The calendar itself is the one of Nausikaä; this arranges it on the page
+   and fits a day for many short lines. */
+main#shipment-schedule {
+  position: relative;
+  font-family: var(--nausikaa-utility-text);
+
+  @media (min-width: 901px) {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    grid-column-gap: 1em;
+    align-items: start;
+
+    & > .calendar {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
     }
 
-    .clear-filters {
-      font-family: var(--nausikaa-utility-text);
+    & > .schedule-filters {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+  }
+
+  .schedule-filters {
+    #schedule-filters {
+      margin-top: 0;
     }
 
     @media (max-width: 900px) {
       margin-top: 2em;
     }
+  }
+
+  .calendar-controls {
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.5em;
+
+    .schedule-totals {
+      font-family: var(--nausikaa-block-text);
+
+      span {
+        color: var(--nausikaa-subtext0);
+      }
+    }
+
+    .calendar-month-controls,
+    form {
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+
+    .knob {
+      margin-bottom: 0;
+    }
+
+    /* A row without the space between its parts */
+    .pagination {
+      display: flex;
+      margin: 0;
+
+      a {
+        margin: 0;
+        padding: 0 0.4em;
+      }
+
+      select {
+        margin: 0;
+      }
+
+      select[name="m"] {
+        min-width: 16ch;
+      }
+
+      select[name="y"] {
+        min-width: 10ch;
+      }
+    }
+
+    button {
+      margin: 0 0 0 0.4em;
+    }
+  }
+
+  .calendar-wrapper .calendar-month {
+    /* The weekend has less to show */
+    grid-template-columns: repeat(5, minmax(0, 2fr)) minmax(0, 1fr) minmax(0, 1fr);
+
+    .calendar-day {
+      display: block;
+      cursor: default;
+
+      &:hover {
+        background-color: var(--nausikaa-mantle);
+      }
+
+      .date-number {
+        left: auto;
+        right: 0.5em;
+      }
+
+      /* The days of the months around it are greyer, but still readable */
+      &.other-month .date-number {
+        opacity: 1;
+        color: var(--nausikaa-overlay2);
+      }
+
+      .calendar-event-wrapper {
+        display: flex;
+        margin: 0;
+
+        .calendar-event {
+          flex: 99 1 0;
+          min-width: 0;
+          font-size: 0.8em;
+          padding: 0 0.3em;
+          border-radius: 3px 0 0 3px;
+
+          small {
+            font-variant-numeric: tabular-nums;
+          }
+
+          /* A delivery that comes in: its time and where it comes from */
+          &:not(.tag) {
+            color: var(--nausikaa-text);
+            line-height: 1.5;
+            border-radius: 3px;
+
+            &:hover,
+            &:focus {
+              background-color: var(--nausikaa-surface0);
+            }
+          }
+
+          /* The strip in the color of the location */
+          &.calendar-event-category-addition {
+            flex: 0 0 0.5em;
+            padding: 0;
+            border-radius: 0 3px 3px 0;
+            cursor: default;
+          }
+        }
+      }
+
+      .more-events {
+        float: right;
+
+        & > a {
+          cursor: pointer;
+          font-size: 0.85em;
+        }
+
+        & > .panel {
+          min-width: 22ch;
+
+          & > ul {
+            max-height: 20em;
+            overflow: auto;
+
+            & > li {
+              max-width: 24ch;
+              margin-bottom: 0.2em;
+            }
+
+            /* A shipment keeps its own look inside the panel */
+            .calendar-event {
+              line-height: inherit;
+              margin: 0;
+              padding: 0 0.3em;
+
+              &.tag {
+                color: var(--nausikaa-tag-text);
+                background-color: var(--nausikaa-tag-background);
+
+                &:hover,
+                &:focus {
+                  background-color: var(--nausikaa-tag-hover);
+                }
+              }
+
+              &.calendar-event-category-addition {
+                padding: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* The shipment that is open */
+  .schedule-dialog {
+    min-width: min(34rem, 90vw);
+
+    h4 {
+      margin-right: 2rem;
+    }
+
+    .schedule-dialog-tags {
+      font-family: var(--nausikaa-utility-text);
+    }
+
+    .schedule-dialog-details {
+      display: grid;
+      grid-template-columns: 8em 1fr;
+      grid-row-gap: 0.2em;
+      margin: 1em 0;
+      font-family: var(--nausikaa-utility-text);
+
+      dt {
+        color: var(--nausikaa-subtext0);
+      }
+
+      dd {
+        margin: 0;
+      }
+    }
+  }
+
+  .backdrop {
+    display: block;
+    cursor: default;
+  }
+}
+
+/* Catalogue progress: a table of titles with a selection. The knob of the selection
+   stands to the left of the table and stays in view while the page scrolls. */
+main#cataloguing {
+  .tabs {
+    font-size: 1.1em;
+
+    .tabs-title {
+      margin-left: 1em;
+      margin-right: 3.5em;
+    }
+  }
+
+  .cataloguing-selection {
+    position: sticky;
+    top: 1em;
+    z-index: 12;
+    width: max-content;
+
+    .knob {
+      position: relative;
+      margin: 0;
+
+      .badge {
+        position: absolute;
+        top: -0.6em;
+        left: -0.8em;
+        font-size: 0.9em;
+
+        /* Nothing selected, nothing to count */
+        &[hidden] {
+          display: none;
+        }
+      }
+    }
+
+    & > .panel {
+      min-width: 25em;
+
+      /* The keys that do the same */
+      .keys {
+        float: right;
+        margin-left: 1.5em;
+        font-size: 0.8em;
+      }
+    }
+  }
+
+  .cataloguing-table {
+    overflow-x: auto;
+
+    /* A selected row is marked at its start */
+    tr.selected > td:first-child {
+      box-shadow: inset 0.3em 0 0 var(--nausikaa-blue3);
+    }
+
+    /* The titles all lead back to this page, so they would all show as
+       visited: they keep the color of a link that is not */
+    td a:visited {
+      color: var(--nausikaa-link-color);
+      text-decoration: underline solid var(--nausikaa-link-line);
+      -webkit-text-decoration: underline solid var(--nausikaa-link-line);
+
+      &:hover {
+        color: var(--nausikaa-link-hover);
+      }
+
+      &:focus,
+      &:active {
+        color: var(--nausikaa-link-active);
+      }
+    }
+  }
+
+  /* With room beside the page the knob moves out of the way of the table:
+     to the left of it, at the height of its first rows */
+  @media (min-width: 1280px) {
+    .cataloguing-selection {
+      transform: translate(-110%, 0.8em);
+
+      & > .panel {
+        transform: translateX(-2em);
+      }
+    }
+
+    .cataloguing-table {
+      transform: translateY(-3em);
+      margin-bottom: -3em;
+    }
+  }
+
+  @media (max-width: 1279px) {
+    .cataloguing-selection {
+      margin-bottom: 0.6em;
+    }
+  }
+}
+
+/* In the dark theme a bar lies on something darker than the page; on e-ink
+   the track and the six lines are greys that can be told apart. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) main#statistics {
+    --nausikaa-example-track: var(--nausikaa-mantle);
+  }
+}
+
+:root[data-theme="dark"] main#statistics {
+  --nausikaa-example-track: var(--nausikaa-mantle);
+}
+
+:root[data-theme="eink"] main#statistics {
+  --nausikaa-example-track: var(--nausikaa-surface0);
+  --nausikaa-example-series-1: #cccccc;
+  --nausikaa-example-series-2: #aaaaaa;
+  --nausikaa-example-series-3: #888888;
+  --nausikaa-example-series-4: #666666;
+  --nausikaa-example-series-5: #333333;
+  --nausikaa-example-series-6: #000000;
+}
+
+/* Statistics: filters on the left, the figures and charts next to them */
+main#statistics {
+  position: relative;
+  font-family: var(--nausikaa-utility-text);
+
+  /* The colors of the six lines: from the oldest year, in grey, to the
+     newest, in dark blue */
+  --nausikaa-example-series-1: #d9d9d9;
+  --nausikaa-example-series-2: #b0b0b0;
+  --nausikaa-example-series-3: #91caff;
+  --nausikaa-example-series-4: #4a9eff;
+  --nausikaa-example-series-5: #1677ff;
+  --nausikaa-example-series-6: #003eb3;
+  /* What a bar lies on: a little lighter than the page */
+  --nausikaa-example-track: #f8f9fb;
+
+  @media (min-width: 901px) {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 300px 1fr 400px;
+    grid-column-gap: 1em;
+  }
+
+  & > .tabs {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    font-size: 1.1em;
+    margin-top: 0;
+    margin-bottom: 1em;
+
+    .tabs-title {
+      margin-left: 1em;
+      margin-right: 3.5em;
+    }
+  }
+
+  .statistics-sidebar {
+    grid-column: 1 / 2;
+    align-self: start;
+
+    #statistics-filters {
+      margin-top: 0;
+    }
+
+    @media (max-width: 900px) {
+      margin-bottom: 2em;
+    }
+  }
+
+  .statistics-section {
+    grid-column: 2 / -1;
+    min-width: 0;
+
+    h3 {
+      margin-top: 0.75rem;
+      color: var(--nausikaa-subtext0);
+      border-bottom: 1px dotted var(--nausikaa-surface2);
+    }
+  }
+
+  /* The lists with the most ordered products and publishers */
+  .stat-top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px dotted var(--nausikaa-surface2);
+    margin: 0 0 0.75rem;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0.2em;
+      border-bottom: none;
+    }
+
+    select {
+      width: auto;
+      font-size: 0.8em;
+      margin: 0 0 0.2em;
+    }
+
+    button {
+      margin: 0 0 0.2em 0.4em;
+    }
+  }
+
+  .stat-top-ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: grid;
+      grid-template-columns: 2.5ch 1fr auto;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0.3rem 0;
+
+      & + li {
+        border-top: 1px solid var(--nausikaa-surface1);
+      }
+    }
+  }
+
+  .stat-top-rank {
+    color: var(--nausikaa-overlay2);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-top-customer {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+
+    .tag {
+      flex: 0 0 auto;
+    }
+
+    &:hover .stat-top-name {
+      text-decoration: underline;
+    }
+  }
+
+  .stat-top-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 0.2em;
+  }
+
+  .stat-top-value {
+    color: var(--nausikaa-subtext0);
+    white-space: nowrap;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-top-empty {
+    color: var(--nausikaa-subtext0);
+    font-style: italic;
+  }
+
+  /* The row of key figures */
+  .stat-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    flex: 1 1 10rem;
+    margin: 0;
+    padding: 1rem 1.25rem;
+
+    .stat-card-value {
+      font-size: 2rem;
+      font-weight: bold;
+      line-height: 1.1;
+    }
+
+    .stat-card-label {
+      margin-top: -0.25rem;
+      font-weight: bold;
+    }
+
+    .stat-card-sub {
+      text-align: right;
+      margin-top: 0.15rem;
+    }
+  }
+
+  .statistics-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+
+    @media (max-width: 900px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  /* Order positions: the name, the number and its share */
+  .statistics-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+
+    td {
+      padding: 0.15rem 0.5rem 0.15rem 0;
+      border-width: 0;
+      vertical-align: middle;
+      background-color: transparent;
+
+      .badge {
+        min-width: 1.4em;
+        width: 1.4em;
+        height: 1.4em;
+        padding: 0;
+        margin-right: 0.4em;
+        top: 0;
+        transform: translateY(0.2em);
+      }
+
+      .stat-position-name {
+        margin-left: 0.4em;
+        color: var(--nausikaa-subtext1);
+      }
+
+      &:nth-child(2) {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        padding-right: 0.75rem;
+      }
+    }
+
+    .stat-pct {
+      color: var(--nausikaa-overlay2);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    tr + tr td {
+      border-top: 1px solid var(--nausikaa-surface1);
+    }
+  }
+
+  /* Bars: one row per item, with the name, a bar and the number */
+  .stat-bar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .stat-bar-row {
+    display: grid;
+    grid-template-columns: 14ch 1fr 6ch;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .stat-bar-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .stat-bar-track {
+    background: var(--nausikaa-example-track);
+    border-radius: 3px;
+    height: 1.5em;
+    overflow: hidden;
+  }
+
+  .stat-bar-fill {
+    height: 100%;
+    background: var(--nausikaa-blue3);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+
+  .stat-bar-count {
+    text-align: right;
+    color: var(--nausikaa-subtext0);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* The line chart with the orders per month */
+  .statistics-monthly {
+    margin-bottom: 2rem;
+  }
+
+  .stat-line-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .stat-line-svg {
+    display: block;
+    width: 100%;
+    color: currentColor;
+
+    text {
+      fill: currentColor;
+      font-family: var(--nausikaa-utility-text);
+    }
+
+    polyline {
+      stroke: var(--nausikaa-example-series);
+    }
+
+    circle {
+      fill: var(--nausikaa-example-series);
+    }
+  }
+
+  .series-1 { --nausikaa-example-series: var(--nausikaa-example-series-1); }
+  .series-2 { --nausikaa-example-series: var(--nausikaa-example-series-2); }
+  .series-3 { --nausikaa-example-series: var(--nausikaa-example-series-3); }
+  .series-4 { --nausikaa-example-series: var(--nausikaa-example-series-4); }
+  .series-5 { --nausikaa-example-series: var(--nausikaa-example-series-5); }
+  .series-6 { --nausikaa-example-series: var(--nausikaa-example-series-6); }
+
+  .stat-line-legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.2rem 1rem;
+    font-size: 0.8em;
+    color: var(--nausikaa-subtext0);
+
+    li {
+      margin: 0;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+
+    input {
+      margin: 0;
+      cursor: pointer;
+    }
+
+    /* A line that is not shown */
+    li.off {
+      .stat-line-dot {
+        opacity: 0.3;
+      }
+
+      span:last-child {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .stat-line-dot {
+    width: 0.75em;
+    height: 0.75em;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--nausikaa-example-series);
+  }
+
+  /* Columns: one per year */
+  .stat-year-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    height: 180px;
+    padding-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .stat-year-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    position: relative;
+  }
+
+  .stat-year-bar-wrap {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .stat-year-bar {
+    width: 100%;
+    background: var(--nausikaa-blue3);
+    border-radius: 3px 3px 0 0;
+    opacity: 0.75;
+    transition: opacity 0.15s;
+    min-height: 2px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .stat-year-count {
+    font-size: 0.65em;
+    color: var(--nausikaa-subtext0);
+    margin-top: 0.25rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-year-label {
+    font-size: 0.7em;
+    color: var(--nausikaa-subtext0);
+    margin-top: 0.1rem;
   }
 }
 
@@ -1010,6 +1771,833 @@ main#sales {
     &.bottom > dl.short {
       width: auto;
       margin: 0 0 1em;
+    }
+  }
+}
+
+/*
+ * New title drafts: a table of drafts on the left, the open draft on the
+ * right. Every part of the draft shows as plain text until it is clicked;
+ * then it turns into a form (blue), and it stays marked (orange) while it
+ * has changes that aren't saved.
+ */
+main#new-title-drafts {
+  @media (min-width: 901px) {
+    max-width: 1400px;
+    padding-top: 2em;
+    padding-bottom: 1em;
+    min-height: 0;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 0;
+  }
+
+  [hidden] {
+    display: none;
+  }
+
+  & > .ntd-draft-table-pane {
+    min-width: 0;
+
+    @media (min-width: 901px) {
+      padding-right: 1em;
+    }
+
+    .ntd-table-controls {
+      display: flex;
+      align-items: center;
+
+      & > * {
+        margin-right: 0.4em;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      & > .spacer {
+        flex-grow: 99;
+      }
+
+      .knob {
+        position: relative;
+        margin-bottom: 0;
+        margin-right: 0;
+
+        & > .icon {
+          transform: scale(1.5) translateY(0.07em);
+        }
+
+        /* A count on the corner of the knob */
+        & > .tag.badge {
+          position: absolute;
+          top: -0.4em;
+          right: -0.4em;
+        }
+      }
+
+      .knobs {
+        display: flex;
+        list-style-type: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0;
+
+        & > li {
+          margin: 0;
+        }
+      }
+
+      .dropdown > .panel {
+        font-family: var(--nausikaa-utility-text);
+
+        li > strong,
+        form > label {
+          display: block;
+          padding: 0 0.3em;
+        }
+
+        input[type="number"],
+        input[type="date"] {
+          width: 100%;
+        }
+      }
+
+      .ntd-add-button {
+        flex: 0 0 auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left: 0.6em;
+        padding-right: 0.6em;
+
+        .icon {
+          margin: 0;
+          fill: currentColor;
+        }
+      }
+
+      /* Search: only the knob shows, until it is used. Then the field takes
+         the whole bar and the other controls step aside. */
+      .ntd-table-search {
+        flex: 0 0 auto;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+
+        & > .group {
+          display: none;
+          flex: 1 1 auto;
+          min-width: 0;
+          margin: 0 0.4em 0 0;
+          position: relative;
+
+          & > input {
+            flex: 1 1 auto;
+            width: 100%;
+            margin: 0;
+            border-radius: 6px;
+          }
+
+          /* The cross is the field's own; hide the one of the browser */
+          input[type="search"]::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+            display: none;
+          }
+
+          & > .ntd-search-clear {
+            position: absolute;
+            top: 0;
+            right: 0.6em;
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+            & > .icon {
+              width: 1.3em;
+              height: 1.3em;
+              fill: var(--nausikaa-overlay1);
+            }
+          }
+        }
+      }
+
+      &.searching {
+        & > *:not(.ntd-table-search) {
+          display: none;
+        }
+
+        & > .ntd-table-search {
+          flex: 1 1 auto;
+
+          & > .group {
+            display: flex;
+          }
+        }
+      }
+
+      .ntd-table-filter > .panel {
+        min-width: 16em;
+
+        .checkboxes label {
+          display: flex;
+
+          & > span:first-child {
+            flex: 1 1 auto;
+          }
+        }
+      }
+
+      .ntd-table-settings > .panel {
+        width: 12em;
+      }
+    }
+
+    .ntd-table-empty {
+      padding: 1em 0.8em;
+      color: var(--nausikaa-subtext0);
+      font-size: 0.9em;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .ntd-draft-table {
+      width: 100%;
+
+      th.checkbox,
+      td.checkbox,
+      th.status,
+      td.status {
+        width: 1%;
+        white-space: nowrap;
+      }
+
+      /* The label fills the cell, so a click anywhere in it ticks the box */
+      td.checkbox {
+        padding: 0;
+
+        & > label {
+          display: block;
+          padding: 0.5em;
+          cursor: pointer;
+        }
+      }
+
+      td.product-info {
+        min-width: 0;
+      }
+
+      th.product-info .ntd-product-total {
+        float: right;
+        font-style: italic;
+        font-weight: normal;
+      }
+
+      & > tbody > tr:not(.ntd-table-empty-row) {
+        cursor: pointer;
+        outline-width: 0;
+
+        &:hover > td,
+        &:focus > td {
+          background-color: var(--nausikaa-surface0);
+        }
+
+        /* The draft that is open on the right */
+        &.active {
+          & > td,
+          &:hover > td,
+          &:focus > td {
+            background-color: var(--nausikaa-base);
+          }
+
+          & > td:first-child {
+            border-left: 5px solid var(--nausikaa-blue3);
+          }
+        }
+      }
+    }
+
+    /* The product of a draft: a small cover, the title on one line and the
+       details in grey below it */
+    .ntd-product.product-info-wrapper {
+      max-width: 70ch;
+      display: grid;
+      grid-column-gap: 0.5rem;
+      grid-template-columns: 32px 1fr;
+      position: relative;
+
+      .nts-tag,
+      .ebook-tag {
+        position: absolute;
+        font-size: 0.45rem;
+        top: -3px;
+        left: -5px;
+        z-index: 1;
+      }
+
+      .product-image {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+
+        img {
+          display: block;
+          width: 100%;
+        }
+
+        .no-images {
+          padding: 35% 0;
+          border-radius: 3px;
+          background-image: repeating-linear-gradient(
+            -45deg,
+            var(--nausikaa-mantle),
+            var(--nausikaa-mantle) 0.5rem,
+            var(--nausikaa-crust) 0.5rem,
+            var(--nausikaa-crust) 1rem
+          );
+        }
+      }
+
+      .product-title {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        display: block;
+        margin: 0 0 0.3em 0;
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        & > a {
+          color: var(--nausikaa-text);
+          text-decoration: none;
+        }
+      }
+
+      .product-metadata {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        font-size: 0.875em;
+        color: var(--nausikaa-overlay2);
+        line-height: 1.15;
+
+        .product-price {
+          color: var(--nausikaa-subtext0);
+        }
+      }
+    }
+
+    /* The strip below the product: where it stands on the left, who touched
+       it and when on the right */
+    .ntd-product-footer {
+      display: flex;
+      align-items: center;
+      margin-top: 0.8em;
+      margin-left: calc(32px + 0.5em);
+
+      & > .tag {
+        margin-right: 0.2em;
+      }
+
+      .spacer {
+        flex-grow: 99;
+      }
+
+      .ntd-product-meta {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        font-size: 0.8em;
+        color: var(--nausikaa-subtext0);
+        white-space: nowrap;
+
+        .ntd-stamp {
+          display: inline-flex;
+          align-items: center;
+          margin-left: 0.9em;
+
+          .user-avatar {
+            font-size: 0.8em;
+          }
+
+          &.edited > time:before {
+            content: "✎ ";
+          }
+        }
+      }
+    }
+
+    .ntd-summoner {
+      margin-left: 1em;
+
+      .summoning-present .tag.badge {
+        font-size: 0.7em;
+      }
+
+      & > .panel {
+        min-width: 26em;
+      }
+
+      .summoning-table {
+        margin: 0;
+        width: 100%;
+
+        td {
+          border-width: 0;
+          padding: 0.1em 0.3em;
+          white-space: nowrap;
+        }
+
+        .summoning-line-availability {
+          color: var(--nausikaa-subtext0);
+        }
+      }
+    }
+
+    .ntd-table-pager {
+      display: flex;
+      justify-content: center;
+      padding: 0.5em;
+      border-top: 1px solid var(--nausikaa-surface1);
+
+      .spacer {
+        flex-grow: 99;
+      }
+
+      .pagination {
+        margin: 0;
+
+        a {
+          padding: 0 0.6em;
+        }
+      }
+    }
+  }
+
+  & > .ntd-editor-pane {
+    min-width: 0;
+
+    @media (min-width: 901px) {
+      position: sticky;
+      top: 1em;
+      align-self: flex-start;
+      max-height: calc(100vh - 2em);
+      overflow-y: auto;
+      padding-left: 1em;
+      border-left: 1px solid var(--nausikaa-surface1);
+    }
+
+    @media (max-width: 900px) {
+      margin-top: 2em;
+    }
+
+    & > .ntd-nav {
+      display: flex;
+      align-items: baseline;
+      border-bottom: 1px solid var(--nausikaa-surface1);
+      padding-bottom: 0.5em;
+      font-family: var(--nausikaa-utility-text);
+
+      & > div:first-child {
+        margin-left: 0.3em;
+      }
+
+      & > .spacer {
+        flex-grow: 99;
+      }
+
+      .tag {
+        font-size: 1em;
+        margin-top: 0.2em;
+      }
+
+      .dropdown > .tag {
+        cursor: pointer;
+      }
+
+      .dropdown > .panel .tag {
+        font-size: 0.7em;
+        margin-top: 0;
+      }
+
+      /* What is known about the title elsewhere, underlined in a color */
+      .live-checked {
+        margin-left: 1em;
+        color: var(--nausikaa-subtext0);
+        text-decoration: underline 4px solid var(--nausikaa-blue3);
+
+        &.red {
+          text-decoration-color: var(--nausikaa-red3);
+        }
+
+        &.orange {
+          text-decoration-color: var(--nausikaa-peach3);
+        }
+
+        &.green {
+          text-decoration-color: var(--nausikaa-green3);
+        }
+      }
+
+      .ntd-summoner {
+        align-self: center;
+      }
+    }
+
+    /* Who made the draft and who changed it last */
+    & > .ntd-draft-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0.5em 0 0 0.3em;
+      font-size: 0.8em;
+      color: var(--nausikaa-subtext0);
+
+      .ntd-draft-event {
+        font-family: var(--nausikaa-utility-text);
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        margin-right: 1.2em;
+
+        .user-avatar {
+          font-size: 0.8em;
+          margin-left: 0.3em;
+        }
+      }
+    }
+
+    & > .ntd-form {
+      padding-top: 0.6em;
+    }
+
+    /* No draft is open */
+    & > .ntd-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      text-align: center;
+      color: var(--nausikaa-subtext0);
+
+      p {
+        max-width: 28em;
+        margin: 0.5em auto 0;
+      }
+    }
+  }
+
+  /* The parts of the draft */
+  .biblio-metadata {
+    max-width: 900px;
+
+    .editable {
+      /* The tints of a part that is being edited and of one with changes */
+      --nausikaa-example-editing: rgba(30, 102, 245, 0.1);
+      --nausikaa-example-editing-line: rgba(30, 102, 245, 0.45);
+      --nausikaa-example-changed: rgba(254, 100, 11, 0.14);
+      --nausikaa-example-changed-line: rgba(254, 100, 11, 0.55);
+
+      position: relative;
+      padding: 0.3em 0.5em;
+      border-radius: 6px;
+      background-color: transparent;
+      border: 1px solid transparent;
+      transition:
+        0.2s border-color,
+        0.2s background-color,
+        0.2s box-shadow;
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        border-color: var(--nausikaa-surface1);
+        outline-width: 0;
+        box-shadow: 0 0 0 2px rgba(var(--nausikaa-surface1-rgb), 0.5);
+
+        &.not-editing:after {
+          content: "Click to edit";
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background-color: var(--nausikaa-surface0);
+          padding: 0.1em 0.3em;
+          border-radius: 3px;
+          color: var(--nausikaa-subtext0);
+          font-size: 0.8em;
+          font-family: var(--nausikaa-utility-text);
+        }
+      }
+
+      &.not-editing {
+        cursor: pointer;
+      }
+
+      .static,
+      .edit-summary {
+        h4 {
+          margin: 0;
+          padding: 0.25em 0;
+          font-family: var(--nausikaa-utility-text);
+          font-weight: normal;
+
+          .subtitle {
+            color: var(--nausikaa-overlay2);
+          }
+        }
+
+        dl {
+          line-height: 1.5;
+          margin: 0.2em 0;
+
+          dt {
+            flex: 0 0 22%;
+            color: var(--nausikaa-overlay2);
+            font-family: var(--nausikaa-utility-text);
+          }
+
+          dd {
+            flex: 0 0 78%;
+            margin: 0;
+          }
+        }
+
+        .undefined {
+          color: var(--nausikaa-overlay2);
+          font-family: var(--nausikaa-utility-text);
+        }
+
+        .ntd-subject {
+          margin-right: 0.6em;
+        }
+
+        .ntd-other-editions {
+          line-height: 1.8;
+        }
+      }
+
+      /* The form is in the page all along; it only shows while editing */
+      .edit {
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        margin: 0;
+        position: relative;
+
+        &.basic-form {
+          & > *:not(label) {
+            grid-column-end: -2;
+          }
+
+          .help {
+            margin-top: 0;
+          }
+
+          & > hr {
+            margin: 0.4em 0;
+          }
+
+          & > span > label {
+            margin-right: 2em;
+          }
+        }
+
+        /* What the part says now, repeated above its fields */
+        .edit-summary {
+          grid-column-start: 1;
+          grid-column-end: -1 !important;
+          border-bottom: 1px solid var(--nausikaa-example-editing-line);
+          /* Leaves room for the cross in the corner */
+          margin: 0 2.6em 0.6em 0;
+          padding: 0.1em 0 0.4em;
+          min-height: 1.5em;
+
+          /* On the tint of the part the lighter grey is too faint */
+          dt {
+            color: var(--nausikaa-subtext0);
+          }
+
+          dl,
+          h4 {
+            margin: 0;
+          }
+        }
+
+        .close {
+          position: absolute;
+          top: 0.5em;
+          right: 0.6em;
+          width: 2em;
+          height: 2em;
+          cursor: pointer;
+
+          svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--nausikaa-overlay1);
+          }
+
+          &:hover svg,
+          &:focus svg {
+            fill: var(--nausikaa-text);
+          }
+        }
+      }
+
+      &.editing {
+        background-color: var(--nausikaa-example-editing);
+        border-color: var(--nausikaa-example-editing-line);
+        box-shadow: 0 0 0 2px var(--nausikaa-example-editing);
+
+        .help {
+          line-height: 1.2;
+        }
+
+        .static {
+          visibility: hidden;
+          height: 0;
+          overflow: hidden;
+        }
+
+        .edit {
+          visibility: visible;
+          height: auto;
+          overflow: visible;
+          padding: 0.5em 1em;
+        }
+      }
+
+      /* Changed, and not saved yet */
+      &.diff-unsure {
+        background-color: var(--nausikaa-example-changed);
+        border-color: var(--nausikaa-example-changed-line);
+        box-shadow: 0 0 0 2px var(--nausikaa-example-changed);
+        margin: 0.15em 0;
+
+        .edit .edit-summary {
+          border-bottom-color: var(--nausikaa-example-changed-line);
+        }
+      }
+    }
+  }
+
+  /* Fields that look something up: suggestions below, the chosen one as a
+     tag inside the field */
+  .ntd-publisher-suggestions,
+  .ntd-lookup-suggestions {
+    width: 100%;
+    margin: 0.3em 0 0;
+
+    .panel li > a {
+      white-space: normal;
+      padding: 0.25em 0.4em;
+      cursor: pointer;
+    }
+  }
+
+  .ntd-field-prefixed {
+    position: relative;
+    width: 100%;
+
+    & > .prefix-el {
+      position: absolute;
+      top: 0.6em;
+      left: 0.6em;
+    }
+
+    & > input {
+      width: 100%;
+    }
+
+    /* Room for the tag in front of the text */
+    &.has-prefix > input {
+      padding-left: 7.5em;
+    }
+  }
+
+  .ntd-publisher-warning {
+    display: block;
+    padding: 0.5em 0.8em;
+    margin: 0.3em 0;
+    border-radius: 4px;
+    font-size: 0.9em;
+    line-height: 1.4;
+    white-space: normal;
+
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  .ntd-series-row {
+    display: flex;
+
+    & > input:first-child {
+      flex: 0 0 75%;
+      margin-right: 1em;
+    }
+
+    & > input:last-child {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+  }
+
+  .ntd-people-row {
+    display: flex;
+    align-items: baseline;
+
+    & > input {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    /* The comma between the last and the first name */
+    & > .ntd-comma {
+      font-size: 2.4em;
+      line-height: 1;
+      font-weight: bold;
+      color: var(--nausikaa-surface2);
+      margin: 0 0.2em 0 0.05em;
+    }
+  }
+
+  .ntd-checkbox {
+    display: flex;
+    align-items: center;
+
+    & > input {
+      margin-right: 0.5em;
+    }
+  }
+
+  .ntd-flags {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-gap: 0.3em 1em;
+  }
+
+  /* The buttons of the draft stay in view at the bottom of the editor */
+  .ntd-controls {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: 901px) {
+      position: sticky;
+      bottom: 0;
+    }
+
+    align-items: center;
+    padding: 0.7em 0;
+    margin-top: 1em;
+    border-top: 1px solid var(--nausikaa-surface1);
+    background-color: rgba(var(--nausikaa-base-rgb), 0.9);
+
+    & > button {
+      margin-bottom: 0;
+    }
+
+    .spacer {
+      flex-grow: 999;
     }
   }
 }

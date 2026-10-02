@@ -1,300 +1,767 @@
 <%
-  // Example: a data-entry form. Nothing is stored: saving leads back to this
-  // page with ?saved=1, which shows the notification.
-  var saved = query.saved == '1';
-  var publishers = data.publishers;
-  var subjects = ['Art history', 'Classics', 'Archaeology', 'Literature', 'Philosophy', 'History'];
-  var sections = [
-    { id: 'identification', title: 'Identification' },
-    { id: 'title', title: 'Title' },
-    { id: 'publication', title: 'Publication' },
-    { id: 'description', title: 'Description' },
-    { id: 'cover', title: 'Cover' }
-  ];
+  // Example: a work list with an editor next to it. The table on the left
+  // lists the drafts; the open draft is on the right, in parts that each turn
+  // into a form when they are clicked. Search, filters, sorting, the page and
+  // the open draft are in the address; opening a part to edit it and keeping
+  // track of what changed is done by the script at the bottom.
+  var view = data.titleDraftsView(query);
+  var draft = view.open, f = draft ? draft.fields : null;
+  var esc = function (value) { return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var dash = function (value) { return value === '' || value === null || value === undefined ? '<span class="undefined">—</span>' : esc(value); };
+  var initials = function (name) { return name.split(' ').map(function (part) { return part[0]; }).join(''); };
+  var avatar = function (name) { return '<span class="user-avatar" title="' + esc(name) + '"><span class="no-avatar">' + initials(name) + '</span></span>'; };
+  var icon = function (name) { return '<svg class="icon"><use xlink:href="/images/icons.svg#' + name + '"></use></svg>'; };
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var longDate = function (date) { return date.getUTCDate() + ' ' + months[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); };
+
+  // An identifier: the location it belongs to, an icon and the number
+  var identifier = function (id, branch, iconName) {
+    var location = data.branches[branch];
+    return '<span class="tag ' + location.color + '" title="' + location.name + '"><strong>' + branch + '</strong></span> ' +
+      '<span class="tag">' + (iconName ? icon(iconName) : '') + esc(id) + '</span>';
+  };
+
+  // The page links below the table
+  var pageLink = function (page, label, turn) {
+    return '<li><a href="' + view.url({ p: page }) + '" aria-label="' + label + '" title="' + label + '">' +
+      '<svg style="transform: rotate(' + turn + 'deg)"><use xlink:href="/images/icons.svg#chevron-down"></use></svg></a></li>';
+  };
+
+  // What every part of the open draft shows while it is not being edited.
+  // The same summary is repeated at the top of its form.
+  var statics = {};
+  var people = function (list) { return list.map(function (person) { return person.family + ', ' + person.given; }).join('; '); };
+  if (draft) {
+    statics.title = '<h4>' + dash(f.title) + (f.subtitle ? '. <span class="subtitle">' + esc(f.subtitle) + '</span>' : '') + '</h4>';
+    statics.identifiers = '<dl><dt>ISBN</dt><dd>' + dash(f.isbn) + '</dd></dl>';
+    statics.series = '<dl><dt>Series</dt><dd>' + dash(f.series ? f.series + (f.volume ? ' ' + f.volume : '') : '') + '</dd></dl>';
+    statics.people = '<dl><dt>Authors</dt><dd>' + dash(people(f.authors)) + '</dd><dt>Editors</dt><dd>' + dash(people(f.editors)) + '</dd></dl>';
+    statics.publication = '<dl><dt>Publisher</dt><dd>' +
+      (f.publisherMatched ? identifier(f.publisherId, 'NW', 'shipping') + ' ' : '<span class="tag orange">Unmatched publisher</span> ') + dash(f.publisher) + '</dd>' +
+      '<dt>Place</dt><dd>' + dash([f.place, f.country].filter(Boolean).join(', ')) + '</dd>' +
+      '<dt>Date</dt><dd>' + esc(longDate(f.date)) + '</dd></dl>';
+    statics.material = '<dl><dt>Pages</dt><dd>' + dash(f.pages) + '</dd><dt>Illustrations</dt><dd>' + dash(f.illustrations) + '</dd>' +
+      '<dt>Language</dt><dd>' + dash(f.language) + '</dd><dt>Binding</dt><dd>' + dash(f.binding) + '</dd></dl>';
+    statics.subjects = '<dl><dt>Subjects</dt><dd>' + (f.subjects.length ? f.subjects.map(function (subject) {
+      return '<span class="ntd-subject"><span class="tag">' + subject[0] + '</span> ' + esc(subject[1]) + '</span>';
+    }).join(' ') : dash('')) + '</dd></dl>';
+    statics.prices = '<dl><dt>Currency</dt><dd>' + dash(f.currency) + '</dd><dt>Price</dt><dd>' + dash(f.price.toFixed(2)) + '</dd></dl>';
+    statics.flags = '<dl><dt>Flags</dt><dd>' + dash(data.titleFlags.filter(function (flag) { return f.flags.includes(flag[0]); }).map(function (flag) { return flag[2] + ' ' + flag[1]; }).join(', ')) + '</dd></dl>';
+    statics.abstract = '<dl><dt>Abstract</dt><dd>' + dash(f.abstract) + '</dd></dl>';
+    statics.notes = '<dl><dt>Extra info</dt><dd>' + dash(f.info) + '</dd><dt>Remark</dt><dd>' + dash(f.remark) + '</dd><dt>Source</dt><dd>' + dash(f.source) + '</dd></dl>';
+    statics.edition = '<dl><dt>Edition</dt><dd>' + dash(f.edition) + '</dd><dt>Other editions</dt><dd class="ntd-other-editions">' +
+      (f.otherEditions.length ? f.otherEditions.map(function (edition) { return '<a href="' + view.url() + '">' + esc(edition[0]) + '</a> <span class="tag">' + edition[1] + '</span>'; }).join('<br>') : dash('')) + '</dd></dl>';
+  }
+
+  // The start of a part: its static view, and the top of its form
+  var open = function (name) {
+    return '<div class="biblio-ntd-' + name + ' editable ' + (view.editing == name ? 'editing' : 'not-editing') + '" tabindex="0" role="tab" data-section="' + name + '" data-edit-url="' + view.url({ edit: name }) + '">' +
+      '<div class="static">' + statics[name] + '</div>' +
+      '<div class="edit basic-form">' +
+      '<a class="close" href="' + view.url({ edit: '' }) + '" role="button" aria-label="Close this part" title="Close"><svg><use xlink:href="/images/icons.svg#clear"></use></svg></a>' +
+      '<div class="edit-summary">' + statics[name] + '</div>';
+  };
+  // The end of a part: the buttons below its form
+  var close = function () {
+    return '<div class="controls"><a class="button secondary" href="' + view.url({ edit: '' }) + '" data-close>Close</a><button type="button" data-reset disabled>Reset changes</button><div class="spacer"></div></div></div></div>';
+  };
 %>
-<main class="sidebar-right">
+<main id="new-title-drafts">
 
-  <article>
+  <div class="ntd-draft-table-pane">
 
-    <ul class="breadcrumbs steps">
-      <li class="active">
-        <span>
-          <h5>Describe</h5>
-          Enter the details of the title
-        </span>
-      </li>
-      <li>
-        <a href="/examples/new-title">
-          <h5>Review</h5>
-          A colleague checks the draft
+    <div class="ntd-table-controls<%= view.q ? ' searching' : '' %>">
+      <span class="selection-menu dropdown">
+        <a class="knob transparent" tabindex="0" role="button" aria-haspopup="true" title="Selected drafts">
+          <%- icon('checklist') %>
+          <span class="tag badge blue" id="ntd-selected" hidden>0</span>
         </a>
-      </li>
-      <li>
-        <a href="/examples/new-title">
-          <h5>Send</h5>
-          Offer it to the customers
-        </a>
-      </li>
-    </ul>
+        <div class="panel arrow top left">
+          <ul>
+            <li><button type="button" class="link" data-select="all">Select all</button></li>
+            <li><button type="button" class="link" data-select="none" data-needs-selection disabled>Deselect all</button></li>
+            <li><button type="button" class="link" data-select="invert">Inverse selection</button></li>
+            <li class="seperator"></li>
+            <li><button type="button" class="link" data-needs-selection disabled>Edit selected drafts</button></li>
+            <li><button type="button" class="link" data-needs-selection disabled>🧙 Summon selected drafts</button></li>
+            <li><button type="button" class="link" data-needs-selection disabled><strong>✈️ Send to NTS</strong></button></li>
+            <li><button type="button" class="link" data-needs-selection disabled>Delete selected drafts</button></li>
+          </ul>
+        </div>
+      </span>
 
-    <% if (saved) { %>
-    <div class="notification green" role="status">
-      <p><strong>Draft saved.</strong> A colleague can now review it.</p>
-      <a class="control close" href="/examples/new-title" aria-label="Dismiss this message">
-        <svg>
-          <use xlink:href="/images/icons.svg#clear"></use>
-        </svg>
+      <a class="button positive ntd-add-button" href="<%= view.url({ draft: '' }) %>" title="Add titles to New Title Drafts" aria-label="Add titles to New Title Drafts">
+        <%- icon('plus') %>
       </a>
-    </div>
-    <% } %>
 
-    <header>
-      <h2>New title <span class="tag">Draft</span></h2>
-    </header>
+      <div class="spacer"></div>
 
-    <%# Most fields have no name, so little more than "saved" ends up in the address %>
-    <form action="/examples/new-title" method="GET" class="basic-form">
-      <input type="hidden" name="saved" value="1">
+      <%# Search: a knob that opens a field across the whole bar %>
+      <div class="ntd-table-search">
+        <form action="/examples/new-title-drafts" method="GET" class="group" role="search">
+          <input type="search" name="q" class="append-icon" value="<%= view.q %>" placeholder="Search drafts…" aria-label="Search drafts" autocomplete="off">
+          <%# The search keeps the filters, the sorting and the open draft %>
+          <% view.facets.forEach(function (facet) { view.filters[facet.key].forEach(function (value) { %>
+          <input type="hidden" name="<%= facet.key %>" value="<%= value %>">
+          <% }); }); %>
+          <% if (view.sort != 'updated') { %><input type="hidden" name="sort" value="<%= view.sort %>"><% } %>
+          <% if (view.dir != 'desc') { %><input type="hidden" name="dir" value="<%= view.dir %>"><% } %>
+          <% if (view.size != 8) { %><input type="hidden" name="size" value="<%= view.size %>"><% } %>
+          <% if (!draft || draft.id != view.defaultDraft) { %><input type="hidden" name="draft" value="<%= draft ? draft.id : 'none' %>"><% } %>
+          <% if (view.editParam) { %><input type="hidden" name="edit" value="<%= view.editParam %>"><% } %>
+          <a href="<%= view.url({ q: '', p: 1 }) %>" class="ntd-search-clear" aria-label="Clear the search" title="Clear the search"><%- icon('clear') %></a>
+        </form>
+        <a class="knob transparent" tabindex="0" role="button" id="ntd-search-knob" title="<%= view.q ? 'Minimize search' : 'Search drafts' %>" aria-label="Search drafts">
+          <%- icon('search') %>
+          <% if (view.q) { %><span class="tag badge red">1</span><% } %>
+        </a>
+      </div>
 
-      <fieldset id="identification">
-        <legend>Identification</legend>
+      <ul class="ntd-date-range knobs">
+        <li class="dropdown">
+          <a class="knob transparent" tabindex="0" role="button" aria-haspopup="true" title="Filter on date" aria-label="Filter on date">
+            <%- icon('calendar-view') %>
+          </a>
+          <div class="panel arrow top right">
+            <form action="/examples/new-title-drafts" method="GET">
+              <label for="ntd-from"><strong>Created from</strong></label>
+              <input type="date" id="ntd-from">
+              <label for="ntd-to"><strong>until</strong></label>
+              <input type="date" id="ntd-to">
+            </form>
+          </div>
+        </li>
+      </ul>
 
-        <label for="isbn">ISBN</label>
-        <div class="group">
-          <input type="text" id="isbn" inputmode="numeric" value="9789024680022" aria-describedby="isbn-help">
-          <button type="button" class="secondary">Look up</button>
-        </div>
-        <small class="help" id="isbn-help">
-          <span class="spinner small gray" role="status" aria-label="Looking up">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="20" />
-            </svg>
-          </span>
-          Asking the publisher for the details of this ISBN…
-        </small>
-
-        <label for="book-in-hand">In hand</label>
-        <ul class="checkboxes">
-          <li>
-            <input type="checkbox" id="book-in-hand" checked>
-            <label for="book-in-hand">The book is on my desk</label>
-          </li>
-          <li>
-            <input type="checkbox" id="no-isbn">
-            <label for="no-isbn">This title has no ISBN</label>
-          </li>
-        </ul>
-      </fieldset>
-
-      <fieldset id="title">
-        <legend>Title</legend>
-
-        <label for="title-main">Title <small>required</small></label>
-        <input type="text" id="title-main" value="The Princess on the Shore" required>
-
-        <label for="title-sub">Subtitle</label>
-        <input type="text" id="title-sub" value="Nausicaä in Art and Literature">
-
-        <label for="author">Author <small>required</small></label>
-        <input type="text" id="author" class="invalid" value="" placeholder="Last name, first name" required aria-describedby="author-help">
-        <small class="help" id="author-help">Fill in at least one author or editor.</small>
-
-        <label for="series">Series</label>
-        <div class="group">
-          <input type="text" id="series" placeholder="Name of the series">
-          <label for="series-number">No.</label>
-          <input type="number" id="series-number" min="1" style="width: 6em">
-        </div>
-      </fieldset>
-
-      <fieldset id="publication">
-        <legend>Publication</legend>
-
-        <label for="publisher">Publisher</label>
-        <div class="suggestions">
-          <input type="text" id="publisher" value="Hal" autocomplete="off" aria-describedby="publisher-help">
-          <div class="panel">
-            <ul>
-              <% publishers.forEach(function (publisher) { %>
+      <div class="dropdown ntd-table-filter">
+        <a class="knob transparent" tabindex="0" role="button" aria-haspopup="true" title="Filter drafts" aria-label="Filter drafts">
+          <%- icon('filter') %>
+          <% if (view.filterCount) { %><span class="tag badge red"><%= view.filterCount %></span><% } %>
+        </a>
+        <div class="panel arrow top">
+          <%# One form holds all filters; it is sent as soon as one changes %>
+          <form action="/examples/new-title-drafts" method="GET" id="ntd-filters">
+            <% if (view.q) { %><input type="hidden" name="q" value="<%= view.q %>"><% } %>
+            <% if (view.sort != 'updated') { %><input type="hidden" name="sort" value="<%= view.sort %>"><% } %>
+            <% if (view.dir != 'desc') { %><input type="hidden" name="dir" value="<%= view.dir %>"><% } %>
+            <% if (view.size != 8) { %><input type="hidden" name="size" value="<%= view.size %>"><% } %>
+            <% if (!draft || draft.id != view.defaultDraft) { %><input type="hidden" name="draft" value="<%= draft ? draft.id : 'none' %>"><% } %>
+          <% if (view.editParam) { %><input type="hidden" name="edit" value="<%= view.editParam %>"><% } %>
+            <ul class="checkboxes">
+              <% view.facets.forEach(function (facet, g) { %>
+              <% if (g) { %><li class="seperator"></li><% } %>
+              <li><strong><%= facet.name %></strong></li>
+              <% facet.options.forEach(function (option, i) { %>
               <li>
-                <a href="#publisher" data-fill="<%= publisher.name %>">
-                  <%= publisher.name %> <small><%= publisher.city %></small>
-                </a>
+                <input type="checkbox" id="ntd-filter-<%= facet.key %>-<%= i %>" name="<%= facet.key %>" value="<%= option.key %>" <%= view.filters[facet.key].includes(option.key) ? 'checked' : '' %>>
+                <label for="ntd-filter-<%= facet.key %>-<%= i %>">
+                  <span><% if (option.tag) { %><span class="tag <%= option.tag %>"><%= facet.key == 'location' ? option.key : option.name %></span> <% } %><%= option.tag && facet.key != 'location' ? '' : option.name %></span>
+                  <span><%= option.count %></span>
+                </label>
               </li>
               <% }); %>
+              <% }); %>
             </ul>
-          </div>
+            <noscript><button type="submit" class="primary">Apply</button></noscript>
+          </form>
         </div>
-        <small class="help" id="publisher-help">Type to search the publishers, then pick one.</small>
-
-        <label for="published">Publication date</label>
-        <input type="date" id="published" value="2025-03-14">
-
-        <label for="binding">Binding</label>
-        <ul class="radios buttons">
-          <li>
-            <input type="radio" name="binding" value="hardcover" id="binding-hardcover" checked>
-            <label class="button" for="binding-hardcover">Hardcover</label>
-          </li>
-          <li>
-            <input type="radio" name="binding" value="paperback" id="binding-paperback">
-            <label class="button" for="binding-paperback">Paperback</label>
-          </li>
-          <li>
-            <input type="radio" name="binding" value="ebook" id="binding-ebook">
-            <label class="button" for="binding-ebook">E-book</label>
-          </li>
-        </ul>
-
-        <label for="price">Price</label>
-        <div class="group">
-          <select id="currency" aria-label="Currency">
-            <option>EUR</option>
-            <option>GBP</option>
-            <option>USD</option>
-          </select>
-          <input type="number" id="price" value="39.95" step="0.01" min="0">
-        </div>
-
-        <label for="pages">Pages</label>
-        <input type="number" id="pages" value="208" min="1">
-      </fieldset>
-
-      <fieldset id="description">
-        <legend>Description</legend>
-
-        <label>Subjects</label>
-        <ul class="checkboxes buttons">
-          <% subjects.forEach(function (subject, i) { %>
-          <li>
-            <input type="checkbox" id="subject-<%= i %>" <%= i < 2 ? 'checked' : '' %>>
-            <label class="button" for="subject-<%= i %>"><%= subject %></label>
-          </li>
-          <% }); %>
-        </ul>
-
-        <label for="summary">Summary</label>
-        <%# The editor replaces this textarea when JavaScript is available %>
-        <div id="editor-demo-medium">
-          <textarea id="summary" rows="6">A study of the princess who finds Odysseus on the shore, and of the painters and poets who kept returning to that scene.</textarea>
-        </div>
-        <small class="help">Two or three sentences a librarian can read in the catalogue.</small>
-      </fieldset>
-
-      <fieldset id="cover">
-        <legend>Cover</legend>
-
-        <label for="cover-file">Image</label>
-        <div class="upload">
-          <input type="file" id="cover-file" accept="image/*">
-          <label for="cover-file">
-            <svg class="icon">
-              <use xlink:href="/images/icons.svg#upload"></use>
-            </svg>
-            <strong>Drop the cover here</strong> or click to choose
-            <small>JPEG or PNG, at least 600 pixels wide</small>
-          </label>
-        </div>
-
-        <label>Uploaded</label>
-        <ul class="files">
-          <li class="done">
-            <svg class="icon">
-              <use xlink:href="/images/icons.svg#check"></use>
-            </svg>
-            <span class="name">princess-on-the-shore-front.jpg</span>
-            <small>412 kB</small>
-          </li>
-          <li>
-            <svg class="icon uploading">
-              <use xlink:href="/images/icons.svg#refresh"></use>
-            </svg>
-            <span class="name">princess-on-the-shore-back.jpg</span>
-            <small>1.8 MB</small>
-            <progress value="45" max="100">45%</progress>
-          </li>
-        </ul>
-      </fieldset>
-
-      <div class="controls">
-        <button type="submit" class="primary">Save draft</button>
-        <button type="button" id="send-button">Send to review…</button>
-        <div class="spacer"></div>
-        <a href="/examples/new-title">Cancel</a>
       </div>
-    </form>
 
-    <dialog id="send-dialog" class="medium" aria-labelledby="send-dialog-title">
-      <h4 id="send-dialog-title">Send to review?</h4>
-      <p>One field still needs your attention: <strong>Author</strong>. A colleague can't approve the draft without it.</p>
+      <div class="dropdown ntd-table-settings">
+        <a class="knob transparent" tabindex="0" role="button" aria-haspopup="true" title="Display settings" aria-label="Display settings">
+          <%- icon('settings') %>
+        </a>
+        <nav class="panel arrow top right" aria-label="Display settings">
+          <ul>
+            <li><a href="<%= view.url() %>">Status manager</a></li>
+            <li class="seperator"></li>
+            <li>
+              <form action="/examples/new-title-drafts" method="GET">
+                <label for="ntd-page-length"><strong>Page length</strong></label>
+                <input type="number" id="ntd-page-length" name="size" value="<%= view.size %>" min="1" max="200" step="1">
+                <% if (view.q) { %><input type="hidden" name="q" value="<%= view.q %>"><% } %>
+                <% view.facets.forEach(function (facet) { view.filters[facet.key].forEach(function (value) { %>
+                <input type="hidden" name="<%= facet.key %>" value="<%= value %>">
+                <% }); }); %>
+                <% if (view.sort != 'updated') { %><input type="hidden" name="sort" value="<%= view.sort %>"><% } %>
+                <% if (view.dir != 'desc') { %><input type="hidden" name="dir" value="<%= view.dir %>"><% } %>
+                <% if (!draft || draft.id != view.defaultDraft) { %><input type="hidden" name="draft" value="<%= draft ? draft.id : 'none' %>"><% } %>
+                <% if (view.editParam) { %><input type="hidden" name="edit" value="<%= view.editParam %>"><% } %>
+              </form>
+            </li>
+            <li class="seperator"></li>
+            <li><strong>Sort by</strong></li>
+            <% view.sorts.forEach(function (sort) { %>
+            <li class="<%= sort.active ? 'active' : '' %>"><a href="<%= sort.url %>"><%= sort.name %></a></li>
+            <% }); %>
+            <li class="seperator"></li>
+            <li><strong>Sort direction</strong></li>
+            <li class="<%= view.dir == 'asc' ? 'active' : '' %>"><a href="<%= view.url({ dir: 'asc', p: 1 }) %>">Ascending</a></li>
+            <li class="<%= view.dir == 'desc' ? 'active' : '' %>"><a href="<%= view.url({ dir: 'desc', p: 1 }) %>">Descending</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
 
-      <%# Buttons of a form with method="dialog" close the dialog without a script %>
-      <form method="dialog" id="send-form"></form>
-      <footer>
-        <div class="spacer"></div>
-        <button form="send-form" class="primary" value="send">Send anyway</button>
-        <button form="send-form" value="cancel">Back to the form</button>
-      </footer>
-    </dialog>
+    <table class="ntd-draft-table">
+      <thead>
+        <tr>
+          <th class="checkbox"><input type="checkbox" id="ntd-select-page" title="Select all on page" aria-label="Select all on page"></th>
+          <th class="status"></th>
+          <th class="product-info">
+            Product Info
+            <span class="ntd-product-total"><%= view.total %> product<%= view.total == 1 ? '' : 's' %></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (!view.rows.length) { %>
+        <tr class="ntd-table-empty-row">
+          <td colspan="3" class="ntd-table-empty">No drafts match the current search and filters.</td>
+        </tr>
+        <% } %>
+        <% view.rows.forEach(function (row) {
+          var product = row.product, status = data.titleStatuses[row.status], location = data.branches[row.branch];
+        %>
+        <tr class="<%= draft && row.id == draft.id ? 'active' : '' %>" data-draft-id="<%= row.id %>" data-url="<%= view.url({ draft: row.id }) %>" tabindex="0">
+          <td class="checkbox">
+            <label for="checkbox-<%= row.id %>">
+              <input type="checkbox" id="checkbox-<%= row.id %>" aria-label="Select draft <%= row.id %>">
+            </label>
+          </td>
+          <td class="status">
+            <span class="tag badge <%= status.color %>" title="<%= status.name %>"><strong><%= status.name.charAt(0) %></strong></span>
+          </td>
+          <td class="product-info">
+            <div class="ntd-product product-info-wrapper">
+              <% if (row.matched && product.newTitle) { %><span class="tag green nts-tag" title="Already offered as a new title">NTS</span><% } else if (row.matched && product.ebook) { %><span class="tag blue ebook-tag" title="E-book">EBK</span><% } %>
+              <div class="product-image">
+                <% if (row.matched && product.image) { %>
+                <img src="<%= product.image %>" alt="">
+                <% } else { %>
+                <div class="no-images" role="img" aria-label="No images available"></div>
+                <% } %>
+              </div>
+              <div class="product-title"><a href="<%= view.url({ draft: row.id }) %>"><%= product.title %></a></div>
+              <div class="product-metadata">
+                <% if (row.matched) { %>
+                <% if (product.series) { %><em><%= product.series %></em>. <% } %>
+                <% if (product.edition) { %><span class="product-edition-dd">Edition: <%= product.edition %></span>. <% } %>
+                <span class="product-contributors"><%= product.author %></span>.
+                <span class="product-publication"><%= product.publisher.city %>: <%= product.publisher.name %>, <%= product.year %></span>.
+                <span class="product-isbn-span"><%= product.isbn %></span>.
+                <span class="product-medium-span"><%= product.binding %>.</span>
+                <div class="product-prices-availabilities">
+                  <% product.prices.forEach(function (price, i) { %><span class="product-price"><span class="currency"><%= price[0] %></span> <strong class="amount"><%= price[1].toFixed(2) %></strong></span><%= i < product.prices.length - 1 ? ', ' : ' ' %><% }); %>
+                  <span class="tag <%= product.availability[1] %>"><%= product.availability[0] %></span>
+                </div>
+                <% } else { %>
+                <span class="product-contributors"><%= product.author %></span>.
+                <span class="product-isbn-span"><%= product.isbn %></span>.
+                <% } %>
+              </div>
+            </div>
 
-  </article>
+            <div class="ntd-product-footer">
+              <span class="tag <%= location.color %>" title="Location: <%= location.name %>"><%= row.branch %></span>
+              <span class="tag <%= status.color %>" title="<%= status.name %>"><strong><%= status.name %></strong></span>
 
-  <input type="checkbox" id="sidebar-toggle">
-  <label for="sidebar-toggle">
-    <svg class="icon menu">
-      <use xlink:href="/images/icons.svg#sidebar-toggle"></use>
-    </svg>
-    <svg class="icon close">
-      <use xlink:href="/images/icons.svg#clear"></use>
-    </svg>
-  </label>
+              <div class="ntd-summoner dropdown">
+                <% if (row.prices.length) { %>
+                <button type="button" class="summon-link link"><strong class="summoning-present">Summoned <span class="tag badge purple"><%= row.prices.length %></span></strong></button>
+                <div class="panel arrow top left summoner">
+                  <table class="summoning-table">
+                    <tbody>
+                      <% row.prices.forEach(function (price) { %>
+                      <tr class="summoning-table-row">
+                        <td class="summoning-line-price"><span class="price">EUR <%= price.amount.toFixed(2) %></span></td>
+                        <td class="summoning-line-supplier"><%= price.supplier %></td>
+                        <td class="summoning-line-availability"><%= price.note %></td>
+                      </tr>
+                      <% }); %>
+                    </tbody>
+                  </table>
+                </div>
+                <% } else { %>
+                <button type="button" class="summon-link link" title="Fetch prices for this title from the suppliers">Summon</button>
+                <% } %>
+              </div>
 
-  <aside class="sidebar">
-    <nav class="panel" aria-label="Parts of the form">
-      <header>New title</header>
-      <ul>
-        <% sections.forEach(function (section) { %>
-        <li><a href="#<%= section.id %>"><%= section.title %></a></li>
+              <div class="spacer"></div>
+
+              <div class="ntd-product-meta">
+                <% if (row.edited) { %>
+                <span class="ntd-stamp edited"><%- avatar(row.editedBy) %><time datetime="<%= row.edited.toISOString() %>" title="Edited by <%= row.editedBy %>"><%= row.editedAgo %></time></span>
+                <% } %>
+                <span class="ntd-stamp created"><%- avatar(row.createdBy) %><time datetime="<%= row.created.toISOString() %>" title="Added by <%= row.createdBy %>"><%= row.createdAgo %></time></span>
+              </div>
+            </div>
+          </td>
+        </tr>
         <% }); %>
-      </ul>
-    </nav>
+      </tbody>
+    </table>
 
-    <div class="panel gray">
-      <div class="header">Progress</div>
-      <ul class="chart bars thin" style="--nausikaa-chart-label-width: 6.5em; --nausikaa-chart-value-width: 4ch">
-        <li class="green">
-          <span class="label">Required</span>
-          <span class="bar" style="--nausikaa-chart-value: 67%"></span>
-          <span class="value">2/3</span>
-        </li>
-        <li>
-          <span class="label">Optional</span>
-          <span class="bar" style="--nausikaa-chart-value: 70%"></span>
-          <span class="value">7/10</span>
-        </li>
+    <% if (view.pages > 1) { %>
+    <div class="ntd-table-pager">
+      <div class="spacer"></div>
+      <ul class="pagination" aria-label="Pages">
+        <% if (view.page > 1) { %><%- pageLink(view.page - 1, 'Previous page', 90) %><% } %>
+        <li><span><%= view.page %> of <%= view.pages %></span></li>
+        <% if (view.page < view.pages) { %><%- pageLink(view.page + 1, 'Next page', -90) %><% } %>
       </ul>
     </div>
-  </aside>
+    <% } %>
+  </div>
+
+  <div class="ntd-editor-pane">
+    <% if (!draft) { %>
+
+    <div class="ntd-placeholder">
+      <div>
+        <p>Select a title from the table on the left to start editing.</p>
+      </div>
+    </div>
+
+    <% } else {
+      var status = data.titleStatuses[draft.status], location = data.branches[draft.branch];
+    %>
+
+    <div class="ntd-nav">
+      <div>
+        <div class="dropdown ntd-location-dropdown">
+          <a class="tag <%= location.color %>" tabindex="0" role="button" aria-haspopup="true" title="Location: <%= location.name %> — change database"><%= draft.branch %></a>
+          <nav class="panel arrow top left" aria-label="Database">
+            <ul>
+              <% Object.keys(data.branches).forEach(function (code) { %>
+              <li class="<%= code == draft.branch ? 'active' : '' %>"><a href="<%= view.url() %>"><span class="tag <%= data.branches[code].color %>"><%= code %></span> <%= data.branches[code].name %></a></li>
+              <% }); %>
+            </ul>
+          </nav>
+        </div>
+
+        <% if (draft.status == 'sent') { %>
+        <span class="tag <%= status.color %>" title="Sent drafts keep this status"><%= status.name %></span>
+        <% } else { %>
+        <div class="dropdown ntd-status-dropdown">
+          <a class="tag <%= status.color %>" tabindex="0" role="button" aria-haspopup="true" title="Change status"><%= status.name %></a>
+          <nav class="panel arrow top left" aria-label="Status">
+            <ul>
+              <% Object.keys(data.titleStatuses).filter(function (key) { return key != draft.status && key != 'sent'; }).forEach(function (key) { var other = data.titleStatuses[key]; %>
+              <li><a href="<%= view.url() %>"><span class="tag badge <%= other.color %>"><strong><%= other.name.charAt(0) %></strong></span> <%= other.name %></a></li>
+              <% }); %>
+            </ul>
+          </nav>
+        </div>
+        <% } %>
+
+        <% if (!f.publisherMatched) { %>
+        <span class="live-checked orange">No publisher matched yet</span>
+        <% } else if (draft.status == 'sent') { %>
+        <span class="live-checked green">Sent as a new title</span>
+        <% } else { %>
+        <span class="live-checked">Not yet offered as a new title</span>
+        <% } %>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="ntd-summoner">
+        <button type="button" class="summon-link link" title="Fetch prices for this title from the suppliers">Summon</button>
+      </div>
+    </div>
+
+    <div class="ntd-draft-meta">
+      <span class="ntd-draft-event" title="Created by <%= draft.createdBy %>">Created: <%- avatar(draft.createdBy) %><time datetime="<%= draft.created.toISOString() %>"><%= draft.createdAgo %></time></span>
+      <% if (draft.edited) { %>
+      <span class="ntd-draft-event" title="Edited by <%= draft.editedBy %>">Edited: <%- avatar(draft.editedBy) %><time datetime="<%= draft.edited.toISOString() %>"><%= draft.editedAgo %></time></span>
+      <% } %>
+      <% if (draft.status == 'sent') { %>
+      <span class="ntd-draft-event" title="Sent by <%= draft.createdBy %>">Sent to NTS: <%- avatar(draft.createdBy) %><time>now</time></span>
+      <% } %>
+    </div>
+
+    <div class="ntd-form">
+      <div class="biblio-metadata mutable">
+
+        <%- open('title') %>
+          <label for="ntd-title">Title</label>
+          <input type="text" id="ntd-title" value="<%= f.title %>" maxlength="250">
+          <label for="ntd-subtitle">Subtitle</label>
+          <input type="text" id="ntd-subtitle" value="<%= f.subtitle %>" maxlength="250">
+          <small class="help">The subtitle, explanatory or alternate title for a publication.</small>
+        <%- close() %>
+
+        <%- open('identifiers') %>
+          <label for="ntd-isbn">ISBN (13)</label>
+          <input type="text" id="ntd-isbn" value="<%= f.isbn %>" maxlength="13" inputmode="numeric">
+          <span>
+            <label for="ntd-validate-isbn"><input id="ntd-validate-isbn" type="checkbox" checked> Validate ISBN</label>
+            <label for="ntd-no-isbn"><input id="ntd-no-isbn" type="checkbox"> No ISBN</label>
+          </span>
+          <label for="ntd-ean">EAN</label>
+          <input type="text" id="ntd-ean" value="<%= f.isbn %>" maxlength="13" disabled>
+          <span>
+            <label for="ntd-linked"><input id="ntd-linked" type="checkbox" checked> Force EAN to be based on ISBN</label>
+          </span>
+          <hr>
+          <label for="ntd-isbnp">ISBN paperback</label>
+          <input type="text" id="ntd-isbnp" value="" maxlength="13">
+        <%- close() %>
+
+        <%- open('series') %>
+          <label for="ntd-ser1">Series 1</label>
+          <div class="ntd-series-row">
+            <input type="text" id="ntd-ser1" value="<%= f.series %>" placeholder="Series title" maxlength="100">
+            <input type="text" id="ntd-bnd1" value="<%= f.volume %>" placeholder="Vol." maxlength="10" aria-label="Volume in series 1">
+          </div>
+          <label for="ntd-ser2">Series 2</label>
+          <div class="ntd-series-row">
+            <input type="text" id="ntd-ser2" value="" placeholder="Series title" maxlength="100">
+            <input type="text" id="ntd-bnd2" value="" placeholder="Vol." maxlength="10" aria-label="Volume in series 2">
+          </div>
+          <small class="help">"Vol." is the volume number or other sequential designation used in a series statement.</small>
+        <%- close() %>
+
+        <%- open('people') %>
+          <label for="ntd-author-0-fam">Authors</label>
+          <% [0, 1, 2].forEach(function (i) { var person = f.authors[i] || {}; %>
+          <div class="ntd-people-row">
+            <input type="text" id="ntd-author-<%= i %>-fam" value="<%= person.family || '' %>" placeholder="Last name" maxlength="50" aria-label="Last name of author <%= i + 1 %>">
+            <span class="ntd-comma">,</span>
+            <input type="text" id="ntd-author-<%= i %>-giv" value="<%= person.given || '' %>" placeholder="First name" maxlength="50" aria-label="First name of author <%= i + 1 %>">
+          </div>
+          <% }); %>
+          <div><label for="ntd-aute" class="ntd-checkbox"><input type="checkbox" id="ntd-aute"> Et al. authors</label></div>
+          <hr>
+          <label for="ntd-editor-0-fam">Editors</label>
+          <% [0, 1, 2].forEach(function (i) { var person = f.editors[i] || {}; %>
+          <div class="ntd-people-row">
+            <input type="text" id="ntd-editor-<%= i %>-fam" value="<%= person.family || '' %>" placeholder="Last name" maxlength="50" aria-label="Last name of editor <%= i + 1 %>">
+            <span class="ntd-comma">,</span>
+            <input type="text" id="ntd-editor-<%= i %>-giv" value="<%= person.given || '' %>" placeholder="First name" maxlength="50" aria-label="First name of editor <%= i + 1 %>">
+          </div>
+          <% }); %>
+          <div><label for="ntd-edie" class="ntd-checkbox"><input type="checkbox" id="ntd-edie"> Et al. editors</label></div>
+        <%- close() %>
+
+        <%- open('publication') %>
+          <label for="ntd-pub">Publisher</label>
+          <% if (!f.publisherMatched) { %>
+          <div class="tag orange ntd-publisher-warning">
+            <strong>No publisher attached</strong>. Only publishers that are in the register can be used: search and pick the matching one. The title cannot be sent until one is attached.
+          </div>
+          <% } %>
+          <div class="ntd-publisher-suggestions suggestions">
+            <div class="ntd-field-prefixed <%= f.publisherMatched ? 'has-prefix' : '' %>">
+              <% if (f.publisherMatched) { %><span class="prefix-el"><%- identifier(f.publisherId, 'NW', 'shipping') %></span><% } %>
+              <input type="text" id="ntd-pub" value="<%= f.publisher %>" placeholder="Search publishers…" maxlength="50" autocomplete="off">
+            </div>
+            <div class="panel">
+              <ul>
+                <% data.publishers.forEach(function (publisher) { %>
+                <li><a href="#ntd-pub" data-fill="<%= publisher.name %>"><%- identifier(publisher.id, 'NW', 'shipping') %> <span><%= publisher.name %>, <%= publisher.city %></span></a></li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
+          <small class="help">Type to search the register, then pick the publisher for <%= location.name %>.</small>
+          <label for="ntd-place">City</label>
+          <input type="text" id="ntd-place" value="<%= f.place %>" maxlength="50">
+          <label for="ntd-country">Country</label>
+          <div class="ntd-lookup-suggestions suggestions">
+            <div class="ntd-field-prefixed">
+              <input type="text" id="ntd-country" value="<%= f.country %>" placeholder="Search countries…" autocomplete="off">
+            </div>
+            <div class="panel">
+              <ul>
+                <% ['France', 'Germany', 'Greece', 'Italy', 'Netherlands', 'United Kingdom'].forEach(function (country) { %>
+                <li><a href="#ntd-country" data-fill="<%= country %>"><span><%= country %></span></a></li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
+          <label for="ntd-esda">Date</label>
+          <input type="date" id="ntd-esda" value="<%= f.date.toISOString().slice(0, 10) %>">
+          <small class="help">Sets both the publication date and the year.</small>
+        <%- close() %>
+
+        <%- open('material') %>
+          <label for="ntd-pages">Pages</label>
+          <input type="number" id="ntd-pages" value="<%= f.pages %>">
+          <label for="ntd-ill">Illustrations</label>
+          <input type="text" id="ntd-ill" value="<%= f.illustrations %>" maxlength="50">
+          <label for="ntd-language">Language</label>
+          <div class="ntd-lookup-suggestions suggestions">
+            <div class="ntd-field-prefixed">
+              <input type="text" id="ntd-language" value="<%= f.language %>" placeholder="Search languages…" autocomplete="off">
+            </div>
+            <div class="panel">
+              <ul>
+                <% ['English', 'French', 'German', 'Greek', 'Italian', 'Latin'].forEach(function (language) { %>
+                <li><a href="#ntd-language" data-fill="<%= language %>"><span><%= language %></span></a></li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
+          <label for="ntd-binding">Binding / Cover</label>
+          <select id="ntd-binding">
+            <option value="">—</option>
+            <% ['Hardcover', 'Paperback', 'E-book', 'Spiral bound'].forEach(function (binding) { %>
+            <option <%= binding == f.binding ? 'selected' : '' %>><%= binding %></option>
+            <% }); %>
+          </select>
+        <%- close() %>
+
+        <%- open('subjects') %>
+          <% [0, 1].forEach(function (i) { var subject = f.subjects[i]; %>
+          <label for="ntd-subject-<%= i + 1 %>">Subject <%= i + 1 %></label>
+          <div class="ntd-lookup-suggestions suggestions">
+            <div class="ntd-field-prefixed">
+              <input type="text" id="ntd-subject-<%= i + 1 %>" value="<%= subject ? subject[1] : '' %>" placeholder="Search subjects…" autocomplete="off">
+            </div>
+            <div class="panel">
+              <ul>
+                <% ['Art history', 'Classical studies', 'Archaeology', 'Literature', 'Philosophy', 'History'].forEach(function (name) { %>
+                <li><a href="#ntd-subject-<%= i + 1 %>" data-fill="<%= name %>"><span><%= name %></span></a></li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
+          <% }); %>
+          <small class="help">The subjects decide which customers are offered this title.</small>
+        <%- close() %>
+
+        <%- open('prices') %>
+          <label for="ntd-currency">Currency</label>
+          <select id="ntd-currency">
+            <% ['EUR', 'GBP (£)', 'USD ($)', 'CHF'].forEach(function (currency) { %>
+            <option <%= currency.indexOf(f.currency) == 0 ? 'selected' : '' %>><%= currency %></option>
+            <% }); %>
+          </select>
+          <label for="ntd-vk1">Price</label>
+          <input type="number" id="ntd-vk1" value="<%= f.price.toFixed(2) %>" step="0.01" min="0">
+        <%- close() %>
+
+        <%- open('flags') %>
+          <div class="ntd-flags">
+            <% data.titleFlags.forEach(function (flag) { %>
+            <label for="ntd-flag-<%= flag[0] %>" class="ntd-checkbox"><input type="checkbox" id="ntd-flag-<%= flag[0] %>" <%= f.flags.includes(flag[0]) ? 'checked' : '' %>> <%= flag[2] %> <%= flag[1] %></label>
+            <% }); %>
+          </div>
+        <%- close() %>
+
+        <%- open('abstract') %>
+          <label for="ntd-abst">Abstract</label>
+          <textarea id="ntd-abst" rows="10" maxlength="2000" lang="en" spellcheck="true"><%= f.abstract %></textarea>
+          <small class="help"><%= 2000 - f.abstract.length %> characters left</small>
+          <label for="ntd-abst-lang">Spellcheck</label>
+          <select id="ntd-abst-lang">
+            <% ['English', 'French', 'German', 'Dutch', 'Italian'].forEach(function (language) { %><option><%= language %></option><% }); %>
+          </select>
+          <small class="help">Spellchecking is done by your browser using its own dictionaries. Misspellings are only flagged if the matching language dictionary is installed in your browser.</small>
+        <%- close() %>
+
+        <%- open('notes') %>
+          <label for="ntd-prif">Extra info</label>
+          <input type="text" id="ntd-prif" value="<%= f.info %>" maxlength="150">
+          <small class="help">External note, <strong>included</strong> in the offers to the customer. For example: "We invite your continuation order."</small>
+          <label for="ntd-beme">Remark</label>
+          <input type="text" id="ntd-beme" value="<%= f.remark %>" maxlength="50">
+          <small class="help">Internal note, <strong>not included</strong> in the offers to the customer.</small>
+          <label for="ntd-srce">Source</label>
+          <input type="text" id="ntd-srce" value="<%= f.source %>" maxlength="50">
+        <%- close() %>
+
+        <%- open('edition') %>
+          <label for="ntd-atebez">Edition</label>
+          <input type="text" id="ntd-atebez" value="<%= f.edition %>" maxlength="30" placeholder="e.g. Hbk., Pbk., E-book, English" list="ntd-edition-suggestions">
+          <datalist id="ntd-edition-suggestions">
+            <option value="Hbk."><option value="Pbk."><option value="E-book"><option value="English"><option value="French">
+          </datalist>
+          <small class="help">How this edition differs from the others in its group — usually the format or the language.</small>
+          <label for="ntd-new-edition">Create</label>
+          <div class="group">
+            <input type="text" id="ntd-new-edition" maxlength="30" list="ntd-edition-suggestions" placeholder="New edition, e.g. Pbk.">
+            <button type="button">Add</button>
+          </div>
+          <small class="help">Adds a new draft for another edition of this title: a copy of this one, without its ISBN, in the same edition group.</small>
+        <%- close() %>
+
+      </div>
+
+      <div class="ntd-controls">
+        <button type="button" id="ntd-reset" disabled>Reset</button>
+        <button type="button" class="negative">Delete</button>
+        <button type="button" class="primary" id="ntd-save" disabled>Save</button>
+        <div class="spacer"></div>
+        <button type="button" class="positive" id="ntd-send" <%= draft.status == 'sent' || !f.publisherMatched ? 'disabled' : '' %> title="<%= draft.status == 'sent' ? 'Already sent' : !f.publisherMatched ? 'Match a publisher first' : '' %>">
+          <span class="label"><%- icon('send') %></span>
+          Send to NTS
+        </button>
+      </div>
+    </div>
+
+    <% } %>
+  </div>
 
 </main>
 
-<script type="module" src="/scripts/editor-demo.js?v=6"></script>
 <script>
 (function () {
-  // Opens the dialog; closing it is done by the form inside it
-  var dialog = document.getElementById("send-dialog");
-  dialogPolyfill.registerDialog(dialog);
-  document.getElementById("send-button").addEventListener("click", function () {
-    dialog.showModal();
+  var page = document.getElementById("new-title-drafts");
+  var all = function (selector, root) { return Array.prototype.slice.call((root || page).querySelectorAll(selector)); };
+
+  /* The table: a click anywhere on a row opens its draft */
+  all(".ntd-draft-table tbody tr[data-url]").forEach(function (row) {
+    row.addEventListener("click", function (event) {
+      if (event.target.closest("td.checkbox, .ntd-summoner, a")) return;
+      location.href = row.dataset.url;
+    });
+    row.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" && event.target === row) location.href = row.dataset.url;
+    });
+  });
+
+  /* The selection */
+  var boxes = all(".ntd-draft-table tbody input[type='checkbox']");
+  var pageBox = document.getElementById("ntd-select-page");
+  var badge = document.getElementById("ntd-selected");
+  var showSelection = function () {
+    var selected = boxes.filter(function (box) { return box.checked; }).length;
+    badge.textContent = selected;
+    badge.hidden = selected === 0;
+    pageBox.checked = selected > 0 && selected === boxes.length;
+    pageBox.indeterminate = selected > 0 && selected < boxes.length;
+    all("[data-needs-selection]").forEach(function (button) { button.disabled = selected === 0; });
+  };
+  boxes.forEach(function (box) { box.addEventListener("change", showSelection); });
+  pageBox.addEventListener("change", function () {
+    boxes.forEach(function (box) { box.checked = pageBox.checked; });
+    showSelection();
+  });
+  all("[data-select]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      boxes.forEach(function (box) {
+        box.checked = button.dataset.select === "all" || (button.dataset.select === "invert" && !box.checked);
+      });
+      showSelection();
+    });
+  });
+
+  /* Search: the knob opens the field across the whole bar */
+  var controls = page.querySelector(".ntd-table-controls");
+  document.getElementById("ntd-search-knob").addEventListener("click", function () {
+    controls.classList.toggle("searching");
+    if (controls.classList.contains("searching")) controls.querySelector("input[type='search']").focus();
+  });
+
+  /* Filters and the page length apply as soon as they change */
+  document.getElementById("ntd-filters").addEventListener("change", function (event) {
+    if (event.target.name) event.currentTarget.submit();
+  });
+  var length = document.getElementById("ntd-page-length");
+  length.addEventListener("change", function () { length.form.submit(); });
+
+  /* The editor: one part at a time turns into its form */
+  var sections = all(".biblio-metadata > .editable");
+  if (!sections.length) return;
+  var save = document.getElementById("ntd-save"), reset = document.getElementById("ntd-reset");
+  var fields = function (section) { return all("input, select, textarea", section.querySelector(".edit")); };
+  // The option a select starts with: the one marked as selected, or the first
+  var startOf = function (select) {
+    var options = all("option", select);
+    var marked = options.filter(function (option) { return option.defaultSelected; })[0];
+    return options.indexOf(marked || options[0]);
+  };
+  var changed = function (field) {
+    if (field.type === "checkbox" || field.type === "radio") return field.checked !== field.defaultChecked;
+    if (field.tagName === "SELECT") return field.selectedIndex !== startOf(field);
+    return field.value !== field.defaultValue;
+  };
+
+  var edit = function (section) {
+    sections.forEach(function (other) {
+      other.classList.toggle("editing", other === section);
+      other.classList.toggle("not-editing", other !== section);
+    });
+  };
+
+  // A part with changes is marked, and the Save button counts them
+  var showChanges = function () {
+    var total = 0;
+    sections.forEach(function (section) {
+      var count = fields(section).filter(changed).length;
+      total += count;
+      section.classList.toggle("diff-unsure", count > 0);
+      section.querySelector("[data-reset]").disabled = count === 0;
+    });
+    save.disabled = reset.disabled = total === 0;
+    save.textContent = total ? "Save " + total + " change" + (total > 1 ? "s" : "") : "Save";
+  };
+
+  var undo = function (section) {
+    fields(section).forEach(function (field) {
+      if (field.type === "checkbox" || field.type === "radio") field.checked = field.defaultChecked;
+      else if (field.tagName === "SELECT") field.selectedIndex = startOf(field);
+      else field.value = field.defaultValue;
+    });
+  };
+
+  sections.forEach(function (section) {
+    section.addEventListener("click", function (event) {
+      if (section.classList.contains("not-editing") && !event.target.closest("a")) edit(section);
+    });
+    section.addEventListener("keydown", function (event) {
+      if ((event.key === "Enter" || event.key === " ") && event.target === section) {
+        event.preventDefault();
+        edit(section);
+      } else if (event.key === "Escape") {
+        edit(null);
+        section.focus();
+      }
+    });
+    all(".close, [data-close]", section).forEach(function (closer) {
+      closer.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        edit(null);
+      });
+    });
+    section.querySelector("[data-reset]").addEventListener("click", function (event) {
+      event.stopPropagation();
+      undo(section);
+      showChanges();
+    });
+    section.addEventListener("input", showChanges);
+    section.addEventListener("change", showChanges);
+  });
+
+  reset.addEventListener("click", function () {
+    sections.forEach(undo);
+    showChanges();
+  });
+
+  // Nothing is stored: saving makes the current values the starting point
+  save.addEventListener("click", function () {
+    sections.forEach(function (section) {
+      fields(section).forEach(function (field) {
+        if (field.type === "checkbox" || field.type === "radio") field.defaultChecked = field.checked;
+        else if (field.tagName === "SELECT") all("option", field).forEach(function (option, i) { option.defaultSelected = i === field.selectedIndex; });
+        else field.defaultValue = field.value;
+      });
+    });
+    showChanges();
   });
 
   // Picking a suggestion fills in the field
-  document.querySelectorAll("[data-fill]").forEach(function (link) {
+  all("[data-fill]").forEach(function (link) {
     link.addEventListener("click", function (event) {
       event.preventDefault();
       var input = link.closest(".suggestions").querySelector("input");
       input.value = link.dataset.fill;
       link.blur();
+      showChanges();
     });
   });
 })();

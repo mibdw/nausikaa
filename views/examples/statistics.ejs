@@ -1,220 +1,320 @@
 <%
-  // Example: a dashboard. All figures are counted from the sample orders. The charts are lists and inline SVG; the sizes of the
-  // bars and the points of the line are worked out here, on the server.
-  var stats = data.statistics;
-  var view = query.view == 'top' ? 'top' : 'overview';
-  var money = function (amount) { return data.formatMoney(Math.round(amount)).replace('.00', ''); };
+  // Example: statistics about orders. The location, the filters and the
+  // periods of the two top lists are all in the address, so they work with
+  // plain links and forms. data.statisticsView() counts what to show.
+  var view = data.statisticsView(query);
+  var number = function (n) { return n.toLocaleString('en'); };
 
-  // Donut: every part starts where the one before it ends
-  var before = 0;
-  var parts = stats.byStatus.map(function (status) {
-    var offset = 25 - before;
-    before += status.share;
-    return { status: status, offset: offset < 0 ? offset + 100 : offset };
-  });
+  // A record's own number, with the location it belongs to
+  var identifier = function (item) {
+    return '<span class="tag ' + data.branches[item.branch].color + '" title="' + data.branches[item.branch].name + '"><strong>' + item.branch + '</strong></span> ' +
+      '<span class="tag">' + item.id + '</span>';
+  };
 
-  // Line chart: twelve points from left (0) to right (100); in SVG the
-  // vertical axis runs downward, so the highest amount is at 0
-  var highest = Math.max.apply(null, stats.perMonth.map(function (month) { return month.amount; }));
-  var points = stats.perMonth.map(function (month, i) {
-    return (i / (stats.perMonth.length - 1) * 100).toFixed(1) + ',' + (100 - month.amount / highest * 100).toFixed(1);
-  }).join(' ');
+  // What a form has to send along to keep the rest of the address
+  var keep = function (except) {
+    var fields = [];
+    if (view.location && except != 'filters') fields.push(['location', view.location]);
+    if (except != 'filters') view.facets.forEach(function (facet) { view.filters[facet.key].forEach(function (value) { fields.push([facet.key, value]); }); });
+    if (except != 'product-period' && view.periods.products != '30d') fields.push(['product-period', view.periods.products]);
+    if (except != 'publisher-period' && view.periods.publishers != '30d') fields.push(['publisher-period', view.periods.publishers]);
+    return fields;
+  };
+
+  // The line chart: six lines of twelve months on one scale
+  var chart = { width: 560, height: 140, top: 12, right: 8, bottom: 28, left: 36 };
+  chart.innerWidth = chart.width - chart.left - chart.right;
+  chart.innerHeight = chart.height - chart.top - chart.bottom;
+  chart.highest = Math.max.apply(null, view.series.map(function (line) { return Math.max.apply(null, line.points.map(function (point) { return point.count; })); }).concat(1));
+  var x = function (i) { return +(chart.left + i * chart.innerWidth / 11).toFixed(2); };
+  var y = function (count) { return +(chart.top + chart.innerHeight - count / chart.highest * chart.innerHeight).toFixed(2); };
+
+  var highestStatus = view.byStatus.length ? view.byStatus[0].count : 1;
+  var highestGroup = view.byGroup.length ? view.byGroup[0].count : 1;
+  var highestYear = Math.max.apply(null, view.byYear.map(function (year) { return year.count; }).concat(1));
+
+  // One of the two top lists, with its own period
+  var topList = function (title, name, period, items, nameOf) {
+    return '<section class="stat-top-list">' +
+      '<form class="stat-top-header" action="/examples/statistics" method="GET">' +
+      '<h3>' + title + '</h3>' +
+      keep(name).map(function (field) { return '<input type="hidden" name="' + field[0] + '" value="' + esc(field[1]) + '">'; }).join('') +
+      '<select name="' + name + '" aria-label="Period of ' + title.toLowerCase() + '" data-submit>' +
+      view.periodOptions.map(function (option) { return '<option value="' + option[0] + '"' + (option[0] == period ? ' selected' : '') + '>' + option[1] + '</option>'; }).join('') +
+      '</select><noscript><button type="submit">Show</button></noscript></form>' +
+      (items.length
+        ? '<ol class="stat-top-ol">' + items.map(function (item, i) {
+            return '<li><span class="stat-top-rank">' + (i + 1) + '</span>' +
+              '<a href="' + view.url() + '" class="stat-top-customer">' + identifier(item) + ' <span class="stat-top-name">' + esc(nameOf(item)) + '</span></a>' +
+              '<span class="stat-top-value">' + number(item.value) + '</span></li>';
+          }).join('') + '</ol>'
+        : '<p class="stat-top-empty">No data for this period.</p>') +
+      '</section>';
+  };
+  var esc = function (text) { return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
 %>
-<main>
+<main id="statistics">
 
-  <article style="grid-column: 1 / 13">
-
-    <nav class="tabs" aria-label="Statistics">
-      <ul>
-        <li class="title"><span>📊 Statistics</span></li>
-        <li class="<%= view == 'overview' ? 'active' : '' %>">
-          <a href="/examples/statistics" <%= view == 'overview' ? 'aria-current=page' : '' %>>Orders</a>
-        </li>
-        <li class="<%= view == 'top' ? 'active' : '' %>">
-          <a href="/examples/statistics?view=top" <%= view == 'top' ? 'aria-current=page' : '' %>>Customers and publishers</a>
-        </li>
-        <li class="spacer"></li>
-        <li class="disabled"><span>October 2025 – September 2026</span></li>
-      </ul>
-    </nav>
-
-    <ul class="stats">
-      <li class="stat blue">
-        <span class="label">Orders</span>
-        <span class="value"><%= stats.orders %></span>
-        <span class="note">in the last twelve months</span>
-      </li>
-      <li class="stat">
-        <span class="label">Order value</span>
-        <span class="value"><%= money(stats.amount) %></span>
-        <span class="note">without cancelled orders</span>
-      </li>
-      <li class="stat green">
-        <span class="label">Delivered</span>
-        <span class="value"><%= stats.delivered %></span>
-        <span class="note"><%= Math.round(stats.delivered / stats.orders * 100) %>% of all orders</span>
-      </li>
-      <li class="stat yellow">
-        <span class="label">Still open</span>
-        <span class="value"><%= stats.open %></span>
-        <span class="note">on order or claimed</span>
-      </li>
+  <nav class="tabs" aria-label="Statistics">
+    <ul>
+      <li class="title tabs-title"><span>📊 Statistics</span></li>
+      <li><a href="<%= view.url() %>">👥 Customers</a></li>
+      <li><a href="<%= view.url() %>">🚚 Publishers / Suppliers</a></li>
+      <li class="active"><a href="<%= view.url() %>" aria-current="page">📦 Orders</a></li>
+      <li><a href="<%= view.url() %>">🌟 NTS / Approval plans</a></li>
     </ul>
+  </nav>
 
-  </article>
+  <aside class="statistics-sidebar">
+    <%# One form holds all filters. It is sent as soon as one changes; the
+        button is for visitors without JavaScript. %>
+    <form action="/examples/statistics" method="GET" id="statistics-filters">
+      <% keep('filters').forEach(function (field) { %><input type="hidden" name="<%= field[0] %>" value="<%= field[1] %>"><% }); %>
 
-  <% if (view == 'overview') { %>
-
-  <section style="grid-column: 1 / 8">
-    <h4>Orders per month</h4>
-
-    <ul class="chart columns" style="--nausikaa-chart-height: 10em">
-      <% stats.perMonth.forEach(function (month) { %>
-      <li>
-        <span class="bar gray" style="--nausikaa-chart-value: <%= Math.round(month.before / stats.maxPerMonth * 100) %>%" title="<%= month.label %>, a year earlier: <%= month.before %>"></span>
-        <span class="bar blue" style="--nausikaa-chart-value: <%= Math.round(month.count / stats.maxPerMonth * 100) %>%" title="<%= month.label %> <%= month.year %>: <%= month.count %>"></span>
-        <span class="value"><%= month.count %></span>
-        <span class="label"><%= month.label %></span>
-      </li>
-      <% }); %>
-    </ul>
-    <ul class="chart legend right">
-      <li class="gray">A year earlier</li>
-      <li class="blue">This year</li>
-    </ul>
-  </section>
-
-  <section style="grid-column: 8 / 13">
-    <h4>By status</h4>
-
-    <div style="display: flex; flex-wrap: wrap; align-items: center;">
-      <svg class="chart donut" viewBox="0 0 42 42" role="img" style="margin-right: 1.5em" aria-label="Orders by status: <%= stats.byStatus.map(function (s) { return s.share + '% ' + s.name.toLowerCase(); }).join(', ') %>">
-        <circle class="track" cx="21" cy="21" r="15.915" />
-        <% parts.forEach(function (part) { %>
-        <circle class="<%= part.status.color %>" cx="21" cy="21" r="15.915" stroke-dasharray="<%= part.status.share %> <%= 100 - part.status.share %>" stroke-dashoffset="<%= part.offset %>" />
-        <% }); %>
-        <text x="21" y="20"><%= stats.orders %></text>
-        <text x="21" y="25.5" class="label">orders</text>
-      </svg>
-
-      <ul class="chart legend" style="flex-direction: column">
-        <% stats.byStatus.forEach(function (status) { %>
-        <li class="<%= status.color %>"><%= status.name %>: <%= status.count %> (<%= status.share %>%)</li>
-        <% }); %>
-      </ul>
-    </div>
-  </section>
-
-  <section style="grid-column: 1 / 8">
-    <h4>Order value per month</h4>
-
-    <svg class="chart lines" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" style="--nausikaa-chart-height: 9em" aria-label="Order value per month; the highest month is <%= money(highest) %>. The numbers are in the table below.">
-      <line x1="0" y1="0" x2="100" y2="0" />
-      <line x1="0" y1="50" x2="100" y2="50" />
-      <line x1="0" y1="100" x2="100" y2="100" />
-      <polygon points="0,100 <%= points %> 100,100" />
-      <polyline points="<%= points %>" />
-    </svg>
-    <ul class="chart legend right">
-      <li>Order value, up to <%= money(highest) %> a month</li>
-    </ul>
-  </section>
-
-  <section style="grid-column: 8 / 13">
-    <h4>By country</h4>
-
-    <ul class="chart bars" style="--nausikaa-chart-label-width: 10em; --nausikaa-chart-value-width: 3ch">
-      <% stats.byCountry.forEach(function (country) { %>
-      <li>
-        <span class="label"><%= country.flag %> <%= country.name %></span>
-        <span class="bar" style="--nausikaa-chart-value: <%= country.value %>%"></span>
-        <span class="value"><%= country.count %></span>
-      </li>
-      <% }); %>
-    </ul>
-  </section>
-
-  <section style="grid-column: 1 / 13">
-    <h4>The numbers</h4>
-
-    <div style="overflow-x: auto">
-      <table class="dense striped">
-        <thead>
-          <tr>
-            <th>Month</th>
-            <th>Orders</th>
-            <th>A year earlier</th>
-            <th>Difference</th>
-            <th>Order value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% stats.perMonth.forEach(function (month) { var difference = month.count - month.before; %>
-          <tr>
-            <th><%= month.label %> <%= month.year %></th>
-            <td><%= month.count %></td>
-            <td><%= month.before %></td>
-            <td>
-              <% if (difference > 0) { %><span class="tag green">+<%= difference %></span>
-              <% } else if (difference < 0) { %><span class="tag red">&minus;<%= -difference %></span>
-              <% } else { %><span class="tag">0</span><% } %>
-            </td>
-            <td><span class="price"><%= data.formatMoney(month.amount) %></span></td>
-          </tr>
+      <div class="panel blue">
+        <ul class="radios">
+          <li>
+            <input type="radio" id="loc-all" name="location" value="" <%= view.location ? '' : 'checked' %>>
+            <label for="loc-all">All locations</label>
+          </li>
+          <% view.locations.forEach(function (option) { %>
+          <li>
+            <input type="radio" id="loc-<%= option.key %>" name="location" value="<%= option.key %>" <%= view.location == option.key ? 'checked' : '' %>>
+            <label for="loc-<%= option.key %>">
+              <span><span class="tag <%= option.color %>"><strong><%= option.key %></strong></span> <%= option.name %></span>
+              <span><%= number(option.count) %></span>
+            </label>
+          </li>
           <% }); %>
-        </tbody>
-      </table>
+          <% if (view.location) { %>
+          <li class="seperator"></li>
+          <li><a href="<%= view.url({ location: '' }) %>">Clear location filter</a></li>
+          <% } %>
+        </ul>
+      </div>
+
+      <div class="panel expandable">
+        <% view.facets.forEach(function (facet, g) {
+          var checked = view.filters[facet.key];
+        %>
+        <input type="checkbox" id="<%= facet.key %>-expand" <%= facet.options.slice(8).some(function (o) { return checked.includes(o.key); }) ? 'checked' : '' %>>
+        <details <%= facet.open || checked.length ? 'open' : '' %>>
+          <summary>
+            <svg class="icon chevron"><use xlink:href="/images/icons.svg#chevron-down"></use></svg>
+            <strong><%= facet.name %></strong>
+            <small>(<%= facet.options.length %>)</small>
+          </summary>
+          <% if (facet.options.length > 6) { %>
+          <div class="group order-filter-search">
+            <svg class="icon"><use xlink:href="/images/icons.svg#search"></use></svg>
+            <input type="text" class="prepend-icon" placeholder="Filter <%= facet.name.toLowerCase() %>..." aria-label="Filter <%= facet.name.toLowerCase() %>" data-filter-options>
+          </div>
+          <% } %>
+          <ul class="checkboxes">
+            <% facet.options.forEach(function (option, i) { %>
+            <li>
+              <input type="checkbox" id="<%= facet.key %>-<%= i %>" name="<%= facet.key %>" value="<%= option.key %>" <%= checked.includes(option.key) ? 'checked' : '' %>>
+              <label for="<%= facet.key %>-<%= i %>">
+                <span><%= option.name %></span>
+                <span><%= number(option.count) %></span>
+              </label>
+            </li>
+            <% if (i == 7 && facet.options.length > 8) { %>
+            <li class="more"><label for="<%= facet.key %>-expand"><small>(<%= facet.options.length - 8 %>)</small> More options</label></li>
+            <% } %>
+            <% }); %>
+            <% if (facet.options.length > 8) { %>
+            <li class="less"><label for="<%= facet.key %>-expand">Less options</label></li>
+            <% } %>
+          </ul>
+        </details>
+        <% if (g < view.facets.length - 1) { %><div class="seperator"></div><% } %>
+        <% }); %>
+      </div>
+
+      <noscript><button type="submit" class="primary">Apply filters</button></noscript>
+    </form>
+
+    <% if (view.active) { %>
+    <a class="clear-filters" href="<%= view.clearUrl %>">Clear all filters</a>
+    <% } %>
+  </aside>
+
+  <div class="statistics-section">
+
+    <div class="stat-cards">
+      <div class="stat-card notification blue">
+        <div class="stat-card-label">Total orders</div>
+        <div class="stat-card-value"><%= number(view.total) %></div>
+      </div>
+      <% view.branches.forEach(function (branch) { %>
+      <div class="stat-card notification <%= branch.color %>">
+        <div class="stat-card-label"><%= branch.name %></div>
+        <div class="stat-card-value"><%= number(branch.count) %></div>
+        <div class="stat-card-sub"><%= view.share(branch.count) %></div>
+      </div>
+      <% }); %>
+      <div class="stat-card notification mauve">
+        <div class="stat-card-label">Quantity ordered</div>
+        <div class="stat-card-value"><%= number(view.quantity) %></div>
+      </div>
     </div>
-  </section>
 
-  <% } else { %>
+    <section class="statistics-monthly">
+      <h3>Orders per month</h3>
 
-  <section style="grid-column: 1 / 7">
-    <h4>Top customers</h4>
+      <div class="stat-line-wrap">
+        <svg width="100%" viewBox="0 0 <%= chart.width %> <%= chart.height %>" class="stat-line-svg" role="img" aria-label="Orders per month in the last six years; the busiest month had <%= number(chart.highest) %> orders.">
+          <% [0, 0.25, 0.5, 0.75, 1].forEach(function (part) { var level = chart.top + chart.innerHeight - part * chart.innerHeight; %>
+          <g>
+            <line x1="<%= chart.left %>" y1="<%= level %>" x2="<%= chart.left + chart.innerWidth %>" y2="<%= level %>" stroke="currentColor" stroke-opacity="0.08" stroke-width="1"></line>
+            <text x="<%= chart.left - 10 %>" y="<%= level + 4 %>" text-anchor="end" font-size="8" opacity="0.45"><%= number(Math.round(part * chart.highest)) %></text>
+          </g>
+          <% }); %>
 
-    <ol class="chart ranked">
-      <% stats.topCustomers.forEach(function (top) { %>
-      <li>
-        <span class="label"><%= top.item.flag %> <%= top.item.name %></span>
-        <span class="value"><%= data.formatMoney(top.amount) %></span>
-      </li>
-      <% }); %>
-    </ol>
-  </section>
+          <% view.series.forEach(function (line, s) { %>
+          <polyline class="series-<%= s + 1 %>" data-series="<%= line.label %>" points="<%= line.points.map(function (point, i) { return x(i) + ',' + y(point.count); }).join(' ') %>" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <% }); %>
+          <% view.series.forEach(function (line, s) { %>
+          <g class="series-<%= s + 1 %>" data-series="<%= line.label %>">
+            <% line.points.forEach(function (point, i) { %>
+            <circle cx="<%= x(i) %>" cy="<%= y(point.count) %>" r="5"><title><%= line.label %> — <%= point.label %>: <%= number(point.count) %></title></circle>
+            <% }); %>
+          </g>
+          <% }); %>
 
-  <section style="grid-column: 7 / 13">
-    <h4>Top publishers</h4>
+          <% view.series[5].points.forEach(function (point, i) { if (i % 2 == 0) { %>
+          <text x="<%= x(i) %>" y="<%= chart.height - 4 %>" text-anchor="middle" font-size="8.5" opacity="0.5"><%= point.label %></text>
+          <% } }); %>
+        </svg>
 
-    <ol class="chart ranked">
-      <% stats.topPublishers.forEach(function (top) { %>
-      <li>
-        <span class="label"><%= top.item.name %></span>
-        <span class="value"><%= data.formatMoney(top.amount) %></span>
-      </li>
-      <% }); %>
-    </ol>
-  </section>
+        <ul class="stat-line-legend">
+          <% view.series.forEach(function (line, s) { %>
+          <li>
+            <label>
+              <%# Shows and hides a line; without JavaScript there is nothing to tick %>
+              <input type="checkbox" checked hidden data-toggle-series="<%= line.label %>">
+              <span class="stat-line-dot series-<%= s + 1 %>"></span>
+              <span><%= line.label %></span>
+            </label>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    </section>
 
-  <section style="grid-column: 1 / 13">
-    <h4>Average order</h4>
+    <div class="statistics-columns">
+      <section>
+        <h3>Order positions</h3>
+        <table class="statistics-table">
+          <tbody>
+            <% view.byPosition.forEach(function (position) { %>
+            <tr>
+              <td>
+                <span class="tag badge order-position <%= position.color %>"></span>
+                <strong><%= position.key %></strong>
+                <span class="stat-position-name"><%= position.name %></span>
+              </td>
+              <td><%= number(position.count) %></td>
+              <td class="stat-pct"><%= view.share(position.count) %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </section>
 
-    <ul class="stats">
-      <li class="stat">
-        <span class="label">Average value of a delivered order</span>
-        <span class="value"><%= data.formatMoney(stats.average) %></span>
-      </li>
-      <li class="stat">
-        <span class="label">Customers</span>
-        <span class="value"><%= data.customers.length %></span>
-        <span class="note">in <%= stats.byCountry.length %> countries</span>
-      </li>
-      <li class="stat">
-        <span class="label">Publishers</span>
-        <span class="value"><%= data.publishers.length %></span>
-      </li>
-    </ul>
-  </section>
+      <section>
+        <h3>Order status</h3>
+        <div class="stat-bar-list">
+          <% view.byStatus.forEach(function (status) { %>
+          <div class="stat-bar-row">
+            <div class="stat-bar-label"><%= status.key %></div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width: <%= (status.count / highestStatus * 100).toFixed(2) %>%"></div></div>
+            <div class="stat-bar-count"><%= number(status.count) %></div>
+          </div>
+          <% }); %>
+        </div>
+      </section>
+    </div>
 
-  <% } %>
+    <div class="statistics-columns">
+      <%- topList('Top products', 'product-period', view.periods.products, view.topProducts, function (item) { return item.title; }) %>
+      <%- topList('Top publishers', 'publisher-period', view.periods.publishers, view.topPublishers, function (item) { return item.name; }) %>
+    </div>
+
+    <div class="statistics-columns">
+      <section>
+        <h3>Product groups</h3>
+        <div class="stat-bar-list">
+          <% view.byGroup.forEach(function (group) { %>
+          <div class="stat-bar-row">
+            <div class="stat-bar-label"><%= group.key %></div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width: <%= (group.count / highestGroup * 100).toFixed(2) %>%"></div></div>
+            <div class="stat-bar-count"><%= number(group.count) %></div>
+          </div>
+          <% }); %>
+        </div>
+      </section>
+
+      <section>
+        <h3>Orders per year (last 10 years)</h3>
+        <div class="stat-year-chart">
+          <% view.byYear.forEach(function (year) { %>
+          <div class="stat-year-col">
+            <div class="stat-year-bar-wrap">
+              <div class="stat-year-bar" style="height: <%= (year.count / highestYear * 100).toFixed(2) %>%" title="<%= year.year %>: <%= number(year.count) %>"></div>
+            </div>
+            <div class="stat-year-count"><%= number(year.count) %></div>
+            <div class="stat-year-label"><%= year.year %></div>
+          </div>
+          <% }); %>
+        </div>
+      </section>
+    </div>
+
+  </div>
 
 </main>
+
+<script>
+(function () {
+  // Apply a filter as soon as it is checked
+  var form = document.getElementById("statistics-filters");
+  form.addEventListener("change", function (event) {
+    if (event.target.name) form.submit();
+  });
+
+  // A top list shows another period as soon as it is chosen
+  document.querySelectorAll("[data-submit]").forEach(function (select) {
+    select.addEventListener("change", function () { select.form.submit(); });
+  });
+
+  // The small search field in a long filter hides the options that don't match
+  document.querySelectorAll("[data-filter-options]").forEach(function (input) {
+    input.addEventListener("input", function () {
+      var term = input.value.toLowerCase();
+      // While searching, every option that matches shows, also the ones
+      // behind "More options"
+      input.closest("details").querySelectorAll("li").forEach(function (option) {
+        var extra = option.classList.contains("more") || option.classList.contains("less");
+        var matches = !extra && option.textContent.toLowerCase().indexOf(term) !== -1;
+        option.style.display = !term ? "" : matches ? "block" : "none";
+      });
+    });
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") event.preventDefault();
+    });
+  });
+
+  // The legend of the line chart shows and hides the lines
+  document.querySelectorAll("[data-toggle-series]").forEach(function (box) {
+    box.hidden = false;
+    box.addEventListener("change", function () {
+      document.querySelectorAll('[data-series="' + box.dataset.toggleSeries + '"]').forEach(function (line) {
+        line.style.display = box.checked ? "" : "none";
+      });
+      box.closest("li").classList.toggle("off", !box.checked);
+    });
+  });
+})();
+</script>

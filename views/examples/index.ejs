@@ -6,33 +6,39 @@
   var examples = nav.find(function (lane) { return lane.slug == 'examples'; }).nav;
 %>
 
-<main>
+<main id="examples-overview">
 
-  <article style="grid-column: 1 / 13">
-    <header>
-      <h1>Examples</h1>
-    </header>
+  <div class="introduction">
 
-    <p class="introduction">The examples show how the parts of Nausikaä come together in the kind of pages people work in all day: a long list, a detailed record, a large form, a table and a dashboard.</p>
+    <%# The towns are drawn by /scripts/townscape.js, in the room beside the text %>
+    <div class="skew"><div class="townscape" data-townscape data-townscape-top="open" aria-hidden="true"></div></div>
 
-    <p>Each example is built from what the <a href="/documentation">documentation</a> describes, with no styles of its own. The filters, tabs, sorting and pages work without JavaScript; the address in your browser holds the state. The names, titles and numbers on these pages are sample content.</p>
+    <h1>Examples</h1>
 
-    <div class="site-overview blue">
-      <ul>
-        <% examples.forEach(function (example) { %>
-        <li>
-          <a href="/examples/<%= example.slug %>">
-            <svg class="icon">
-              <use xlink:href="/images/icons.svg#<%= example.icon %>"></use>
-            </svg>
-            <div class="title"><%= example.title %></div>
-            <div class="description"><%= example.description %></div>
-          </a>
-        </li>
-        <% }); %>
-      </ul>
+    <div class="explainer">
+
+      <p>The examples show how the parts of <u>Nausikaä</u> come together in the kind of pages people work in all day: a long list, a detailed record, a large form, a table, a calendar and a dashboard. They all belong to one made-up company that supplies books to libraries.</p>
+
+      <p>Each example is built from what the <a href="/documentation">documentation</a> describes, with a layout of its own on top. The filters, tabs, sorting and pages work without JavaScript; the address in your browser holds the state. The names, titles and numbers on these pages are sample content.</p>
+
     </div>
-  </article>
+  </div>
+
+  <div class="site-overview blue">
+    <ul>
+      <% examples.forEach(function (example) { %>
+      <li>
+        <a href="/examples/<%= example.slug %>">
+          <svg class="icon">
+            <use xlink:href="/images/icons.svg#<%= example.icon %>"></use>
+          </svg>
+          <div class="title"><%= example.title %></div>
+          <div class="description"><%= example.description %></div>
+        </a>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
 
 </main>
 

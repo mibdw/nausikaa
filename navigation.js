@@ -963,25 +963,32 @@ const nav = [
           "One record in full: a header with identifiers and key facts, tabs for its parts, the lines with their products, and the totals.",
       },
       {
-        title: "New title form",
-        slug: "new-title",
+        title: "New title drafts",
+        slug: "new-title-drafts",
         icon: "post-add",
         description:
-          "A long data-entry form in fieldsets, with suggestions, help texts, a drop zone for the cover, a text editor and a dialog to confirm.",
+          "A work list and an editor side by side: a table of drafts with search, filters and a selection, and the open draft in parts that each turn into a form when you click them.",
       },
       {
-        title: "Drafts table",
-        slug: "drafts",
+        title: "Catalogue progress",
+        slug: "catalogue-progress",
         icon: "table",
         description:
           "A dense table with a status per row, progress, selecting rows and acting on the selection, and a dialog before anything is deleted.",
       },
       {
-        title: "Statistics dashboard",
+        title: "Shipment schedule",
+        slug: "shipment-schedule",
+        icon: "calendar-view",
+        description:
+          "A full month on the calendar: shipments as tags in the color of their carrier, more behind a dropdown, filters next to it and a dialog for one shipment.",
+      },
+      {
+        title: "Order statistics",
         slug: "statistics",
         icon: "chart",
         description:
-          "Key figures and charts on one page: stats, bars, columns, a donut, a line chart and ranked lists, with a table of the numbers.",
+          "Figures about orders next to their filters: key figures, a line chart of six years, bars, columns and two top lists with their own period.",
       },
     ],
   },
