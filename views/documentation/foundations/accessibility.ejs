@@ -24,7 +24,7 @@
       </tr>
       <tr>
         <th>Readable contrast</th>
-        <td>Text colors are chosen to reach a contrast ratio of at least 4.5:1 against their background in both themes, the WCAG AA level for normal text. Colored components such as panels, tags and notifications pick dark or light text depending on their background. Every page of this documentation is checked for this automatically. The exceptions are listed under <a href="#limitations">Known limitations</a>.</td>
+        <td>Text colors are chosen to reach a contrast ratio of at least 4.5:1 against their background in the light and the dark theme, the WCAG AA level for normal text. The <a href="/documentation/foundations/theming/#eink">e-ink theme</a> goes further: black on white, and no text on a mid-grey. Colored components such as panels, tags and notifications pick dark or light text depending on their background. Every page of this documentation is checked for this automatically. The exceptions are listed under <a href="#limitations">Known limitations</a>.</td>
       </tr>
       <tr>
         <th>Visible focus</th>
@@ -32,11 +32,11 @@
       </tr>
       <tr>
         <th>Light and dark</th>
-        <td>The theme follows the visitor’s system setting, and built-in controls such as scrollbars and checkboxes follow the theme. See <a href="/documentation/foundations/theming">Theming</a>.</td>
+        <td>The theme follows the visitor’s system setting, and built-in controls such as scrollbars and checkboxes follow the theme. A third theme, for e-ink displays, has to be chosen: such a display doesn’t tell the browser what it is. See <a href="/documentation/foundations/theming">Theming</a>.</td>
       </tr>
       <tr>
         <th>Reduced motion</th>
-        <td>When the visitor has asked their system to reduce motion, the moving stripes of progress bars stand still and spinners turn slowly.</td>
+        <td>When the visitor has asked their system to reduce motion, the moving stripes of progress bars stand still and spinners turn slowly. In the e-ink theme nothing moves at all.</td>
       </tr>
       <tr>
         <th>Zoom</th>
@@ -59,7 +59,7 @@
     <li><strong>Label every form field</strong> with a <code>&lt;label&gt;</code>. A placeholder is not a label: it disappears as soon as someone starts typing. Group related radio buttons and checkboxes in a <a href="/documentation/collections/forms#fieldsets">fieldset with a legend</a>.</li>
     <li><strong>Describe images</strong> with an <code>alt</code> text, or use an empty <code>alt=""</code> for decorative images. See <a href="/documentation/elements/images">Images</a>.</li>
     <li><strong>Write link texts that make sense on their own.</strong> “Read the installation guide” helps; “click here” doesn’t, especially in a list of links.</li>
-    <li><strong>Don’t rely on color alone.</strong> A red border on a field isn’t enough to explain an error: add a text that says what is wrong and how to fix it.</li>
+    <li><strong>Don’t rely on color alone.</strong> A red border on a field isn’t enough to explain an error: add a text that says what is wrong and how to fix it. The <a href="/documentation/foundations/theming/#eink">e-ink theme</a> is a good test: there a red and a blue tag look the same.</li>
     <li><strong>Use buttons for actions and links for navigation.</strong> A <code>&lt;button&gt;</code> works with the keyboard out of the box; a clickable <code>&lt;div&gt;</code> does not.</li>
     <li><strong>Add ARIA only where HTML falls short.</strong> Native elements already tell assistive technology what they are. ARIA is for custom widgets, for example <code>aria-expanded</code> on a button that opens a menu.</li>
   </ul>
@@ -94,7 +94,7 @@
       </tr>
       <tr>
         <th>Reduced motion</th>
-        <td>Only progress bars and spinners respond to the reduced motion setting so far. The short transitions of dialogs, dropdowns and loading buttons still play.</td>
+        <td>Only progress bars and spinners respond to the reduced motion setting so far. The short transitions of dialogs, dropdowns and loading buttons still play. The e-ink theme switches all of them off.</td>
       </tr>
     </tbody>
   </table>

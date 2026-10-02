@@ -110,6 +110,12 @@
     }
   }
 
+  /* The icon of a loading button can't turn; keep it in the middle */
+  .button.loading:after,
+  button.loading:after {
+    transform: translate(-50%, -50%);
+  }
+
   /* Knobs: outlined */
   .knobs > li > a,
   .knob {
@@ -259,47 +265,60 @@
     --nausikaa-chart-line: #000;
   }
 
-  .chart,
-  .chart [class],
-  .stat {
+  .chart {
     --nausikaa-chart-color: #000;
   }
 
-  .chart .green,
+  .chart.mauve,
+  .chart .mauve,
+  .stat.mauve,
+  .chart.red,
+  .chart .red,
+  .stat.red,
+  .chart.maroon,
+  .chart .maroon,
+  .stat.maroon,
+  .chart.blue,
+  .chart .blue,
+  .stat.blue {
+    --nausikaa-chart-color: #000;
+  }
+
   .chart.green,
+  .chart .green,
   .stat.green,
-  .chart .peach,
   .chart.peach,
+  .chart .peach,
   .stat.peach,
-  .chart .lavender,
   .chart.lavender,
+  .chart .lavender,
   .stat.lavender,
-  .chart .flamingo,
   .chart.flamingo,
+  .chart .flamingo,
   .stat.flamingo,
-  .chart .rosewater,
   .chart.rosewater,
+  .chart .rosewater,
   .stat.rosewater,
-  .chart .sapphire,
   .chart.sapphire,
+  .chart .sapphire,
   .stat.sapphire,
-  .chart .teal,
   .chart.teal,
+  .chart .teal,
   .stat.teal {
     --nausikaa-chart-color: #666;
   }
 
-  .chart .yellow,
   .chart.yellow,
+  .chart .yellow,
   .stat.yellow,
-  .chart .pink,
   .chart.pink,
+  .chart .pink,
   .stat.pink,
-  .chart .sky,
   .chart.sky,
+  .chart .sky,
   .stat.sky,
-  .chart .gray,
   .chart.gray,
+  .chart .gray,
   .stat.gray {
     --nausikaa-chart-color: #aaa;
   }

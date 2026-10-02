@@ -250,4 +250,19 @@
       <tr><th>Charts</th><td><code>--nausikaa-chart-color</code>, <code>-track</code>, <code>-line</code></td></tr>
     </tbody>
   </table>
+
+  <h3>Your own colors in the e-ink theme</h3>
+
+  <p>The <a href="#eink">e-ink theme</a> sets the custom properties of every colored component itself, so that nothing ends up as hard-to-read text on a mid-grey. That also goes for a color class of your own: the brand button above becomes an ordinary outlined button there. To give it another look in the e-ink theme, set its properties once more for that theme, after your other rules:</p>
+
+  <div class="code-example">
+    <pre><code class="css">[data-theme="eink"] button.brand,
+[data-theme="eink"] .button.brand {
+  --nausikaa-button-background: #000;
+  --nausikaa-button-text: #fff;
+  --nausikaa-button-shadow: #666;
+}</code></pre>
+  </div>
+
+  <p class="note"><strong>Keep to black, white and a few greys:</strong> an e-ink display shows sixteen shades, and the two lightest look the same. <code>#ddd</code> is the lightest grey that can be told from white. Put text only on white, on <code>#ddd</code> or on black.</p>
 </section>
