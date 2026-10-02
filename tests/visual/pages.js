@@ -1,6 +1,6 @@
 import nav from "../../navigation.js";
 
-export const themes = ["light", "dark"];
+export const themes = ["light", "dark", "eink"];
 
 // Every page of the site, derived from the navigation.
 export const pages = ["/", "/download", "/search?q=color", "/documentation"];

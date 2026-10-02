@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-ink browser test</title>
+<%#
+  A test page for old and limited browsers, such as the one on a Kindle. It
+  tells which parts of CSS and JavaScript the browser supports, to find out
+  whether Nausikaä can run on it. The page itself therefore uses nothing
+  modern: no custom properties, no grid, no flexbox, and JavaScript as it was
+  written fifteen years ago. It does not load the Nausikaä stylesheet.
+%>
+<style>
+  body { font-family: Georgia, serif; font-size: 18px; line-height: 1.4; color: #000; background: #fff; margin: 0; padding: 12px; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  h2 { font-size: 20px; margin: 22px 0 6px; border-bottom: 2px solid #000; }
+  p { margin: 6px 0; }
+  table { border-collapse: collapse; width: 100%; }
+  td, th { border-bottom: 1px solid #000; padding: 4px 6px; text-align: left; vertical-align: top; }
+  .yes { font-weight: bold; }
+  .no { font-weight: bold; text-decoration: underline; }
+  #verdict { border: 3px solid #000; padding: 8px; margin: 10px 0; font-size: 20px; }
+  #code { font-family: monospace; font-size: 20px; word-wrap: break-word; }
+  .ramp td { border: 1px solid #000; height: 34px; text-align: center; font-size: 12px; padding: 0; }
+  .sample { border: 1px solid #000; padding: 6px; margin: 6px 0; }
+  .line { height: 0; margin: 10px 0; }
+
+  /* Samples that only look right when the browser supports the feature */
+  .css-var { --test-width: 8px; border-left: 0 solid #000; border-left-width: var(--test-width); padding-left: 6px; }
+  .css-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .css-grid span, .css-flex span { border: 1px solid #000; padding: 4px; }
+  .css-flex { display: -webkit-flex; display: flex; }
+  .css-flex span { -webkit-flex: 1 1 0; flex: 1 1 0; }
+  .webfont { font-family: "IBM Plex Sans", monospace; }
+</style>
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700" rel="stylesheet">
+</head>
+<body>
+
+<h1>E-ink browser test</h1>
+<p>This page tells what this browser can do, to see whether Nausikaä can run on it.</p>
+
+<div id="verdict">JavaScript did not run. The tests below that need it show nothing; the samples at the bottom still work.</div>
+
+<p>Short result, to read back: <span id="code">-</span></p>
+<p id="sent"></p>
+
+<h2>Browser</h2>
+<table id="browser"><tbody></tbody></table>
+
+<h2>CSS</h2>
+<table id="css"><tbody></tbody></table>
+
+<h2>JavaScript and HTML</h2>
+<table id="js"><tbody></tbody></table>
+
+<h2>Samples to look at</h2>
+
+<p><strong>Custom properties.</strong> The box below has a thick black bar on its left when they work.</p>
+<div class="sample css-var">A bar on the left of this text?</div>
+
+<p><strong>Grid.</strong> Three boxes next to each other when it works; below each other when it doesn't.</p>
+<div class="sample css-grid"><span>one</span><span>two</span><span>three</span></div>
+
+<p><strong>Flexbox.</strong> Three boxes of equal width next to each other when it works.</p>
+<div class="sample css-flex"><span>one</span><span>two</span><span>three</span></div>
+
+<p><strong>Details.</strong> Tapping the line below opens a hidden sentence when it works. When the sentence is already showing, it doesn't.</p>
+<details class="sample"><summary>Tap to open</summary><p>The hidden sentence.</p></details>
+
+<p><strong>Web font.</strong> The second line is a sans-serif when the font loads, and typewriter letters when it doesn't.</p>
+<div class="sample">
+  Georgia, the font of the device: Hamburgefonstiv 0123456789<br>
+  <span class="webfont">IBM Plex Sans, loaded from the web: Hamburgefonstiv 0123456789</span>
+</div>
+
+<p><strong>Icons.</strong> A magnifying glass and a calendar, from the Nausikaä icon file.</p>
+<div class="sample">
+  <svg width="32" height="32"><use xlink:href="/images/icons.svg#search"></use></svg>
+  <svg width="32" height="32"><use xlink:href="/images/icons.svg#calendar-view"></use></svg>
+</div>
+
+<p><strong>Emoji.</strong> A calendar, a cake, a flag and a check mark: &#128197; &#127874; &#127475;&#127473; &#10003;</p>
+
+<p><strong>Greys.</strong> Sixteen steps from black to white. Count how many you can tell apart; the light end matters most.</p>
+<table class="ramp"><tbody><tr>
+<% for (var i = 0; i < 16; i++) { var v = Math.round(i * 17); var hex = (v < 16 ? '0' : '') + v.toString(16); %>
+  <td style="background: #<%= hex + hex + hex %>; color: <%= i < 8 ? '#fff' : '#000' %>"><%= i %></td>
+<% } %>
+</tr></tbody></table>
+
+<p><strong>Lines.</strong> One, two and three pixels, then dotted and dashed.</p>
+<div class="line" style="border-top: 1px solid #000"></div>
+<div class="line" style="border-top: 2px solid #000"></div>
+<div class="line" style="border-top: 3px solid #000"></div>
+<div class="line" style="border-top: 1px dotted #000"></div>
+<div class="line" style="border-top: 2px dashed #000"></div>
+
+<p><strong>Text sizes.</strong></p>
+<div class="sample">
+  <span style="font-size: 12px">12 pixels: Monday 14 October</span><br>
+  <span style="font-size: 15px">15 pixels: Monday 14 October</span><br>
+  <span style="font-size: 18px">18 pixels: Monday 14 October</span><br>
+  <span style="font-size: 24px">24 pixels: Monday 14 October</span>
+</div>
+
+<p><strong>Tapping.</strong> <a href="/eink-test?tapped=<%= taps + 1 %>#tap" id="tap">Tap this link</a>. It has been tapped <strong><%= taps %></strong> time<%= taps == 1 ? '' : 's' %>; the number goes up when links work, and you see how long a page takes to load.</p>
+
+<script>
+// Written for very old browsers: only "var" and "function", nothing newer.
+(function () {
+  var results = [];
+
+  function row(tableId, name, value, good) {
+    var body = document.getElementById(tableId).getElementsByTagName("tbody")[0];
+    var tr = document.createElement("tr");
+    var th = document.createElement("td");
+    var td = document.createElement("td");
+    th.appendChild(document.createTextNode(name));
+    td.appendChild(document.createTextNode(value));
+    if (good === true) td.className = "yes";
+    if (good === false) td.className = "no";
+    tr.appendChild(th);
+    tr.appendChild(td);
+    body.appendChild(tr);
+  }
+
+  // A test that can't break the page: an error counts as "no"
+  function test(tableId, key, name, fn) {
+    var ok = false;
+    try { ok = !!fn(); } catch (e) { ok = false; }
+    results.push(key + (ok ? "1" : "0"));
+    row(tableId, name, ok ? "yes" : "NO", ok);
+    return ok;
+  }
+
+  // Does the browser keep a CSS value it is given?
+  function keeps(property, value) {
+    var el = document.createElement("div");
+    el.style[property] = value;
+    return el.style[property] === value;
+  }
+
+  function media(query) {
+    return window.matchMedia && window.matchMedia(query).matches;
+  }
+
+  function code(source) {
+    return function () { new Function(source)(); return true; };
+  }
+
+  // The browser and its screen
+  row("browser", "User agent", navigator.userAgent);
+  row("browser", "Screen", screen.width + " x " + screen.height + " pixels");
+  row("browser", "Window", (window.innerWidth || document.documentElement.clientWidth) + " x " + (window.innerHeight || document.documentElement.clientHeight) + " pixels");
+  row("browser", "Pixel ratio", String(window.devicePixelRatio || "unknown"));
+  row("browser", "Color depth", String(screen.colorDepth) + " bits");
+
+  // CSS
+  var vars = test("css", "V", "Custom properties (variables)", function () {
+    var el = document.createElement("div");
+    el.style.setProperty("--test", "1px");
+    return el.style.getPropertyValue("--test").replace(/\s/g, "") === "1px";
+  });
+  var grid = test("css", "G", "Grid", function () { return keeps("display", "grid"); });
+  var flex = test("css", "F", "Flexbox", function () { return keeps("display", "flex") || keeps("display", "-webkit-flex"); });
+  test("css", "S", "CSS.supports", function () { return window.CSS && CSS.supports && CSS.supports("display", "block"); });
+  test("css", "C", "calc()", function () {
+    // A browser may rewrite the sum, so only look whether it kept a calc()
+    var el = document.createElement("div");
+    el.style.width = "calc(1px + 1em)";
+    if (!el.style.width) el.style.width = "-webkit-calc(1px + 1em)";
+    return el.style.width.indexOf("calc") !== -1;
+  });
+  test("css", "R", "rem units", function () { return keeps("width", "1rem"); });
+  test("css", "W", "Focus-within", function () { document.querySelector(":focus-within"); return true; });
+  test("css", "K", "Sticky position", function () { return keeps("position", "sticky") || keeps("position", "-webkit-sticky"); });
+  test("css", "T", "Vertical text (writing-mode)", function () { return keeps("writingMode", "vertical-rl") || keeps("webkitWritingMode", "vertical-rl"); });
+  test("css", "O", "Object-fit", function () { return keeps("objectFit", "cover"); });
+  test("css", "X", "Transforms", function () { return keeps("transform", "rotate(1deg)") || keeps("webkitTransform", "rotate(1deg)"); });
+  test("css", "M", "Says it is monochrome", function () { return media("(monochrome)"); });
+  test("css", "U", "Says it updates slowly", function () { return media("(update: slow)"); });
+  test("css", "D", "Asks for a dark page", function () { return media("(prefers-color-scheme: dark)"); });
+
+  // JavaScript and HTML
+  test("js", "a", "Arrow functions", code("var f = () => 1;"));
+  test("js", "l", "let and const", code("let a = 1; const b = 2;"));
+  test("js", "t", "Template strings", code("var a = `x${1}`;"));
+  test("js", "p", "Promise", function () { return typeof Promise === "function"; });
+  test("js", "f", "fetch", function () { return typeof fetch === "function"; });
+  test("js", "m", "Modules", function () { return "noModule" in document.createElement("script"); });
+  test("js", "d", "Details element", function () { return "open" in document.createElement("details"); });
+  test("js", "g", "Dialog element", function () { return typeof document.createElement("dialog").showModal === "function"; });
+  test("js", "s", "Local storage", function () { localStorage.setItem("eink-test", "1"); localStorage.removeItem("eink-test"); return true; });
+  test("js", "n", "Fonts report loading", function () { return !!document.fonts; });
+
+  // The verdict
+  var verdict;
+  if (vars && grid && flex) verdict = "Good news: this browser supports what Nausikaä needs. The stylesheet can be used as it is.";
+  else if (flex) verdict = "This browser is too old for Nausikaä as it is" + (vars ? "" : ": no custom properties") + (grid ? "" : (vars ? ":" : ",") + " no grid") + ". A flattened stylesheet with other layouts is needed.";
+  else verdict = "This browser is very old: no flexbox either. Showing a picture of the page is the realistic route.";
+  document.getElementById("verdict").innerHTML = "";
+  document.getElementById("verdict").appendChild(document.createTextNode(verdict));
+
+  var short = results.join(" ");
+  document.getElementById("code").innerHTML = "";
+  document.getElementById("code").appendChild(document.createTextNode(short));
+
+  // Send the result to the server, as the address of a picture: that works
+  // in every browser. The server keeps it, so it can be read on a computer.
+  var report = new Image();
+  report.onload = function () {
+    document.getElementById("sent").appendChild(document.createTextNode("The result is sent to the server; see /eink-test/reports on your computer."));
+  };
+  report.src = "/eink-test/report.gif?r=" + encodeURIComponent(short) +
+    "&ua=" + encodeURIComponent(navigator.userAgent) +
+    "&screen=" + screen.width + "x" + screen.height +
+    "&window=" + (window.innerWidth || 0) + "x" + (window.innerHeight || 0) +
+    "&ratio=" + (window.devicePixelRatio || "") +
+    "&t=" + new Date().getTime();
+})();
+</script>
+
+</body>
+</html>

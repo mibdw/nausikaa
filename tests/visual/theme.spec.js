@@ -40,6 +40,17 @@ test("a chosen theme overrides the system setting and is remembered", async ({ p
   expect((await page.context().cookies()).find((c) => c.name === "theme")).toBeUndefined();
 });
 
+test("the e-ink theme can be chosen, also when the system is dark", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/documentation");
+
+  await choose(page, "E-ink");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "eink");
+  expect(await background(page)).toBe("#fff");
+  // Nothing moves on an e-ink display
+  await expect(page.locator(".theme-switcher .panel")).toHaveCSS("transition-duration", "0s");
+});
+
 test("the theme menu opens with the keyboard", async ({ page }) => {
   await page.goto("/documentation");
   const panel = page.locator(".theme-switcher .panel");

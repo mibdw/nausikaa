@@ -179,3 +179,8 @@ ul.swatches {
   grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
   grid-gap: 0.5em 1em;
 }
+
+/* E-ink: the links in the introduction are black, like all other links */
+:root[data-theme="eink"] #documentation-overview .introduction a {
+  color: var(--nausikaa-text);
+}

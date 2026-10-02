@@ -15,7 +15,7 @@
 
 <section id="introduction">
   <p class="introduction">
-    <strong>Nausikaä</strong> comes with a light and a dark theme, and follows the visitor’s system setting by default. All colors, fonts and sizes are <em>custom properties</em> (CSS variables), so you can adjust them to your own design without touching the framework.
+    <strong>Nausikaä</strong> comes with a light and a dark theme, and follows the visitor’s system setting by default. A third theme is made for <a href="#eink">e-ink displays</a>. All colors, fonts and sizes are <em>custom properties</em> (CSS variables), so you can adjust them to your own design without touching the framework.
   </p>
   <p class="introduction">
     Every custom property starts with <code>--nausikaa-</code>, for example <code>--nausikaa-base</code> or <code>--nausikaa-link-color</code>. The prefix keeps them apart from the variables of other stylesheets on the same page.
@@ -44,7 +44,62 @@
 
   <p>Nausikaä also tells the browser which theme is active, so built-in parts of the page—scrollbars, checkboxes, the date picker of a date field—match the theme too.</p>
 
-  <p class="note"><strong>Remembering a visitor’s choice:</strong> this website offers <em>Automatic</em>, <em>Light</em> and <em>Dark</em> in the navbar. The choice is stored in a cookie, and the server writes the matching <code>data-theme</code> into every page. Because the attribute is already in the HTML, the page never flashes in the wrong theme while it loads. If you store the choice with JavaScript instead, set the attribute in a small script at the top of the <code>&lt;head&gt;</code>, before the stylesheet is applied.</p>
+  <p class="note"><strong>Remembering a visitor’s choice:</strong> this website offers <em>Automatic</em>, <em>Light</em>, <em>Dark</em> and <em>E-ink</em> in the navbar. The choice is stored in a cookie, and the server writes the matching <code>data-theme</code> into every page. Because the attribute is already in the HTML, the page never flashes in the wrong theme while it loads. If you store the choice with JavaScript instead, set the attribute in a small script at the top of the <code>&lt;head&gt;</code>, before the stylesheet is applied.</p>
+</section>
+
+<section id="eink">
+  <header>
+    <h2>E-ink</h2>
+  </header>
+
+  <p>An e-ink display, such as that of an e-reader, shows sixteen shades of grey, redraws slowly and has no pointer that hovers. The <strong>e-ink theme</strong> is made for that. Choose it with <code>data-theme="eink"</code>:</p>
+
+  <div class="code-example">
+    <pre><code class="html">&lt;html lang="en" data-theme="eink"&gt;</code></pre>
+  </div>
+
+  <p>The theme is never chosen automatically. Browsers on these devices don’t say what kind of display they have, so offer the theme as a choice or set it on the pages you make for the device.</p>
+
+  <table class="striped">
+    <thead>
+      <tr><th>What changes</th><th>Why</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Black on white</th>
+        <td>The page is pure white and the text pure black. The greys in between are ones the display shows without mixing dots, and none is lighter than <code>#ddd</code>: lighter greys can’t be told from white.</td>
+      </tr>
+      <tr>
+        <th>Three looks instead of colors</th>
+        <td>Colors can’t be told apart, and text on a mid-grey is hard to read. A color class therefore gives one of three looks: outlined, light grey, or black with white letters. Dark colors such as <code>blue</code>, <code>red</code> and <code>primary</code> become black; the other colors become light grey.</td>
+      </tr>
+      <tr>
+        <th>Nothing moves</th>
+        <td>Animations and transitions are switched off, because every step in between is a slow redraw. A spinner shows as a still, open circle.</td>
+      </tr>
+      <tr>
+        <th>Borders instead of shadows</th>
+        <td>Soft shadows and blur turn into a smear of dots. Dropdowns, dialogs and sticky notifications get a solid black border instead.</td>
+      </tr>
+      <tr>
+        <th>Links are black</th>
+        <td>The underline is what marks a link.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-example">
+    <p>
+      <span class="tag">Regular</span> <span class="tag yellow">Yellow</span> <span class="tag green">Green</span> <span class="tag red">Red</span> <span class="tag blue">Blue</span>
+    </p>
+    <p>
+      <button type="button">Regular</button> <button type="button" class="yellow">Yellow</button> <button type="button" class="secondary">Secondary</button> <button type="button" class="negative">Negative</button>
+    </p>
+  </div>
+
+  <p>Choose <em>E-ink</em> in the navbar of this website to see the tags and buttons above, and every other page, in the theme. On a screen with color the page is shown in grey, the way an e-ink display would show it.</p>
+
+  <p class="note"><strong>Meaning without color:</strong> in this theme a green and a yellow tag look the same. That is a reminder that a color should never be the only thing that carries a message: say it in words or with an icon as well. See <a href="/documentation/foundations/accessibility">Accessibility</a>.</p>
 </section>
 
 <section id="colors">

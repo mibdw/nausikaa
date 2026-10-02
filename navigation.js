@@ -41,11 +41,15 @@ const nav = [
             slug: "theming",
             icon: "color-fill",
             description:
-              "Light and dark themes, the color palette, and how to adjust colors and sizes.",
+              "Light, dark and e-ink themes, the color palette, and how to adjust colors and sizes.",
             nav: [
               {
                 title: "Light and dark",
                 slug: "light-and-dark",
+              },
+              {
+                title: "E-ink",
+                slug: "eink",
               },
               {
                 title: "Color palette",

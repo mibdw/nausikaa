@@ -1,7 +1,10 @@
 /*
  * Nausikaä. Follows the system's light or dark appearance; set
- * data-theme="light" or data-theme="dark" on <html> to choose one.
+ * data-theme="light" or data-theme="dark" on <html> to choose one, or
+ * data-theme="eink" for an e-ink display.
  */
 @import "tokens.css";
 @import "tokens-dark.css";
+@import "tokens-eink.css";
 @import "index.css";
+@import "eink.css";
