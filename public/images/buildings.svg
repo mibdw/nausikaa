@@ -1,9 +1,6 @@
 <svg width="195.28mm" height="233.73mm" version="1.1" viewBox="0 0 195.28 233.73" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
  <defs>
 
-  <style>
-    .building.east { fill: #f1c40f; }
-  </style>
 
   <symbol id="house-01" viewBox="-2 -2 30.511 108.352">
    <title>House 01</title>
@@ -174,8 +171,8 @@
     <path fill="var(--nausikaa-west-fill)" d="m460.01 157.84-25.155-12.209 0.86918-9.9644 24.286 9.898z"/>
     <path fill="var(--nausikaa-east-top-fill)" d="m459.9 92.057 0.11266 53.51 24.26-13.056-15.035-44.413z"/>
     <path fill="var(--nausikaa-west-top-fill)" d="m460.01 145.57-24.286-9.898 15.035-47.593 9.138 3.9814z"/>
-    <path class="east bottom" d="m460.03 185.88-0.0173-2.3574 23.829-15.204-3.869 4.606z"/>
-    <path class="west bottom" d="m436.16 171.02 3.8652 4.2694 20.003 10.592-0.0173-2.3574z"/>
+    <path class="east bottom" fill="var(--nausikaa-east-top-fill)" d="m460.03 185.88-0.0173-2.3574 23.829-15.204-3.869 4.606z"/>
+    <path class="west bottom" fill="var(--nausikaa-east-top-fill)" d="m436.16 171.02 3.8652 4.2694 20.003 10.592-0.0173-2.3574z"/>
     <path fill="var(--nausikaa-roof-fill)" d="m459.9 92.057 9.3373-3.9588-9.3373-3.4267-9.138 3.4042z"/>
    </g>
   </symbol>

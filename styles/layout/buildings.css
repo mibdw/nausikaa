@@ -3,9 +3,9 @@
   --nausikaa-outline-stroke: #000;
   --nausikaa-outline-stroke-width: 0.25;
   --nausikaa-outline-fill: #000;
-  --nausikaa-east-fill: #f1c40f;
+  --nausikaa-east-fill: var(--nausikaa-yellow3);
   --nausikaa-east-top-fill: #c0c0c0;
-  --nausikaa-west-fill: #fdf9e7;
+  --nausikaa-west-fill: var(--nausikaa-white);
   --nausikaa-west-top-fill: #dfdfdf;
   --nausikaa-roof-fill: #e8e8e8;
 }
@@ -71,15 +71,23 @@
   height: 22em;
 }
 
-/* BUILDING CLUSTERS */
 
-.intro-cluster,
-.elaboration-cluster {
-  position: relative;
-  /* border: 1px solid blue; */
+/* TOWNSCAPE */
+
+/* The layer that /scripts/townscape.js fills with buildings. It lies inside
+   the skewed block of a section, which clips it; the layer itself is skewed
+   back, so the buildings stand up straight. */
+.townscape {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  /* A little larger than a building on its own */
+  font-size: 1.15em;
 
   & > svg {
     position: absolute;
   }
 }
-

@@ -12,7 +12,7 @@
   var currentTheme = themes.find(function (t) { return t.value == theme; });
 
   if (lane == 'frontpage') {
-    pageTitle = pageTitle + ", a CSS framework for accessible websites";
+    pageTitle = pageTitle + ", CSS building blocks for accessible websites";
 
   } else if (lane == 'search') {
     navbar = '';
@@ -23,8 +23,6 @@
       return l.slug == lane;
     });
     pageTitle = nav[li].title + " \u2014 " + pageTitle;
-
-    if (lane == 'examples') navbar = '';
 
     if (params.s1) {
       navbar = '';
@@ -178,6 +176,8 @@
     </header>
     
     <%- include(lane + '/index', { nav: nav, lane: lane, params: params }); %>
-  
+
+    <%- include('footer', { nav: nav, site: site }); %>
+
   </body>
 </html>

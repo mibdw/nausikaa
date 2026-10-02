@@ -3,6 +3,32 @@ const router = Router();
 import nav from "./navigation.js";
 import { search } from "./search.js";
 import data from "./examples-data.js";
+import fs from "node:fs";
+import zlib from "node:zlib";
+
+// A few facts about Nausikaä itself, for the frontpage and the footer: the
+// version, and how large the stylesheet is. The sizes are measured again
+// when the stylesheet has been rebuilt.
+const version = JSON.parse(fs.readFileSync(new URL("./package.json", import.meta.url))).version;
+const stylesheet = new URL("./public/styles/nausikaa.min.css", import.meta.url);
+let measured = { at: 0 };
+const site = () => {
+  try {
+    const changed = fs.statSync(stylesheet).mtimeMs;
+    if (changed !== measured.at) {
+      const css = fs.readFileSync(stylesheet);
+      const icons = fs.readFileSync(new URL("./public/images/icons.svg", import.meta.url), "utf8");
+      measured = {
+        at: changed,
+        size: Math.round(css.length / 1000),
+        gzipped: Math.round(zlib.gzipSync(css).length / 1000),
+        built: new Date(changed),
+        icons: { size: Math.round(Buffer.byteLength(icons) / 1000), count: (icons.match(/<symbol /g) ?? []).length },
+      };
+    }
+  } catch {}
+  return { version, ...measured };
+};
 
 // The themes a visitor can choose; without a choice the system setting decides.
 const themes = ["light", "dark", "eink"];
@@ -17,12 +43,20 @@ const themeOf = (req) => {
 // Where to go after switching themes: back to the page the visitor came
 // from, but only when that page is on this site.
 const backTo = (req) => {
+  // The form may name the part of the page to return to
+  const part = /^#[\w-]+$/.test(req.body?.back ?? "") ? req.body.back : "";
   try {
     const referer = new URL(req.get("referer"));
-    if (referer.host === req.get("host")) return referer.pathname + referer.search;
+    if (referer.host === req.get("host")) return referer.pathname + referer.search + part;
   } catch {}
   return "/";
 };
+
+// Every page gets the facts about the site
+router.use((req, res, next) => {
+  res.locals.site = site();
+  next();
+});
 
 router.use("/documentation/:s1/:s2", (req, res) => {
   res.render("main", {

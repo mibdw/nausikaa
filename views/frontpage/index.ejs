@@ -1,471 +1,192 @@
+<%
+  var documentation = nav.find(function (l) { return l.slug == 'documentation'; });
+  var examples = nav.find(function (l) { return l.slug == 'examples'; });
+
+  // The sample of the fourth section: shown as code and, the very same
+  // text, as a piece of this page
+  var sample = [
+    '<h3>Reserve a book</h3>',
+    '<p>',
+    '  We keep it at the desk for',
+    '  <strong>three days</strong>.',
+    '</p>',
+    '',
+    '<p>',
+    '  <label for="reserve-title">Title</label>',
+    '  <input type="text" id="reserve-title"',
+    '         value="The Gardens of Alcinous">',
+    '</p>',
+    '<p>',
+    '  <label for="reserve-place">Pick up at</label>',
+    '  <select id="reserve-place">',
+    '    <option>Northwest</option>',
+    '    <option>Southeast</option>',
+    '  </select>',
+    '</p>',
+    '<p><button>Reserve</button></p>',
+    '',
+    '<table>',
+    '  <tr>',
+    '    <th>Copies</th> <th>On loan</th> <th>Free</th>',
+    '  </tr>',
+    '  <tr>',
+    '    <td>4</td> <td>3</td> <td>1</td>',
+    '  </tr>',
+    '</table>',
+    '',
+    '<progress value="3" max="4">3 of 4</progress>'
+  ].join('\n');
+%>
 <main id="frontpage">
 
   <section class="introduction">
 
-    <div class="skew"></div>
-    
+    <%# The towns are drawn by /scripts/townscape.js, in the room beside the text %>
+    <div class="skew"><div class="townscape" data-townscape data-townscape-top="open" aria-hidden="true"></div></div>
+
 
     <div class="explainer">
-			<h1>
-				<u>Nausikaä</u>, a CSS toolkit for accessible websites
-			</h1>
+      <h1>
+        <u>Nausikaä</u>, CSS building blocks for accessible websites
+      </h1>
 
-      <p><u>Nausikaä</u> aims to provide builders with one CSS file that takes care of all accessibity needs. Users of every type are welcome, regardless of their device, screen or input method. And that does not mean it has to look boring.</p>
+      <p><u>Nausikaä</u> is one stylesheet that makes plain HTML look good and work for everyone: with a keyboard or a screen reader, on a phone or a wide monitor, in light or in dark. And accessible does not have to mean boring.</p>
 
-      <p>CSS classes are used as little as possible by <u>Nausikaä</u>. It does have a few for colors and style, but little for layout. It does have a few opinions about how you structure your HTML, but hopefully not too strong.</p>
+      <p>It uses CSS classes as little as possible. There are a few for color and style, and hardly any for layout. <u>Nausikaä</u> does have opinions about how you structure your HTML, but hopefully not too strong.</p>
 
-      <p><u>Nausikaä</u> is free for everyone!</p>
+      <%
+        var facts = ['One stylesheet' + (site.gzipped ? ', ' + site.gzipped + ' kB gzipped' : ''), 'No JavaScript', 'Light, dark and e-ink', 'Free for everyone'];
+      %>
+      <ul class="frontpage-facts">
+        <% facts.forEach(function (fact) { %>
+        <li>
+          <span class="tag badge yellow"><svg class="icon" aria-hidden="true"><use xlink:href="/images/icons.svg#check"></use></svg></span>
+          <%= fact %>
+        </li>
+        <% }); %>
+      </ul>
+
+      <p class="frontpage-actions">
+        <a class="knob yellow" href="/documentation/foundations/getting-started">Get started</a>
+        <a href="/examples">See the examples</a>
+      </p>
     </div>
-
-    <div class="illustration"></div>
 
   </section>
-<section class="elaboration">
 
-    <div class="skew"></div>
+  <section class="elaboration">
+
+    <div class="skew"><div class="townscape" data-townscape aria-hidden="true"></div></div>
     
-    <h2>Elaborate on the versatility of <u>Nausikaä</u> and her merits</h2>
+    <h2>Write HTML, <u>Nausikaä</u> does the rest</h2>
 
     <div class="explainer">
 
-      <p>Culpa, est. Assumenda maiores rem officia laboriosam numquam maxime, esse amet sequi illum, vel magni exercitationem! Ratione nam eveniet quam nisi aperiam, dolorem aut, rem iure, mollitia libero illo.</p>
+      <p>A button looks like a button, a table like a table and a dialog like a dialog, without a single class. Classes only come in where HTML has no word for something: a color, a size, or a pattern such as a navbar or a product card. The styling needs no JavaScript and no build step: <a href="/documentation/foundations/getting-started">getting started</a> takes one line in your page.</p>
 
-      <p>Vel deleniti nisi maxime magni libero reiciendis porro nesciunt alias, delectus sint ratione suscipit, quibusdam exercitationem! Nulla, corporis, perferendis aliquam laudantium quam inventore, non aperiam accusantium, laborum suscipit eos amet?</p>
-    </div>
-
-    <div class="illustration">
-      
-      <div class="elaboration-cluster elaboration-cluster-01">
-      
-          <svg class="house-05" style="top: -1.2em; left: 1.2em;">
-            <use xlink:href="/images/buildings.svg#house-05"></use>
-          </svg> 
-
-          <svg class="house-11" style="top: -1em; left: 4.2em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg> 
-
-          <svg class="house-09" style="top: 1.2em; left: 3.2em;">
-            <use xlink:href="/images/buildings.svg#house-09"></use>
-          </svg>
-
-          <svg class="house-01" style="top: 5.2em; left: -.8em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg>
-
-          <!-- start -->
-          <svg class="house-10" style="top: 1em; left: 14.5em;">
-            <use xlink:href="/images/buildings.svg#house-10"></use>
-          </svg>   
-
-          <svg class="house-09" style="top: 1.8em; left: 8.7em;">
-            <use xlink:href="/images/buildings.svg#house-09"></use>
-          </svg>
-
-          <svg class="house-06" style="top: 1.1em; left: 11em;">
-            <use xlink:href="/images/buildings.svg#house-06"></use>
-          </svg>   
-
-          <svg class="house-01" style="top: 2.3em; left: 12.9em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg>      
-
-          <svg class="house-01" style="top: 3em; left: 7.4em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg>    
-
-          <svg class="house-11" style="top: 3em; left: 10em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg> 
-
-          <svg class="house-02" style="top: 4.3em; left: 12.2em;">
-            <use xlink:href="/images/buildings.svg#house-02"></use>
-          </svg> 
-          <!-- end --> 
-      
-          <!-- start -->
-          <svg class="house-01" style="top: 5em; left: 9.5em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg>   
-
-          <svg class="house-11" style="top: 5.8em; left: 3.7em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg>
-
-          <svg class="house-04" style="top: 5.1em; left: 6em;">
-            <use xlink:href="/images/buildings.svg#house-04"></use>
-          </svg>   
-
-          <svg class="house-02" style="top: 6.3em; left: 7.9em;">
-            <use xlink:href="/images/buildings.svg#house-02"></use>
-          </svg>      
-
-          <svg class="house-11" style="top: 8em; left: 2.4em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg>    
-
-          <svg class="house-03" style="top: 8em; left: 5em;">
-            <use xlink:href="/images/buildings.svg#house-03"></use>
-          </svg> 
-
-          <svg class="house-05" style="top: 9.3em; left: 7.2em;">
-            <use xlink:href="/images/buildings.svg#house-05"></use>
-          </svg> 
-          <!-- end --> 
-
-
-          <svg class="house-05" style="top: 1.2em; left: 17.2em;">
-            <use xlink:href="/images/buildings.svg#house-05"></use>
-          </svg> 
-
-          <svg class="house-11" style="top: 1em; left: 24.2em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg> 
-
-          <svg class="house-09" style="top: 3.2em; left: 18.2em;">
-            <use xlink:href="/images/buildings.svg#house-09"></use>
-          </svg>
-
-      
-          <!-- start -->
-
-          <svg class="house-01" style="top: 3.9em; left: 21.2em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg> 
-
-          <svg class="house-09" style="top: 5.2em; left: 23.2em;">
-            <use xlink:href="/images/buildings.svg#house-09"></use>
-          </svg> 
-
-          <svg class="house-08" style="top: 5em; left: 17.5em;">
-            <use xlink:href="/images/buildings.svg#house-08"></use>
-          </svg>   
-
-          <svg class="house-09" style="top: 5.8em; left: 11.7em;">
-            <use xlink:href="/images/buildings.svg#house-09"></use>
-          </svg>
-
-          <svg class="house-01" style="top: 5.1em; left: 14em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg>   
-
-          <svg class="house-11" style="top: 6.3em; left: 15.9em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg>      
-
-          <svg class="house-08" style="top: 8em; left: 10.4em;">
-            <use xlink:href="/images/buildings.svg#house-08"></use>
-          </svg>    
-
-          <svg class="house-07" style="top: 8em; left: 13em;">
-            <use xlink:href="/images/buildings.svg#house-07"></use>
-          </svg> 
-
-          <!-- end --> 
-
-          <svg class="arch-07" style="top: 7.4em; left: 6.7em;">
-            <use xlink:href="/images/buildings.svg#arch-07"></use>
-          </svg> 
-
-          <!-- start -->
-
-          <svg class="house-03" style="top: 18.9em; left: 21.2em;">
-            <use xlink:href="/images/buildings.svg#house-03"></use>
-          </svg> 
-
-          <svg class="house-07" style="top: 20.2em; left: 23.2em;">
-            <use xlink:href="/images/buildings.svg#house-07"></use>
-          </svg> 
-
-          <svg class="house-05" style="top: 20em; left: 17.5em;">
-            <use xlink:href="/images/buildings.svg#house-05"></use>
-          </svg>   
-
-          <svg class="house-11" style="top: 20.8em; left: 11.7em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg>
-
-          <svg class="house-02" style="top: 20.1em; left: 14em;">
-            <use xlink:href="/images/buildings.svg#house-02"></use>
-          </svg>   
-
-          <svg class="house-11" style="top: 21.3em; left: 15.9em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg>      
-
-          <svg class="house-12" style="top: 23em; left: 10.4em;">
-            <use xlink:href="/images/buildings.svg#house-12"></use>
-          </svg>    
-
-          <svg class="house-01" style="top: 23em; left: 13em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg> 
-
-          <!-- end --> 
-
-          <!-- start -->
-
-
-          <svg class="house-07" style="top: 22em; left: 22.5em;">
-            <use xlink:href="/images/buildings.svg#house-07"></use>
-          </svg>   
-
-          <svg class="house-01" style="top: 22.8em; left: 16.7em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg>
-
-          <svg class="house-08" style="top: 22.1em; left: 19em;">
-            <use xlink:href="/images/buildings.svg#house-08"></use>
-          </svg>   
-
-          <svg class="house-02" style="top: 23.3em; left: 20.9em;">
-            <use xlink:href="/images/buildings.svg#house-02"></use>
-          </svg>      
-
-          <svg class="house-09" style="top: 26em; left: 15.4em;">
-            <use xlink:href="/images/buildings.svg#house-09"></use>
-          </svg>    
-
-          <svg class="house-02" style="top: 26.5em; left: 18em;">
-            <use xlink:href="/images/buildings.svg#house-02"></use>
-          </svg> 
-
-          <svg class="house-11" style="top: 23.3em; left: 24.9em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg>      
-
-          <svg class="house-07" style="top: 26em; left: 21em;">
-            <use xlink:href="/images/buildings.svg#house-07"></use>
-          </svg>    
-
-          <svg class="house-01" style="top: 26.5em; left: 24em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg> 
-
-          <!-- end --> 
-
-          <!-- start -->
-          <svg class="house-12" style="top: 25em; left: 11.5em;">
-            <use xlink:href="/images/buildings.svg#house-12"></use>
-          </svg>   
-
-          <svg class="house-04" style="top: 25.8em; left: 5.7em;">
-            <use xlink:href="/images/buildings.svg#house-04"></use>
-          </svg>
-
-          <svg class="house-02" style="top: 25.1em; left: 8em;">
-            <use xlink:href="/images/buildings.svg#house-02"></use>
-          </svg>   
-
-          <svg class="house-05" style="top: 26.3em; left: 9.9em;">
-            <use xlink:href="/images/buildings.svg#house-05"></use>
-          </svg>      
-
-          <svg class="house-08" style="top: 28em; left: 4.4em;">
-            <use xlink:href="/images/buildings.svg#house-08"></use>
-          </svg>    
-
-          <svg class="house-11" style="top: 28em; left: 7em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg> 
-
-          <svg class="house-01" style="top: 29.3em; left: 9.2em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg> 
-          <!-- end --> 
-
-
-
-          <svg class="house-11" style="top: 27.2em; left: 28.9em;">
-            <use xlink:href="/images/buildings.svg#house-11"></use>
-          </svg>      
-
-          <svg class="house-07" style="top: 29em; left: 27em;">
-            <use xlink:href="/images/buildings.svg#house-07"></use>
-          </svg>    
-
-          <svg class="house-01" style="top: 29.5em; left: 30em;">
-            <use xlink:href="/images/buildings.svg#house-01"></use>
-          </svg> 
-
-          <svg class="house-05" style="top: 29em; left: -3em;">
-            <use xlink:href="/images/buildings.svg#house-05"></use>
-          </svg>    
-
-          <svg class="house-10" style="top: 29.5em; left: 1em;">
-            <use xlink:href="/images/buildings.svg#house-10"></use>
-          </svg> 
-
-          <svg class="house-05" style="top: 29em; left: 15em;">
-            <use xlink:href="/images/buildings.svg#house-05"></use>
-          </svg>    
-
-          <svg class="house-12" style="top: 29.5em; left: 17.2em;">
-            <use xlink:href="/images/buildings.svg#house-12"></use>
-          </svg>  
-
-          <svg class="house-12" style="top: 30em; left: 37.2em;">
-            <use xlink:href="/images/buildings.svg#house-12"></use>
-          </svg> 
-
+      <div class="code-example">
+        <pre><code class="html">&lt;link rel="stylesheet" href="/styles/nausikaa.min.css"&gt;</code></pre>
       </div>
+
+      <p>Underneath sit the things that are easy to forget: text with enough contrast, a focus style you can see, a light and a dark theme that follow the visitor’s settings, less motion for those who ask for it, and layouts that hold up on a phone and when zoomed in. There is a third theme for e-ink screens as well. Read what <u>Nausikaä</u> takes care of, and what is still up to you, under <a href="/documentation/foundations/accessibility">Accessibility</a>.</p>
     </div>
 
   </section>
 
   <section class="more-elaboration">
 
-    <div class="skew"></div>
-    
-    <h2>Elaborate on the versatility of <u>Nausikaä</u></h2>
+    <div class="skew"><div class="townscape" data-townscape aria-hidden="true"></div></div>
+
+    <h2>See <u>Nausikaä</u> at work</h2>
 
     <div class="explainer">
 
-      <p>Culpa, est. Assumenda maiores rem officia laboriosam numquam maxime, esse amet sequi illum, vel magni exercitationem! Ratione nam eveniet quam nisi aperiam, dolorem aut, rem iure, mollitia libero illo.</p>
+      <p>The <a href="/documentation">documentation</a> starts with the foundations and goes on to elements, components, collections and utilities. Every part comes with a description, samples and the HTML to copy.</p>
 
-      <p>Vel deleniti nisi maxime magni libero reiciendis porro nesciunt alias, delectus sint ratione suscipit, quibusdam exercitationem! Nulla, corporis, perferendis aliquam laudantium quam inventore, non aperiam accusantium, laborum suscipit eos amet?</p>
+      <p>The <a href="/examples">examples</a> put the parts together in the kind of pages people work in all day: an order overview, an invoice, a work list with a form, a calendar and a page of statistics. They all belong to one made-up company that supplies books to libraries.</p>
+    </div>
+
+    <%# What is in the box: the groups of the documentation and the examples, with how many pages each has %>
+    <nav class="frontpage-index panel" aria-label="What is in Nausikaä">
+      <ul>
+        <% documentation.nav.forEach(function (group) { %>
+        <li>
+          <a href="/documentation#<%= group.slug %>">
+            <span class="tag badge <%= group.color %>"><%= group.nav.length %></span>
+            <strong><%= group.title %></strong>
+            <small><%= group.nav.map(function (page) { return page.title; }).join(', ') %></small>
+          </a>
+        </li>
+        <li class="seperator"></li>
+        <% }); %>
+        <li>
+          <a href="/examples">
+            <span class="tag badge blue"><%= examples.nav.length %></span>
+            <strong>Examples</strong>
+            <small><%= examples.nav.map(function (page) { return page.title; }).join(', ') %></small>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </section>
+
+  <section class="sample" id="sample">
+
+    <div class="skew"><div class="townscape" data-townscape aria-hidden="true"></div></div>
+
+    <h2>Plain HTML in, a finished page out</h2>
+
+    <div class="explainer">
+      <p>On the left is all the markup there is, without a single class. On the right is what <u>Nausikaä</u> makes of it.</p>
+    </div>
+
+    <div class="code-example sample-code">
+      <pre><code class="html"><%= sample %></code></pre>
+    </div>
+
+    <div class="sample-result">
+      <%- sample %>
+    </div>
+
+    <%# The buttons switch the theme of the whole site and come back to this part of the page %>
+    <form action="/theme-switch" method="POST" class="sample-themes">
+      <input type="hidden" name="back" value="#sample">
+      <span>The same page in another theme:</span>
+      <%# The same icons as in the theme menu of the navbar; the current theme is pressed in %>
+      <% [['auto', 'Automatic', 'automode', 'sky'], ['light', 'Light', 'lightmode', 'yellow'], ['dark', 'Dark', 'darkmode', 'midnight'], ['eink', 'E-ink', 'book', '']].forEach(function (option) { %>
+      <button type="submit" name="theme" value="<%= option[0] %>" class="<%= option[3] %> <%= option[0] == theme ? 'active' : '' %>" <%= option[0] == theme ? 'aria-current=true' : '' %>>
+        <span class="label"><svg class="icon" aria-hidden="true"><use xlink:href="/images/icons.svg#<%= option[2] %>"></use></svg></span>
+        <%= option[1] %>
+      </button>
+      <% }); %>
+    </form>
+
+  </section>
+
+  <section class="good-to-know">
+
+    <div class="skew"></div>
+
+    <h2>Good to know</h2>
+
+    <div class="frontpage-columns">
+      <div>
+        <h3>Where it comes from</h3>
+        <p><u>Nausikaä</u> grew out of the daily tools of a bookseller: long lists, detailed records and large forms that people work in all day. The e-ink theme began with a family calendar on an e-reader.</p>
+      </div>
+
+      <div>
+        <h3>What it does not do</h3>
+        <p>A stylesheet can only do part of the job: headings in order, labels and alt texts stay up to you. And <u>Nausikaä</u> does not get everything right yet. The <a href="/documentation/foundations/accessibility/#limitations">known limitations</a> list where it still falls short.</p>
+      </div>
+
+      <div>
+        <h3>Where it works</h3>
+        <p>In every browser released since early 2021: Chrome and Edge from 89, Firefox from 75, Safari from 12.1. Older browsers skip a few details; nothing breaks. See <a href="/documentation/foundations/getting-started/#browser-support">browser support</a>.</p>
+      </div>
     </div>
 
   </section>
 
 </main>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const illustration = document.querySelector('.introduction .illustration');
-    if (!illustration) return;
-
-    illustration.setAttribute('aria-hidden', 'true');
-
-    const houses = [
-      'house-01',
-      'house-02',
-      'house-03',
-      'house-04',
-      'house-05',
-      'house-06',
-      'house-07',
-      'house-08',
-      'house-09',
-      'house-10',
-      'house-11',
-      'house-12'
-    ];
-
-    const spikes = ['spike-01', 'spike-02', 'spike-03', 'spike-04', 'spike-05'];
-
-    const clusters = [
-      {
-        className: 'intro-cluster intro-cluster-01',
-       	height: 3,
-        count: 150,
-        spikes: 1,
-        xRange: [-5, 30],
-        yRange: [-3, -15],
-      },
-      // {
-      //   className: 'intro-cluster intro-cluster-02',
-      //   height: 10,
-      //   count: 18,
-      //   spikes: 2,
-      //   xRange: [-6, 26],
-      //   yRange: [-6, 8],
-      // },
-      // {
-      //   className: 'intro-cluster intro-cluster-03',
-      //   height: 0,
-      //   count: 20,
-      //   spikes: 3,
-      //   xRange: [-22, 34],
-      //   yRange: [-7, 7],
-      // }
-    ];
-
-    const footprint = {
-      house: { width: 3, baseDepth: 1.3, bufferEm: .02 }, // sizes from styles/layout/buildings.css
-      spike: { width: 8.1, baseDepth: 3, bufferEm: .02 }
-    };
-
-    const pick = (list) => list[Math.floor(Math.random() * list.length)];
-    const rand = (min, max) => Math.random() * (max - min) + min;
-
-    function generateBuildings(config) {
-      const items = [];
-      const maxAttempts = config.count * 60;
-      let attempts = 0;
-      let spikesLeft = config.spikes;
-
-      function intersects(candidate, existing) {
-        const buffer = Math.max(candidate.bufferEm, existing.bufferEm); // perimeter around bases
-        const verticalTolerance = Math.max(candidate.baseDepth, existing.baseDepth) + 0.5;
-        const cLeft = candidate.x - buffer;
-        const cRight = candidate.x + candidate.width + buffer;
-        const eLeft = existing.x - buffer;
-        const eRight = existing.x + existing.width + buffer;
-        const horizontalOverlap = cLeft < eRight && cRight > eLeft;
-        const verticalClose = Math.abs(candidate.y - existing.y) < verticalTolerance;
-        return horizontalOverlap && verticalClose;
-      }
-
-      while (items.length < config.count && attempts < maxAttempts) {
-        attempts += 1;
-        const isSpike =
-          spikesLeft > 0 && Math.random() < spikesLeft / Math.max(config.count - items.length, 1);
-        const symbolId = isSpike ? pick(spikes) : pick(houses);
-        const fp = isSpike ? footprint.spike : footprint.house;
-        const position = {
-          x: rand(config.xRange[0], config.xRange[1]),
-          y: rand(config.yRange[0], config.yRange[1]),
-          width: fp.width,
-          baseDepth: fp.baseDepth,
-          bufferEm: fp.bufferEm
-        };
-
-        if (items.some((existing) => intersects(position, existing.position))) {
-          continue;
-        }
-
-        if (isSpike) spikesLeft -= 1;
-        items.push({ position, symbolId });
-      }
-
-      return items;
-    }
-
-    function createBuilding(symbolId, position) {
-      const svgNS = 'http://www.w3.org/2000/svg';
-      const xlinkNS = 'http://www.w3.org/1999/xlink';
-      const svg = document.createElementNS(svgNS, 'svg');
-      svg.classList.add(symbolId);
-      svg.style.left = position.x.toFixed(2) + 'em';
-      svg.style.bottom = position.y.toFixed(2) + 'em';
-      svg.setAttribute('focusable', 'false');
-      svg.setAttribute('aria-hidden', 'true');
-
-      const use = document.createElementNS(svgNS, 'use');
-      use.setAttributeNS(xlinkNS, 'xlink:href', '/images/buildings.svg#' + symbolId);
-      svg.appendChild(use);
-
-      return svg;
-    }
-
-    clusters.forEach((config) => {
-      const cluster = document.createElement('div');
-      cluster.className = config.className;
-      cluster.style.height = config.height + 'em';
-
-      const items = generateBuildings(config);
-
-      items
-        .sort((a, b) => {
-          if (a.position.y !== b.position.y) return b.position.y - a.position.y; // top to bottom
-          return a.position.x - b.position.x; // left to right
-        })
-        .forEach((item) => {
-          cluster.appendChild(createBuilding(item.symbolId, item.position));
-        });
-
-      illustration.appendChild(cluster);
-    });
-  });
-</script>

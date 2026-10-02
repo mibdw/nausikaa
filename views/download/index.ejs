@@ -1,9 +1,118 @@
-<main>
+<%
+  var built = site.built ? site.built.toISOString().slice(0, 10) : '';
+%>
+<main id="download-overview">
 
-  <article style="grid-column: 1 / 13">
-    <header><h2>Download</h2></header>
+  <div class="introduction">
 
-    <p>Under construction. For more information, contact <a href="mailto:ben@mibdw.club">ben@mibdw.club</a>.</p>
-  </article>
+    <%# The towns are drawn by /scripts/townscape.js, in the room beside the text %>
+    <div class="skew"><div class="townscape" data-townscape data-townscape-top="open" aria-hidden="true"></div></div>
+
+    <h1>Download</h1>
+
+    <div class="explainer">
+
+      <p><u>Nausikaä</u> is one stylesheet. Download it, link it in your page and the HTML you already write is styled. There is nothing to install and no JavaScript to load.</p>
+
+      <p class="download-actions">
+        <a class="knob green" href="/styles/nausikaa.min.css" download="nausikaa.min.css">
+          <svg class="icon" aria-hidden="true"><use xlink:href="/images/icons.svg#download"></use></svg>
+          nausikaa.min.css
+        </a>
+        <span>Version <%= site.version %><% if (site.gzipped) { %>, <%= site.size %> kB, <%= site.gzipped %> kB gzipped<% } %></span>
+      </p>
+
+    </div>
+  </div>
+
+  <section class="download-item">
+    <div>
+      <h2>The stylesheet</h2>
+      <p>Put the file with the rest of your site and link it in the <code>&lt;head&gt;</code> of every page. The one file holds all three themes: light, dark and e-ink.</p>
+      <p>The viewport tag matters: without it, phones show a zoomed-out desktop page. <a href="/documentation/foundations/getting-started">Getting started</a> explains the rest.</p>
+    </div>
+    <div class="code-example">
+      <pre><code class="html">&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;link rel="stylesheet" href="/styles/nausikaa.min.css"&gt;</code></pre>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="download-item">
+    <div>
+      <h2>The typefaces</h2>
+      <p><u>Nausikaä</u> uses the IBM Plex typefaces. Load them from Google Fonts with this line, or host them yourself.</p>
+      <p>Without them the text falls back to Georgia and Arial, and everything keeps working.</p>
+    </div>
+    <div class="code-example">
+      <pre><code class="html">&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700|IBM+Plex+Sans:300,400,500,700|IBM+Plex+Serif:300,400,700"&gt;</code></pre>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="download-item">
+    <div>
+      <h2>The icons</h2>
+      <p>The icons in the documentation come from one SVG file<% if (site.icons) { %> with <%= site.icons.count %> icons, <%= site.icons.size %> kB<% } %>. They are optional: the stylesheet works without them.</p>
+      <p>
+        <a class="knob" href="/images/icons.svg" download="icons.svg">
+          <svg class="icon" aria-hidden="true"><use xlink:href="/images/icons.svg#download"></use></svg>
+          icons.svg
+        </a>
+      </p>
+      <p>See <a href="/documentation/foundations/getting-started/#icons">Icons</a> for how to use them.</p>
+    </div>
+    <div class="code-example">
+      <pre><code class="html">&lt;button type="button"&gt;
+  &lt;svg class="icon" aria-hidden="true"&gt;
+    &lt;use xlink:href="/images/icons.svg#save"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  Save
+&lt;/button&gt;</code></pre>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="download-item">
+    <div>
+      <h2>Build it yourself</h2>
+      <p>The stylesheet is built from the source in the <a href="https://github.com/mibdw/nausikaa">repository</a>. After these commands it is in <code>public/styles/nausikaa.min.css</code>.</p>
+      <p>The source is plain CSS in small files, one per element, component or collection. <a href="/documentation/foundations/theming/#customizing">Customizing</a> shows which values you can change without building anything.</p>
+    </div>
+    <div class="code-example">
+      <pre><code class="bash">git clone https://github.com/mibdw/nausikaa.git
+cd nausikaa
+npm install
+npm run build</code></pre>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="download-item">
+    <div>
+      <h2>Good to know</h2>
+      <p><u>Nausikaä</u> works in every browser released since early 2021; see <a href="/documentation/foundations/getting-started/#browser-support">browser support</a>. What it does not get right yet is listed under <a href="/documentation/foundations/accessibility/#limitations">known limitations</a>.</p>
+    </div>
+    <div>
+      <dl class="download-facts">
+        <dt>Version</dt>
+        <dd><%= site.version %></dd>
+        <% if (built) { %>
+        <dt>Built on</dt>
+        <dd><time datetime="<%= built %>"><%= built %></time></dd>
+        <% } %>
+        <% if (site.gzipped) { %>
+        <dt>Size</dt>
+        <dd><%= site.size %> kB, <%= site.gzipped %> kB gzipped</dd>
+        <% } %>
+        <dt>Questions</dt>
+        <dd><a href="mailto:ben@mibdw.club">ben@mibdw.club</a></dd>
+      </dl>
+    </div>
+  </section>
 
 </main>

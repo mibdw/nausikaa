@@ -1,5 +1,30 @@
 
-#documentation-overview {
+/* The overview of the documentation, and those of the examples and of the
+   download page, each in its own color */
+#documentation-overview,
+#examples-overview,
+#download-overview {
+  --nausikaa-overview-tint: var(--nausikaa-site-tint-yellow);
+  --nausikaa-overview-accent: var(--nausikaa-yellow3);
+  --nausikaa-overview-accent-light: var(--nausikaa-white);
+
+  &#examples-overview {
+    --nausikaa-overview-tint: var(--nausikaa-site-tint-blue);
+    --nausikaa-overview-accent: var(--nausikaa-blue3);
+    --nausikaa-overview-accent-light: var(--nausikaa-blue2);
+  }
+
+  &#download-overview {
+    --nausikaa-overview-tint: var(--nausikaa-site-tint-green);
+    --nausikaa-overview-accent: var(--nausikaa-green3);
+    --nausikaa-overview-accent-light: var(--nausikaa-green2);
+  }
+
+  /* More room between the block and what follows on the download page */
+  &#download-overview .introduction {
+    margin-bottom: 10em;
+  }
+
   .introduction {
     grid-column: 1 /13;
     display: grid;
@@ -8,19 +33,26 @@
     position: relative;
     margin-bottom: 3em;
     padding: 6em 0;
+    /* The tint and the text on it come from site.css: light with dark text,
+       or dark with light text in the dark theme. */
+    color: var(--nausikaa-site-tint-text);
 
     u {
-      text-decoration: underline solid var(--nausikaa-yellow3);
-      -webkit-text-decoration: underline solid var(--nausikaa-yellow3);
+      text-decoration: underline solid var(--nausikaa-overview-accent);
+      -webkit-text-decoration: underline solid var(--nausikaa-overview-accent);
     }
 
-    a {
-      color: var(--nausikaa-yellow3);
-      text-decoration: underline solid var(--nausikaa-text);
-      -webkit-text-decoration: underline solid var(--nausikaa-text);
+    a,
+    a:visited {
+      color: var(--nausikaa-site-tint-text);
+      text-decoration: underline solid var(--nausikaa-overview-accent);
+      -webkit-text-decoration: underline solid var(--nausikaa-overview-accent);
+      text-decoration-thickness: 2px;
 
-      &:hover {
-        color: var(--nausikaa-text);
+      &:hover,
+      &:focus {
+        color: var(--nausikaa-site-tint-text);
+        text-decoration-color: var(--nausikaa-site-tint-text);
       }
     }
 
@@ -31,15 +63,31 @@
       bottom: -3.4em;
       width: 100vw;
       z-index: -1;
-      background-color: var(--nausikaa-yellow0);
+      background-color: var(--nausikaa-overview-tint);
       transform: skewY(2deg) translateX(-50%);
+      overflow: hidden;
+
+      /* The towns in the room beside the text, in the color of the page */
+      .townscape {
+        transform: skewY(-2deg);
+        --nausikaa-east-fill: var(--nausikaa-overview-accent);
+        --nausikaa-west-fill: var(--nausikaa-overview-accent-light);
+      }
+    }
+
+    /* The tint is set on the text as well: it is the same as that of the
+       block behind it, and says what the text stands on */
+    h1,
+    .explainer {
+      background-color: var(--nausikaa-overview-tint);
     }
 
     h1 {
       grid-column: 7 / 12;
-      text-decoration: underline solid var(--nausikaa-yellow3);
+      color: var(--nausikaa-site-tint-text);
+      text-decoration: underline solid var(--nausikaa-overview-accent);
       text-decoration-thickness: 6px;
-      -webkit-text-decoration: underline solid var(--nausikaa-yellow3);
+      -webkit-text-decoration: underline solid var(--nausikaa-overview-accent);
       text-align: right;
     }
 
@@ -47,6 +95,67 @@
       font-size: 1.2em;
       line-height: 1.3;
       grid-column: 7 / 12;
+    }
+  }
+
+  /* The download page: per subject the words on the left, the code on the right */
+  .download-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: var(--nausikaa-utility-text);
+    font-size: 0.85em;
+
+    /* The knob keeps its own colors on the colored block */
+    .knob,
+    .knob:visited,
+    .knob:hover,
+    .knob:focus {
+      margin: 0 1.2em 0 0;
+      color: var(--nausikaa-knob-text);
+      text-decoration: none;
+      -webkit-text-decoration: none;
+    }
+  }
+
+  .download-item {
+    grid-column: 1 / 13;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-column-gap: 3em;
+    align-items: start;
+    margin: 1em 0;
+
+    h2 {
+      margin-top: 0;
+      text-decoration: underline solid var(--nausikaa-overview-accent);
+      -webkit-text-decoration: underline solid var(--nausikaa-overview-accent);
+      text-decoration-thickness: 6px;
+    }
+
+    .code-example pre {
+      margin-top: 0.5em;
+      overflow-x: auto;
+    }
+
+    .download-facts {
+      display: grid;
+      grid-template-columns: 8em minmax(0, 1fr);
+      grid-row-gap: 0.3em;
+      margin: 0.5em 0;
+      font-family: var(--nausikaa-utility-text);
+
+      dt {
+        color: var(--nausikaa-subtext0);
+      }
+
+      dd {
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 
