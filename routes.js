@@ -3,9 +3,6 @@ const router = Router();
 import nav from "./navigation.js";
 import { search } from "./search.js";
 import data from "./examples-data.js";
-import fs from "node:fs";
-import os from "node:os";
-import path from "node:path";
 
 // The themes a visitor can choose; without a choice the system setting decides.
 const themes = ["light", "dark", "eink"];
@@ -67,44 +64,6 @@ router.get("/examples", (req, res) => {
     lane: "examples",
     params: req.params,
   });
-});
-
-// A test page for old and limited browsers, such as the one on a Kindle: it
-// reports what the browser supports. The page sends its result back as the
-// address of a picture; the results are kept in a file in the temporary
-// folder, so they survive a restart of the server.
-const einkReports = path.join(os.tmpdir(), "nausikaa-eink-reports.json");
-const readEinkReports = () => {
-  try {
-    return JSON.parse(fs.readFileSync(einkReports, "utf8"));
-  } catch {
-    return [];
-  }
-};
-
-router.get("/eink-test/report.gif", (req, res) => {
-  const text = (value) => String(value ?? "").slice(0, 400);
-  const reports = readEinkReports();
-  reports.unshift({
-    at: new Date().toISOString(),
-    result: text(req.query.r),
-    userAgent: text(req.query.ua),
-    screen: text(req.query.screen),
-    window: text(req.query.window),
-    pixelRatio: text(req.query.ratio),
-    address: req.ip,
-  });
-  fs.writeFileSync(einkReports, JSON.stringify(reports.slice(0, 50), null, 2));
-  // The smallest picture there is: one transparent pixel
-  res.type("gif").send(Buffer.from("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7", "base64"));
-});
-
-router.get("/eink-test/reports", (req, res) => {
-  res.type("text/plain").send(JSON.stringify(readEinkReports(), null, 2));
-});
-
-router.get("/eink-test", (req, res) => {
-  res.render("eink-test", { taps: Math.min(parseInt(req.query.tapped, 10) || 0, 999) });
 });
 
 // Suggestions for the search field in the navbar
