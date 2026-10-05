@@ -1,0 +1,410 @@
+/*
+ * Charts: figures, bars, columns, rankings, donuts and lines. They are drawn
+ * with plain lists and inline SVG; the numbers are in the HTML. A bar gets its
+ * size from the custom property --nausikaa-chart-value, set in a style
+ * attribute. A color class only sets --nausikaa-chart-color.
+ */
+.chart,
+.stat {
+  --nausikaa-chart-color: var(--nausikaa-blue3);
+  --nausikaa-chart-track: var(--nausikaa-surface0);
+  --nausikaa-chart-line: var(--nausikaa-surface2);
+  --nausikaa-chart-height: 12em;
+  --nausikaa-chart-label-width: 9em;
+  --nausikaa-chart-value-width: 5ch;
+}
+
+.chart {
+  font-family: var(--nausikaa-utility-text);
+  margin: var(--nausikaa-paragraph-spacer) 0;
+  padding: 0;
+  list-style-type: none;
+
+  .label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .value {
+    color: var(--nausikaa-subtext0);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* Bars: one row per item, with the name, a bar and the number */
+  &.bars {
+    & > li {
+      display: grid;
+      grid-template-columns: var(--nausikaa-chart-label-width) 1fr var(--nausikaa-chart-value-width);
+      grid-column-gap: 0.6em;
+      align-items: center;
+      margin: 0.4em 0;
+    }
+
+    .bar {
+      display: block;
+      height: 1.4em;
+      border-radius: 3px;
+      background-color: var(--nausikaa-chart-track);
+      overflow: hidden;
+
+      &:before {
+        content: "";
+        display: block;
+        height: 100%;
+        width: var(--nausikaa-chart-value, 0%);
+        border-radius: 3px;
+        background-color: var(--nausikaa-chart-color);
+        transition: 0.3s width;
+      }
+    }
+
+    .value {
+      text-align: right;
+    }
+
+    &.thin .bar {
+      height: 0.5em;
+    }
+  }
+
+  /* Columns: bars that stand up, next to each other. Several bars in one
+     item form a group. */
+  &.columns {
+    display: flex;
+    align-items: stretch;
+
+    & > li {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      margin: 0;
+      padding: 0 0.3em;
+      text-align: center;
+      /* The line the columns stand on */
+      background-image: linear-gradient(var(--nausikaa-chart-line), var(--nausikaa-chart-line));
+      background-size: 100% 1px;
+      background-position: 0 var(--nausikaa-chart-height);
+      background-repeat: no-repeat;
+    }
+
+    .bar {
+      flex: 1 1 0;
+      position: relative;
+      height: var(--nausikaa-chart-height);
+      margin: 0 1px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: var(--nausikaa-chart-value, 0%);
+        min-height: 2px;
+        border-radius: 3px 3px 0 0;
+        background-color: var(--nausikaa-chart-color);
+        opacity: 0.85;
+        transition:
+          0.3s height,
+          0.15s opacity;
+      }
+
+      &:hover:before {
+        opacity: 1;
+      }
+    }
+
+    .value,
+    .label {
+      flex: 0 0 100%;
+      font-size: 0.8em;
+      line-height: 1.4;
+    }
+
+    .value {
+      margin-top: 0.3em;
+      font-size: 0.75em;
+    }
+  }
+
+  /* Ranked: a numbered list of names with their numbers */
+  &.ranked {
+    counter-reset: nausikaa-rank;
+
+    & > li {
+      counter-increment: nausikaa-rank;
+      display: grid;
+      grid-template-columns: 2.5ch 1fr auto;
+      grid-column-gap: 0.6em;
+      align-items: center;
+      margin: 0;
+      padding: 0.3em 0;
+      border-top: 1px solid var(--nausikaa-surface0);
+
+      &:first-child {
+        border-top-width: 0;
+      }
+
+      &:before {
+        content: counter(nausikaa-rank);
+        color: var(--nausikaa-subtext0);
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+    }
+
+    .value {
+      text-align: right;
+    }
+  }
+
+  /* Legend: explains the colors of the chart above or below it */
+  &.legend {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.85em;
+    color: var(--nausikaa-subtext0);
+
+    & > li {
+      display: flex;
+      align-items: center;
+      margin: 0 1.2em 0.2em 0;
+
+      &:before {
+        content: "";
+        flex: 0 0 auto;
+        width: 0.8em;
+        height: 0.8em;
+        margin-right: 0.4em;
+        border-radius: 50%;
+        background-color: var(--nausikaa-chart-color);
+      }
+    }
+
+    &.right {
+      justify-content: flex-end;
+
+      & > li {
+        margin: 0 0 0.2em 1.2em;
+      }
+    }
+  }
+
+  /* Donut: an SVG with one circle per part. Each circle has a circumference
+     of 100, so the stroke-dasharray is the share in percent. */
+  &.donut {
+    display: block;
+    width: 10em;
+    height: 10em;
+
+    circle {
+      fill: none;
+      stroke: var(--nausikaa-chart-color);
+      stroke-width: 6;
+
+      &.track {
+        stroke: var(--nausikaa-chart-track);
+      }
+    }
+
+    text {
+      fill: var(--nausikaa-text);
+      font-family: var(--nausikaa-utility-text);
+      font-size: 7px;
+      font-weight: bold;
+      text-anchor: middle;
+      dominant-baseline: central;
+
+      &.label {
+        fill: var(--nausikaa-subtext0);
+        font-size: 3px;
+        font-weight: normal;
+      }
+    }
+
+    &.small {
+      width: 6em;
+      height: 6em;
+    }
+
+    &.large {
+      width: 15em;
+      height: 15em;
+    }
+  }
+
+  /* Lines: an SVG with one polyline per series. The SVG is stretched to the
+     width of its container; the lines keep their thickness. */
+  &.lines {
+    display: block;
+    width: 100%;
+    height: var(--nausikaa-chart-height);
+    overflow: visible;
+
+    line {
+      stroke: var(--nausikaa-chart-track);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+    }
+
+    polyline {
+      fill: none;
+      stroke: var(--nausikaa-chart-color);
+      stroke-width: 2;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    /* The area below a line */
+    polygon {
+      fill: var(--nausikaa-chart-color);
+      stroke: none;
+      opacity: 0.15;
+    }
+  }
+}
+
+/*
+ * Stats: a row of key figures.
+ */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: calc(var(--nausikaa-paragraph-spacer) - 0.5em) -0.5em;
+  padding: 0;
+
+  & > .stat {
+    flex: 1 1 10em;
+    margin: 0.5em;
+  }
+}
+
+.stat {
+  --nausikaa-chart-color: var(--nausikaa-surface2);
+
+  display: block;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+  padding: 0.8em 1.2em;
+  border: 1px solid var(--nausikaa-surface1);
+  border-left: 5px solid var(--nausikaa-chart-color);
+  border-radius: 6px;
+  background-color: var(--nausikaa-mantle);
+  font-family: var(--nausikaa-utility-text);
+
+  & > .label {
+    display: block;
+    color: var(--nausikaa-subtext0);
+    font-weight: bold;
+  }
+
+  & > .value {
+    display: block;
+    color: var(--nausikaa-text);
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+
+  & > .note {
+    display: block;
+    color: var(--nausikaa-subtext0);
+    font-size: 0.85em;
+  }
+}
+
+.chart.rosewater,
+.chart .rosewater,
+.stat.rosewater {
+  --nausikaa-chart-color: var(--nausikaa-rosewater3);
+}
+
+.chart.flamingo,
+.chart .flamingo,
+.stat.flamingo {
+  --nausikaa-chart-color: var(--nausikaa-flamingo3);
+}
+
+.chart.pink,
+.chart .pink,
+.stat.pink {
+  --nausikaa-chart-color: var(--nausikaa-pink3);
+}
+
+.chart.mauve,
+.chart .mauve,
+.stat.mauve {
+  --nausikaa-chart-color: var(--nausikaa-mauve3);
+}
+
+.chart.red,
+.chart .red,
+.stat.red {
+  --nausikaa-chart-color: var(--nausikaa-red3);
+}
+
+.chart.maroon,
+.chart .maroon,
+.stat.maroon {
+  --nausikaa-chart-color: var(--nausikaa-maroon3);
+}
+
+.chart.peach,
+.chart .peach,
+.stat.peach {
+  --nausikaa-chart-color: var(--nausikaa-peach3);
+}
+
+.chart.yellow,
+.chart .yellow,
+.stat.yellow {
+  --nausikaa-chart-color: var(--nausikaa-yellow3);
+}
+
+.chart.green,
+.chart .green,
+.stat.green {
+  --nausikaa-chart-color: var(--nausikaa-green3);
+}
+
+.chart.teal,
+.chart .teal,
+.stat.teal {
+  --nausikaa-chart-color: var(--nausikaa-teal3);
+}
+
+.chart.sky,
+.chart .sky,
+.stat.sky {
+  --nausikaa-chart-color: var(--nausikaa-sky3);
+}
+
+.chart.sapphire,
+.chart .sapphire,
+.stat.sapphire {
+  --nausikaa-chart-color: var(--nausikaa-sapphire3);
+}
+
+.chart.blue,
+.chart .blue,
+.stat.blue {
+  --nausikaa-chart-color: var(--nausikaa-blue3);
+}
+
+.chart.lavender,
+.chart .lavender,
+.stat.lavender {
+  --nausikaa-chart-color: var(--nausikaa-lavender3);
+}
+
+.chart.gray,
+.chart .gray,
+.stat.gray {
+  --nausikaa-chart-color: var(--nausikaa-overlay0);
+}

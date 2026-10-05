@@ -1,0 +1,198 @@
+/*
+ * Site overview. A color class only sets the --nausikaa-so-* custom properties.
+ */
+
+.site-overview {
+  --nausikaa-so-icon: var(--nausikaa-crust);
+  --nausikaa-so-header: var(--nausikaa-blue3);
+  --nausikaa-so-border: var(--nausikaa-crust);
+  --nausikaa-so-background: var(--nausikaa-mantle);
+  --nausikaa-so-active-text: var(--nausikaa-text);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-decoration: underline solid var(--nausikaa-so-header);
+  }
+
+  u {
+    text-decoration: underline solid var(--nausikaa-so-header);
+  }
+
+  & > ul > li > a {
+    & > .title {
+      color: var(--nausikaa-text);
+      text-decoration: underline solid var(--nausikaa-so-icon);
+    }
+
+    & > .icon {
+      fill: var(--nausikaa-so-icon);
+    }
+
+    &:hover {
+      & > .title {
+        text-decoration: underline solid var(--nausikaa-so-header);
+      }
+
+      & > .icon {
+        fill: var(--nausikaa-so-header);
+      }
+    }
+
+    &:focus {
+      color: var(--nausikaa-so-active-text);
+      outline-width: 0;
+      border-color: var(--nausikaa-so-border);
+      background-color: var(--nausikaa-so-background);
+
+      & > .title {
+        color: var(--nausikaa-so-active-text);
+        text-decoration: underline solid var(--nausikaa-so-header);
+      }
+
+      & > .icon {
+        fill: var(--nausikaa-so-active-text);
+      }
+
+      & > .description {
+        color: var(--nausikaa-so-active-text);
+      }
+    }
+
+    &:active {
+      & > .title {
+        color: var(--nausikaa-text);
+        text-decoration: underline solid var(--nausikaa-text);
+      }
+    }
+  }
+
+  padding: 2em 1em;
+  margin-bottom: 2em;
+
+  & > .explainer {
+    font-size: 1.1em;
+    line-height: 1.5;
+    padding: 0 25vw 0 0;
+  }
+
+  & > ul {
+    list-style-type: none;
+    margin-left: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    & > li > a {
+      position: relative;
+      padding: 1em 3em 1em 5em;
+      margin: 1em 0;
+      display: block;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 6px;
+
+      & > .icon {
+        position: absolute;
+        top: 1em;
+        left: 0.5em;
+        width: 3.5em;
+        height: 3.5em;
+      }
+
+      & > .title {
+        font-size: 1.5em;
+        font-family: var(--nausikaa-utility-text);
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 0.25em;
+      }
+
+      & > .description {
+        color: var(--nausikaa-text);
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media (min-width: 667px) and (max-width: 900px) {
+    & > .explainer {
+      padding: 0 10vw 0 0;
+    }
+
+    & > ul {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 666px) {
+    & > .explainer {
+      padding: 0;
+    }
+
+    & > ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.yellow {
+    --nausikaa-so-icon: var(--nausikaa-yellow2);
+    --nausikaa-so-header: var(--nausikaa-yellow3);
+    --nausikaa-so-border: var(--nausikaa-yellow1);
+    --nausikaa-so-background: var(--nausikaa-yellow0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
+  }
+
+  &.red {
+    --nausikaa-so-icon: var(--nausikaa-red2);
+    --nausikaa-so-header: var(--nausikaa-red3);
+    --nausikaa-so-border: var(--nausikaa-red1);
+    --nausikaa-so-background: var(--nausikaa-red0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
+  }
+
+  &.blue {
+    --nausikaa-so-icon: var(--nausikaa-blue2);
+    --nausikaa-so-header: var(--nausikaa-blue3);
+    --nausikaa-so-border: var(--nausikaa-blue1);
+    --nausikaa-so-background: var(--nausikaa-blue0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
+  }
+
+  &.green {
+    --nausikaa-so-icon: var(--nausikaa-green2);
+    --nausikaa-so-header: var(--nausikaa-green3);
+    --nausikaa-so-border: var(--nausikaa-green1);
+    --nausikaa-so-background: var(--nausikaa-green0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
+  }
+
+  &.orange {
+    --nausikaa-so-icon: var(--nausikaa-peach2);
+    --nausikaa-so-header: var(--nausikaa-peach3);
+    --nausikaa-so-border: var(--nausikaa-peach1);
+    --nausikaa-so-background: var(--nausikaa-peach0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
+  }
+
+  &.purple {
+    --nausikaa-so-icon: var(--nausikaa-mauve2);
+    --nausikaa-so-header: var(--nausikaa-mauve3);
+    --nausikaa-so-border: var(--nausikaa-mauve1);
+    --nausikaa-so-background: var(--nausikaa-mauve0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
+  }
+
+  &.gray {
+    --nausikaa-so-icon: var(--nausikaa-overlay2);
+    --nausikaa-so-header: var(--nausikaa-subtext0);
+    --nausikaa-so-border: var(--nausikaa-overlay1);
+    --nausikaa-so-background: var(--nausikaa-overlay0);
+    --nausikaa-so-active-text: var(--nausikaa-black);
+  }
+}

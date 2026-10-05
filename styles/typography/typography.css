@@ -1,0 +1,127 @@
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: var(--nausikaa-font-family);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--nausikaa-base);
+  color: var(--nausikaa-text);
+}
+
+p {
+  margin: var(--nausikaa-paragraph-spacer) 0;
+}
+
+hr {
+  border-width: 0 0 1px 0;
+  border-style: dashed;
+  border-color: var(--nausikaa-overlay0);
+  margin: var(--nausikaa-paragraph-spacer) 0;
+
+  &.vertical {
+    border-width: 0 0 0 1px;
+    margin: 0 var(--nausikaa-paragraph-spacer);
+  }
+}
+
+u {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+blockquote {
+  border: 1px solid var(--nausikaa-crust);
+  border-radius: 6px;
+  padding: 1em;
+  background-color: var(--nausikaa-mantle);
+  margin: var(--nausikaa-paragraph-spacer) 0;
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  footer {
+    font-size: 0.9em;
+    color: var(--nausikaa-subtext1);
+
+    &:before {
+      content: "\02015";
+    }
+  }
+}
+
+abbr,
+time {
+  background-color: transparent;
+  text-decoration: underline dotted var(--nausikaa-subtext0);
+  cursor: help;
+}
+
+mark {
+  border-radius: 3px;
+  background-color: var(--nausikaa-mark-background);
+  box-shadow:
+    5px 0 0 0 rgba(var(--nausikaa-mark-background), .5),
+    -5px 0 0 0 rgba(var(--nausikaa-mark-background), .5);
+  background-size: 2000px 2000px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--nausikaa-mark-background),
+    var(--nausikaa-mark-background) 5px,
+    var(--nausikaa-mark-background-alt) 5px,
+    var(--nausikaa-mark-background-alt) 15px
+  );
+}
+
+del {
+  text-decoration: line-through solid var(--nausikaa-input-line-error);
+}
+
+code,
+kbd,
+samp {
+  font-family: var(--nausikaa-mono-text);
+  font-size: 0.9em;
+  line-height: 1.1;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+code {
+  color: var(--nausikaa-red3);
+  background-color: var(--nausikaa-base);
+  border: 1px solid var(--nausikaa-red0);
+}
+
+kbd {
+  color: var(--nausikaa-kbd-text);
+  background-color: var(--nausikaa-lavender3);
+  border: 1px solid var(--nausikaa-text);
+  white-space: nowrap;
+}
+
+samp {
+  color: var(--nausikaa-green1);
+  background-color: var(--nausikaa-subtext1);
+  border: 1px solid var(--nausikaa-subtext1);
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+}
+
+.price {
+  font-family: var(--nausikaa-utility-text);
+  border-bottom: 1px dotted var(--nausikaa-crust);
+}

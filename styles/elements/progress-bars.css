@@ -1,0 +1,215 @@
+/*
+ * Progress bars and meters. A color class only sets --nausikaa-progress-one and
+ * --nausikaa-progress-two, the two colors of the stripes.
+ */
+progress {
+  --nausikaa-progress-one: var(--nausikaa-blue3);
+  --nausikaa-progress-two: #3677f6;
+  --nausikaa-progress-stripe-size: 45px;
+
+  background-color: var(--nausikaa-mantle);
+  border: 1px solid var(--nausikaa-crust);
+  display: inline-block;
+  width: 100%;
+  padding: 3px;
+  height: calc(var(--nausikaa-line-height) + 10px);
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:not([value])::-moz-progress-bar {
+    background-color: transparent;
+  }
+
+  /* Repeated per browser: a selector list mixing vendor pseudo-elements would
+     be dropped entirely by each browser. */
+  &::-moz-progress-bar {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--nausikaa-progress-one),
+      var(--nausikaa-progress-one) 1rem,
+      var(--nausikaa-progress-two) 1rem,
+      var(--nausikaa-progress-two) 2rem
+    );
+    background-size: var(--nausikaa-progress-stripe-size) var(--nausikaa-progress-stripe-size);
+    animation: nausikaa-progress 1s linear infinite;
+    border-radius: 2px;
+  }
+
+  &::-webkit-progress-value {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--nausikaa-progress-one),
+      var(--nausikaa-progress-one) 1rem,
+      var(--nausikaa-progress-two) 1rem,
+      var(--nausikaa-progress-two) 2rem
+    );
+    background-size: var(--nausikaa-progress-stripe-size) var(--nausikaa-progress-stripe-size);
+    animation: nausikaa-progress 1s linear infinite;
+    border-radius: 2px;
+  }
+
+  &.rosewater {
+    --nausikaa-progress-one: var(--nausikaa-rosewater3);
+    --nausikaa-progress-two: #e19c8c;
+  }
+
+  &.flamingo {
+    --nausikaa-progress-one: var(--nausikaa-flamingo3);
+    --nausikaa-progress-two: #e28c8c;
+  }
+
+  &.pink {
+    --nausikaa-progress-one: var(--nausikaa-pink3);
+    --nausikaa-progress-two: #ed8cd3;
+  }
+
+  &.mauve {
+    --nausikaa-progress-one: var(--nausikaa-mauve3);
+    --nausikaa-progress-two: #9651f1;
+  }
+
+  &.red {
+    --nausikaa-progress-one: var(--nausikaa-red3);
+    --nausikaa-progress-two: #ea113f;
+  }
+
+  &.maroon {
+    --nausikaa-progress-one: var(--nausikaa-maroon3);
+    --nausikaa-progress-two: #e95b68;
+  }
+
+  &.peach {
+    --nausikaa-progress-one: var(--nausikaa-peach3);
+    --nausikaa-progress-two: #fe7424;
+  }
+
+  &.yellow {
+    --nausikaa-progress-one: var(--nausikaa-yellow3);
+    --nausikaa-progress-two: #e49a31;
+  }
+
+  &.green {
+    --nausikaa-progress-one: var(--nausikaa-green3);
+    --nausikaa-progress-two: #48b430;
+  }
+
+  &.teal {
+    --nausikaa-progress-one: var(--nausikaa-teal3);
+    --nausikaa-progress-two: #1aa7af;
+  }
+
+  &.sky {
+    --nausikaa-progress-one: var(--nausikaa-sky3);
+    --nausikaa-progress-two: #08b6fb;
+  }
+
+  &.sapphire {
+    --nausikaa-progress-one: var(--nausikaa-sapphire3);
+    --nausikaa-progress-two: #24b2cb;
+  }
+
+  &.blue {
+    --nausikaa-progress-one: var(--nausikaa-blue3);
+    --nausikaa-progress-two: #3677f6;
+  }
+
+  &.lavender {
+    --nausikaa-progress-one: var(--nausikaa-lavender3);
+    --nausikaa-progress-two: #8b9cfd;
+  }
+
+  &.gray {
+    --nausikaa-progress-one: var(--nausikaa-subtext0);
+    --nausikaa-progress-two: var(--nausikaa-overlay2);
+  }
+}
+
+progress:indeterminate {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--nausikaa-mantle),
+    var(--nausikaa-mantle) 1rem,
+    var(--nausikaa-crust) 1rem,
+    var(--nausikaa-crust) 2rem
+  );
+  background-size: var(--nausikaa-progress-stripe-size) var(--nausikaa-progress-stripe-size);
+  animation: nausikaa-progress 1s linear infinite;
+
+  &::-webkit-progress-bar {
+    background-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  progress,
+  progress::-webkit-progress-value,
+  progress::-moz-progress-bar {
+    animation: none;
+  }
+}
+
+@keyframes nausikaa-progress {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    /* The stripe size; var() in keyframes isn't reliable in older Safari */
+    background-position: -45px 0;
+  }
+}
+
+/* Chromium ignores the padding when a meter has `appearance: none`, so the
+   default appearance is kept; the background and border below already switch
+   off the native look in every browser. */
+meter {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(var(--nausikaa-line-height) + 10px);
+  padding: 3px;
+  background: var(--nausikaa-mantle);
+  border: 1px solid var(--nausikaa-crust);
+  border-radius: 4px;
+  vertical-align: bottom;
+
+  &::-webkit-meter-bar {
+    height: calc(var(--nausikaa-line-height) + 2px); /* meter height minus padding and border */
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+
+  &::-webkit-meter-optimum-value {
+    background-image: none;
+    background-color: var(--nausikaa-green3);
+    border-radius: 2px;
+  }
+
+  &::-webkit-meter-suboptimum-value {
+    background-image: none;
+    background-color: var(--nausikaa-yellow3);
+    border-radius: 2px;
+  }
+
+  &::-webkit-meter-even-less-good-value {
+    background-image: none;
+    background-color: var(--nausikaa-red3);
+    border-radius: 2px;
+  }
+
+  &::-moz-meter-bar {
+    background-image: none;
+    background-color: var(--nausikaa-green3);
+    border-radius: 2px;
+  }
+
+  &:-moz-meter-sub-optimum::-moz-meter-bar {
+    background-color: var(--nausikaa-yellow3);
+  }
+
+  &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background-color: var(--nausikaa-red3);
+  }
+}

@@ -1,0 +1,749 @@
+/*
+ * Panels. A color class only sets the --nausikaa-panel-* custom properties; the rules
+ * that use them are written once.
+ */
+.panel {
+  --nausikaa-panel-background: var(--nausikaa-base);
+  --nausikaa-panel-border: var(--nausikaa-surface2);
+  --nausikaa-panel-link: var(--nausikaa-panel-link-color);
+  --nausikaa-panel-header: var(--nausikaa-link-color);
+  --nausikaa-panel-subnav-border: var(--nausikaa-overlay0);
+  --nausikaa-panel-subnav-link: var(--nausikaa-text);
+  --nausikaa-panel-hover: var(--nausikaa-surface0);
+  --nausikaa-panel-active: var(--nausikaa-blue3);
+  --nausikaa-panel-active-text: var(--nausikaa-white);
+
+  background-color: var(--nausikaa-panel-background);
+  border: 1px solid var(--nausikaa-panel-border);
+  color: var(--nausikaa-panel-link);
+
+  .seperator,
+  .separator {
+    border-color: var(--nausikaa-panel-border);
+  }
+
+  & > .toggler {
+    &:hover {
+      background-color: var(--nausikaa-panel-hover);
+    }
+
+    &.active {
+      text-decoration: underline solid var(--nausikaa-panel-header);
+    }
+  }
+
+  & > .header,
+  & > header {
+    color: var(--nausikaa-panel-link);
+    text-decoration: underline solid var(--nausikaa-panel-header);
+    -webkit-text-decoration: underline solid var(--nausikaa-panel-header);
+
+    & > .icon {
+      fill: var(--nausikaa-panel-active);
+    }
+
+    &.tabs {
+      text-decoration: none;
+
+      & > span {
+        opacity: 0.3;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &.active {
+          opacity: 1;
+          text-decoration: underline solid var(--nausikaa-panel-header);
+          -webkit-text-decoration: underline solid var(--nausikaa-panel-header);
+        }
+      }
+    }
+  }
+
+  a,
+  .link,
+  .subnav > label {
+    color: var(--nausikaa-panel-link);
+    border: 1px solid transparent;
+
+    & > .icon {
+      fill: var(--nausikaa-panel-subnav-border);
+    }
+  }
+
+  /* A button that looks like a link has no border of its own. Give it the
+     invisible border of the other items, or it grows when it is hovered. */
+  button.link {
+    border: 1px solid transparent;
+  }
+
+  .hover > a,
+  a:hover,
+  .link:hover,
+  label:hover,
+  .subnav:focus-within:not(.active) > label {
+    background-color: var(--nausikaa-panel-hover);
+    text-decoration: none;
+    border: 1px solid transparent;
+
+    & > .icon {
+      fill: var(--nausikaa-panel-subnav-link);
+    }
+  }
+
+  a:focus,
+  .link:focus,
+  label:focus,
+  input[type="checkbox"]:focus + label,
+  input[type="radio"]:focus + label {
+    outline-width: 0;
+    text-decoration: none;
+    background-color: var(--nausikaa-panel-hover);
+    border: 1px solid var(--nausikaa-panel-border);
+
+    & > .icon {
+      fill: var(--nausikaa-panel-subnav-link);
+    }
+  }
+
+  .active > a,
+  .active > .link,
+  .active > label,
+  a.active {
+    color: var(--nausikaa-panel-active-text);
+    background-color: var(--nausikaa-panel-active);
+
+    & > .icon {
+      fill: var(--nausikaa-panel-active-text);
+    }
+
+    &:focus {
+      color: var(--nausikaa-panel-active-text);
+      background-color: var(--nausikaa-panel-active);
+      border-color: var(--nausikaa-panel-active);
+    }
+  }
+
+  .active > input[type="checkbox"]:focus + label {
+    color: var(--nausikaa-panel-active-text);
+    background-color: var(--nausikaa-panel-active);
+    border-color: var(--nausikaa-panel-active);
+  }
+
+  .subnav.active > label .icon.chevron,
+  .subnav.active > label:hover .icon.chevron,
+  .subnav.active > label:focus .icon.chevron {
+    fill: var(--nausikaa-panel-active-text);
+  }
+
+  .subnav > ul {
+    border-left-width: 0;
+
+    & > li > a,
+    & > li > .link {
+      color: var(--nausikaa-panel-subnav-link);
+    }
+
+    & > li.active > a,
+    & > li.active > .link {
+      color: var(--nausikaa-panel-active-text);
+    }
+  }
+
+  .subnav > input:checked + label + ul,
+  .subnav:focus-within > ul {
+    border-left: 5px solid var(--nausikaa-panel-subnav-border);
+  }
+
+  &.arrow:after {
+    background-color: var(--nausikaa-panel-background);
+    border-color: var(--nausikaa-panel-border);
+  }
+
+  .checkboxes input:checked + label,
+  .radios input:checked + label {
+    text-decoration: underline solid var(--nausikaa-panel-header);
+    -webkit-text-decoration: underline solid var(--nausikaa-panel-header);
+  }
+
+  .with-icon {
+    &:hover > a,
+    &:hover > .link {
+      background-color: var(--nausikaa-panel-hover);
+    }
+
+    &.active > a,
+    &.active > .link {
+      background-color: var(--nausikaa-panel-active);
+
+      &:nth-child(2) > .icon {
+        fill: var(--nausikaa-panel-hover);
+      }
+
+      &:nth-child(2) > .icon:hover {
+        fill: var(--nausikaa-panel-active-text);
+      }
+    }
+
+    & > a,
+    & > .link {
+      &:nth-child(2) {
+        & > .icon {
+          fill: var(--nausikaa-panel-background);
+
+          &:hover {
+            fill: var(--nausikaa-panel-active);
+          }
+        }
+      }
+    }
+  }
+
+  border-radius: 6px;
+  font-family: var(--nausikaa-utility-text);
+  font-size: 0.93rem;
+  padding: 0.7em;
+  margin-bottom: 1em;
+  transition: 0.3s top;
+  text-align: left;
+
+  /* A line between groups of items. "seperator" is the original spelling
+     and keeps working. */
+  .seperator,
+  .separator {
+    border-top: 1px solid var(--nausikaa-crust);
+    margin: 0.5em -0.7em;
+  }
+
+  form {
+    width: 100%;
+    margin: 0;
+  }
+
+  ul,
+  ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    & > li > a,
+    & > li > .link,
+    .subnav > label {
+      line-height: 1.5em;
+      padding: 0.1em 0.3em;
+      display: block;
+      text-decoration: none;
+      border-radius: 4px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100%;
+      text-align: left;
+
+      & > .icon {
+        height: 1.3em;
+        width: 1.3em;
+        transform: translateY(0.2em);
+        margin-right: 0.3em;
+      }
+    }
+  }
+
+  dl {
+    padding: 0;
+    margin: 0;
+  }
+
+  & > .toggler {
+    font-size: 1.1em;
+    cursor: pointer;
+    padding: 0.1em 0.3em 0.1em 0;
+    border-radius: 4px;
+    opacity: 0.6;
+    transition: 0.2s opacity;
+
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
+
+    & > .icon.chevron {
+      width: 1.2em;
+      height: 1.2em;
+      opacity: 0.6;
+      margin-right: 0.1em;
+      position: relative;
+      top: 0.2em;
+      transform: rotate(180deg);
+      transition: 0.2s transform;
+    }
+
+    & + .toggler-content {
+      display: none;
+    }
+
+    &.active {
+      margin-bottom: 0.4em;
+      opacity: 1;
+
+      & > .icon.chevron {
+        transform: rotate(0);
+      }
+
+      & + .toggler-content {
+        display: block;
+      }
+    }
+  }
+
+  /* A group that opens and closes without a script: <details> with a
+     <summary>. It looks like the toggler above. */
+  & > details {
+    & > summary {
+      display: block;
+      list-style: none;
+      font-size: 1.1em;
+      cursor: pointer;
+      padding: 0.1em 0.3em 0.1em 0;
+      border: 1px solid transparent;
+      border-radius: 4px;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &:hover {
+        background-color: var(--nausikaa-panel-hover);
+      }
+
+      &:focus {
+        outline-width: 0;
+        background-color: var(--nausikaa-panel-hover);
+        border-color: var(--nausikaa-panel-border);
+      }
+
+      & > .icon.chevron {
+        width: 1.2em;
+        height: 1.2em;
+        fill: var(--nausikaa-panel-subnav-border);
+        margin-right: 0.1em;
+        position: relative;
+        top: 0.2em;
+        transform: rotate(180deg);
+        transition: 0.2s transform;
+      }
+    }
+
+    &[open] > summary {
+      margin-bottom: 0.4em;
+
+      & > .icon.chevron {
+        transform: rotate(0);
+      }
+    }
+  }
+
+  & > .header,
+  & > header {
+    margin: 0 0 0.3em;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    & > .icon {
+      height: 1.1em;
+      width: 1.1em;
+      transform: translateY(0.2em);
+      margin-right: 0.1em;
+    }
+
+    &.tabs {
+      & > span {
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  .subnav > input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  .subnav > label .icon.chevron {
+    float: right;
+    fill: var(--nausikaa-subtext0);
+    height: 1.3em;
+    width: 1.3em;
+    margin-top: 0.1em;
+    margin-right: 0;
+    transform: rotate(180deg);
+    transform-origin: center;
+    transition: 0.2s transform;
+  }
+
+  .subnav > label.hover .icon.chevron,
+  .subnav > label:hover .icon.chevron,
+  .subnav > label:focus .icon.chevron {
+    fill: var(--nausikaa-black);
+    pointer-events: none;
+  }
+
+  .subnav > input:checked + label .icon.chevron,
+  .subnav:focus-within:not(.active) > label .icon.chevron {
+    transform: rotate(0deg);
+  }
+
+  .subnav > ul {
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 1px 1px 1px 0.5em;
+    font-size: 0.9em;
+    line-height: 1.3em;
+  }
+
+  .subnav > input:checked + label + ul {
+    height: auto;
+    margin: 0.4em 0 0.4em 0.4em;
+    overflow: visible;
+  }
+
+  &.arrow {
+    position: relative;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -1px;
+      left: calc(50% - 0.6em);
+      width: 1.2em;
+      height: 1.2em;
+      border-width: 1px 1px 0 0;
+      border-style: solid;
+      border-radius: 0 0 0 100%;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+    &.top:after {
+      top: -1px;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+    &.bottom:after {
+      top: auto;
+      bottom: -1px;
+      transform: translateY(50%) rotate(135deg);
+    }
+
+    &.left:after {
+      left: calc(1.6em - 0.6em);
+    }
+
+    &.center:after {
+      left: calc(50% - 0.6em);
+    }
+
+    &.right:after {
+      left: auto;
+      right: calc(1.6em - 0.6em);
+    }
+  }
+
+  .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    /*pointer-events: none; */
+
+    & > * {
+      pointer-events: none;
+    }
+  }
+
+  .checkboxes,
+  .radios {
+    & > li {
+      display: block;
+      position: relative;
+
+      & > input {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 0.5em;
+        transform: translateY(-50%);
+
+        &:checked + label > span:last-child {
+          text-decoration: none;
+          opacity: 1;
+        }
+      }
+
+      label {
+        border: 1px solid transparent;
+        border-radius: 4px;
+        padding: 0 0.4rem 0 1.9em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+
+        & > span:first-child {
+          flex: 0 0 79%;
+          width: 79%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        & > span:last-child {
+          flex: 0 0 21%;
+          text-align: right;
+          opacity: 0.75;
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
+
+  &.expandable {
+    & > input[type="checkbox"] {
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+
+      &:checked {
+        & + * + ul > .more,
+        & + details > ul > .more {
+          display: none;
+
+          & ~ * {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .more,
+    .less {
+      & > label {
+        display: flex;
+        flex-direction: row-reverse;
+
+        &:hover,
+        &:focus {
+          background-color: transparent;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
+      & ~ * {
+        display: none;
+      }
+    }
+  }
+
+  .with-icon {
+    display: flex;
+
+    & > a {
+      &:nth-child(1) {
+        border-radius: 4px 0 0 4px;
+        line-height: 1;
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+        flex-grow: 100;
+      }
+
+      &:nth-child(2) {
+        border-radius: 0 4px 4px 0;
+      }
+    }
+  }
+
+  &.rosewater {
+    --nausikaa-panel-background: var(--nausikaa-rosewater0);
+    --nausikaa-panel-border: var(--nausikaa-rosewater2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #ad442d;
+    --nausikaa-panel-subnav-border: var(--nausikaa-rosewater3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(220, 138, 120, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-rosewater3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.flamingo {
+    --nausikaa-panel-background: var(--nausikaa-flamingo0);
+    --nausikaa-panel-border: var(--nausikaa-flamingo2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #9e2828;
+    --nausikaa-panel-subnav-border: var(--nausikaa-flamingo3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(221, 120, 120, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-flamingo3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.pink {
+    --nausikaa-panel-background: var(--nausikaa-pink0);
+    --nausikaa-panel-border: var(--nausikaa-pink2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #a4197f;
+    --nausikaa-panel-subnav-border: var(--nausikaa-pink3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(234, 118, 203, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-pink3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.mauve {
+    --nausikaa-panel-background: var(--nausikaa-mauve0);
+    --nausikaa-panel-border: var(--nausikaa-mauve2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #560fb3;
+    --nausikaa-panel-subnav-border: var(--nausikaa-mauve3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(136, 57, 239, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-mauve3);
+    --nausikaa-panel-active-text: var(--nausikaa-white);
+  }
+
+  &.red {
+    --nausikaa-panel-background: var(--nausikaa-red0);
+    --nausikaa-panel-border: var(--nausikaa-red2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #73081f;
+    --nausikaa-panel-subnav-border: var(--nausikaa-red3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(210, 15, 57, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-red3);
+    --nausikaa-panel-active-text: var(--nausikaa-white);
+  }
+
+  &.maroon {
+    --nausikaa-panel-background: var(--nausikaa-maroon0);
+    --nausikaa-panel-border: var(--nausikaa-maroon2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #8a131d;
+    --nausikaa-panel-subnav-border: var(--nausikaa-maroon3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(230, 69, 83, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-maroon3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.peach {
+    --nausikaa-panel-background: var(--nausikaa-peach0);
+    --nausikaa-panel-border: var(--nausikaa-peach2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #7a2d00;
+    --nausikaa-panel-subnav-border: var(--nausikaa-peach3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(254, 100, 11, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-peach3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.yellow {
+    --nausikaa-panel-background: var(--nausikaa-yellow0);
+    --nausikaa-panel-border: var(--nausikaa-yellow2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #855511;
+    --nausikaa-panel-subnav-border: var(--nausikaa-yellow3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(223, 142, 29, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-yellow3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.green {
+    --nausikaa-panel-background: var(--nausikaa-green0);
+    --nausikaa-panel-border: var(--nausikaa-green2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #26601a;
+    --nausikaa-panel-subnav-border: var(--nausikaa-green3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(64, 160, 43, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-green3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.teal {
+    --nausikaa-panel-background: var(--nausikaa-teal0);
+    --nausikaa-panel-border: var(--nausikaa-teal2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #0f5f64;
+    --nausikaa-panel-subnav-border: var(--nausikaa-teal3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(23, 146, 153, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-teal3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.sky {
+    --nausikaa-panel-background: var(--nausikaa-sky0);
+    --nausikaa-panel-border: var(--nausikaa-sky2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #025d81;
+    --nausikaa-panel-subnav-border: var(--nausikaa-sky3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(4, 165, 229, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-sky3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.sapphire {
+    --nausikaa-panel-background: var(--nausikaa-sapphire0);
+    --nausikaa-panel-border: var(--nausikaa-sapphire2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #11535e;
+    --nausikaa-panel-subnav-border: var(--nausikaa-sapphire3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(32, 159, 181, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-sapphire3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.blue {
+    --nausikaa-panel-background: var(--nausikaa-blue0);
+    --nausikaa-panel-border: var(--nausikaa-blue2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #073ca6;
+    --nausikaa-panel-subnav-border: var(--nausikaa-blue3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(30, 102, 245, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-blue3);
+    --nausikaa-panel-active-text: var(--nausikaa-white);
+  }
+
+  &.lavender {
+    --nausikaa-panel-background: var(--nausikaa-lavender0);
+    --nausikaa-panel-border: var(--nausikaa-lavender2);
+    --nausikaa-panel-link: var(--nausikaa-ink);
+    --nausikaa-panel-header: #0327f1;
+    --nausikaa-panel-subnav-border: var(--nausikaa-lavender3);
+    --nausikaa-panel-subnav-link: var(--nausikaa-ink);
+    --nausikaa-panel-hover: rgba(114, 135, 253, 0.2);
+    --nausikaa-panel-active: var(--nausikaa-lavender3);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+
+  &.gray {
+    --nausikaa-panel-background: var(--nausikaa-surface0);
+    --nausikaa-panel-border: var(--nausikaa-surface2);
+    --nausikaa-panel-link: var(--nausikaa-text);
+    --nausikaa-panel-header: var(--nausikaa-text);
+    --nausikaa-panel-subnav-border: var(--nausikaa-surface2);
+    --nausikaa-panel-subnav-link: var(--nausikaa-text);
+    --nausikaa-panel-hover: rgba(var(--nausikaa-overlay0-rgb), 0.2);
+    --nausikaa-panel-active: var(--nausikaa-overlay0);
+    --nausikaa-panel-active-text: var(--nausikaa-ink);
+  }
+}

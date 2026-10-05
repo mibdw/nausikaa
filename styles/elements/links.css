@@ -1,0 +1,323 @@
+
+a,
+.link {
+  color: var(--nausikaa-link-color);
+  text-decoration: underline solid var(--nausikaa-link-line);
+  -webkit-text-decoration: underline solid var(--nausikaa-link-line);
+  /* cursor: pointer; */
+
+  &.hover,
+  &:hover {
+    color: var(--nausikaa-link-hover);
+    text-decoration: underline solid var(--nausikaa-link-line);
+    -webkit-text-decoration: underline solid var(--nausikaa-link-line);
+  }
+
+  &.focus,
+  &:focus {
+    outline-width: 0;
+    color: var(--nausikaa-link-active);
+    text-decoration: underline solid var(--nausikaa-link-line);
+    -webkit-text-decoration: underline solid var(--nausikaa-link-line);
+    outline: 1px dotted var(--nausikaa-subtext0);
+  }
+
+  &.active,
+  &:active {
+    color: var(--nausikaa-link-active);
+    text-decoration: underline solid var(--nausikaa-text);
+    -webkit-text-decoration: underline solid var(--nausikaa-text);
+  }
+
+  &.visited,
+  &:visited {
+    color: var(--nausikaa-link-visited);
+    text-decoration: underline solid var(--nausikaa-link-visited);
+    -webkit-text-decoration: underline solid var(--nausikaa-link-visited);
+
+    &.hover,
+    &:hover {
+      color: var(--nausikaa-link-hover);
+      text-decoration: underline solid var(--nausikaa-link-visited);
+      -webkit-text-decoration: underline solid var(--nausikaa-link-visited);
+    }
+
+    &.focus,
+    &:focus {
+      outline-width: 0;
+      color: var(--nausikaa-link-active);
+      text-decoration: underline solid var(--nausikaa-link-visited);
+      -webkit-text-decoration: underline solid var(--nausikaa-link-visited);
+      outline: 1px dotted var(--nausikaa-subtext0);
+    }
+
+    &.active,
+    &:active {
+      color: var(--nausikaa-link-active);
+      text-decoration: underline solid var(--nausikaa-text);
+      -webkit-text-decoration: underline solid var(--nausikaa-text);
+    }
+  }
+
+  &.button {
+    text-decoration: none;
+    -webkit-text-decoration: none;
+  }
+}
+
+
+/*
+ * Knobs: link-styled buttons. A color class only sets the custom properties
+ * below; the rules that use them are written once.
+ */
+.knobs > li > a,
+.knob {
+  --nausikaa-knob-background: var(--nausikaa-base);
+  --nausikaa-knob-text: var(--nausikaa-text);
+  --nausikaa-knob-border: var(--nausikaa-surface1);
+  --nausikaa-knob-hover: var(--nausikaa-surface1);
+  --nausikaa-knob-active: var(--nausikaa-overlay1);
+  --nausikaa-knob-active-text: var(--nausikaa-ink);
+  --nausikaa-knob-text-disabled: rgba(var(--nausikaa-text-rgb), 0.5);
+
+  background-color: var(--nausikaa-knob-background);
+  color: var(--nausikaa-knob-text);
+  border: 1px solid var(--nausikaa-knob-border);
+  cursor: pointer;
+  /* A flex row, so that the space next to an icon is a gap: an icon with
+     text beside it gets one, an icon on its own gets none */
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+  font-family: var(--nausikaa-utility-text);
+  height: var(--nausikaa-input-height);
+  line-height: var(--nausikaa-input-height);
+  padding: 0 1em;
+  margin: 0 0.4rem 0.4rem 0;
+  text-decoration: none;
+  -webkit-text-decoration: none;
+  border-radius: 6px;
+
+  &:hover,
+  &.hover {
+    background-color: var(--nausikaa-knob-hover);
+    color: var(--nausikaa-knob-text);
+  }
+
+  &:focus,
+  &.focus {
+    background-color: var(--nausikaa-knob-hover);
+    color: var(--nausikaa-knob-text);
+    border-color: var(--nausikaa-knob-border);
+    box-shadow: 0 0 0 2px var(--nausikaa-knob-border);
+  }
+
+  &:active,
+  &.active {
+    background-color: var(--nausikaa-knob-active);
+    border-color: var(--nausikaa-knob-active);
+    color: var(--nausikaa-knob-active-text);
+
+    & > .icon {
+      fill: var(--nausikaa-knob-active-text);
+    }
+  }
+
+  &:hover,
+  &.hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    text-decoration: none;
+    -webkit-text-decoration: none;
+    outline-width: 0;
+  }
+
+  &.disabled,
+  &:disabled {
+    color: var(--nausikaa-knob-text-disabled);
+    pointer-events: none;
+    cursor: not-allowed;
+
+    & > .icon,
+    & > svg {
+      opacity: 0.5;
+    }
+  }
+
+  /* An empty first item keeps the text line that the content stands on, so
+     a knob with only an icon lines up with one that has text. It takes no
+     room: the margin takes back the gap after it. */
+  &::before {
+    content: "\200b";
+    margin-right: -0.5em;
+  }
+
+  & > .icon {
+    fill: var(--nausikaa-knob-active);
+    transform-origin: center center;
+    transform: scale(1.6, 1.6) translateY(0.1em);
+    flex: 0 0 auto;
+  }
+
+  &.rosewater {
+    --nausikaa-knob-background: var(--nausikaa-rosewater0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-rosewater3);
+    --nausikaa-knob-hover: var(--nausikaa-rosewater2);
+    --nausikaa-knob-active: var(--nausikaa-rosewater3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.flamingo {
+    --nausikaa-knob-background: var(--nausikaa-flamingo0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-flamingo3);
+    --nausikaa-knob-hover: var(--nausikaa-flamingo2);
+    --nausikaa-knob-active: var(--nausikaa-flamingo3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.pink {
+    --nausikaa-knob-background: var(--nausikaa-pink0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-pink3);
+    --nausikaa-knob-hover: var(--nausikaa-pink2);
+    --nausikaa-knob-active: var(--nausikaa-pink3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.mauve {
+    --nausikaa-knob-background: var(--nausikaa-mauve0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-mauve3);
+    --nausikaa-knob-hover: var(--nausikaa-mauve2);
+    --nausikaa-knob-active: var(--nausikaa-mauve3);
+    --nausikaa-knob-active-text: var(--nausikaa-white);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.red {
+    --nausikaa-knob-background: var(--nausikaa-red0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-red3);
+    --nausikaa-knob-hover: var(--nausikaa-red2);
+    --nausikaa-knob-active: var(--nausikaa-red3);
+    --nausikaa-knob-active-text: var(--nausikaa-white);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.maroon {
+    --nausikaa-knob-background: var(--nausikaa-maroon0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-maroon3);
+    --nausikaa-knob-hover: var(--nausikaa-maroon2);
+    --nausikaa-knob-active: var(--nausikaa-maroon3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.peach {
+    --nausikaa-knob-background: var(--nausikaa-peach0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-peach3);
+    --nausikaa-knob-hover: var(--nausikaa-peach2);
+    --nausikaa-knob-active: var(--nausikaa-peach3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.yellow {
+    --nausikaa-knob-background: var(--nausikaa-yellow0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-yellow3);
+    --nausikaa-knob-hover: var(--nausikaa-yellow2);
+    --nausikaa-knob-active: var(--nausikaa-yellow3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.green {
+    --nausikaa-knob-background: var(--nausikaa-green0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-green3);
+    --nausikaa-knob-hover: var(--nausikaa-green2);
+    --nausikaa-knob-active: var(--nausikaa-green3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.teal {
+    --nausikaa-knob-background: var(--nausikaa-teal0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-teal3);
+    --nausikaa-knob-hover: var(--nausikaa-teal2);
+    --nausikaa-knob-active: var(--nausikaa-teal3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.sky {
+    --nausikaa-knob-background: var(--nausikaa-sky0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-sky3);
+    --nausikaa-knob-hover: var(--nausikaa-sky2);
+    --nausikaa-knob-active: var(--nausikaa-sky3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.sapphire {
+    --nausikaa-knob-background: var(--nausikaa-sapphire0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-sapphire3);
+    --nausikaa-knob-hover: var(--nausikaa-sapphire2);
+    --nausikaa-knob-active: var(--nausikaa-sapphire3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.blue {
+    --nausikaa-knob-background: var(--nausikaa-blue0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-blue3);
+    --nausikaa-knob-hover: var(--nausikaa-blue2);
+    --nausikaa-knob-active: var(--nausikaa-blue3);
+    --nausikaa-knob-active-text: var(--nausikaa-white);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.lavender {
+    --nausikaa-knob-background: var(--nausikaa-lavender0);
+    --nausikaa-knob-text: var(--nausikaa-ink);
+    --nausikaa-knob-border: var(--nausikaa-lavender3);
+    --nausikaa-knob-hover: var(--nausikaa-lavender2);
+    --nausikaa-knob-active: var(--nausikaa-lavender3);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
+  }
+
+  &.gray {
+    --nausikaa-knob-background: var(--nausikaa-surface0);
+    --nausikaa-knob-text: var(--nausikaa-text);
+    --nausikaa-knob-border: var(--nausikaa-overlay0);
+    --nausikaa-knob-hover: var(--nausikaa-surface2);
+    --nausikaa-knob-active: var(--nausikaa-overlay0);
+    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-text-disabled: rgba(var(--nausikaa-text-rgb), 0.5);
+  }
+
+  &.transparent {
+    --nausikaa-knob-background: rgba(0, 0, 0, 0);
+    --nausikaa-knob-text: var(--nausikaa-text);
+    --nausikaa-knob-border: var(--nausikaa-overlay0);
+    --nausikaa-knob-hover: var(--nausikaa-surface2);
+    --nausikaa-knob-active: var(--nausikaa-subtext0);
+    --nausikaa-knob-active-text: var(--nausikaa-text-inverse);
+    --nausikaa-knob-text-disabled: rgba(var(--nausikaa-text-rgb), 0.5);
+  }
+}

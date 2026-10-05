@@ -1,0 +1,563 @@
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: var(--nausikaa-header-height);
+  margin: 0;
+  padding: 0 1em;
+  background-color: var(--nausikaa-header-background);
+  border-bottom: 1px solid var(--nausikaa-header-line);
+
+  .spacer {
+    flex-grow: 100;
+  }
+
+  & > *:last-child {
+    margin-right: 0 !important;
+  }
+
+  #brand {
+    font-size: 1.8em;
+    font-weight: bold;
+    font-family: var(--nausikaa-utility-text);
+    line-height: calc(var(--nausikaa-header-height) * 0.9);
+    max-height: calc(var(--nausikaa-header-height) * 0.85);
+    margin: 0 0.5em 0 0;
+    display: inline-flex;
+
+    & > img {
+      width: calc(var(--nausikaa-header-height) * 0.85);
+      height: calc(var(--nausikaa-header-height) * 0.85);
+      border-radius: 6px;
+    }
+
+    svg {
+      width: calc(var(--nausikaa-header-height) * 0.8);
+      height: calc(var(--nausikaa-header-height) * 0.8);
+      fill: var(--nausikaa-blue3);
+    }
+
+    &:hover svg {
+      fill: var(--nausikaa-blue3);
+    }
+
+    &.ball {
+      background-color: var(--nausikaa-blue3);
+      min-width: calc(var(--nausikaa-header-height) * 0.8);
+      height: calc(var(--nausikaa-header-height) * 0.8);
+      line-height: calc(var(--nausikaa-header-height) * 0.75);
+      border-radius: calc(var(--nausikaa-header-height) * 0.8 / 2);
+      padding: 0 0.5em;
+      text-align: center;
+      color: var(--nausikaa-white);
+      text-decoration: none;
+      position: relative;
+
+      &:hover {
+        background-color: var(--nausikaa-blue3);
+      }
+
+      svg {
+        fill: var(--nausikaa-white);
+        width: calc(var(--nausikaa-header-height) * 0.6);
+        height: calc(var(--nausikaa-header-height) * 0.6);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .navbar-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+
+    & + label {
+      width: calc(var(--nausikaa-header-height) * 0.8);
+      height: calc(var(--nausikaa-header-height) * 0.8);
+      transform: translateY(-0.4em);
+      text-decoration: none;
+      border-radius: 6px;
+      padding: 0;
+      margin: 0;
+      display: none;
+
+      & .icon {
+        fill: var(--nausikaa-text);
+        width: 50%;
+        height: 50%;
+        margin: 25%;
+
+        &.close {
+          display: none;
+        }
+      }
+    }
+
+    &:checked + label {
+      .icon.menu {
+        display: none;
+      }
+
+      .icon.close {
+        display: block;
+      }
+    }
+
+    & + label:hover,
+    &:focus + label,
+    &:active + label {
+      background-color: var(--nausikaa-base);
+      border-color: var(--nausikaa-base);
+    }
+  }
+
+  & > #user-nav {
+    .user-greeting {
+      cursor: pointer;
+
+      .user-avatar {
+        font-size: 1.5em;
+      }
+    }
+
+    .panel {
+      transform: translate(calc(-100% + 1.3em), 0.5em);
+
+      .bonjour {
+        white-space: nowrap;
+        padding-right: 2em;
+        line-height: 1.5;
+      }
+
+      li > a {
+        display: block;
+        padding: 0.4em 2em 0.4em 0.8em;
+        background: transparent;
+        border: 1px solid transparent;
+        color: inherit;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: var(--nausikaa-base);
+          border-color: var(--nausikaa-base);
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px var(--nausikaa-crust);
+        }
+      }
+    }
+  }
+
+  & > nav > ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0 0 0 1em;
+
+    & > li {
+      margin-right: 1em;
+      line-height: var(--nausikaa-input-height);
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  & > .group,
+  & > button {
+    margin-left: 0;
+    margin-right: 0.5em;
+  }
+
+  & > .group {
+    margin-bottom: 0;
+  }
+
+  /* Search: looks like a knob with a search icon until it is used, then it
+     widens into a search field with suggestions below it */
+  & > .search {
+    margin-right: 0.5em;
+
+    & > .group {
+      position: relative;
+      margin: 0;
+
+      /* The icon lies on top of the field, so the field alone decides how
+         wide the whole is */
+      & > .icon {
+        position: absolute;
+        top: 0;
+        left: 0.75em;
+        fill: var(--nausikaa-text);
+        pointer-events: none;
+        transform: scale(1.1);
+      }
+
+      & > input {
+        position: static;
+        margin: 0;
+        /* As wide as a knob with only an icon: the icon, 1em on each side
+           of it and the border */
+        width: calc(3em + 2px);
+        padding-right: 0;
+        /* The colors of a transparent knob, like the theme menu next to it */
+        background-color: transparent;
+        border-color: var(--nausikaa-overlay0);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.25s width;
+
+        &::placeholder {
+          color: transparent;
+        }
+
+        &:hover {
+          background-color: var(--nausikaa-surface2);
+        }
+      }
+    }
+
+    /* In use: the field has the focus, or there is something in it */
+    &:focus-within > .group > input,
+    & > .group > input:not(:placeholder-shown) {
+      width: 24em;
+      padding-right: var(--nausikaa-input-padding-width);
+      background-color: var(--nausikaa-input-background);
+      cursor: text;
+
+      &::placeholder {
+        color: var(--nausikaa-input-vague);
+      }
+    }
+
+    /* The suggestions only show while there are any */
+    & > .panel {
+      display: none;
+      max-width: none;
+    }
+
+    &.open > .panel {
+      display: block;
+    }
+
+    &:not(.open) > .group > input {
+      border-radius: 6px !important;
+    }
+
+    & > .panel ul > li > a > small {
+      color: var(--nausikaa-subtext0);
+      margin-left: 0.3em;
+    }
+  }
+
+  /* The theme menu: a knob with the icon of the current theme */
+  & > .theme-switcher {
+    & > .knob {
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+
+      & > .icon {
+        transform: scale(1.6);
+      }
+    }
+
+    & > .panel ul > li > a,
+    & > .panel ul > li > .link {
+      padding-right: 5em;
+
+      & > .icon {
+        /* 5px above where a panel puts its icons */
+        transform: translateY(calc(0.2em - 5px));
+      }
+    }
+  }
+
+  .knobs > li {
+    margin-right: 0.5em;
+
+    & > a {
+      color: var(--nausikaa-text);
+      margin-right: 0;
+      margin-bottom: 0;
+      border: 1px solid transparent;
+      text-decoration: none;
+      background-color: transparent;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: var(--nausikaa-base);
+        border-color: var(--nausikaa-base);
+
+        & > .icon {
+          fill: var(--nausikaa-text);
+        }
+      }
+
+      &:focus {
+        border-color: var(--nausikaa-crust);
+        box-shadow: 0 0 0 2px var(--nausikaa-crust);
+      }
+    }
+
+    &.active > a {
+      background-color: rgba(var(--nausikaa-base-rgb), 0.9);
+      color: var(--nausikaa-text);
+
+      & > .icon {
+        fill: var(--nausikaa-text);
+      }
+    }
+
+    &.dropdown:focus-within > a {
+      background-color: var(--nausikaa-base);
+      border-color: var(--nausikaa-crust);
+    }
+  }
+
+  &.transparent {
+    background-color: transparent;
+    border-bottom-color: transparent;
+
+    .knobs > li {
+      & > a {
+        background-color: transparent;
+
+        &:hover {
+          background-color: rgba(var(--nausikaa-base-rgb), 0.3);
+        }
+
+        &:focus {
+          border-color: rgba(var(--nausikaa-base-rgb), 0.6);
+          box-shadow: 0 0 0 2px rgba(var(--nausikaa-base-rgb), 0.6);
+        }
+      }
+
+      &:focus-within > a {
+        background-color: transparent;
+        border-color: rgba(var(--nausikaa-base-rgb), 0.6);
+        box-shadow: 0 0 0 2px rgba(var(--nausikaa-base-rgb), 0.6);
+      }
+
+      &.active > a {
+        background-color: rgba(var(--nausikaa-base-rgb), 0.5);
+        color: var(--nausikaa-text);
+
+        .icon {
+          fill: rgba(var(--nausikaa-base-rgb), 0.8);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 901px) {
+    display: block;
+    min-height: var(--nausikaa-header-height);
+    height: auto;
+    padding: 0;
+    font-size: 1.2rem;
+    position: relative;
+    padding-top: var(--nausikaa-header-height);
+
+    & > * {
+      display: none;
+    }
+
+    & > #brand,
+    & > #brand.ball {
+      position: absolute;
+      top: 0.2em;
+      left: 0.4em;
+
+      & > img {
+        transform: translateY(0);
+      }
+
+      &:nth-child(2) {
+        left: 4em;
+      }
+
+      &:nth-child(3) {
+        left: 6.3em;
+      }
+
+      &:nth-child(4) {
+        left: 11em;
+      }
+
+      &:nth-child(5) {
+        left: 13em;
+      }
+    }
+
+    & > .navbar-toggle {
+      display: block;
+
+      & + label {
+        display: inline-block;
+        position: absolute;
+        top: 0.7em;
+        right: 0.5em;
+      }
+
+      &:checked ~ * {
+        display: flex;
+
+        &.spacer {
+          display: none;
+        }
+
+        &.group {
+          padding: 0.5rem;
+        }
+
+        &.suggestions {
+          & > .group {
+            margin: 0.5rem;
+          }
+
+          & > .panel {
+            margin: -0.5rem 0.5rem 0;
+            z-index: 999;
+          }
+        }
+
+        &:not(label) {
+          margin: 0;
+          border-top: 1px solid var(--nausikaa-header-line);
+        }
+
+        &:last-child {
+          border-bottom: 1px solid var(--nausikaa-header-line);
+        }
+      }
+    }
+
+    nav {
+      padding: 0.5em 0;
+
+      .knobs {
+        font-size: 1.1em;
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
+
+        li {
+          display: block;
+          margin-right: 0;
+
+          a {
+            display: block;
+            border-radius: 0;
+            line-height: 2em;
+            height: 2em;
+            padding: 0 0.5em;
+          }
+
+          /* The knob itself stays a row, as wide as the menu */
+          & > a {
+            display: flex;
+          }
+
+          &.dropdown {
+            /* The arrow goes to the far end of the row */
+            .icon.last {
+              margin-left: auto;
+              position: relative;
+              right: 0.5rem;
+            }
+
+            & > .panel {
+              position: static;
+              transform: none;
+              box-shadow: none;
+              border-width: 0;
+              border-radius: 0;
+              width: 100%;
+              max-width: 100%;
+              display: block;
+              border-bottom: 1px solid var(--nausikaa-crust);
+              height: 0;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+
+              &.arrow:after {
+                display: none;
+              }
+
+              & > ul > li.active a {
+                background-color: var(--nausikaa-mantle);
+                color: var(--nausikaa-text);
+              }
+            }
+
+            &:focus-within > .panel,
+            &.focus-within > .panel {
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+
+    form > * {
+      width: auto;
+    }
+
+    /* In the opened menu the search field is always a field */
+    & > .search {
+      margin-right: 0;
+
+      & > .group,
+      & > .group > input,
+      &:focus-within > .group > input {
+        width: 100%;
+        flex: 1 1 auto;
+      }
+
+      & > .group > input {
+        padding-right: var(--nausikaa-input-padding-width);
+        background-color: var(--nausikaa-input-background);
+        cursor: text;
+
+        &::placeholder {
+          color: var(--nausikaa-input-vague);
+        }
+      }
+    }
+
+    /* The theme menu opens below its knob, from the left edge */
+    & > .theme-switcher {
+      & > .knob {
+        margin: 0.5rem;
+      }
+
+      & > .panel.arrow.top.right {
+        left: 0.5rem;
+        transform: translate(0, -0.5rem);
+
+        &:after {
+          left: calc(1.6em - 0.6em);
+          right: auto;
+        }
+      }
+
+      &:focus-within > .panel.arrow.top.right {
+        transform: translate(0, 0);
+      }
+    }
+  }
+}

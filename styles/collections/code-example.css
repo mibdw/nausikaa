@@ -1,0 +1,17 @@
+
+.code-example {
+  & > pre {
+    padding: 0;
+
+    & > code {
+      background-color: var(--nausikaa-mantle);
+      border: 1px solid var(--nausikaa-surface0);
+      color: var(--nausikaa-text);
+      line-height: 1.4;
+
+      &.hljs {
+        padding: 1.5em;
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+
+img {
+  max-width: 100%;
+}
+
+figure {
+  display: inline-block;
+  flex-direction: column;
+  border: 1px solid var(--nausikaa-crust);
+  overflow: hidden;
+  border-radius: 4px;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+  padding: 3px;
+  max-width: 100%;
+  background-color: var(--nausikaa-base);
+
+  img {
+    margin-bottom: -0.4em;
+  }
+
+  figcaption {
+    font-family: var(--nausikaa-utility-text);
+    font-size: 0.9em;
+    color: var(--nausikaa-subtext0);
+    padding: 0.5em 0.2em 0;
+  }
+}
+
+figure,
+img {
+  &.left {
+    float: left;
+    margin: 0.3em var(--nausikaa-paragraph-spacer) var(--nausikaa-paragraph-spacer) 0;
+  }
+
+  &.right {
+    float: right;
+    margin: 0.3em 0 var(--nausikaa-paragraph-spacer) var(--nausikaa-paragraph-spacer);
+  }
+
+  &.center {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 666px) {
+    &.left,
+    &.right {
+      float: none;
+      display: block;
+      margin: var(--nausikaa-paragraph-spacer) auto;
+    }
+  }
+}
+
+.clear-float {
+  clear: both;
+}

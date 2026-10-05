@@ -1,0 +1,26 @@
+
+pre {
+  font-family: var(--nausikaa-mono-text);
+  line-height: 1.3;
+  display: block;
+  color: var(--nausikaa-base);
+  background-color: #333;
+  border-radius: 6px;
+  padding: 1em;
+  white-space: pre-wrap;
+  word-break: normal;
+  word-wrap: break-word;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+  overflow: hidden;
+
+  & > code {
+    border-width: 0;
+    white-space: pre-wrap;
+    color: var(--nausikaa-base);
+    background-color: transparent;
+  }
+}
+
+.CodeMirror {
+  border-radius: 6px;
+}

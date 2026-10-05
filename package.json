@@ -1,0 +1,236 @@
+{
+  "type": "module",
+  "name": "nausikaa",
+  "version": "1.0.0",
+  "description": "CSS building blocks for accessible websites: one stylesheet that styles plain HTML, with light, dark and e-ink themes.",
+  "main": "dist/nausikaa.min.css",
+  "style": "dist/nausikaa.min.css",
+  "exports": {
+    ".": {
+      "style": "./dist/nausikaa.min.css",
+      "default": "./dist/nausikaa.min.css"
+    },
+    "./nausikaa.min.css": "./dist/nausikaa.min.css",
+    "./icons.svg": "./images/icons.svg",
+    "./calendar": "./dist/calendar.js",
+    "./date-picker": "./dist/date-picker.js",
+    "./editor": "./dist/editor.js",
+    "./styles/*": "./styles/*",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist",
+    "styles",
+    "images",
+    "utilities",
+    "THIRD-PARTY-NOTICES.md"
+  ],
+  "peerDependencies": {
+    "@tiptap/core": "^3.31.3",
+    "@tiptap/extension-blockquote": "^3.31.3",
+    "@tiptap/extension-bold": "^3.31.3",
+    "@tiptap/extension-bullet-list": "^3.31.3",
+    "@tiptap/extension-code": "^3.31.3",
+    "@tiptap/extension-code-block": "^3.31.3",
+    "@tiptap/extension-color": "^3.31.3",
+    "@tiptap/extension-document": "^3.31.3",
+    "@tiptap/extension-dropcursor": "^3.31.3",
+    "@tiptap/extension-gapcursor": "^3.31.3",
+    "@tiptap/extension-hard-break": "^3.31.3",
+    "@tiptap/extension-heading": "^3.31.3",
+    "@tiptap/extension-highlight": "^3.31.3",
+    "@tiptap/extension-history": "^3.31.3",
+    "@tiptap/extension-horizontal-rule": "^3.31.3",
+    "@tiptap/extension-image": "^3.31.3",
+    "@tiptap/extension-italic": "^3.31.3",
+    "@tiptap/extension-link": "^3.31.3",
+    "@tiptap/extension-list-item": "^3.31.3",
+    "@tiptap/extension-mention": "^3.31.3",
+    "@tiptap/extension-ordered-list": "^3.31.3",
+    "@tiptap/extension-paragraph": "^3.31.3",
+    "@tiptap/extension-placeholder": "^3.31.3",
+    "@tiptap/extension-strike": "^3.31.3",
+    "@tiptap/extension-table": "^3.31.3",
+    "@tiptap/extension-table-cell": "^3.31.3",
+    "@tiptap/extension-table-header": "^3.31.3",
+    "@tiptap/extension-table-row": "^3.31.3",
+    "@tiptap/extension-task-item": "^3.31.3",
+    "@tiptap/extension-task-list": "^3.31.3",
+    "@tiptap/extension-text": "^3.31.3",
+    "@tiptap/extension-text-align": "^3.31.3",
+    "@tiptap/extension-text-style": "^3.31.3",
+    "@tiptap/extension-underline": "^3.31.3",
+    "@tiptap/extension-youtube": "^3.31.3",
+    "@tiptap/react": "^3.31.3",
+    "date-fns": ">=3",
+    "prosemirror-state": "^1.4.4",
+    "react": ">=17"
+  },
+  "peerDependenciesMeta": {
+    "@tiptap/core": {
+      "optional": true
+    },
+    "@tiptap/extension-blockquote": {
+      "optional": true
+    },
+    "@tiptap/extension-bold": {
+      "optional": true
+    },
+    "@tiptap/extension-bullet-list": {
+      "optional": true
+    },
+    "@tiptap/extension-code": {
+      "optional": true
+    },
+    "@tiptap/extension-code-block": {
+      "optional": true
+    },
+    "@tiptap/extension-color": {
+      "optional": true
+    },
+    "@tiptap/extension-document": {
+      "optional": true
+    },
+    "@tiptap/extension-dropcursor": {
+      "optional": true
+    },
+    "@tiptap/extension-gapcursor": {
+      "optional": true
+    },
+    "@tiptap/extension-hard-break": {
+      "optional": true
+    },
+    "@tiptap/extension-heading": {
+      "optional": true
+    },
+    "@tiptap/extension-highlight": {
+      "optional": true
+    },
+    "@tiptap/extension-history": {
+      "optional": true
+    },
+    "@tiptap/extension-horizontal-rule": {
+      "optional": true
+    },
+    "@tiptap/extension-image": {
+      "optional": true
+    },
+    "@tiptap/extension-italic": {
+      "optional": true
+    },
+    "@tiptap/extension-link": {
+      "optional": true
+    },
+    "@tiptap/extension-list-item": {
+      "optional": true
+    },
+    "@tiptap/extension-mention": {
+      "optional": true
+    },
+    "@tiptap/extension-ordered-list": {
+      "optional": true
+    },
+    "@tiptap/extension-paragraph": {
+      "optional": true
+    },
+    "@tiptap/extension-placeholder": {
+      "optional": true
+    },
+    "@tiptap/extension-strike": {
+      "optional": true
+    },
+    "@tiptap/extension-table": {
+      "optional": true
+    },
+    "@tiptap/extension-table-cell": {
+      "optional": true
+    },
+    "@tiptap/extension-table-header": {
+      "optional": true
+    },
+    "@tiptap/extension-table-row": {
+      "optional": true
+    },
+    "@tiptap/extension-task-item": {
+      "optional": true
+    },
+    "@tiptap/extension-task-list": {
+      "optional": true
+    },
+    "@tiptap/extension-text": {
+      "optional": true
+    },
+    "@tiptap/extension-text-align": {
+      "optional": true
+    },
+    "@tiptap/extension-text-style": {
+      "optional": true
+    },
+    "@tiptap/extension-underline": {
+      "optional": true
+    },
+    "@tiptap/extension-youtube": {
+      "optional": true
+    },
+    "@tiptap/react": {
+      "optional": true
+    },
+    "date-fns": {
+      "optional": true
+    },
+    "prosemirror-state": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "browserslist": "^4.29.3",
+    "lightningcss": "^1.33.0",
+    "postcss": "^8.5.28",
+    "postcss-import": "^17.0.0",
+    "postcss-nesting": "^14.0.2",
+    "vite": "^7.2.7"
+  },
+  "scripts": {
+    "dev": "node tools/build-css.js --watch",
+    "build": "node tools/build-css.js && vite build",
+    "build:css": "node tools/build-css.js",
+    "build:utilities": "vite build",
+    "prepare": "npm run build"
+  },
+  "author": "Ben van den Ende <ben@mibdw.club>",
+  "license": "MIT",
+  "homepage": "https://nausikaa.site",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mibdw/nausikaa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mibdw/nausikaa/issues"
+  },
+  "keywords": [
+    "css",
+    "css-framework",
+    "classless",
+    "accessibility",
+    "a11y",
+    "dark-mode",
+    "e-ink"
+  ],
+  "browserslist": [
+    "chrome >= 89",
+    "edge >= 89",
+    "firefox >= 75",
+    "safari >= 12.1",
+    "ios_saf >= 12.2",
+    "and_chr >= 89",
+    "and_ff >= 75",
+    "samsung >= 15",
+    "opera >= 75"
+  ]
+}

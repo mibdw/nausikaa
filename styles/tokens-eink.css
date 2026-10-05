@@ -1,0 +1,77 @@
+/*
+ * E-ink theme: for displays that show sixteen shades of grey and redraw
+ * slowly, such as an e-reader. Choose it with <html data-theme="eink">; a
+ * device like that doesn't tell the browser what it is, so the theme is never
+ * chosen automatically.
+ *
+ * The neutrals keep their order from the light theme but are pulled apart:
+ * pure white, pure black, and only greys an e-ink display shows without
+ * mixing dots. The lightest grey is #ddd: lighter ones can't be told from
+ * white. This list comes after the dark one, so it also wins when the system
+ * prefers a dark appearance.
+ */
+:root[data-theme="eink"] {
+  color-scheme: light;
+
+  --nausikaa-text: #000000;
+  --nausikaa-subtext1: #222222;
+  --nausikaa-subtext0: #333333;
+  --nausikaa-overlay2: #444444;
+  --nausikaa-overlay1: #555555;
+  --nausikaa-overlay0: #666666;
+  --nausikaa-surface2: #888888;
+  --nausikaa-surface1: #bbbbbb;
+  --nausikaa-surface0: #dddddd;
+  --nausikaa-base: #ffffff;
+  --nausikaa-mantle: #ffffff;
+  --nausikaa-crust: #999999;
+
+  --nausikaa-text-rgb: 0, 0, 0;
+  --nausikaa-subtext1-rgb: 34, 34, 34;
+  --nausikaa-subtext0-rgb: 51, 51, 51;
+  --nausikaa-overlay2-rgb: 68, 68, 68;
+  --nausikaa-overlay1-rgb: 85, 85, 85;
+  --nausikaa-overlay0-rgb: 102, 102, 102;
+  --nausikaa-surface2-rgb: 136, 136, 136;
+  --nausikaa-surface1-rgb: 187, 187, 187;
+  --nausikaa-surface0-rgb: 221, 221, 221;
+  --nausikaa-base-rgb: 255, 255, 255;
+  --nausikaa-mantle-rgb: 255, 255, 255;
+  --nausikaa-crust-rgb: 153, 153, 153;
+
+  /* The accent color: whatever is active or selected is black */
+  --nausikaa-blue3: #000000;
+
+  /* The header is white like the page; a black line sets it apart */
+  --nausikaa-header-line: var(--nausikaa-text);
+
+  /* Links are black; the underline is what makes them a link */
+  --nausikaa-link-color: #000000;
+  --nausikaa-link-line: #000000;
+  --nausikaa-link-visited: #000000;
+
+  /* Fields have a dark line; black when they are in use */
+  --nausikaa-input-line: var(--nausikaa-overlay0);
+  --nausikaa-input-line-hover: #000000;
+  --nausikaa-input-line-focus: #000000;
+  --nausikaa-input-line-active: #000000;
+  --nausikaa-input-line-error: #000000;
+  --nausikaa-input-vague: var(--nausikaa-overlay0);
+
+  --nausikaa-mark-background: #dddddd;
+  --nausikaa-mark-background-alt: #dddddd;
+  --nausikaa-chevron-hover: var(--nausikaa-icon-chevron-down);
+
+  --nausikaa-text-inverse: #ffffff;
+  --nausikaa-text-inverse-rgb: 255, 255, 255;
+
+  --nausikaa-mantle-light-3: #ffffff;
+  --nausikaa-mantle-light-4: #ffffff;
+  --nausikaa-mantle-light-5: #ffffff;
+  --nausikaa-panel-link-color: #000000;
+  --nausikaa-kbd-text: #000000;
+  --nausikaa-pagination-active-text: #ffffff;
+  --nausikaa-date-picker-today: #888888;
+  --nausikaa-date-picker-range: #000000;
+  --nausikaa-date-picker-range-text: #ffffff;
+}

@@ -1,0 +1,252 @@
+/*
+ * Containers. A color class only sets the custom properties below; the rules
+ * that use them are written once.
+ */
+.container {
+  --nausikaa-container-background: var(--nausikaa-mantle);
+  --nausikaa-container-border: var(--nausikaa-surface1);
+  --nausikaa-container-text: var(--nausikaa-text);
+  --nausikaa-container-link: var(--nausikaa-link-color);
+  --nausikaa-container-header: var(--nausikaa-text);
+
+  background-color: var(--nausikaa-container-background);
+  color: var(--nausikaa-container-text);
+  border: 1px solid var(--nausikaa-container-border);
+  margin: var(--nausikaa-paragraph-spacer) 0;
+  padding: 0 1em 1em;
+  border-radius: 6px;
+  position: relative;
+
+  a {
+    color: var(--nausikaa-container-link);
+    text-decoration: underline solid var(--nausikaa-container-link);
+
+    &:hover {
+      color: var(--nausikaa-container-text);
+      text-decoration: underline solid var(--nausikaa-container-link);
+    }
+
+    &:active {
+      color: var(--nausikaa-container-text);
+      text-decoration: underline solid var(--nausikaa-container-text);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--nausikaa-container-header);
+  }
+
+  & > main {
+    padding: 0 1em 1em;
+  }
+
+  &.browser {
+    margin-top: calc(var(--nausikaa-paragraph-spacer) + 2.9em);
+    padding: 0 0 2em;
+    border-radius: 0;
+    background-color: var(--nausikaa-base) !important;
+
+    &:before {
+      content: "";
+      display: block;
+      height: 2.9em;
+      position: absolute;
+      top: -2.9em;
+      left: -1px;
+      right: -1px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--nausikaa-surface1);
+      border-radius: 6px 6px 0 0;
+      background-color: var(--nausikaa-mantle);
+      background-image:
+        url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23eab4ae' /></svg>"),
+        url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23fbedb7' /></svg>"),
+        url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'><circle cx='.5em' cy='.5em' r='.5em' fill='%23abedc7' /></svg>");
+      background-position:
+        1em 0.9em,
+        2.7em 0.9em,
+        4.4em 0.9em;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -2.45em;
+      left: 6.5em;
+      right: 1em;
+      height: 2em;
+      padding: 0.2em 1em;
+      border: 1px solid var(--nausikaa-surface1);
+      background-color: var(--nausikaa-base);
+      border-radius: 3px;
+      cursor: text;
+    }
+
+    & > .url {
+      color: var(--nausikaa-text);
+      background-color: transparent;
+      font-family: var(--nausikaa-utility-text);
+      position: absolute;
+      top: -2.45em;
+      left: 6.5em;
+      right: 1em;
+      height: 2em;
+      padding: 0.2em 1em;
+      z-index: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: text;
+    }
+  }
+
+  &.rosewater {
+    --nausikaa-container-background: var(--nausikaa-rosewater0);
+    --nausikaa-container-border: var(--nausikaa-rosewater2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #ab4531;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.flamingo {
+    --nausikaa-container-background: var(--nausikaa-flamingo0);
+    --nausikaa-container-border: var(--nausikaa-flamingo2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #a02a2a;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.pink {
+    --nausikaa-container-background: var(--nausikaa-pink0);
+    --nausikaa-container-border: var(--nausikaa-pink2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #951873;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.mauve {
+    --nausikaa-container-background: var(--nausikaa-mauve0);
+    --nausikaa-container-border: var(--nausikaa-mauve2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #5710ad;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.red {
+    --nausikaa-container-background: var(--nausikaa-red0);
+    --nausikaa-container-border: var(--nausikaa-red2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #7c0d2c;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.maroon {
+    --nausikaa-container-background: var(--nausikaa-maroon0);
+    --nausikaa-container-border: var(--nausikaa-maroon2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #7c1a2a;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.peach {
+    --nausikaa-container-background: var(--nausikaa-peach0);
+    --nausikaa-container-border: var(--nausikaa-peach2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #873706;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.yellow {
+    --nausikaa-container-background: var(--nausikaa-yellow0);
+    --nausikaa-container-border: var(--nausikaa-yellow2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #815c0a;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.green {
+    --nausikaa-container-background: var(--nausikaa-green0);
+    --nausikaa-container-border: var(--nausikaa-green2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #215f1c;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.teal {
+    --nausikaa-container-background: var(--nausikaa-teal0);
+    --nausikaa-container-border: var(--nausikaa-teal2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #1c6659;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.sky {
+    --nausikaa-container-background: var(--nausikaa-sky0);
+    --nausikaa-container-border: var(--nausikaa-sky2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #125f6d;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.sapphire {
+    --nausikaa-container-background: var(--nausikaa-sapphire0);
+    --nausikaa-container-border: var(--nausikaa-sapphire2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #0d455e;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.blue {
+    --nausikaa-container-background: var(--nausikaa-blue0);
+    --nausikaa-container-border: var(--nausikaa-blue2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #073f9c;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.lavender {
+    --nausikaa-container-background: var(--nausikaa-lavender0);
+    --nausikaa-container-border: var(--nausikaa-lavender2);
+    --nausikaa-container-text: var(--nausikaa-ink);
+    --nausikaa-container-link: #0324f7;
+    --nausikaa-container-header: var(--nausikaa-ink);
+  }
+
+  &.gray {
+    --nausikaa-container-background: var(--nausikaa-surface0);
+    --nausikaa-container-border: var(--nausikaa-surface1);
+    --nausikaa-container-text: var(--nausikaa-text);
+    --nausikaa-container-link: var(--nausikaa-text);
+    --nausikaa-container-header: var(--nausikaa-text);
+  }
+
+  &.black {
+    --nausikaa-container-background: var(--nausikaa-aside-base);
+    --nausikaa-container-border: var(--nausikaa-aside-crust);
+    --nausikaa-container-text: var(--nausikaa-aside-text);
+    --nausikaa-container-link: var(--nausikaa-white);
+    --nausikaa-container-header: var(--nausikaa-aside-text);
+  }
+
+  &.black {
+    input,
+    select,
+    textarea {
+      background-color: var(--nausikaa-subtext1);
+      border-color: var(--nausikaa-subtext0);
+      color: white;
+    }
+
+    table tr:hover td {
+      background-color: rgba(var(--nausikaa-subtext0-rgb), 0.3);
+    }
+  }
+}

@@ -1,0 +1,329 @@
+/*
+ * Tags and badges. A color class only sets the custom properties below; the
+ * rules that use them are written once.
+ */
+.tag {
+  --nausikaa-tag-text: var(--nausikaa-text);
+  --nausikaa-tag-background: var(--nausikaa-surface1);
+  --nausikaa-tag-hover: var(--nausikaa-surface1);
+  --nausikaa-tag-icon: var(--nausikaa-subtext0);
+
+  color: var(--nausikaa-tag-text);
+  background-color: var(--nausikaa-tag-background);
+  font-family: var(--nausikaa-utility-text);
+  font-weight: 200;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0em 0.4em;
+  font-size: 0.7em;
+  line-height: 1.7em;
+  position: relative;
+  top: -0.1em;
+  text-decoration: none;
+
+  &.badge {
+    min-width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8em;
+    text-align: center;
+    border-radius: 0.9em 0.9em;
+    padding: 0 0.3em;
+  }
+
+  & > .icon {
+    fill: var(--nausikaa-tag-icon);
+    width: 1.3em;
+    height: 1.3em;
+    transform: translateY(0.25em);
+  }
+
+  &:hover,
+  &.hover {
+    color: var(--nausikaa-tag-text);
+    background-color: var(--nausikaa-tag-hover);
+
+    & > .icon {
+      fill: var(--nausikaa-tag-text);
+    }
+  }
+
+  &:hover,
+  &.hover,
+  &:active,
+  &:visited,
+  &:focus {
+    text-decoration: none;
+  }
+
+  /* A label along the side of a block: it reads from bottom to top */
+  &.label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    top: 0;
+    padding: 0.4em 0;
+    white-space: nowrap;
+  }
+
+  &.alt {
+    --nausikaa-tag-text: var(--nausikaa-text-inverse);
+    --nausikaa-tag-background: var(--nausikaa-overlay2);
+    --nausikaa-tag-hover: var(--nausikaa-subtext0);
+    --nausikaa-tag-icon: #d9d9d9;
+  }
+
+  &.rosewater {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-rosewater3);
+    --nausikaa-tag-hover: #d77864;
+    --nausikaa-tag-icon: var(--nausikaa-rosewater2);
+  }
+
+  &.flamingo {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-flamingo3);
+    --nausikaa-tag-hover: #d86464;
+    --nausikaa-tag-icon: var(--nausikaa-flamingo2);
+  }
+
+  &.pink {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-pink3);
+    --nausikaa-tag-hover: #e760c3;
+    --nausikaa-tag-icon: var(--nausikaa-pink2);
+  }
+
+  &.mauve {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-mauve3);
+    --nausikaa-tag-hover: #7a21ed;
+    --nausikaa-tag-icon: var(--nausikaa-mauve2);
+  }
+
+  &.purple {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: #9933ff;
+    --nausikaa-tag-hover: #a64dff;
+    --nausikaa-tag-icon: #e6ccff;
+  }
+
+  &.red {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-red3);
+    --nausikaa-tag-hover: #ba0d33;
+    --nausikaa-tag-icon: var(--nausikaa-red2);
+  }
+
+  &.maroon {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-maroon3);
+    --nausikaa-tag-hover: #e32f3e;
+    --nausikaa-tag-icon: var(--nausikaa-maroon2);
+  }
+
+  &.peach {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-peach3);
+    --nausikaa-tag-hover: #ef5801;
+    --nausikaa-tag-icon: var(--nausikaa-peach2);
+  }
+
+  &.orange {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: #d35400;
+    --nausikaa-tag-hover: #e65c00;
+    --nausikaa-tag-icon: #ffa366;
+  }
+
+  &.yellow {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-yellow3);
+    --nausikaa-tag-hover: #c8801a;
+    --nausikaa-tag-icon: var(--nausikaa-yellow2);
+  }
+
+  &.green {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-green3);
+    --nausikaa-tag-hover: #388c26;
+    --nausikaa-tag-icon: var(--nausikaa-green2);
+  }
+
+  &.teal {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-teal3);
+    --nausikaa-tag-hover: #147d83;
+    --nausikaa-tag-icon: var(--nausikaa-teal2);
+  }
+
+  &.sky {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-sky3);
+    --nausikaa-tag-hover: var(--nausikaa-input-line-focus);
+    --nausikaa-tag-icon: var(--nausikaa-sky2);
+  }
+
+  &.sapphire {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-sapphire3);
+    --nausikaa-tag-hover: #1c8c9f;
+    --nausikaa-tag-icon: var(--nausikaa-sapphire2);
+  }
+
+  &.blue {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-blue3);
+    --nausikaa-tag-hover: #0b57ef;
+    --nausikaa-tag-icon: var(--nausikaa-blue2);
+  }
+
+  &.lavender {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-lavender3);
+    --nausikaa-tag-hover: #5972fd;
+    --nausikaa-tag-icon: var(--nausikaa-lavender2);
+  }
+
+  &.navy {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: navy;
+    --nausikaa-tag-hover: #00009a;
+    --nausikaa-tag-icon: #8080ff;
+  }
+
+  &.olive {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: olive;
+    --nausikaa-tag-hover: #9a9a00;
+    --nausikaa-tag-icon: #cdcd00;
+  }
+
+  &.salmon {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: salmon;
+    --nausikaa-tag-hover: #fb968b;
+    --nausikaa-tag-icon: #fdc3bc;
+  }
+
+  &.magenta {
+    --nausikaa-tag-text: var(--nausikaa-ink);
+    --nausikaa-tag-background: var(--nausikaa-magenta);
+    --nausikaa-tag-hover: #ff1aff;
+    --nausikaa-tag-icon: #ffb3ff;
+  }
+
+  &.cyan {
+    --nausikaa-tag-text: var(--nausikaa-black);
+    --nausikaa-tag-background: aqua;
+    --nausikaa-tag-hover: #1affff;
+    --nausikaa-tag-icon: #00b3b3;
+  }
+
+  &.lightgray {
+    --nausikaa-tag-text: var(--nausikaa-black);
+    --nausikaa-tag-background: var(--nausikaa-lightgray);
+    --nausikaa-tag-hover: #d9d9d9;
+    --nausikaa-tag-icon: #8c8c8c;
+  }
+
+  &.darkgray {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-darkgray);
+    --nausikaa-tag-hover: #626262;
+    --nausikaa-tag-icon: #959595;
+  }
+
+  &.chocolate {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-chocolate);
+    --nausikaa-tag-hover: #804000;
+    --nausikaa-tag-icon: #b35900;
+  }
+
+  &.black {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-black);
+    --nausikaa-tag-hover: #222234;
+    --nausikaa-tag-icon: #8989b3;
+  }
+
+  &.forest {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-forest);
+    --nausikaa-tag-hover: #9a9a00;
+    --nausikaa-tag-icon: #00b895;
+  }
+
+  &.royal {
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: var(--nausikaa-royal);
+    --nausikaa-tag-hover: #006caa;
+    --nausikaa-tag-icon: #008ddd;
+  }
+
+  &.lemon {
+    --nausikaa-tag-text: var(--nausikaa-black);
+    --nausikaa-tag-background: var(--nausikaa-lemon);
+    --nausikaa-tag-hover: #ffff80;
+    --nausikaa-tag-icon: #cccc00;
+  }
+}
+
+h2 .tag {
+  font-size: 1.25rem;
+  border-radius: 6px;
+}
+
+h3 .tag {
+  font-size: 1.25rem;
+  border-radius: 5px;
+}
+
+h4 .tag {
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+h5 .tag {
+  font-size: 0.7rem;
+}
+
+h6 .tag {
+  font-size: 0.7rem;
+  line-height: 1.7em;
+}
+
+a.tag {
+  cursor: pointer;
+}
+
+/* A container colors its links; a tag that is a link keeps its own colors */
+.container a.tag,
+.container a.tag:hover,
+.container a.tag:active {
+  color: var(--nausikaa-tag-text);
+  text-decoration: none;
+  -webkit-text-decoration: none;
+}
+
+/* A block with a label along its left side: the label is the first child,
+   everything else goes next to it */
+.with-label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 0.8em;
+  align-items: start;
+
+  & > * {
+    grid-column: 2 / 3;
+    min-width: 0;
+  }
+
+  & > .tag.label {
+    grid-column: 1 / 2;
+    grid-row: 1 / span 20;
+  }
+
+  & > *:nth-child(2) {
+    margin-top: 0;
+  }
+}

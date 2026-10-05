@@ -1,0 +1,182 @@
+/*
+ * Notifications. A color class only sets the custom properties below; the
+ * rules that use them are written once.
+ */
+.notification {
+  --nausikaa-notification-background: var(--nausikaa-overlay2);
+  --nausikaa-notification-border: var(--nausikaa-subtext0);
+  --nausikaa-notification-text: var(--nausikaa-text-inverse);
+  --nausikaa-notification-header: var(--nausikaa-text-inverse);
+  --nausikaa-notification-icon: rgba(var(--nausikaa-text-inverse-rgb), 0.6);
+
+  background-color: var(--nausikaa-notification-background);
+  color: var(--nausikaa-notification-text);
+  border: 1px solid var(--nausikaa-notification-border);
+  margin: var(--nausikaa-paragraph-spacer) 0;
+  padding: 0 4rem 0 2rem;
+  border-radius: 6px;
+  position: relative;
+  overflow: auto;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--nausikaa-notification-header);
+  }
+
+  & > svg.icon {
+    fill: var(--nausikaa-notification-icon);
+    width: 4em;
+    height: 4em;
+    float: left;
+    margin: 1em 1em 1em 0;
+  }
+
+  .control.close {
+    cursor: pointer;
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+
+    svg {
+      fill: var(--nausikaa-notification-icon);
+      width: 1.7rem;
+      height: 1.7rem;
+    }
+
+    &:hover svg,
+    &:focus svg {
+      fill: var(--nausikaa-notification-header);
+    }
+  }
+
+  &.sticky {
+    position: relative;
+    border-width: 0 0 1px 0;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  &.rosewater {
+    --nausikaa-notification-background: var(--nausikaa-rosewater3);
+    --nausikaa-notification-border: #d77864;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.flamingo {
+    --nausikaa-notification-background: var(--nausikaa-flamingo3);
+    --nausikaa-notification-border: #d86464;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.pink {
+    --nausikaa-notification-background: var(--nausikaa-pink3);
+    --nausikaa-notification-border: #e760c3;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.mauve {
+    --nausikaa-notification-background: var(--nausikaa-mauve3);
+    --nausikaa-notification-border: #7a21ed;
+    --nausikaa-notification-text: var(--nausikaa-white);
+    --nausikaa-notification-header: var(--nausikaa-white);
+    --nausikaa-notification-icon: rgba(255, 255, 255, 0.6);
+  }
+
+  &.red {
+    --nausikaa-notification-background: var(--nausikaa-red3);
+    --nausikaa-notification-border: #ba0d33;
+    --nausikaa-notification-text: var(--nausikaa-white);
+    --nausikaa-notification-header: var(--nausikaa-white);
+    --nausikaa-notification-icon: rgba(255, 255, 255, 0.6);
+  }
+
+  &.maroon {
+    --nausikaa-notification-background: var(--nausikaa-maroon3);
+    --nausikaa-notification-border: #e32f3e;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.peach {
+    --nausikaa-notification-background: var(--nausikaa-peach3);
+    --nausikaa-notification-border: #ef5801;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.yellow {
+    --nausikaa-notification-background: var(--nausikaa-yellow3);
+    --nausikaa-notification-border: #c8801a;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.green {
+    --nausikaa-notification-background: var(--nausikaa-green3);
+    --nausikaa-notification-border: #388c26;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.teal {
+    --nausikaa-notification-background: var(--nausikaa-teal3);
+    --nausikaa-notification-border: #147d83;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.sky {
+    --nausikaa-notification-background: var(--nausikaa-sky3);
+    --nausikaa-notification-border: var(--nausikaa-input-line-focus);
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.sapphire {
+    --nausikaa-notification-background: var(--nausikaa-sapphire3);
+    --nausikaa-notification-border: #1c8c9f;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.blue {
+    --nausikaa-notification-background: var(--nausikaa-blue3);
+    --nausikaa-notification-border: #0b57ef;
+    --nausikaa-notification-text: var(--nausikaa-white);
+    --nausikaa-notification-header: var(--nausikaa-white);
+    --nausikaa-notification-icon: rgba(255, 255, 255, 0.6);
+  }
+
+  &.lavender {
+    --nausikaa-notification-background: var(--nausikaa-lavender3);
+    --nausikaa-notification-border: #5972fd;
+    --nausikaa-notification-text: var(--nausikaa-ink);
+    --nausikaa-notification-header: var(--nausikaa-ink);
+    --nausikaa-notification-icon: rgba(34, 34, 34, 0.6);
+  }
+
+  &.gray {
+    --nausikaa-notification-background: var(--nausikaa-subtext0);
+    --nausikaa-notification-border: var(--nausikaa-subtext1);
+    --nausikaa-notification-text: var(--nausikaa-text-inverse);
+    --nausikaa-notification-header: var(--nausikaa-text-inverse);
+    --nausikaa-notification-icon: rgba(var(--nausikaa-text-inverse-rgb), 0.6);
+  }
+}

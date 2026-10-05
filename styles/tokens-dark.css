@@ -1,0 +1,107 @@
+/*
+ * Dark theme: overrides the neutral tokens from tokens.css.
+ *
+ * The dark values apply when the visitor's system prefers a dark appearance
+ * and the page doesn't ask for the light theme, or when the page asks for
+ * the dark theme with <html data-theme="dark">. CSS can't combine a media
+ * query and an attribute in one selector, so the values are listed twice;
+ * the build checks that both lists are identical.
+ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --nausikaa-text: #ffffff;
+    --nausikaa-subtext1: #dddddd;
+    --nausikaa-subtext0: #cccccc;
+    --nausikaa-overlay2: #b4b4b4;
+    --nausikaa-overlay1: #9b9b9b;
+    --nausikaa-overlay0: #838383;
+    --nausikaa-surface2: #6b6b6b;
+    --nausikaa-surface1: #535353;
+    --nausikaa-surface0: #3a3a3a;
+    --nausikaa-base: #222222;
+    --nausikaa-mantle: #1a1a1a;
+    --nausikaa-crust: #111111;
+
+    --nausikaa-text-rgb: 255, 255, 255;
+    --nausikaa-subtext1-rgb: 221, 221, 221;
+    --nausikaa-subtext0-rgb: 204, 204, 204;
+    --nausikaa-overlay2-rgb: 180, 180, 180;
+    --nausikaa-overlay1-rgb: 155, 155, 155;
+    --nausikaa-overlay0-rgb: 131, 131, 131;
+    --nausikaa-surface2-rgb: 107, 107, 107;
+    --nausikaa-surface1-rgb: 83, 83, 83;
+    --nausikaa-surface0-rgb: 58, 58, 58;
+    --nausikaa-base-rgb: 34, 34, 34;
+    --nausikaa-mantle-rgb: 26, 26, 26;
+    --nausikaa-crust-rgb: 17, 17, 17;
+
+    /* A lighter link blue that stays readable on the dark background */
+    --nausikaa-link-color: #598ef8;
+
+    /* The opposite of --nausikaa-text: for text on a neutral mid-tone background */
+    --nausikaa-text-inverse: #222222;
+    --nausikaa-text-inverse-rgb: 34, 34, 34;
+
+    /* Component colors that differ per theme */
+    --nausikaa-mantle-light-3: #222222;
+    --nausikaa-mantle-light-4: #242424;
+    --nausikaa-mantle-light-5: #272727;
+    --nausikaa-panel-link-color: #80a8f9;
+    --nausikaa-kbd-text: #222222;
+    --nausikaa-pagination-active-text: #ffffff;
+    --nausikaa-date-picker-today: #ffffff;
+    --nausikaa-date-picker-range: #89affa;
+    --nausikaa-date-picker-range-text: #222222;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --nausikaa-text: #ffffff;
+  --nausikaa-subtext1: #dddddd;
+  --nausikaa-subtext0: #cccccc;
+  --nausikaa-overlay2: #b4b4b4;
+  --nausikaa-overlay1: #9b9b9b;
+  --nausikaa-overlay0: #838383;
+  --nausikaa-surface2: #6b6b6b;
+  --nausikaa-surface1: #535353;
+  --nausikaa-surface0: #3a3a3a;
+  --nausikaa-base: #222222;
+  --nausikaa-mantle: #1a1a1a;
+  --nausikaa-crust: #111111;
+
+  --nausikaa-text-rgb: 255, 255, 255;
+  --nausikaa-subtext1-rgb: 221, 221, 221;
+  --nausikaa-subtext0-rgb: 204, 204, 204;
+  --nausikaa-overlay2-rgb: 180, 180, 180;
+  --nausikaa-overlay1-rgb: 155, 155, 155;
+  --nausikaa-overlay0-rgb: 131, 131, 131;
+  --nausikaa-surface2-rgb: 107, 107, 107;
+  --nausikaa-surface1-rgb: 83, 83, 83;
+  --nausikaa-surface0-rgb: 58, 58, 58;
+  --nausikaa-base-rgb: 34, 34, 34;
+  --nausikaa-mantle-rgb: 26, 26, 26;
+  --nausikaa-crust-rgb: 17, 17, 17;
+
+  /* A lighter link blue that stays readable on the dark background */
+  --nausikaa-link-color: #598ef8;
+
+  /* The opposite of --nausikaa-text: for text on a neutral mid-tone background */
+  --nausikaa-text-inverse: #222222;
+  --nausikaa-text-inverse-rgb: 34, 34, 34;
+
+  /* Component colors that differ per theme */
+  --nausikaa-mantle-light-3: #222222;
+  --nausikaa-mantle-light-4: #242424;
+  --nausikaa-mantle-light-5: #272727;
+  --nausikaa-panel-link-color: #80a8f9;
+  --nausikaa-kbd-text: #222222;
+  --nausikaa-pagination-active-text: #ffffff;
+  --nausikaa-date-picker-today: #ffffff;
+  --nausikaa-date-picker-range: #89affa;
+  --nausikaa-date-picker-range-text: #222222;
+}

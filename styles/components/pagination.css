@@ -1,0 +1,128 @@
+
+.pagination {
+  list-style-type: none;
+  display: inline-block;
+  font-family: var(--nausikaa-utility-text);
+  margin: 0 0.4rem 0.4rem 0;
+  padding: 0;
+
+  & > li {
+    display: inline-block;
+
+    & > *:not(.panel) {
+      display: block;
+      background-color: var(--nausikaa-base);
+      border-width: 1px 0 1px 1px;
+      border-style: solid;
+      border-color: var(--nausikaa-overlay0);
+      height: var(--nausikaa-input-height);
+      line-height: var(--nausikaa-input-height);
+      color: var(--nausikaa-link-color);
+      padding: 0 1em;
+      margin: 0 -4px 0 0;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:disabled {
+        color: var(--nausikaa-subtext0);
+        background-color: var(--nausikaa-input-background-disabled);
+      }
+    }
+
+    &:first-child > * {
+      border-radius: 6px 0 0 6px;
+    }
+
+    &:last-child > * {
+      border-radius: 0 6px 6px 0;
+      border-width: 1px 1px 1px 1px;
+    }
+
+    &:first-child:last-child > * {
+      border-radius: 6px;
+    }
+
+    & > a:hover,
+    & > a.hover,
+    & > a:focus,
+    &.focus > a {
+      background-color: var(--nausikaa-surface1);
+      color: var(--nausikaa-text);
+    }
+
+    & > a:focus {
+      outline-width: 0;
+      box-shadow: 0 0 0 2px var(--nausikaa-crust);
+    }
+
+    & > a:active,
+    &.active > * {
+      background-color: var(--nausikaa-blue3);
+      color: var(--nausikaa-pagination-active-text);
+      border-color: var(--nausikaa-blue3);
+    }
+
+    & > * svg {
+      width: 1.6em;
+      height: 1.6em;
+      fill: var(--nausikaa-blue3);
+      position: relative;
+      top: 0.3em;
+    }
+
+    & > a:hover svg,
+    &.hover > a svg {
+      fill: var(--nausikaa-text);
+    }
+
+    & > a:active svg,
+    &.active > * svg {
+      fill: var(--nausikaa-base);
+    }
+
+    & > select {
+      border-radius: 0;
+    }
+  }
+
+  &.rounded li > *,
+  &.bullets li > * {
+    border-width: 1px;
+    min-width: 2.2em;
+    height: 2.2em;
+    line-height: 2em;
+    border-radius: 1.1em 1.1em;
+    margin-left: 0.5em;
+    padding: 0 0.7em;
+    text-align: center;
+  }
+
+  &.bullets {
+    font-size: 0.5em;
+
+    & > li > * {
+      height: 2.2em;
+      width: 1em;
+      line-height: 1em;
+      margin: 0 0.5em;
+      color: transparent;
+      background-color: var(--nausikaa-surface0);
+      border-color: var(--nausikaa-surface0);
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        color: transparent;
+        background-color: var(--nausikaa-surface2);
+        border-color: var(--nausikaa-surface2);
+      }
+    }
+
+    & > li > *:active,
+    & > li.active > * {
+      color: transparent;
+      background-color: var(--nausikaa-blue3);
+      border-color: var(--nausikaa-blue3);
+    }
+  }
+}

@@ -1,0 +1,607 @@
+/*
+ * Buttons. The state rules are written once and read the --nausikaa-button-* custom
+ * properties; a color class only sets those properties.
+ */
+.button,
+.button:visited,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  animation: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--nausikaa-utility-text);
+  font-size: var(--nausikaa-button-font-size);
+  height: var(--nausikaa-button-height);
+  line-height: 2.2;
+  margin: 0 0.4rem 0.4rem 0;
+  overflow: hidden;
+  padding: var(--nausikaa-button-padding);
+  vertical-align: bottom;
+
+  /* Colors come from the --nausikaa-button-* custom properties (see tokens.css);
+     a color class below only changes those. */
+  background-color: var(--nausikaa-button-background);
+  border: 1px solid var(--nausikaa-button-line);
+  box-shadow: 0 calc(-1 * var(--nausikaa-button-shadow-size)) 0 0 var(--nausikaa-button-shadow) inset;
+  color: var(--nausikaa-button-text);
+
+  &.hover,
+  &:hover {
+    border-color: var(--nausikaa-button-line);
+    background-color: var(--nausikaa-button-hover);
+    box-shadow: 0 calc(-1 * var(--nausikaa-button-shadow-size)) 0 0 var(--nausikaa-button-shadow) inset;
+  }
+
+  &.focus,
+  &:focus,
+  input[type="radio"]:focus+&,
+  input[type="checkbox"]:focus+&,
+  input[type="file"]:focus+&,
+  input[type="radio"]:focus+&:visited,
+  input[type="checkbox"]:focus+&:visited {
+    border-color: var(--nausikaa-button-line);
+    background-color: var(--nausikaa-button-focus);
+    box-shadow: 0 calc(-1 * var(--nausikaa-button-shadow-size)) 0 0 var(--nausikaa-button-shadow) inset,
+      0 0 0 3px var(--nausikaa-button-focus-ring);
+  }
+
+  &.active,
+  &:active,
+  input:checked+&,
+  input:checked:hover+&,
+  .dropdown>&:focus,
+  .dropdown:focus-within>&,
+  .dropdown.focus-within>& {
+    border-color: var(--nausikaa-button-line);
+    background-color: var(--nausikaa-button-active);
+    box-shadow: 0 0 0 0 var(--nausikaa-button-shadow) inset, 0 0 0 0 var(--nausikaa-button-active-ring);
+  }
+
+  &:active:focus,
+  &.active:focus,
+  input:checked:focus+& {
+    background-color: var(--nausikaa-button-active);
+    box-shadow: 0 0 0 0 var(--nausikaa-button-shadow) inset, 0 0 0 2px var(--nausikaa-button-background);
+  }
+
+  &.disabled,
+  &:disabled,
+  &:disabled:hover,
+  input[type="file"]:disabled+&,
+  input[type="radio"]:disabled+&,
+  input[type="checkbox"]:disabled+& {
+    color: var(--nausikaa-button-text-disabled);
+    border-color: var(--nausikaa-button-line);
+    background-color: var(--nausikaa-button-disabled);
+    box-shadow: 0 calc(-1 * var(--nausikaa-button-shadow-size)) 0 0 var(--nausikaa-button-shadow) inset;
+
+    .icon {
+      fill: var(--nausikaa-button-text-disabled);
+    }
+  }
+
+  input[type="radio"]:checked:disabled+&,
+  input[type="checkbox"]:checked:disabled+& {
+    box-shadow: none;
+  }
+
+  &:before:active {
+    box-shadow: 0 calc(-1 * var(--nausikaa-button-shadow-size)) 0 0 var(--nausikaa-button-shadow) inset;
+  }
+
+  .icon {
+    fill: var(--nausikaa-button-text);
+  }
+
+  &.loading {
+    color: transparent;
+  }
+
+  &.loading:after {
+    background-image: var(--nausikaa-button-refresh);
+  }
+
+  &.loading.success:after {
+    background-image: var(--nausikaa-button-check);
+  }
+
+  &.hover,
+  &:hover {
+    text-decoration: none;
+  }
+
+  &.focus,
+  &:focus,
+  input[type="radio"]:focus+&,
+  input[type="checkbox"]:focus+&,
+  input[type="radio"]:focus+&:visited,
+  input[type="checkbox"]:focus+&:visited {
+    outline-width: 0;
+    text-decoration: none;
+    z-index: 888;
+  }
+
+  &.active,
+  &:active,
+  input:checked+&,
+  input:checked:hover+&,
+  .dropdown>&:focus,
+  .dropdown:focus-within>&,
+  .dropdown.focus-within>& {
+    padding: 0 1.2em 0;
+    margin-top: var(--nausikaa-button-shadow-size) !important;
+    height: calc(var(--nausikaa-button-height) - var(--nausikaa-button-shadow-size));
+    margin-top: calc(var(--nausikaa-font-size) * 0.3);
+    outline-width: 0;
+    text-decoration: none;
+    z-index: 888;
+  }
+
+  &:active:focus,
+  &.active:focus,
+  input:checked:focus+& {
+    text-decoration: none;
+  }
+
+  &.disabled,
+  &:disabled,
+  &:disabled:hover,
+  input[type="radio"]:disabled+&,
+  input[type="checkbox"]:disabled+& {
+    height: var(--nausikaa-button-height);
+    cursor: not-allowed;
+    margin-top: 0;
+
+    &:active {
+      margin-top: 0 !important;
+      padding: var(--nausikaa-button-padding);
+    }
+  }
+
+  input[type="radio"]:checked:disabled+&,
+  input[type="checkbox"]:checked:disabled+& {
+    height: calc(var(--nausikaa-button-height) - var(--nausikaa-button-shadow-size));
+  }
+
+  .icon {
+    width: 1.5em;
+    height: 1.5em;
+    position: relative;
+    top: 0.35em;
+  }
+
+  .label {
+    position: relative;
+    display: inline-block;
+    left: -0.75em;
+    padding: 0 0.75em 0 0.45em;
+    pointer-events: none;
+
+    &:before {
+      content: "";
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.15);
+      top: -2em;
+      left: -2em;
+      bottom: -2em;
+      right: 0;
+    }
+  }
+
+  &.loading {
+    color: transparent;
+    position: relative;
+
+    .label,
+    .icon {
+      opacity: 0;
+    }
+
+    &:after {
+      animation: nausikaa-loading 1.5s infinite linear;
+      background-image: var(--nausikaa-button-refresh);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      content: "";
+      display: block;
+      overflow: visible;
+      width: 1.7em;
+      height: 1.7em;
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      background-size: cover;
+      pointer-events: none;
+    }
+
+    &.success:after {
+      animation: none;
+      transform: translate(-50%, -50%);
+      width: 1.7em;
+      height: 1.7em;
+    }
+  }
+
+  &.primary {
+    --nausikaa-button-background: #2980d7;
+    --nausikaa-button-line: #184d81;
+    --nausikaa-button-shadow: #1c5997;
+    --nausikaa-button-text: #fff;
+    --nausikaa-button-hover: #2473c2;
+    --nausikaa-button-focus: #2473c2;
+    --nausikaa-button-active: #2066ac;
+    --nausikaa-button-text-disabled: #93bfeb;
+    --nausikaa-button-disabled: #2066ac;
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-white);
+    --nausikaa-button-check: var(--nausikaa-icon-check-white);
+    --nausikaa-button-focus-ring: rgba(36, 115, 194, 0.65);
+    --nausikaa-button-active-ring: rgba(32, 102, 172, 0.65);
+  }
+
+  &.secondary {
+    --nausikaa-button-background: #34495e;
+    --nausikaa-button-line: #121a21;
+    --nausikaa-button-shadow: #1b2631;
+    --nausikaa-button-text: #fff;
+    --nausikaa-button-hover: #2d4052;
+    --nausikaa-button-focus: #2d4052;
+    --nausikaa-button-active: #243342;
+    --nausikaa-button-text-disabled: #5b80a4;
+    --nausikaa-button-disabled: #243342;
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-white);
+    --nausikaa-button-check: var(--nausikaa-icon-check-white);
+    --nausikaa-button-focus-ring: rgba(45, 64, 82, 0.65);
+    --nausikaa-button-active-ring: rgba(36, 51, 66, 0.65);
+  }
+
+  &.positive {
+    --nausikaa-button-background: #28b463;
+    --nausikaa-button-line: #176939;
+    --nausikaa-button-shadow: #1c7d44;
+    --nausikaa-button-text: #fff;
+    --nausikaa-button-hover: #25a75b;
+    --nausikaa-button-focus: #25a75b;
+    --nausikaa-button-active: #209250;
+    --nausikaa-button-text-disabled: #58da8e;
+    --nausikaa-button-disabled: #209250;
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-white);
+    --nausikaa-button-check: var(--nausikaa-icon-check-white);
+    --nausikaa-button-focus-ring: rgba(37, 167, 91, 0.65);
+    --nausikaa-button-active-ring: rgba(32, 146, 80, 0.65);
+  }
+
+  &.negative {
+    --nausikaa-button-background: #cb4335;
+    --nausikaa-button-line: #7a281f;
+    --nausikaa-button-shadow: #8e2f25;
+    --nausikaa-button-text: #fff;
+    --nausikaa-button-hover: #b63d2f;
+    --nausikaa-button-focus: #b63d2f;
+    --nausikaa-button-active: #a2362a;
+    --nausikaa-button-text-disabled: #da7c71;
+    --nausikaa-button-disabled: #a2362a;
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-white);
+    --nausikaa-button-check: var(--nausikaa-icon-check-white);
+    --nausikaa-button-focus-ring: rgba(182, 61, 47, 0.65);
+    --nausikaa-button-active-ring: rgba(162, 54, 42, 0.65);
+  }
+
+  &.radiant {
+    --nausikaa-button-background: #fbc531;
+    --nausikaa-button-line: #a38020;
+    --nausikaa-button-shadow: #bc9425;
+    --nausikaa-button-text: #000;
+    --nausikaa-button-hover: #e2b12c;
+    --nausikaa-button-focus: #e2b12c;
+    --nausikaa-button-active: #bc9425;
+    --nausikaa-button-text-disabled: rgba(0, 0, 0, 0.4);
+    --nausikaa-button-disabled: #bc9425;
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(226, 177, 44, 0.65);
+    --nausikaa-button-active-ring: rgba(188, 148, 37, 0.65);
+  }
+
+  &.midnight {
+    --nausikaa-button-background: #333333;
+    --nausikaa-button-line: #000000;
+    --nausikaa-button-shadow: rgba(0, 0, 0, 0.8);
+    --nausikaa-button-text: #fff;
+    --nausikaa-button-hover: #111111;
+    --nausikaa-button-focus: #111111;
+    --nausikaa-button-active: #000000;
+    --nausikaa-button-text-disabled: rgba(255, 255, 255, 0.4);
+    --nausikaa-button-disabled: #000000;
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-white);
+    --nausikaa-button-check: var(--nausikaa-icon-check-white);
+    --nausikaa-button-focus-ring: rgba(17, 17, 17, 0.65);
+    --nausikaa-button-active-ring: rgba(0, 0, 0, 0.65);
+  }
+
+  &.rosewater {
+    --nausikaa-button-background: var(--nausikaa-rosewater0);
+    --nausikaa-button-line: var(--nausikaa-rosewater3);
+    --nausikaa-button-shadow: rgba(220, 138, 120, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-rosewater2);
+    --nausikaa-button-focus: var(--nausikaa-rosewater2);
+    --nausikaa-button-active: var(--nausikaa-rosewater3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-rosewater3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(242, 213, 207, 0.65);
+    --nausikaa-button-active-ring: rgba(220, 138, 120, 0.65);
+  }
+
+  &.flamingo {
+    --nausikaa-button-background: var(--nausikaa-flamingo0);
+    --nausikaa-button-line: var(--nausikaa-flamingo3);
+    --nausikaa-button-shadow: rgba(221, 120, 120, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-flamingo2);
+    --nausikaa-button-focus: var(--nausikaa-flamingo2);
+    --nausikaa-button-active: var(--nausikaa-flamingo3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-flamingo3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(238, 190, 190, 0.65);
+    --nausikaa-button-active-ring: rgba(221, 120, 120, 0.65);
+  }
+
+  &.pink {
+    --nausikaa-button-background: var(--nausikaa-pink0);
+    --nausikaa-button-line: var(--nausikaa-pink3);
+    --nausikaa-button-shadow: rgba(234, 118, 203, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-pink2);
+    --nausikaa-button-focus: var(--nausikaa-pink2);
+    --nausikaa-button-active: var(--nausikaa-pink3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-pink3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(244, 184, 228, 0.65);
+    --nausikaa-button-active-ring: rgba(234, 118, 203, 0.65);
+  }
+
+  &.mauve {
+    --nausikaa-button-background: var(--nausikaa-mauve0);
+    --nausikaa-button-line: var(--nausikaa-mauve3);
+    --nausikaa-button-shadow: rgba(136, 57, 239, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-mauve2);
+    --nausikaa-button-focus: var(--nausikaa-mauve2);
+    --nausikaa-button-active: var(--nausikaa-mauve3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-mauve3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(202, 158, 230, 0.65);
+    --nausikaa-button-active-ring: rgba(136, 57, 239, 0.65);
+  }
+
+  &.red {
+    --nausikaa-button-background: var(--nausikaa-red0);
+    --nausikaa-button-line: var(--nausikaa-red3);
+    --nausikaa-button-shadow: rgba(210, 15, 57, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-red2);
+    --nausikaa-button-focus: var(--nausikaa-red2);
+    --nausikaa-button-active: var(--nausikaa-red3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-red3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(231, 130, 132, 0.65);
+    --nausikaa-button-active-ring: rgba(210, 15, 57, 0.65);
+  }
+
+  &.maroon {
+    --nausikaa-button-background: var(--nausikaa-maroon0);
+    --nausikaa-button-line: var(--nausikaa-maroon3);
+    --nausikaa-button-shadow: rgba(230, 69, 83, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-maroon2);
+    --nausikaa-button-focus: var(--nausikaa-maroon2);
+    --nausikaa-button-active: var(--nausikaa-maroon3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-maroon3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(234, 153, 156, 0.65);
+    --nausikaa-button-active-ring: rgba(230, 69, 83, 0.65);
+  }
+
+  &.peach {
+    --nausikaa-button-background: var(--nausikaa-peach0);
+    --nausikaa-button-line: var(--nausikaa-peach3);
+    --nausikaa-button-shadow: rgba(254, 100, 11, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-peach2);
+    --nausikaa-button-focus: var(--nausikaa-peach2);
+    --nausikaa-button-active: var(--nausikaa-peach3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-peach3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(239, 159, 118, 0.65);
+    --nausikaa-button-active-ring: rgba(254, 100, 11, 0.65);
+  }
+
+  &.yellow {
+    --nausikaa-button-background: var(--nausikaa-yellow0);
+    --nausikaa-button-line: var(--nausikaa-yellow3);
+    --nausikaa-button-shadow: rgba(223, 142, 29, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-yellow2);
+    --nausikaa-button-focus: var(--nausikaa-yellow2);
+    --nausikaa-button-active: var(--nausikaa-yellow3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-yellow3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(229, 200, 144, 0.65);
+    --nausikaa-button-active-ring: rgba(223, 142, 29, 0.65);
+  }
+
+  &.green {
+    --nausikaa-button-background: var(--nausikaa-green0);
+    --nausikaa-button-line: var(--nausikaa-green3);
+    --nausikaa-button-shadow: rgba(64, 160, 43, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-green2);
+    --nausikaa-button-focus: var(--nausikaa-green2);
+    --nausikaa-button-active: var(--nausikaa-green3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-green3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(166, 209, 137, 0.65);
+    --nausikaa-button-active-ring: rgba(64, 160, 43, 0.65);
+  }
+
+  &.teal {
+    --nausikaa-button-background: var(--nausikaa-teal0);
+    --nausikaa-button-line: var(--nausikaa-teal3);
+    --nausikaa-button-shadow: rgba(23, 146, 153, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-teal2);
+    --nausikaa-button-focus: var(--nausikaa-teal2);
+    --nausikaa-button-active: var(--nausikaa-teal3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-teal3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(129, 200, 190, 0.65);
+    --nausikaa-button-active-ring: rgba(23, 146, 153, 0.65);
+  }
+
+  &.sky {
+    --nausikaa-button-background: var(--nausikaa-sky0);
+    --nausikaa-button-line: var(--nausikaa-sky3);
+    --nausikaa-button-shadow: rgba(4, 165, 229, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-sky2);
+    --nausikaa-button-focus: var(--nausikaa-sky2);
+    --nausikaa-button-active: var(--nausikaa-sky3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-sky3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(153, 209, 219, 0.65);
+    --nausikaa-button-active-ring: rgba(4, 165, 229, 0.65);
+  }
+
+  &.sapphire {
+    --nausikaa-button-background: var(--nausikaa-sapphire0);
+    --nausikaa-button-line: var(--nausikaa-sapphire3);
+    --nausikaa-button-shadow: rgba(32, 159, 181, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-sapphire2);
+    --nausikaa-button-focus: var(--nausikaa-sapphire2);
+    --nausikaa-button-active: var(--nausikaa-sapphire3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-sapphire3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(133, 193, 220, 0.65);
+    --nausikaa-button-active-ring: rgba(32, 159, 181, 0.65);
+  }
+
+  &.blue {
+    --nausikaa-button-background: var(--nausikaa-blue0);
+    --nausikaa-button-line: var(--nausikaa-blue3);
+    --nausikaa-button-shadow: rgba(30, 102, 245, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-blue2);
+    --nausikaa-button-focus: var(--nausikaa-blue2);
+    --nausikaa-button-active: var(--nausikaa-blue3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-blue3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(140, 170, 238, 0.65);
+    --nausikaa-button-active-ring: rgba(30, 102, 245, 0.65);
+  }
+
+  &.lavender {
+    --nausikaa-button-background: var(--nausikaa-lavender0);
+    --nausikaa-button-line: var(--nausikaa-lavender3);
+    --nausikaa-button-shadow: rgba(114, 135, 253, 0.8);
+    --nausikaa-button-text: var(--nausikaa-black);
+    --nausikaa-button-hover: var(--nausikaa-lavender2);
+    --nausikaa-button-focus: var(--nausikaa-lavender2);
+    --nausikaa-button-active: var(--nausikaa-lavender3);
+    --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
+    --nausikaa-button-disabled: var(--nausikaa-lavender3);
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+    --nausikaa-button-focus-ring: rgba(186, 187, 241, 0.65);
+    --nausikaa-button-active-ring: rgba(114, 135, 253, 0.65);
+  }
+
+  &.mini {
+    font-size: 0.65em;
+  }
+
+  &.small {
+    font-size: 0.75em;
+  }
+
+  &.medium {
+    font-size: 0.82em;
+  }
+
+  &.large {
+    font-size: 1.2em;
+  }
+
+  &.big {
+    font-size: 1.4em;
+  }
+
+  &.huge {
+    font-size: 1.7em;
+  }
+
+  &.massive {
+    font-size: 2em;
+  }
+}
+
+button.link,
+button.link:hover,
+button.link.hover,
+button.link:focus,
+button.link.focus,
+*:focus-within button.link,
+button.link.focus,
+button.link:active,
+button.link.active {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  margin-top: 0 !important;
+  background-color: transparent;
+  border-width: 0;
+  box-shadow: none;
+  height: inherit;
+  line-height: inherit;
+  border-radius: 0;
+}
+
+@keyframes nausikaa-loading {
+  0% {
+    transform: translate(-50%, -50%) scaleX(-1) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scaleX(-1) rotate(-359deg);
+  }
+}

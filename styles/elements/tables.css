@@ -1,0 +1,76 @@
+
+table,
+.table {
+  text-align: justify;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+  font-family: var(--nausikaa-utility-text);
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.5em;
+    vertical-align: top;
+    border-top: 1px solid var(--nausikaa-crust);
+
+    & > p {
+      margin: 0;
+    }
+  }
+
+  tr:hover > td {
+    background-color: var(--nausikaa-mantle);
+  }
+
+  thead th {
+    border-top-width: 0;
+    border-bottom: 2px solid var(--nausikaa-crust);
+  }
+
+  tfoot th {
+    border-top: 2px solid var(--nausikaa-crust);
+  }
+
+  &.bordered {
+    td,
+    th {
+      border: 1px solid var(--nausikaa-crust);
+    }
+
+    thead th {
+      border-bottom: 2px solid var(--nausikaa-crust);
+    }
+
+    tfoot th {
+      border-top: 2px solid var(--nausikaa-crust);
+    }
+  }
+
+  &.striped {
+    tbody tr:nth-of-type(odd) td {
+      background-color: var(--nausikaa-mantle);
+    }
+
+    tbody tr:hover:nth-of-type(even) > td {
+      background-color: var(--nausikaa-surface2);
+    }
+
+    tbody tr:hover:nth-of-type(odd) > td {
+      background-color: var(--nausikaa-surface2);
+    }
+  }
+
+  &.outlined {
+    border: 1px solid var(--nausikaa-crust);
+  }
+
+  &.dense {
+    th,
+    td {
+      padding: 0.35em 0.5em;
+    }
+  }
+}

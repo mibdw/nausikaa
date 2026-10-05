@@ -1,0 +1,378 @@
+/*
+ * E-ink theme: what an e-ink display needs besides its own colors (see
+ * tokens-eink.css). The display redraws slowly, leaves traces of what was
+ * there before, and has no pointer that hovers.
+ */
+:root[data-theme="eink"] {
+  /* Nothing moves or fades: every step in between is a redraw of its own */
+  *,
+  *:before,
+  *:after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Soft shadows and blur turn into a smear of dots. A solid black border
+     does the same job. */
+  .dropdown > .panel,
+  .suggestions > .panel,
+  dialog,
+  .notification.sticky {
+    box-shadow: none;
+    border: 2px solid var(--nausikaa-text);
+  }
+
+  dialog::backdrop,
+  dialog + .backdrop {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: none;
+  }
+
+  /* The veil is plain white, so what is underneath doesn't shine through
+     in grey */
+  .fetching.active {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* A spinner can't turn: it shows as a still, open circle */
+  .spinner circle {
+    stroke: var(--nausikaa-text);
+    stroke-dasharray: 89, 200;
+  }
+
+  /*
+   * Color classes. Colors can't be told apart on e-ink, and text on a
+   * mid-grey is hard to read. So every colored component has three looks at
+   * most: outlined (white), light (the lightest grey) and strong (black with
+   * white text). A dark color becomes strong, any other color becomes light.
+   */
+
+  /* Buttons: outlined, with a black lower edge */
+  .button,
+  button,
+  input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    --nausikaa-button-background: #fff;
+    --nausikaa-button-text: #000;
+    --nausikaa-button-text-disabled: #666;
+    --nausikaa-button-line: #000;
+    --nausikaa-button-shadow: #000;
+    --nausikaa-button-hover: #ddd;
+    --nausikaa-button-focus: #ddd;
+    --nausikaa-button-active: #bbb;
+    --nausikaa-button-disabled: #fff;
+    --nausikaa-button-focus-ring: #888;
+    --nausikaa-button-active-ring: #888;
+    --nausikaa-button-pulse-high: #fff;
+    --nausikaa-button-pulse-low: #fff;
+    --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
+    --nausikaa-button-check: var(--nausikaa-icon-check-black);
+
+    &.radiant,
+    &.rosewater,
+    &.flamingo,
+    &.pink,
+    &.mauve,
+    &.red,
+    &.maroon,
+    &.peach,
+    &.yellow,
+    &.green,
+    &.teal,
+    &.sky,
+    &.sapphire,
+    &.blue,
+    &.lavender {
+      --nausikaa-button-background: #ddd;
+      --nausikaa-button-hover: #bbb;
+      --nausikaa-button-focus: #bbb;
+      --nausikaa-button-disabled: #ddd;
+    }
+
+    &.primary,
+    &.secondary,
+    &.positive,
+    &.negative,
+    &.midnight {
+      --nausikaa-button-background: #000;
+      --nausikaa-button-text: #fff;
+      --nausikaa-button-text-disabled: #bbb;
+      --nausikaa-button-shadow: #666;
+      --nausikaa-button-hover: #333;
+      --nausikaa-button-focus: #333;
+      --nausikaa-button-active: #555;
+      --nausikaa-button-disabled: #666;
+      --nausikaa-button-refresh: var(--nausikaa-icon-refresh-white);
+      --nausikaa-button-check: var(--nausikaa-icon-check-white);
+    }
+  }
+
+  /* The icon of a loading button can't turn; keep it in the middle */
+  .button.loading:after,
+  button.loading:after {
+    transform: translate(-50%, -50%);
+  }
+
+  /* Knobs: outlined */
+  .knobs > li > a,
+  .knob {
+    --nausikaa-knob-background: #fff;
+    --nausikaa-knob-text: #000;
+    --nausikaa-knob-border: #000;
+    --nausikaa-knob-hover: #ddd;
+    --nausikaa-knob-active: #000;
+    --nausikaa-knob-active-text: #fff;
+    --nausikaa-knob-text-disabled: #888;
+  }
+
+  /* Tags: thin letters break up on e-ink, and an outline replaces the fill */
+  .tag {
+    --nausikaa-tag-text: #000;
+    --nausikaa-tag-background: #fff;
+    --nausikaa-tag-hover: #ddd;
+    --nausikaa-tag-icon: #000;
+
+    font-weight: 400;
+    box-shadow: 0 0 0 1px #000 inset;
+
+    &.radiant,
+    &.rosewater,
+    &.flamingo,
+    &.pink,
+    &.peach,
+    &.orange,
+    &.yellow,
+    &.green,
+    &.sky,
+    &.sapphire,
+    &.lavender,
+    &.olive,
+    &.salmon,
+    &.magenta,
+    &.cyan,
+    &.lightgray,
+    &.lemon,
+    &.gray {
+      --nausikaa-tag-background: #ddd;
+      --nausikaa-tag-hover: #bbb;
+    }
+
+    &.primary,
+    &.secondary,
+    &.positive,
+    &.negative,
+    &.midnight,
+    &.mauve,
+    &.purple,
+    &.red,
+    &.maroon,
+    &.teal,
+    &.blue,
+    &.navy,
+    &.darkgray,
+    &.chocolate,
+    &.black,
+    &.forest,
+    &.royal,
+    &.alt {
+      --nausikaa-tag-text: #fff;
+      --nausikaa-tag-background: #000;
+      --nausikaa-tag-hover: #333;
+      --nausikaa-tag-icon: #fff;
+    }
+  }
+
+  /* Panels: white with a black border; the active item is black */
+  .panel {
+    --nausikaa-panel-background: #fff;
+    --nausikaa-panel-border: #000;
+    --nausikaa-panel-link: #000;
+    --nausikaa-panel-header: #000;
+    --nausikaa-panel-subnav-border: #000;
+    --nausikaa-panel-subnav-link: #000;
+    --nausikaa-panel-hover: #ddd;
+    --nausikaa-panel-active: #000;
+    --nausikaa-panel-active-text: #fff;
+  }
+
+  /* Containers: white with a black border; a colored one gets a thick bar
+     on its left */
+  .container {
+    --nausikaa-container-background: #fff;
+    --nausikaa-container-border: #000;
+    --nausikaa-container-text: #000;
+    --nausikaa-container-link: #000;
+    --nausikaa-container-header: #000;
+
+    &.rosewater,
+    &.flamingo,
+    &.pink,
+    &.mauve,
+    &.red,
+    &.maroon,
+    &.peach,
+    &.yellow,
+    &.green,
+    &.teal,
+    &.sky,
+    &.sapphire,
+    &.blue,
+    &.lavender,
+    &.gray {
+      box-shadow: 5px 0 0 #000 inset;
+    }
+
+    &.black {
+      --nausikaa-container-background: #000;
+      --nausikaa-container-text: #fff;
+      --nausikaa-container-link: #fff;
+      --nausikaa-container-header: #fff;
+    }
+  }
+
+  /* Notifications: black, whatever their color */
+  .notification {
+    --nausikaa-notification-background: #000;
+    --nausikaa-notification-border: #000;
+    --nausikaa-notification-text: #fff;
+    --nausikaa-notification-header: #fff;
+    --nausikaa-notification-icon: #fff;
+
+    a {
+      color: #fff;
+      text-decoration: underline solid #fff;
+    }
+  }
+
+  /* Progress bars and tabs: black on white */
+  progress {
+    --nausikaa-progress-one: #000;
+    --nausikaa-progress-two: #000;
+  }
+
+  .tabs {
+    --nausikaa-tabs-line: #000;
+    --nausikaa-tabs-text: #000;
+  }
+
+  /* Charts: black, with two greys to tell series apart */
+  .chart,
+  .stat {
+    --nausikaa-chart-track: #ddd;
+    --nausikaa-chart-line: #000;
+  }
+
+  .chart {
+    --nausikaa-chart-color: #000;
+  }
+
+  .chart.mauve,
+  .chart .mauve,
+  .stat.mauve,
+  .chart.red,
+  .chart .red,
+  .stat.red,
+  .chart.maroon,
+  .chart .maroon,
+  .stat.maroon,
+  .chart.blue,
+  .chart .blue,
+  .stat.blue {
+    --nausikaa-chart-color: #000;
+  }
+
+  .chart.green,
+  .chart .green,
+  .stat.green,
+  .chart.peach,
+  .chart .peach,
+  .stat.peach,
+  .chart.lavender,
+  .chart .lavender,
+  .stat.lavender,
+  .chart.flamingo,
+  .chart .flamingo,
+  .stat.flamingo,
+  .chart.rosewater,
+  .chart .rosewater,
+  .stat.rosewater,
+  .chart.sapphire,
+  .chart .sapphire,
+  .stat.sapphire,
+  .chart.teal,
+  .chart .teal,
+  .stat.teal {
+    --nausikaa-chart-color: #666;
+  }
+
+  .chart.yellow,
+  .chart .yellow,
+  .stat.yellow,
+  .chart.pink,
+  .chart .pink,
+  .stat.pink,
+  .chart.sky,
+  .chart .sky,
+  .stat.sky,
+  .chart.gray,
+  .chart .gray,
+  .stat.gray {
+    --nausikaa-chart-color: #aaa;
+  }
+
+  /* Code, keys and sample output: no colored letters */
+  code {
+    color: #000;
+    background-color: #fff;
+    border-color: #666;
+  }
+
+  kbd {
+    color: #000;
+    background-color: #ddd;
+    border-color: #000;
+  }
+
+  samp {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+  }
+
+  mark {
+    box-shadow: none;
+    background-image: none;
+    background-color: #ddd;
+    color: #000;
+  }
+
+  /* Calendar: the days of the neighboring months are grey, not faded */
+  .calendar .date-number {
+    opacity: 1 !important;
+  }
+
+  .calendar .other-month .date-number {
+    color: #666;
+  }
+
+  .user-avatar > .no-avatar,
+  .group-avatar > .no-avatar {
+    background-color: #000;
+    outline-color: #000;
+  }
+
+  /* The current page in the navbar is marked with a line */
+  .navbar .knobs > li.active > a {
+    border-color: var(--nausikaa-text);
+  }
+}
+
+/* On a screen with color, show the theme the way an e-ink display would.
+   A phone has a screen with color and no pointer that hovers, just like an
+   e-reader, so the two can't be told apart: the filter is always on. */
+:root[data-theme="eink"] {
+  filter: grayscale(1);
+}

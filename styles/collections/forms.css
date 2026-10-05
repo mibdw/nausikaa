@@ -1,0 +1,289 @@
+
+/* A fieldset inside a basic form repeats the form's grid, so its labels and */
+/* fields line up with the ones outside it. */
+.basic-form,
+.basic-form > fieldset {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-row-gap: 5px;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+
+  legend {
+    grid-column: 1/17 !important;
+    width: 100%;
+    line-height: 1.3em;
+    margin: var(--nausikaa-paragraph-spacer) 0;
+    display: block;
+    font-family: var(--nausikaa-utility-text);
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-bottom: 1px dotted var(--nausikaa-crust);
+  }
+
+  & > label {
+    grid-column: 1/4;
+    line-height: var(--nausikaa-input-height);
+    padding-right: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    & > small {
+      color: var(--nausikaa-subtext0);
+    }
+  }
+
+  & > :not(label):not(legend) {
+    grid-column: 4/15;
+    width: auto;
+  }
+
+  & > input + .help,
+  & > textarea + .help,
+  & > select + .help,
+  & > .checkboxes.buttons + .help,
+  & > .radios.buttons + .help {
+    margin-top: -0.6em;
+  }
+
+  & > .checkboxes,
+  & > .radios {
+    margin-top: calc(var(--nausikaa-input-height) / 5);
+  }
+
+  & > .checkboxes.buttons,
+  & > .radios.buttons {
+    margin-top: 0;
+  }
+
+  & > .controls {
+    min-height: var(--nausikaa-button-height);
+    margin-top: 0.4rem;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    & > * {
+      margin-right: 0;
+      margin-left: 0.4rem;
+
+      &:last-child {
+        margin-left: 0;
+      }
+    }
+
+    & > .spacer {
+      flex: 100 0 auto;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 666px) {
+    & > label {
+      grid-column: 1/17;
+      line-height: 1em;
+      padding-top: 0.3em;
+      color: var(--nausikaa-subtext0);
+      overflow: visible;
+      white-space: normal;
+      text-overflow: clip;
+    }
+
+    & > :not(label):not(legend) {
+      grid-column: 1/17;
+    }
+  }
+
+  @media (min-width: 667px) and (max-width: 1023px) {
+    & > label {
+      grid-column: 1/4;
+    }
+
+    & > :not(label):not(legend) {
+      grid-column: 4/17;
+    }
+  }
+}
+
+.basic-form > fieldset {
+  grid-column: 1/17 !important;
+  min-width: 0;
+  margin: var(--nausikaa-paragraph-spacer) 0 0;
+  padding: 0;
+
+  /* Chromium ignores a legend's top margin, so the spacing between groups is */
+  /* set on the fieldset instead. */
+  & > legend {
+    margin-top: 0;
+  }
+
+  & + fieldset {
+    margin-top: calc(var(--nausikaa-paragraph-spacer) * 2);
+  }
+}
+
+/* Like the basic form, fields may be wrapped in a fieldset with a legend. */
+.login-form,
+.login-form > fieldset {
+  & > legend {
+    width: 100%;
+    line-height: 1.3em;
+    margin: 0 0 var(--nausikaa-paragraph-spacer) 0;
+    display: block;
+    font-family: var(--nausikaa-utility-text);
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-bottom: 1px dotted var(--nausikaa-crust);
+  }
+
+  & > label,
+  & > input[type="text"],
+  & > input[type="email"],
+  & > input[type="password"] {
+    display: block;
+    width: 100%;
+  }
+
+  .group {
+    display: flex;
+  }
+
+  & > input[type="text"],
+  & > input[type="email"],
+  & > input[type="password"],
+  & > .group {
+    margin-bottom: calc(var(--nausikaa-paragraph-spacer) / 2);
+  }
+}
+
+.login-form {
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  & > fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  & > .controls {
+    min-height: var(--nausikaa-button-height);
+    display: flex;
+    align-items: baseline;
+
+    & > label[for="remember"] {
+      order: 1;
+      cursor: pointer;
+
+      &:hover,
+      &:focus-within {
+        border-bottom: 1px dotted var(--nausikaa-subtext0);
+      }
+    }
+
+    & > button,
+    & > .button {
+      order: 4;
+      margin: 0 0 0 0.4rem;
+    }
+
+    & > .forgot-password {
+      order: 3;
+    }
+
+    & > .spacer {
+      flex: 100 0 auto;
+      order: 2;
+    }
+  }
+}
+
+:root {
+  --nausikaa-input-height-ig: calc(var(--nausikaa-input-height) * 1.15);
+}
+
+.integrated-label {
+  position: relative;
+  margin: 0 0 0.4rem;
+
+  & > input,
+  & > textarea,
+  & > .suggestions {
+    width: 100%;
+    height: var(--nausikaa-input-height-ig);
+    padding-top: 0.9em;
+    padding-bottom: 0.1em;
+    transition:
+      0.3s padding-top,
+      0.3s padding-bottom;
+
+    & + label {
+      position: absolute;
+      font-size: 0.75em;
+      left: 0.6rem;
+      top: 0.1rem;
+      pointer-events: none;
+      color: rgba(var(--nausikaa-text-rgb), 0.5);
+      opacity: 1;
+      transition:
+        0.3s opacity,
+        0.3s top;
+    }
+
+    &:placeholder-shown {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+
+      & + label {
+        top: 0.4em;
+        opacity: 0;
+      }
+    }
+  }
+
+  & > textarea {
+    padding-top: 1.2em;
+  }
+}
+
+.integrated-labels {
+  &.group > .integrated-label,
+  .group > .integrated-label {
+    input {
+      border-radius: 0;
+      border-right-width: 0;
+    }
+
+    &:first-child input {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    &:last-child input {
+      border-right-width: 1px;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+  }
+
+  button,
+  .button {
+    height: var(--nausikaa-input-height-ig);
+    line-height: calc(var(--nausikaa-input-height-ig) * 0.9);
+
+    &:active,
+    &.active {
+      height: calc(var(--nausikaa-input-height-ig) - var(--nausikaa-button-shadow-size));
+    }
+  }
+
+  input:checked + button,
+  input:checked + .button {
+    height: calc(var(--nausikaa-input-height-ig) - var(--nausikaa-button-shadow-size));
+  }
+
+  select {
+    height: var(--nausikaa-input-height-ig);
+    line-height: calc(var(--nausikaa-input-height-ig) * 0.9);
+    width: 100%;
+  }
+}
