@@ -1,3 +1,5 @@
+<img src="docs/logo.svg" width="96" height="96" alt="">
+
 # Nausikaä
 
 CSS building blocks for accessible websites.
@@ -48,6 +50,20 @@ Then write HTML:
 
 Classes only come in where HTML has no word for something: a color, a size, or
 a pattern such as a navbar or a product card.
+
+## What it looks like
+
+Three of the examples from the documentation, each in one of the themes. An
+order overview in the light theme:
+
+![An order overview with filters on the left and a list of orders on the right, in the light theme](docs/orders-light.png)
+
+A page of statistics in the dark theme and a work list with a form in the
+e-ink theme:
+
+| Dark | E-ink |
+| --- | --- |
+| ![A page of statistics with totals, a line chart and bar charts, in the dark theme](docs/statistics-dark.png) | ![A work list of new titles next to a form, in black on white, in the e-ink theme](docs/drafts-eink.png) |
 
 ## What is in it
 

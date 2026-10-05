@@ -29,3 +29,9 @@ These are part of `nausikaa.min.css`, so they travel with every copy of it.
 | [IBM Plex](https://github.com/IBM/plex) Sans, Serif and Mono | Loaded from Google Fonts, not in this repository | IBM | SIL Open Font License 1.1 |
 
 The stylesheet names the family but does not contain it.
+
+## Not covered by the MIT License
+
+The Nausikaä logo in `docs/logo.svg` is the identity of the project. All rights
+to it are reserved by the author. Use the stylesheet freely; please do not
+reuse the logo for another project without asking.

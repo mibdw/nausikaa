@@ -1,0 +1,31 @@
+<svg width="100" height="100" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Nausikaä</title>
+ <!-- Two houses from buildings.svg, one upright and one upside down. The colors
+      come from the page that uses the symbol, as with the buildings; on its
+      own, as the icon of the site, the logo falls back on the colors here. -->
+ <defs>
+  <symbol id="logo" viewBox="0 0 100 100">
+   <g id="logo-upright_transform" class="building house" transform="matrix(-.62513845 0 0 .5555774 41.047371 -35.849788)">
+    <g fill="var(--nausikaa-outline-fill, #000)" stroke="var(--nausikaa-outline-stroke, #000)" stroke-width="1.47807" stroke-linejoin="round">
+     <path d="m29.476 116.47-0.30596 125.41-36.94-15.447-0.30596-123.26 17.806-18.165z"/>
+     <path d="m29.17 241.88 27.946-26.706v-121.53l-27.64 22.82z"/>
+     <path d="m36.863 67.042 20.254 26.604-27.64 22.82-19.746-31.455z"/>
+    </g>
+    <path fill="var(--nausikaa-east-fill, #df8e1d)" d="m29.476 116.47-0.30596 125.41-36.94-15.447-0.30596-123.26 17.806-18.165z"/>
+    <path fill="var(--nausikaa-west-fill, #fff)" d="m29.17 241.88 27.946-26.706v-121.53l-27.64 22.82z"/>
+    <path fill="var(--nausikaa-west-top-fill, #dfdfdf)" d="m36.863 67.042 20.254 26.604-27.64 22.82-19.746-31.455z"/>
+   </g>
+   <g id="logo-upturned_transform" class="building house" transform="matrix(.62513845 0 0 -.5555774 57.310439 135.824472)">
+    <g fill="var(--nausikaa-outline-fill, #000)" stroke="var(--nausikaa-outline-stroke, #000)" stroke-width="1.47807" stroke-linejoin="round">
+     <path d="m33.651 116.99-0.30596 125.41-36.94-15.447-0.30596-123.26 17.806-18.165z"/>
+     <path d="m33.345 242.4 27.946-26.706v-121.53l-27.64 22.82z"/>
+     <path d="m41.038 67.564 20.254 26.604-27.64 22.82-19.746-31.455z"/>
+    </g>
+    <path fill="var(--nausikaa-west-fill, #fff)" d="m33.651 116.99-0.30596 125.41-36.94-15.447-0.30596-123.26 17.806-18.165z"/>
+    <path fill="var(--nausikaa-east-fill, #df8e1d)" d="m33.345 242.4 27.946-26.706v-121.53l-27.64 22.82z"/>
+    <path fill="var(--nausikaa-underside-fill, #a4a4a4)" d="m41.038 67.564 20.254 26.604-27.64 22.82-19.746-31.455z"/>
+   </g>
+  </symbol>
+ </defs>
+ <use xlink:href="#logo" width="100" height="100"/>
+</svg>
