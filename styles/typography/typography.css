@@ -7,10 +7,22 @@
   box-sizing: inherit;
 }
 
+/* What is in a <details> doesn't inherit the box model through it in every
+   browser, so the summary and the panel get it explicitly */
+details > * {
+  box-sizing: border-box;
+}
+
 html {
   box-sizing: border-box;
   font-family: var(--nausikaa-font-family);
-  scroll-behavior: smooth;
+}
+
+/* Smooth scrolling is motion too: only for those who haven't asked for less */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -34,9 +46,13 @@ hr {
   }
 }
 
+/* <u> marks text that has a note on it, such as a spelling mistake. A
+   straight underline would look like a link, so it gets a wavy one. */
 u {
-  font-weight: bold;
-  text-decoration: underline;
+  text-decoration: underline wavy var(--nausikaa-input-line-error);
+  -webkit-text-decoration: underline wavy var(--nausikaa-input-line-error);
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.15em;
 }
 
 blockquote {
@@ -60,11 +76,18 @@ blockquote {
   }
 }
 
-abbr,
-time {
+/* Only an abbreviation with a title has something to show on hover. Touch
+   and keyboard users never see that title, so write the full term out the
+   first time it is used. */
+abbr[title] {
   background-color: transparent;
   text-decoration: underline dotted var(--nausikaa-subtext0);
   cursor: help;
+}
+
+/* Browsers from before <search> treat it as an inline element */
+search {
+  display: block;
 }
 
 mark {
@@ -83,13 +106,45 @@ mark {
   );
 }
 
+/* Removed and added text. The line is through or under the text, so the
+   difference doesn't depend on the color alone. */
 del {
   text-decoration: line-through solid var(--nausikaa-input-line-error);
+  -webkit-text-decoration: line-through solid var(--nausikaa-input-line-error);
+}
+
+ins {
+  text-decoration: underline solid var(--nausikaa-ins-line);
+  -webkit-text-decoration: underline solid var(--nausikaa-ins-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+
+/* No longer accurate, but not removed by an edit: a grey line */
+s {
+  text-decoration: line-through solid var(--nausikaa-subtext0);
+  -webkit-text-decoration: line-through solid var(--nausikaa-subtext0);
+}
+
+/* The title of a work, and the term that a sentence defines */
+cite {
+  font-style: italic;
+}
+
+dfn {
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* Quotation marks come from the language of the page */
+q {
+  font-style: normal;
 }
 
 code,
 kbd,
-samp {
+samp,
+var {
   font-family: var(--nausikaa-mono-text);
   font-size: 0.9em;
   line-height: 1.1;
@@ -98,23 +153,43 @@ samp {
   white-space: nowrap;
 }
 
+/* On a narrow screen code may break, even inside a long name, or the page
+   has to scroll sideways to show it */
+@media (max-width: 666px) {
+  code {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
 code {
   color: var(--nausikaa-red3);
   background-color: var(--nausikaa-base);
   border: 1px solid var(--nausikaa-red0);
 }
 
+/* A key: the thicker bottom edge makes it look like one */
 kbd {
   color: var(--nausikaa-kbd-text);
   background-color: var(--nausikaa-lavender3);
   border: 1px solid var(--nausikaa-text);
+  border-bottom-width: 3px;
   white-space: nowrap;
 }
 
+/* A variable in code or a formula: the code font, slanted, without a box */
+var {
+  padding: 0;
+  font-style: italic;
+  white-space: normal;
+}
+
+/* Sample output looks like a terminal: dark in both themes, like <pre> */
 samp {
   color: var(--nausikaa-green1);
-  background-color: var(--nausikaa-subtext1);
-  border: 1px solid var(--nausikaa-subtext1);
+  background-color: #333333;
+  border: 1px solid #333333;
   white-space: pre-wrap;
   word-break: break-all;
   word-wrap: break-word;

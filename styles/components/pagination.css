@@ -51,11 +51,11 @@
     }
 
     & > a:focus {
-      outline-width: 0;
       box-shadow: 0 0 0 2px var(--nausikaa-crust);
     }
 
     & > a:active,
+    & > [aria-current],
     &.active > * {
       background-color: var(--nausikaa-blue3);
       color: var(--nausikaa-pagination-active-text);
@@ -76,6 +76,7 @@
     }
 
     & > a:active svg,
+    & > [aria-current] svg,
     &.active > * svg {
       fill: var(--nausikaa-base);
     }
@@ -119,6 +120,7 @@
     }
 
     & > li > *:active,
+    & > li > [aria-current],
     & > li.active > * {
       color: transparent;
       background-color: var(--nausikaa-blue3);

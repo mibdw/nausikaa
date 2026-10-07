@@ -24,7 +24,6 @@ select,
   font-size: var(--nausikaa-input-font-size);
   border: 1px solid var(--nausikaa-input-line);
   border-radius: 6px;
-  outline-width: 0;
   height: var(--nausikaa-input-height);
   line-height: var(--nausikaa-input-height);
   padding: var(--nausikaa-input-padding);
@@ -40,14 +39,12 @@ select,
   &:focus {
     border-color: var(--nausikaa-input-line-hover);
     box-shadow: 0 0 0 2px var(--nausikaa-input-line-hover) inset;
-    outline-width: 0;
   }
 
   &:active,
   &.active {
     border-color: var(--nausikaa-input-line-active);
     box-shadow: 0 0 0 2px var(--nausikaa-input-line-active) inset;
-    outline-width: 0;
   }
 
   &:disabled {
@@ -71,30 +68,31 @@ select,
   }
 
   &:invalid,
-  &.invalid {
+  &.invalid,
+  &[aria-invalid="true"] {
     border-color: var(--nausikaa-input-line-error);
 
     &:focus {
       border-color: var(--nausikaa-input-line-error);
       box-shadow: 0 0 0 2px var(--nausikaa-input-line-error) inset;
-      outline-width: 0;
     }
   }
 
-  &.invalid {
+  &.invalid,
+  &[aria-invalid="true"] {
     border-color: var(--nausikaa-input-line-error) !important;
     box-shadow: 0 0 0 2px var(--nausikaa-input-line-error) inset !important;
   }
 
   &[required] {
     border-color: var(--nausikaa-input-line);
-    outline-width: 0;
 
     &:hover {
       border-color: var(--nausikaa-input-line-hover);
 
       &:invalid,
-      &.invalid {
+      &.invalid,
+      &[aria-invalid="true"] {
         border-color: var(--nausikaa-input-line-error);
 
         &:empty {
@@ -108,7 +106,8 @@ select,
       box-shadow: 0 0 0 2px var(--nausikaa-input-line-focus) inset;
 
       &:invalid,
-      &.invalid {
+      &.invalid,
+      &[aria-invalid="true"] {
         border-color: var(--nausikaa-input-line-error);
         box-shadow: 0 0 0 2px var(--nausikaa-input-line-error) inset;
 
@@ -124,7 +123,8 @@ select,
       box-shadow: 0 0 0 2px var(--nausikaa-input-line-active) inset;
 
       &:invalid,
-      &.invalid {
+      &.invalid,
+      &[aria-invalid="true"] {
         border-color: var(--nausikaa-input-line-error);
         box-shadow: 0 0 0 2px var(--nausikaa-input-line-error) inset;
 
@@ -274,7 +274,6 @@ input[type="file"] {
       background-color: var(--nausikaa-overlay1);
       border-color: var(--nausikaa-input-line-hover);
       box-shadow: 0 0 0 2px var(--nausikaa-input-line-hover) inset;
-      outline-width: 0;
     }
   }
 }
@@ -294,7 +293,6 @@ input[type="range"] {
   padding: 0;
   vertical-align: bottom;
   cursor: pointer;
-  outline-width: 0;
 
   &::-webkit-slider-runnable-track {
     height: var(--nausikaa-range-track-height);
@@ -390,7 +388,6 @@ input[type="color"] {
   border: 1px solid var(--nausikaa-input-line);
   border-radius: 6px;
   cursor: pointer;
-  outline-width: 0;
 
   &::-webkit-color-swatch-wrapper {
     padding: 0;

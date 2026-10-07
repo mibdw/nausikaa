@@ -17,6 +17,14 @@ label {
   font-family: var(--nausikaa-utility-text);
 }
 
+/* The result of a calculation or the value of a slider. Figures of equal
+   width keep the text around it from shifting while it changes. */
+output {
+  font-family: var(--nausikaa-utility-text);
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
 .help {
   margin-top: -1em;
   color: var(--nausikaa-subtext0);

@@ -6,6 +6,7 @@
 /* TYPOGRAPHY */
 @import "typography/normalize.css";
 @import "typography/typography.css";
+@import "typography/accessibility.css";
 @import "typography/print.css";
 
 /* ELEMENTS */
@@ -58,3 +59,4 @@
 
 /* LAYOUT */
 @import "layout/responsive.css";
+@import "layout/preferences.css";

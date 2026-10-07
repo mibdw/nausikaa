@@ -15,11 +15,9 @@ a,
 
   &.focus,
   &:focus {
-    outline-width: 0;
     color: var(--nausikaa-link-active);
     text-decoration: underline solid var(--nausikaa-link-line);
     -webkit-text-decoration: underline solid var(--nausikaa-link-line);
-    outline: 1px dotted var(--nausikaa-subtext0);
   }
 
   &.active,
@@ -44,11 +42,9 @@ a,
 
     &.focus,
     &:focus {
-      outline-width: 0;
       color: var(--nausikaa-link-active);
       text-decoration: underline solid var(--nausikaa-link-visited);
       -webkit-text-decoration: underline solid var(--nausikaa-link-visited);
-      outline: 1px dotted var(--nausikaa-subtext0);
     }
 
     &.active,
@@ -71,12 +67,14 @@ a,
  * below; the rules that use them are written once.
  */
 .knobs > li > a,
+.knobs > li > .dropdown > summary,
 .knob {
   --nausikaa-knob-background: var(--nausikaa-base);
   --nausikaa-knob-text: var(--nausikaa-text);
   --nausikaa-knob-border: var(--nausikaa-surface1);
   --nausikaa-knob-hover: var(--nausikaa-surface1);
-  --nausikaa-knob-active: var(--nausikaa-overlay1);
+  /* The same grey in both themes: dark text on it reaches 4.5:1 */
+  --nausikaa-knob-active: #9b9b9b;
   --nausikaa-knob-active-text: var(--nausikaa-ink);
   --nausikaa-knob-text-disabled: rgba(var(--nausikaa-text-rgb), 0.5);
 
@@ -113,7 +111,9 @@ a,
   }
 
   &:active,
-  &.active {
+  &.active,
+  &[aria-current],
+  &[aria-pressed="true"] {
     background-color: var(--nausikaa-knob-active);
     border-color: var(--nausikaa-knob-active);
     color: var(--nausikaa-knob-active-text);
@@ -131,10 +131,10 @@ a,
   &.active {
     text-decoration: none;
     -webkit-text-decoration: none;
-    outline-width: 0;
   }
 
   &.disabled,
+  &[aria-disabled="true"],
   &:disabled {
     color: var(--nausikaa-knob-text-disabled);
     pointer-events: none;
@@ -216,8 +216,8 @@ a,
     --nausikaa-knob-text: var(--nausikaa-ink);
     --nausikaa-knob-border: var(--nausikaa-maroon3);
     --nausikaa-knob-hover: var(--nausikaa-maroon2);
-    --nausikaa-knob-active: var(--nausikaa-maroon3);
-    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-active: #d13f4c;
+    --nausikaa-knob-active-text: var(--nausikaa-white);
     --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
@@ -256,8 +256,8 @@ a,
     --nausikaa-knob-text: var(--nausikaa-ink);
     --nausikaa-knob-border: var(--nausikaa-teal3);
     --nausikaa-knob-hover: var(--nausikaa-teal2);
-    --nausikaa-knob-active: var(--nausikaa-teal3);
-    --nausikaa-knob-active-text: var(--nausikaa-ink);
+    --nausikaa-knob-active: #148087;
+    --nausikaa-knob-active-text: var(--nausikaa-white);
     --nausikaa-knob-text-disabled: rgba(34, 34, 34, 0.5);
   }
 
@@ -306,7 +306,7 @@ a,
     --nausikaa-knob-text: var(--nausikaa-text);
     --nausikaa-knob-border: var(--nausikaa-overlay0);
     --nausikaa-knob-hover: var(--nausikaa-surface2);
-    --nausikaa-knob-active: var(--nausikaa-overlay0);
+    --nausikaa-knob-active: #9b9b9b;
     --nausikaa-knob-active-text: var(--nausikaa-ink);
     --nausikaa-knob-text-disabled: rgba(var(--nausikaa-text-rgb), 0.5);
   }
@@ -320,4 +320,34 @@ a,
     --nausikaa-knob-active-text: var(--nausikaa-text-inverse);
     --nausikaa-knob-text-disabled: rgba(var(--nausikaa-text-rgb), 0.5);
   }
+}
+
+/* A knob can be a <button>, which it should be when it does something
+   rather than go somewhere. It drops the shadow and the pressed movement
+   of a button. */
+button.knob,
+button.knob:hover,
+button.knob:active,
+button.knob.active,
+button.knob[aria-pressed="true"],
+button.knob[aria-expanded="true"],
+.dropdown > button.knob:focus,
+.dropdown:focus-within > button.knob,
+.dropdown[open] > button.knob {
+  height: var(--nausikaa-input-height);
+  min-height: 0;
+  line-height: var(--nausikaa-input-height);
+  margin-top: 0 !important;
+  padding: 0 1em;
+  overflow: visible;
+  box-shadow: none;
+}
+
+/* Its icons keep the size and place they have in a knob */
+button.knob .icon {
+  position: static;
+  top: 0;
+  width: var(--nausikaa-font-size);
+  height: var(--nausikaa-font-size);
+  margin-top: 0;
 }

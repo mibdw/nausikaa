@@ -3,7 +3,7 @@ import { useCalendar } from "./calendarUtils.js";
 import { sub, format, isAfter, isSameMonth, isSameDay } from "date-fns";
 
 const CalendarDay = ({ current, day, end, eventList }) => {
-  const { setEventDetail, MAX_EVENTS_PER_DAY_MONTHLY } = useCalendar();
+  const { setEventDetail, locale, MAX_EVENTS_PER_DAY_MONTHLY } = useCalendar();
 
   const relatedEventsEnter = (slug) => {
     const relatedEvents = document.querySelectorAll(
@@ -31,137 +31,98 @@ const CalendarDay = ({ current, day, end, eventList }) => {
     }
   };
 
+  const today = isSameDay(new Date(day), new Date());
+
+  // An event is a button that opens it. The extra categories are colored
+  // strips next to it: the mouse can click them too, but for the keyboard
+  // and screen readers the button is enough.
+  const renderEvent = (event, Wrapper) => (
+    <Wrapper className="calendar-event-wrapper" key={event.slug}>
+      <button
+        type="button"
+        title={event.title}
+        className={`calendar-event calendar-event-slug-${event.slug} ${
+          event.allday ? "tag" : ""
+        } ${
+          event.categories && event.categories.length > 0
+            ? event.categories[0].color
+            : ""
+        }`}
+        onClick={() => setEventDetail(event)}
+        onMouseEnter={() => relatedEventsEnter(event.slug)}
+        onMouseLeave={() => relatedEventsLeave(event.slug)}
+      >
+        <span className="calendar-event-title">{event.title}</span>
+      </button>
+
+      {event.categories &&
+        event.categories.length > 1 &&
+        event.categories
+          .filter((_, i) => i > 0)
+          .map((cat) => (
+            <span
+              aria-hidden="true"
+              className={`calendar-event calendar-event-category-addition calendar-event-slug-${event.slug} ${
+                event.allday ? "tag" : ""
+              } ${cat.color}`}
+              key={cat.slug}
+              onClick={() => setEventDetail(event)}
+              onMouseEnter={() => relatedEventsEnter(event.slug)}
+              onMouseLeave={() => relatedEventsLeave(event.slug)}
+            ></span>
+          ))}
+    </Wrapper>
+  );
+
   return (
-    <div
+    <td
       className={`calendar-day ${
         isSameMonth(new Date(day), new Date(current))
           ? "same-month"
           : "other-month"
-      } ${isSameDay(new Date(day), new Date()) ? "today" : ""} weekday-${format(
-        new Date(day),
-        "i",
-      )} ${
+      } ${today ? "today" : ""} weekday-${format(new Date(day), "i")} ${
         isAfter(new Date(day), new Date(sub(new Date(end), { weeks: 1 })))
           ? "last-week"
           : ""
       }`}
+      aria-current={today ? "date" : undefined}
       onClick={(e) => {
         if (e.target.classList && e.target.classList.contains("calendar-day")) {
           setEventDetail("new");
         }
       }}
     >
-      <span className="date-number">{format(new Date(day), "d")}</span>
+      {/* The number of the day is also the button for a new event on it */}
+      <button
+        type="button"
+        className="control date-number"
+        aria-label={`${format(new Date(day), "d")}, ${format(new Date(day), "PPPP", { locale })}: add an event`}
+        onClick={() => setEventDetail("new")}
+      >
+        {format(new Date(day), "d")}
+      </button>
+
       {eventList &&
         eventList.length > 0 &&
         eventList
           .filter((_, i) => i < MAX_EVENTS_PER_DAY_MONTHLY)
-          .map((event) => (
-            <div className="calendar-event-wrapper" key={event.slug}>
-              <a
-                title={event.title}
-                className={`calendar-event calendar-event-slug-${event.slug} ${
-                  event.allday ? "tag" : ""
-                } ${
-                  event.categories && event.categories.length > 0
-                    ? event.categories[0].color
-                    : ""
-                }`}
-                key={format(new Date(day), "yyyy-MM-dd-") + event.slug}
-                tabIndex="0"
-                role="button"
-                onClick={() => setEventDetail(event)}
-                onMouseEnter={() => relatedEventsEnter(event.slug)}
-                onMouseLeave={() => relatedEventsLeave(event.slug)}
-              >
-                <span className="calendar-event-title">{event.title}</span>
-              </a>
-
-              {event.categories &&
-                event.categories.length > 1 &&
-                event.categories
-                  .filter((_, i) => i > 0)
-                  .map((cat) => (
-                    <a
-                      title={event.title}
-                      className={`calendar-event calendar-event-category-addition calendar-event-slug-${event.slug} ${
-                        event.allday ? "tag" : ""
-                      } ${cat.color}`}
-                      key={
-                        format(new Date(day), "yyyy-MM-dd-") +
-                        event.slug +
-                        cat.slug
-                      }
-                      tabIndex="0"
-                      role="button"
-                      onClick={() => setEventDetail(event)}
-                      onMouseEnter={() => relatedEventsEnter(event.slug)}
-                      onMouseLeave={() => relatedEventsLeave(event.slug)}
-                    ></a>
-                  ))}
-            </div>
-          ))}
+          .map((event) => renderEvent(event, "div"))}
 
       {eventList && eventList.length > MAX_EVENTS_PER_DAY_MONTHLY && (
-        <div className="more-events dropdown">
-          <a tabIndex="0" role="button" className="more-events-button">
+        <details className="more-events dropdown">
+          <summary className="more-events-button">
             +{eventList.length - MAX_EVENTS_PER_DAY_MONTHLY} more
-          </a>
+          </summary>
           <div className="panel arrow bottom center">
             <ul>
               {eventList
                 .filter((_, i) => i >= MAX_EVENTS_PER_DAY_MONTHLY)
-                .map((event) => (
-                  <li className="calendar-event-wrapper">
-                    <a
-                      title={event.title}
-                      className={`calendar-event calendar-event-slug-${event.slug} ${
-                        event.allday ? "tag" : ""
-                      } ${
-                        event.categories && event.categories.length > 0
-                          ? event.categories[0].color
-                          : ""
-                      }`}
-                      key={format(new Date(day), "yyyy-MM-dd-") + event.slug}
-                      tabIndex="0"
-                      role="button"
-                      onClick={() => setEventDetail(event)}
-                      onMouseEnter={() => relatedEventsEnter(event.slug)}
-                      onMouseLeave={() => relatedEventsLeave(event.slug)}
-                    >
-                      <span className="calendar-event-title">
-                        {event.title}
-                      </span>
-                    </a>
-
-                    {event.categories &&
-                      event.categories.length > 1 &&
-                      event.categories
-                        .filter((_, i) => i > 0)
-                        .map((cat) => (
-                          <a
-                            title={event.title}
-                            className={`calendar-event calendar-event-category-addition calendar-event-slug-${event.slug} ${
-                              event.allday ? "tag" : ""
-                            } ${cat.color}`}
-                            key={
-                              format(new Date(day), "yyyy-MM-dd-") +
-                              event.slug +
-                              cat.slug
-                            }
-                            tabIndex="0"
-                            role="button"
-                            onMouseEnter={() => relatedEventsEnter(event.slug)}
-                            onMouseLeave={() => relatedEventsLeave(event.slug)}
-                          ></a>
-                        ))}
-                  </li>
-                ))}
+                .map((event) => renderEvent(event, "li"))}
             </ul>
           </div>
-        </div>
+        </details>
       )}
-    </div>
+    </td>
   );
 };
 

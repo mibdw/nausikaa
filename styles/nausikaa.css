@@ -6,5 +6,7 @@
 @import "tokens.css";
 @import "tokens-dark.css";
 @import "tokens-eink.css";
+@import "tokens-contrast.css";
 @import "index.css";
 @import "eink.css";
+@import "contrast.css";

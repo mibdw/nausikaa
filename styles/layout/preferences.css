@@ -1,0 +1,157 @@
+/*
+ * The visitor's own settings: less motion, and the forced colors of a high
+ * contrast theme. These come last, so they win over the components.
+ */
+
+/* Less motion: animations and transitions finish at once. Only what shows
+   that something is busy keeps turning, slowly, because a spinner that
+   stands still says nothing. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .spinner svg,
+  .button.loading:after,
+  button.loading:after,
+  [aria-busy="true"]:after {
+    animation-duration: 6s !important;
+    animation-iteration-count: infinite !important;
+  }
+}
+
+/*
+ * Forced colors (Windows high contrast). The browser replaces every color
+ * with a few system colors and drops shadows. Borders, outlines and text
+ * stay, so what a color or a shadow said on its own has to be said again.
+ */
+@media (forced-colors: active) {
+  /* Icons are drawn with fill, which forced colors leaves alone: give them
+     the color of the text around them */
+  .icon,
+  .control svg,
+  .notification > svg {
+    fill: currentColor !important;
+  }
+
+  .spinner circle {
+    stroke: CanvasText !important;
+  }
+
+  /* Pressed, checked and current items were only a darker background */
+  .button.active,
+  button.active,
+  [aria-pressed="true"],
+  input:checked + .button,
+  .knob.active,
+  .knobs > li.active > a,
+  .knobs > li.active > .dropdown > summary,
+  [aria-current],
+  .tabs li.active > *,
+  .pagination > li.active > *,
+  .breadcrumbs > li.active > *,
+  .panel .active > a,
+  .panel .active > .link,
+  .panel .active > label,
+  .panel .active > summary,
+  .panel a.active {
+    forced-color-adjust: none;
+    color: HighlightText !important;
+    background-color: Highlight !important;
+    border-color: Highlight !important;
+  }
+
+  .button.disabled,
+  .knob.disabled,
+  [aria-disabled="true"] {
+    color: GrayText !important;
+    border-color: GrayText !important;
+  }
+
+  /* A field with an error was only a red border */
+  .invalid,
+  [aria-invalid="true"] {
+    border-style: dashed !important;
+    border-width: 2px !important;
+  }
+
+  /* Bars: the filled part was a background color */
+  progress,
+  meter {
+    forced-color-adjust: none;
+    background: Canvas;
+    border-color: CanvasText;
+  }
+
+  progress::-webkit-progress-value {
+    background: Highlight;
+  }
+
+  progress::-moz-progress-bar {
+    background: Highlight;
+  }
+
+  meter::-webkit-meter-optimum-value,
+  meter::-webkit-meter-suboptimum-value,
+  meter::-webkit-meter-even-less-good-value {
+    background: Highlight;
+  }
+
+  meter::-moz-meter-bar {
+    background: Highlight;
+  }
+
+  /* Bars and legend swatches are background colors, which would turn into
+     the page color and vanish. They keep their own colors, as the SVG
+     charts do, so the series can still be told apart. */
+  .chart .bar,
+  .chart.legend > li:before {
+    forced-color-adjust: none;
+  }
+
+  /* Highlighted text was only a background color */
+  mark {
+    forced-color-adjust: none;
+    color: HighlightText;
+    background: Highlight;
+    box-shadow: none;
+  }
+
+  /* Panels and popovers lose their shadow: a border keeps them apart from
+     the page */
+  .dropdown > .panel,
+  [popover],
+  dialog {
+    border: 1px solid CanvasText;
+  }
+}
+
+/*
+ * Reduced transparency. Some people find text hard to read when what is
+ * behind it shines through, or are distracted by it. Layers over the page
+ * become solid, and nothing is blurred.
+ */
+@media (prefers-reduced-transparency: reduce) {
+  dialog::backdrop,
+  dialog + .backdrop,
+  [popover]::backdrop {
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: none;
+  }
+
+  .fetching {
+    background-color: var(--nausikaa-base);
+  }
+
+  .navbar.transparent .knobs > li.active > a,
+  .navbar.transparent .knobs > li.active > .dropdown > summary,
+  .navbar.transparent .knobs > li > a[aria-current] {
+    background-color: var(--nausikaa-base);
+  }
+}
+

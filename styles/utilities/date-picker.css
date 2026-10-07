@@ -45,6 +45,8 @@
     .calendar-day:hover, .calendar-day:focus { background-color: var(--nausikaa-surface0); }
     .calendar-day.other-month { opacity: 0; pointer-events: none; }
     .calendar-day.today { font-weight: bold; background-color: var(--nausikaa-date-picker-today); }
+    /* A chosen day is a pressed button, without the movement of one */
+    .calendar-day[aria-pressed="true"] { margin-top: 0.1rem !important; height: auto; }
     .calendar-day.selected, .calendar-day.selected.today { background-color: var(--nausikaa-link-color); color: var(--nausikaa-base); }
     .calendar-day.in-range { background-color: var(--nausikaa-date-picker-range); color: var(--nausikaa-date-picker-range-text); }
     .calendar-day.selected-start { border-radius: 5px 0 0 5px; }

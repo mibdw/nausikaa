@@ -1,0 +1,95 @@
+/*
+ * What every page needs for keyboard and screen reader users: one focus
+ * style for everything, and a way to hide text from the eye only.
+ */
+
+/* One outline for everything that takes the focus. It is an outline rather
+   than a shadow, so it also shows in forced colors mode (the high contrast
+   themes of Windows), and it sits 2px outside the element, so it shows on
+   every component color. The class focus shows it in examples. */
+:focus,
+.focus {
+  outline: var(--nausikaa-focus-width) solid var(--nausikaa-focus-outline);
+  outline-offset: 2px;
+}
+
+/* Browsers that know :focus-visible show the outline for the keyboard only,
+   not after a mouse click. Older browsers drop this rule and always show
+   it. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/*
+ * Visually hidden: read out by screen readers, but not shown. For a heading
+ * or a label that the layout already makes clear to the eye.
+ *
+ * Once it gets the focus, it shows. That makes it a skip link too: put
+ * <a href="#main" class="visually-hidden">Skip to the content</a> first in
+ * the body, and it appears when someone starts pressing Tab.
+ */
+.visually-hidden:not(:focus):not(:active) {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* A skip link stays on top of the page while it has the focus */
+body > .visually-hidden:focus {
+  position: fixed;
+  top: 0.5em;
+  left: 0.5em;
+  z-index: 10000;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  background-color: var(--nausikaa-base);
+  font-family: var(--nausikaa-utility-text);
+}
+
+/*
+ * The target of a link within the page. After following a link to #part,
+ * its heading is underlined, so people who zoom in or use the keyboard see
+ * where they landed. The line stands still, so it needs no exception for
+ * reduced motion, and forced colors keep it in the color of the text.
+ */
+:target {
+  scroll-margin-top: 1rem;
+}
+
+h1:target,
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target,
+:target > h1:first-child,
+:target > h2:first-child,
+:target > h3:first-child,
+:target > h4:first-child,
+:target > h5:first-child,
+:target > h6:first-child,
+:target > header:first-child > h1,
+:target > header:first-child > h2,
+:target > header:first-child > h3,
+:target > header:first-child > h4,
+:target > header:first-child > h5,
+:target > header:first-child > h6,
+:target > hgroup:first-child > h1,
+:target > hgroup:first-child > h2,
+:target > hgroup:first-child > h3,
+:target > hgroup:first-child > h4,
+:target > hgroup:first-child > h5,
+:target > hgroup:first-child > h6 {
+  text-decoration: underline solid var(--nausikaa-focus-outline);
+  -webkit-text-decoration: underline solid var(--nausikaa-focus-outline);
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.18em;
+  text-decoration-skip-ink: none;
+}

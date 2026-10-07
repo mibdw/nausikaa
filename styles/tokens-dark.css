@@ -41,6 +41,21 @@
     /* A lighter link blue that stays readable on the dark background */
     --nausikaa-link-color: #598ef8;
 
+    /* surface2 is too faint for field borders on the dark background */
+    --nausikaa-input-line: var(--nausikaa-overlay0);
+
+    /* A pressed button is darker, so its light text stays readable */
+    --nausikaa-button-active: var(--nausikaa-surface2);
+
+    /* Lighter red and purple for text on the dark background */
+    --nausikaa-input-line-error: var(--nausikaa-red1);
+    --nausikaa-link-visited: var(--nausikaa-mauve1);
+
+    /* The meter colors of the palette are light enough on dark */
+    --nausikaa-meter-optimum: var(--nausikaa-green3);
+    --nausikaa-ins-line: var(--nausikaa-green3);
+    --nausikaa-meter-suboptimum: var(--nausikaa-yellow3);
+
     /* The opposite of --nausikaa-text: for text on a neutral mid-tone background */
     --nausikaa-text-inverse: #222222;
     --nausikaa-text-inverse-rgb: 34, 34, 34;
@@ -89,6 +104,21 @@
 
   /* A lighter link blue that stays readable on the dark background */
   --nausikaa-link-color: #598ef8;
+
+  /* surface2 is too faint for field borders on the dark background */
+  --nausikaa-input-line: var(--nausikaa-overlay0);
+
+  /* A pressed button is darker, so its light text stays readable */
+  --nausikaa-button-active: var(--nausikaa-surface2);
+
+  /* Lighter red and purple for text on the dark background */
+  --nausikaa-input-line-error: var(--nausikaa-red1);
+  --nausikaa-link-visited: var(--nausikaa-mauve1);
+
+  /* The meter colors of the palette are light enough on dark */
+  --nausikaa-meter-optimum: var(--nausikaa-green3);
+  --nausikaa-ins-line: var(--nausikaa-green3);
+  --nausikaa-meter-suboptimum: var(--nausikaa-yellow3);
 
   /* The opposite of --nausikaa-text: for text on a neutral mid-tone background */
   --nausikaa-text-inverse: #222222;

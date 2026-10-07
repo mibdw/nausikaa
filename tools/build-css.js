@@ -16,7 +16,42 @@ import { transform, browserslistToTargets, Features } from "lightningcss";
 
 const root = path.resolve(import.meta.dirname, "..");
 const targets = browserslistToTargets(browserslist(undefined, { path: root }));
-const processor = postcss([postcssImport(), postcssNesting({ edition: "2021", noIsPseudoSelector: true })]);
+// The high contrast themes apply in two ways: on their own when the system
+// asks for more contrast and the page hasn't chosen a theme, and when the
+// page chooses one with data-theme. A block written as
+// @nausikaa-contrast light|dark { ... } is written out for both ways; one
+// without light or dark applies to both themes.
+const contrastSelectors = {
+  light: { media: "(prefers-contrast: more)", chosen: ':root[data-theme="contrast-light"]' },
+  dark: {
+    media: "(prefers-contrast: more) and (prefers-color-scheme: dark)",
+    chosen: ':root[data-theme="contrast-dark"]',
+  },
+  "": {
+    media: "(prefers-contrast: more)",
+    chosen: ':root[data-theme="contrast-light"],\n:root[data-theme="contrast-dark"]',
+  },
+};
+
+const contrastThemes = () => ({
+  postcssPlugin: "nausikaa-contrast",
+  AtRule: {
+    "nausikaa-contrast": (atRule) => {
+      const scheme = contrastSelectors[atRule.params.trim()];
+      if (!scheme) throw atRule.error("@nausikaa-contrast takes light, dark or nothing");
+      const copy = (selector) => postcss.rule({ selector, nodes: atRule.nodes.map((n) => n.clone()) });
+      const automatic = postcss.atRule({ name: "media", params: scheme.media });
+      automatic.append(copy(":root:not([data-theme])"));
+      atRule.replaceWith(automatic, copy(scheme.chosen));
+    },
+  },
+});
+
+const processor = postcss([
+  postcssImport(),
+  contrastThemes(),
+  postcssNesting({ edition: "2021", noIsPseudoSelector: true }),
+]);
 
 // Selectors the oldest supported browsers don't understand. Lightning CSS
 // may introduce these when it rewrites selectors, so the build refuses them.
@@ -38,8 +73,28 @@ const checkDarkTokens = () => {
   }
 };
 
+// The high contrast lists come after the dark one and must replace all of
+// it, also when the system prefers dark and the light version is chosen.
+const checkContrastTokens = () => {
+  const values = (file, selector) => {
+    const decls = {};
+    postcss.parse(fs.readFileSync(path.join(root, "styles", file), "utf8")).walk((node) => {
+      if ((node.type === "rule" && node.selector === selector) || (node.type === "atrule" && node.params === selector)) {
+        node.walkDecls((d) => (decls[d.prop] = d.value));
+      }
+    });
+    return Object.keys(decls);
+  };
+  const dark = values("tokens-dark.css", ':root[data-theme="dark"]');
+  for (const scheme of ["light", "dark"]) {
+    const missing = dark.filter((prop) => !values("tokens-contrast.css", scheme).includes(prop));
+    if (missing.length) throw new Error(`styles/tokens-contrast.css (${scheme}) doesn't set ${missing.join(", ")}`);
+  }
+};
+
 const build = async () => {
   checkDarkTokens();
+  checkContrastTokens();
   const from = path.join(root, "styles", "nausikaa.css");
   const to = path.join(root, "dist", "nausikaa.min.css");
   const flat = await processor.process(fs.readFileSync(from, "utf8"), { from });

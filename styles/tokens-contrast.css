@@ -1,0 +1,153 @@
+/*
+ * High contrast themes: for people with low vision, and for anyone reading
+ * in bright light. Text reaches 7:1 against its background (WCAG level AAA),
+ * lines and borders are darker, and the focus outline is thicker.
+ *
+ * There is a light and a dark version. They apply on their own when the
+ * system asks for more contrast and the page hasn't chosen a theme, and can
+ * be chosen with <html data-theme="contrast-light"> or "contrast-dark".
+ * The build writes out every @nausikaa-contrast block for both ways; see
+ * tools/build-css.js.
+ *
+ * These lists come after the dark one, so they win over it. They set at
+ * least every value the dark theme sets; the build checks that.
+ */
+@nausikaa-contrast light {
+  color-scheme: light;
+
+  --nausikaa-text: #000000;
+  --nausikaa-subtext1: #1a1a1a;
+  --nausikaa-subtext0: #2b2b2b;
+  --nausikaa-overlay2: #333333;
+  --nausikaa-overlay1: #474747;
+  --nausikaa-overlay0: #595959;
+  --nausikaa-surface2: #adadad;
+  --nausikaa-surface1: #cfcfcf;
+  --nausikaa-surface0: #e6e6e6;
+  --nausikaa-base: #ffffff;
+  --nausikaa-mantle: #f2f2f2;
+  --nausikaa-crust: #8c8c8c;
+
+  --nausikaa-text-rgb: 0, 0, 0;
+  --nausikaa-subtext1-rgb: 26, 26, 26;
+  --nausikaa-subtext0-rgb: 43, 43, 43;
+  --nausikaa-overlay2-rgb: 51, 51, 51;
+  --nausikaa-overlay1-rgb: 71, 71, 71;
+  --nausikaa-overlay0-rgb: 89, 89, 89;
+  --nausikaa-surface2-rgb: 173, 173, 173;
+  --nausikaa-surface1-rgb: 207, 207, 207;
+  --nausikaa-surface0-rgb: 230, 230, 230;
+  --nausikaa-base-rgb: 255, 255, 255;
+  --nausikaa-mantle-rgb: 242, 242, 242;
+  --nausikaa-crust-rgb: 140, 140, 140;
+
+  /* The header is white like the page; a black line sets it apart */
+  --nausikaa-header-line: var(--nausikaa-text);
+
+  --nausikaa-link-color: #0037ad;
+  --nausikaa-link-line: #0037ad;
+  --nausikaa-link-visited: #5c1fa6;
+  --nausikaa-panel-link-color: #0037ad;
+
+  --nausikaa-focus-width: 3px;
+
+  /* Fields have a dark line, as dark as text when they are in use */
+  --nausikaa-input-line: var(--nausikaa-overlay0);
+  --nausikaa-input-line-hover: var(--nausikaa-text);
+  --nausikaa-input-line-focus: var(--nausikaa-text);
+  --nausikaa-input-line-active: var(--nausikaa-text);
+  --nausikaa-input-line-error: #a3001b;
+  --nausikaa-input-vague: var(--nausikaa-subtext0);
+  --nausikaa-ins-line: #1b6b2c;
+
+  --nausikaa-button-active: var(--nausikaa-surface1);
+
+  --nausikaa-meter-optimum: #1b6b2c;
+  --nausikaa-meter-suboptimum: #8a5200;
+  --nausikaa-meter-poor: #a3001b;
+
+  /* A plain yellow, without stripes */
+  --nausikaa-mark-background: #ffe066;
+  --nausikaa-mark-background-alt: #ffe066;
+
+  --nausikaa-text-inverse: #ffffff;
+  --nausikaa-text-inverse-rgb: 255, 255, 255;
+
+  --nausikaa-mantle-light-3: #ffffff;
+  --nausikaa-mantle-light-4: #f7f7f7;
+  --nausikaa-mantle-light-5: #f2f2f2;
+  --nausikaa-kbd-text: var(--nausikaa-text);
+  --nausikaa-pagination-active-text: #ffffff;
+  --nausikaa-date-picker-today: var(--nausikaa-text);
+  --nausikaa-date-picker-range: #0037ad;
+  --nausikaa-date-picker-range-text: #ffffff;
+}
+
+@nausikaa-contrast dark {
+  color-scheme: dark;
+
+  --nausikaa-text: #ffffff;
+  --nausikaa-subtext1: #f2f2f2;
+  --nausikaa-subtext0: #e0e0e0;
+  --nausikaa-overlay2: #d0d0d0;
+  --nausikaa-overlay1: #b8b8b8;
+  --nausikaa-overlay0: #a6a6a6;
+  --nausikaa-surface2: #555555;
+  --nausikaa-surface1: #3d3d3d;
+  --nausikaa-surface0: #262626;
+  --nausikaa-base: #000000;
+  --nausikaa-mantle: #0f0f0f;
+  --nausikaa-crust: #737373;
+
+  --nausikaa-text-rgb: 255, 255, 255;
+  --nausikaa-subtext1-rgb: 242, 242, 242;
+  --nausikaa-subtext0-rgb: 224, 224, 224;
+  --nausikaa-overlay2-rgb: 208, 208, 208;
+  --nausikaa-overlay1-rgb: 184, 184, 184;
+  --nausikaa-overlay0-rgb: 166, 166, 166;
+  --nausikaa-surface2-rgb: 85, 85, 85;
+  --nausikaa-surface1-rgb: 61, 61, 61;
+  --nausikaa-surface0-rgb: 38, 38, 38;
+  --nausikaa-base-rgb: 0, 0, 0;
+  --nausikaa-mantle-rgb: 15, 15, 15;
+  --nausikaa-crust-rgb: 115, 115, 115;
+
+  /* The header is black like the page; a white line sets it apart */
+  --nausikaa-header-line: var(--nausikaa-text);
+
+  --nausikaa-link-color: #9ec1ff;
+  --nausikaa-link-line: #9ec1ff;
+  --nausikaa-link-visited: #d7b8ff;
+  --nausikaa-panel-link-color: #9ec1ff;
+
+  --nausikaa-focus-width: 3px;
+
+  --nausikaa-input-line: var(--nausikaa-overlay0);
+  --nausikaa-input-line-hover: var(--nausikaa-text);
+  --nausikaa-input-line-focus: var(--nausikaa-text);
+  --nausikaa-input-line-active: var(--nausikaa-text);
+  --nausikaa-input-line-error: #ff8a9a;
+  --nausikaa-input-vague: var(--nausikaa-subtext0);
+  --nausikaa-ins-line: #6fdc8c;
+
+  --nausikaa-button-active: var(--nausikaa-surface1);
+
+  --nausikaa-meter-optimum: #6fdc8c;
+  --nausikaa-meter-suboptimum: #ffc04d;
+  --nausikaa-meter-poor: #ff8a9a;
+
+  --nausikaa-mark-background: #ffe066;
+  --nausikaa-mark-background-alt: #ffe066;
+
+  --nausikaa-text-inverse: #000000;
+  --nausikaa-text-inverse-rgb: 0, 0, 0;
+
+  --nausikaa-mantle-light-3: #0f0f0f;
+  --nausikaa-mantle-light-4: #141414;
+  --nausikaa-mantle-light-5: #1a1a1a;
+  --nausikaa-kbd-text: var(--nausikaa-text);
+  --nausikaa-pagination-active-text: #000000;
+  --nausikaa-date-picker-today: var(--nausikaa-text);
+  --nausikaa-date-picker-range: #9ec1ff;
+  --nausikaa-date-picker-range-text: #000000;
+}

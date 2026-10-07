@@ -101,7 +101,7 @@
   }
 
   &.maroon {
-    --nausikaa-notification-background: var(--nausikaa-maroon3);
+    --nausikaa-notification-background: #e95966;
     --nausikaa-notification-border: #e32f3e;
     --nausikaa-notification-text: var(--nausikaa-ink);
     --nausikaa-notification-header: var(--nausikaa-ink);
@@ -133,7 +133,7 @@
   }
 
   &.teal {
-    --nausikaa-notification-background: var(--nausikaa-teal3);
+    --nausikaa-notification-background: #25999f;
     --nausikaa-notification-border: #147d83;
     --nausikaa-notification-text: var(--nausikaa-ink);
     --nausikaa-notification-header: var(--nausikaa-ink);

@@ -29,6 +29,8 @@ const Calendar = ({
   updateEvent,
   deleteEvent,
   icons = "/images/icons.svg",
+  // A date-fns locale, for the names of the days and months
+  locale,
 }) => {
   const [period, setPeriod] = useState(new Date());
   const [periods, setPeriods] = useState([]);
@@ -126,6 +128,7 @@ const Calendar = ({
         updateEvent,
         deleteEvent,
         icons,
+        locale,
         DEFAULT_CALENDAR_VIEW,
         CALENDAR_VIEW_OPTIONS,
         MAX_EVENTS_PER_DAY_MONTHLY,

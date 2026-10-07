@@ -37,3 +37,26 @@ h5 {
 h6 {
   font-size: 1rem;
 }
+
+/* A heading with a subtitle or a tagline. Only the heading counts in the
+   outline of the page; the paragraphs belong to it. */
+hgroup {
+  display: block;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+
+  & > h1,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > h5,
+  & > h6 {
+    margin: 0;
+  }
+
+  & > p {
+    margin: 0.3em 0 0;
+    font-family: var(--nausikaa-utility-text);
+    font-size: 1.1em;
+    color: var(--nausikaa-subtext0);
+  }
+}

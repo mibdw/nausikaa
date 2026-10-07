@@ -14,11 +14,16 @@ input[type="submit"] {
   display: inline-block;
   font-family: var(--nausikaa-utility-text);
   font-size: var(--nausikaa-button-font-size);
-  height: var(--nausikaa-button-height);
+  /* A minimum, not a fixed height: a long text wraps and the button grows
+     instead of cutting the text off */
+  min-height: var(--nausikaa-button-height);
   line-height: 2.2;
   margin: 0 0.4rem 0.4rem 0;
   overflow: hidden;
   padding: var(--nausikaa-button-padding);
+  /* The space below the text makes up the rest of the height, so a button
+     with one line of text is exactly as tall as before */
+  padding-bottom: max(0px, calc(var(--nausikaa-button-height) - 2.2em - 2px));
   vertical-align: bottom;
 
   /* Colors come from the --nausikaa-button-* custom properties (see tokens.css);
@@ -50,14 +55,24 @@ input[type="submit"] {
 
   &.active,
   &:active,
+  &[aria-pressed="true"],
+  &[aria-expanded="true"],
   input:checked+&,
   input:checked:hover+&,
   .dropdown>&:focus,
   .dropdown:focus-within>&,
-  .dropdown.focus-within>& {
+  .dropdown.focus-within>&,
+  .dropdown[open]>& {
     border-color: var(--nausikaa-button-line);
     background-color: var(--nausikaa-button-active);
     box-shadow: 0 0 0 0 var(--nausikaa-button-shadow) inset, 0 0 0 0 var(--nausikaa-button-active-ring);
+    /* A color class can give the pressed state its own text color, where
+       the darker background needs light text */
+    color: var(--nausikaa-button-active-text, var(--nausikaa-button-text));
+
+    .icon {
+      fill: var(--nausikaa-button-active-text, var(--nausikaa-button-text));
+    }
   }
 
   &:active:focus,
@@ -68,6 +83,7 @@ input[type="submit"] {
   }
 
   &.disabled,
+  &[aria-disabled="true"],
   &:disabled,
   &:disabled:hover,
   input[type="file"]:disabled+&,
@@ -96,15 +112,18 @@ input[type="submit"] {
     fill: var(--nausikaa-button-text);
   }
 
-  &.loading {
+  &.loading,
+  &[aria-busy="true"] {
     color: transparent;
   }
 
-  &.loading:after {
+  &.loading:after,
+  &[aria-busy="true"]:after {
     background-image: var(--nausikaa-button-refresh);
   }
 
-  &.loading.success:after {
+  &.loading.success:after,
+  &[aria-busy="true"].success:after {
     background-image: var(--nausikaa-button-check);
   }
 
@@ -119,23 +138,25 @@ input[type="submit"] {
   input[type="checkbox"]:focus+&,
   input[type="radio"]:focus+&:visited,
   input[type="checkbox"]:focus+&:visited {
-    outline-width: 0;
     text-decoration: none;
     z-index: 888;
   }
 
   &.active,
   &:active,
+  &[aria-pressed="true"],
+  &[aria-expanded="true"],
   input:checked+&,
   input:checked:hover+&,
   .dropdown>&:focus,
   .dropdown:focus-within>&,
-  .dropdown.focus-within>& {
+  .dropdown.focus-within>&,
+  .dropdown[open]>& {
     padding: 0 1.2em 0;
     margin-top: var(--nausikaa-button-shadow-size) !important;
     height: calc(var(--nausikaa-button-height) - var(--nausikaa-button-shadow-size));
+    min-height: 0;
     margin-top: calc(var(--nausikaa-font-size) * 0.3);
-    outline-width: 0;
     text-decoration: none;
     z-index: 888;
   }
@@ -147,23 +168,28 @@ input[type="submit"] {
   }
 
   &.disabled,
+  &[aria-disabled="true"],
   &:disabled,
   &:disabled:hover,
   input[type="radio"]:disabled+&,
   input[type="checkbox"]:disabled+& {
-    height: var(--nausikaa-button-height);
+    min-height: var(--nausikaa-button-height);
     cursor: not-allowed;
     margin-top: 0;
 
     &:active {
       margin-top: 0 !important;
+      height: auto;
+      min-height: var(--nausikaa-button-height);
       padding: var(--nausikaa-button-padding);
+      padding-bottom: max(0px, calc(var(--nausikaa-button-height) - 2.2em - 2px));
     }
   }
 
   input[type="radio"]:checked:disabled+&,
   input[type="checkbox"]:checked:disabled+& {
     height: calc(var(--nausikaa-button-height) - var(--nausikaa-button-shadow-size));
+    min-height: 0;
   }
 
   .icon {
@@ -171,6 +197,9 @@ input[type="submit"] {
     height: 1.5em;
     position: relative;
     top: 0.35em;
+    /* Without this the icon pokes out above the line and makes the button
+       taller. It doesn't move the icon. */
+    margin-top: -0.25em;
   }
 
   .label {
@@ -191,7 +220,8 @@ input[type="submit"] {
     }
   }
 
-  &.loading {
+  &.loading,
+  &[aria-busy="true"] {
     color: transparent;
     position: relative;
 
@@ -227,19 +257,19 @@ input[type="submit"] {
   }
 
   &.primary {
-    --nausikaa-button-background: #2980d7;
-    --nausikaa-button-line: #184d81;
-    --nausikaa-button-shadow: #1c5997;
+    --nausikaa-button-background: #2677c8;
+    --nausikaa-button-line: #164a80;
+    --nausikaa-button-shadow: #1a568f;
     --nausikaa-button-text: #fff;
-    --nausikaa-button-hover: #2473c2;
-    --nausikaa-button-focus: #2473c2;
-    --nausikaa-button-active: #2066ac;
+    --nausikaa-button-hover: #216bb5;
+    --nausikaa-button-focus: #216bb5;
+    --nausikaa-button-active: #1d5fa1;
     --nausikaa-button-text-disabled: #93bfeb;
-    --nausikaa-button-disabled: #2066ac;
+    --nausikaa-button-disabled: #1d5fa1;
     --nausikaa-button-refresh: var(--nausikaa-icon-refresh-white);
     --nausikaa-button-check: var(--nausikaa-icon-check-white);
-    --nausikaa-button-focus-ring: rgba(36, 115, 194, 0.65);
-    --nausikaa-button-active-ring: rgba(32, 102, 172, 0.65);
+    --nausikaa-button-focus-ring: rgba(33, 107, 181, 0.65);
+    --nausikaa-button-active-ring: rgba(29, 95, 161, 0.65);
   }
 
   &.secondary {
@@ -259,19 +289,19 @@ input[type="submit"] {
   }
 
   &.positive {
-    --nausikaa-button-background: #28b463;
-    --nausikaa-button-line: #176939;
-    --nausikaa-button-shadow: #1c7d44;
+    --nausikaa-button-background: #1e8549;
+    --nausikaa-button-line: #0f4325;
+    --nausikaa-button-shadow: #135630;
     --nausikaa-button-text: #fff;
-    --nausikaa-button-hover: #25a75b;
-    --nausikaa-button-focus: #25a75b;
-    --nausikaa-button-active: #209250;
-    --nausikaa-button-text-disabled: #58da8e;
-    --nausikaa-button-disabled: #209250;
+    --nausikaa-button-hover: #1b7741;
+    --nausikaa-button-focus: #1b7741;
+    --nausikaa-button-active: #176939;
+    --nausikaa-button-text-disabled: #5fc78a;
+    --nausikaa-button-disabled: #176939;
     --nausikaa-button-refresh: var(--nausikaa-icon-refresh-white);
     --nausikaa-button-check: var(--nausikaa-icon-check-white);
-    --nausikaa-button-focus-ring: rgba(37, 167, 91, 0.65);
-    --nausikaa-button-active-ring: rgba(32, 146, 80, 0.65);
+    --nausikaa-button-focus-ring: rgba(27, 119, 65, 0.65);
+    --nausikaa-button-active-ring: rgba(23, 105, 57, 0.65);
   }
 
   &.negative {
@@ -384,6 +414,7 @@ input[type="submit"] {
     --nausikaa-button-check: var(--nausikaa-icon-check-black);
     --nausikaa-button-focus-ring: rgba(202, 158, 230, 0.65);
     --nausikaa-button-active-ring: rgba(136, 57, 239, 0.65);
+    --nausikaa-button-active-text: var(--nausikaa-white);
   }
 
   &.red {
@@ -400,6 +431,7 @@ input[type="submit"] {
     --nausikaa-button-check: var(--nausikaa-icon-check-black);
     --nausikaa-button-focus-ring: rgba(231, 130, 132, 0.65);
     --nausikaa-button-active-ring: rgba(210, 15, 57, 0.65);
+    --nausikaa-button-active-text: var(--nausikaa-white);
   }
 
   &.maroon {
@@ -409,13 +441,14 @@ input[type="submit"] {
     --nausikaa-button-text: var(--nausikaa-black);
     --nausikaa-button-hover: var(--nausikaa-maroon2);
     --nausikaa-button-focus: var(--nausikaa-maroon2);
-    --nausikaa-button-active: var(--nausikaa-maroon3);
+    --nausikaa-button-active: #d13f4c;
     --nausikaa-button-text-disabled: rgba(24, 24, 37, 0.4);
-    --nausikaa-button-disabled: var(--nausikaa-maroon3);
+    --nausikaa-button-disabled: #d13f4c;
     --nausikaa-button-refresh: var(--nausikaa-icon-refresh-black);
     --nausikaa-button-check: var(--nausikaa-icon-check-black);
     --nausikaa-button-focus-ring: rgba(234, 153, 156, 0.65);
     --nausikaa-button-active-ring: rgba(230, 69, 83, 0.65);
+    --nausikaa-button-active-text: var(--nausikaa-white);
   }
 
   &.peach {
@@ -528,6 +561,7 @@ input[type="submit"] {
     --nausikaa-button-check: var(--nausikaa-icon-check-black);
     --nausikaa-button-focus-ring: rgba(140, 170, 238, 0.65);
     --nausikaa-button-active-ring: rgba(30, 102, 245, 0.65);
+    --nausikaa-button-active-text: var(--nausikaa-white);
   }
 
   &.lavender {
@@ -592,8 +626,30 @@ button.link.active {
   border-width: 0;
   box-shadow: none;
   height: inherit;
+  min-height: 0;
   line-height: inherit;
   border-radius: 0;
+}
+
+/* A control: an icon that does something, such as the close button of a
+   dialog or a notification. As a <button>, it drops the look of a button. */
+button.control,
+button.control:hover,
+button.control:focus,
+button.control:active,
+button.control.active {
+  display: inline-flex;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  margin-top: 0 !important;
+  overflow: visible;
+  background-color: transparent;
+  border-width: 0;
+  box-shadow: none;
+  color: inherit;
+  line-height: 1;
 }
 
 @keyframes nausikaa-loading {

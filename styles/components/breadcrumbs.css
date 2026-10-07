@@ -112,7 +112,6 @@
       & > a:focus {
         background-color: var(--nausikaa-surface2);
         box-shadow: 0 0 0 2px var(--nausikaa-crust);
-        outline-width: 0;
 
         & > .icon {
           fill: var(--nausikaa-subtext0);
@@ -130,7 +129,8 @@
         white-space: nowrap;
       }
 
-      &.active > * {
+      &.active > *,
+      & > [aria-current] {
         background-color: var(--nausikaa-blue3);
         color: var(--nausikaa-white);
         border-color: var(--nausikaa-blue3);

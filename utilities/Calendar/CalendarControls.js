@@ -11,6 +11,7 @@ const TaskControls = ({ pos }) => {
     CALENDAR_VIEW_OPTIONS,
     CONTROL_YEAR_OPTIONS,
     icons,
+    locale,
   } = useCalendar();
 
   let yearOptions = CONTROL_YEAR_OPTIONS.map((y) => (
@@ -24,39 +25,42 @@ const TaskControls = ({ pos }) => {
       <div className="spacer" />
       <div className="calendar-month-controls">
         {!isSameMonth(new Date(), new Date(period)) && (
-          <a
-            tabIndex="0"
-            role="button"
-            onClick={() =>
-              !periodChanging ? setPeriod(new Date()) : undefined
-            }
-            className={`knob ${periodChanging ? "disabled" : ""}`}
+          <button
+            type="button"
+            className="knob"
+            disabled={periodChanging}
+            onClick={() => setPeriod(new Date())}
           >
             Today
-          </a>
+          </button>
         )}
 
         <ul className="pagination no-toggle">
-          {isAfter(new Date(period), new Date(CONTROL_YEAR_OPTIONS[0], 0, 1)) ? (
+          {isAfter(
+            new Date(period),
+            new Date(CONTROL_YEAR_OPTIONS[0], 0, 1),
+          ) ? (
             <li>
-              <a
-                className={`knob ${periodChanging ? "disabled" : ""}`}
-                tabIndex="0"
-                role="button"
+              <button
+                type="button"
+                className="knob"
+                disabled={periodChanging}
+                aria-label="Previous month"
                 onClick={() =>
                   setPeriod(new Date(sub(new Date(period), { months: 1 })))
                 }
               >
-                <svg style={{ transform: "rotate(90deg)" }}>
+                <svg style={{ transform: "rotate(90deg)" }} aria-hidden="true">
                   <use xlinkHref={`${icons}#chevron-down`} />
                 </svg>
-              </a>
+              </button>
             </li>
           ) : (
             ""
           )}
           <li>
             <select
+              aria-label="Month"
               disabled={periodChanging}
               value={format(new Date(period), "M")}
               onChange={(e) =>
@@ -70,22 +74,16 @@ const TaskControls = ({ pos }) => {
               }
               style={{ paddingRight: "2em", minWidth: "16ch" }}
             >
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
+              {Array.from({ length: 12 }, (_, m) => (
+                <option key={m} value={m + 1}>
+                  {format(new Date(2000, m, 1), "LLLL", { locale })}
+                </option>
+              ))}
             </select>
           </li>
           <li>
             <select
+              aria-label="Year"
               disabled={periodChanging}
               value={format(new Date(period), "yyyy")}
               onChange={(e) =>
@@ -111,17 +109,19 @@ const TaskControls = ({ pos }) => {
             ),
           ) ? (
             <li>
-              <a
-                className={`knob ${periodChanging ? "disabled" : ""}`}
-                tabIndex="0"
+              <button
+                type="button"
+                className="knob"
+                disabled={periodChanging}
+                aria-label="Next month"
                 onClick={() =>
                   setPeriod(new Date(add(new Date(period), { months: 1 })))
                 }
               >
-                <svg style={{ transform: "rotate(-90deg)" }}>
+                <svg style={{ transform: "rotate(-90deg)" }} aria-hidden="true">
                   <use xlinkHref={`${icons}#chevron-down`} />
                 </svg>
-              </a>
+              </button>
             </li>
           ) : (
             ""

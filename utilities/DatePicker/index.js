@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   addDays,
   addMonths,
@@ -14,7 +14,14 @@ import {
   startOfMonth,
 } from "date-fns";
 
-const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+// The days of the week, Monday first, in the language of the date picker
+const weekDays = (locale) => {
+  const monday = startOfISOWeek(new Date());
+  return Array.from({ length: 7 }, (_, i) => addDays(monday, i)).map((day) => ({
+    short: format(day, "EEEEEE", { locale }),
+    full: format(day, "EEEE", { locale }),
+  }));
+};
 
 const calendarDays = (month) => {
   const days = [];
@@ -36,6 +43,7 @@ const DatePickerPanel = ({
   onApply,
   onClear,
   onChange,
+  locale,
 }) => {
   const initialMonth = startDate || new Date();
   const [leftMonth, setLeftMonth] = useState(initialMonth);
@@ -95,8 +103,11 @@ const DatePickerPanel = ({
   const renderCalendar = (month, side) => (
     <div className={`calendar-grid ${side}`}>
       <div className="calendar-weekdays">
-        {weekDays.map((day) => (
-          <div key={day}>{day}</div>
+        {weekDays(locale).map((day) => (
+          <div key={day.full}>
+            <span aria-hidden="true">{day.short}</span>
+            <span className="visually-hidden">{day.full}</span>
+          </div>
         ))}
       </div>
       <div className="calendar-days">
@@ -105,13 +116,25 @@ const DatePickerPanel = ({
           const selectedEnd = draftEnd && isSameDay(day, draftEnd);
           const selected = selectedStart || selectedEnd;
 
+          // The days of the months next to it only keep the grid in place:
+          // they can't be seen, so they can't be reached either
+          if (!isSameMonth(day, month)) {
+            return (
+              <span
+                key={format(day, "yyyy-MM-dd")}
+                className="calendar-day other-month"
+                aria-hidden="true"
+              />
+            );
+          }
+
           return (
             <button
               key={format(day, "yyyy-MM-dd")}
               type="button"
               className={`calendar-day ${
-                !isSameMonth(day, month) ? "other-month" : ""
-              } ${isSameDay(day, new Date()) ? "today" : ""} ${
+                isSameDay(day, new Date()) ? "today" : ""
+              } ${
                 selected ? "selected" : ""
               } ${selectedStart ? "selected-start" : ""} ${
                 selectedEnd ? "selected-end" : ""
@@ -119,7 +142,9 @@ const DatePickerPanel = ({
               onClick={() => selectDate(day)}
               onMouseEnter={() => setHoverDate(day)}
               onMouseLeave={() => setHoverDate(null)}
-              aria-label={format(day, "MMMM d, yyyy")}
+              aria-label={format(day, "PPPP", { locale })}
+              aria-pressed={selected ? "true" : "false"}
+              aria-current={isSameDay(day, new Date()) ? "date" : undefined}
             >
               {format(day, "d")}
             </button>
@@ -143,10 +168,10 @@ const DatePickerPanel = ({
           >
             ‹
           </button>
-          <strong>{format(leftMonth, "MMMM yyyy")}</strong>
+          <strong>{format(leftMonth, "LLLL yyyy", { locale })}</strong>
         </div>
         <div className="right">
-          <strong>{format(rightMonth, "MMMM yyyy")}</strong>
+          <strong>{format(rightMonth, "LLLL yyyy", { locale })}</strong>
           <button
             type="button"
             className="next"
@@ -202,14 +227,32 @@ const DatePicker = ({
   inline = false,
   label = "Date range",
   icons = "/images/icons.svg",
+  // A date-fns locale, for the names of the days and months
+  locale,
 }) => {
   const [open, setOpen] = useState(false);
+  const wrapper = useRef(null);
+  const trigger = useRef(null);
   const displayText =
     startDate && endDate
-      ? `${format(startDate, "MMM d, yyyy")} – ${format(endDate, "MMM d, yyyy")}`
+      ? `${format(startDate, "PP", { locale })} – ${format(endDate, "PP", { locale })}`
       : startDate
-        ? format(startDate, "MMM d, yyyy")
+        ? format(startDate, "PP", { locale })
         : label;
+
+  // Escape closes the panel and puts the focus back on the button
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        if (trigger.current) trigger.current.focus();
+      }
+    };
+    const element = wrapper.current;
+    element.addEventListener("keydown", onKeyDown);
+    return () => element.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   if (inline) {
     return (
@@ -218,6 +261,7 @@ const DatePicker = ({
           startDate={startDate}
           endDate={endDate}
           inline
+          locale={locale}
           onChange={onChange}
           onClear={() => onChange(null, null)}
         />
@@ -226,22 +270,23 @@ const DatePicker = ({
   }
 
   return (
-    <div className="date-picker date-picker-dropdown dropdown">
-      <a
-        href="#date-picker"
+    <div className="date-picker date-picker-dropdown dropdown" ref={wrapper}>
+      <button
+        type="button"
+        ref={trigger}
         className="knob transparent"
-        role="button"
-        tabIndex="0"
         aria-expanded={open}
-        onClick={(event) => { event.preventDefault(); setOpen(!open); }}
+        aria-label={startDate ? `${label}: ${displayText}` : undefined}
+        onClick={() => setOpen(!open)}
       >
         {displayText}
-        <svg className="icon last"><use xlinkHref={`${icons}#chevron-down`} /></svg>
-      </a>
+        <svg className="icon last" aria-hidden="true"><use xlinkHref={`${icons}#chevron-down`} /></svg>
+      </button>
       {open && (
         <DatePickerPanel
           startDate={startDate}
           endDate={endDate}
+          locale={locale}
           onApply={(nextStart, nextEnd) => { onChange(nextStart, nextEnd); setOpen(false); }}
           onClear={() => { onChange(null, null); setOpen(false); }}
         />

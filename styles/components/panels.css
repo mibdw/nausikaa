@@ -64,7 +64,8 @@
 
   a,
   .link,
-  .subnav > label {
+  .subnav > label,
+  .subnav > summary {
     color: var(--nausikaa-panel-link);
     border: 1px solid transparent;
 
@@ -83,6 +84,7 @@
   a:hover,
   .link:hover,
   label:hover,
+  .subnav > summary:hover,
   .subnav:focus-within:not(.active) > label {
     background-color: var(--nausikaa-panel-hover);
     text-decoration: none;
@@ -96,9 +98,9 @@
   a:focus,
   .link:focus,
   label:focus,
+  .subnav > summary:focus,
   input[type="checkbox"]:focus + label,
   input[type="radio"]:focus + label {
-    outline-width: 0;
     text-decoration: none;
     background-color: var(--nausikaa-panel-hover);
     border: 1px solid var(--nausikaa-panel-border);
@@ -111,7 +113,9 @@
   .active > a,
   .active > .link,
   .active > label,
-  a.active {
+  .active > summary,
+  a.active,
+  a[aria-current] {
     color: var(--nausikaa-panel-active-text);
     background-color: var(--nausikaa-panel-active);
 
@@ -134,7 +138,8 @@
 
   .subnav.active > label .icon.chevron,
   .subnav.active > label:hover .icon.chevron,
-  .subnav.active > label:focus .icon.chevron {
+  .subnav.active > label:focus .icon.chevron,
+  .subnav.active > summary .icon.chevron {
     fill: var(--nausikaa-panel-active-text);
   }
 
@@ -153,6 +158,7 @@
   }
 
   .subnav > input:checked + label + ul,
+  .subnav[open] > ul,
   .subnav:focus-within > ul {
     border-left: 5px solid var(--nausikaa-panel-subnav-border);
   }
@@ -230,7 +236,8 @@
 
     & > li > a,
     & > li > .link,
-    .subnav > label {
+    .subnav > label,
+    .subnav > summary {
       line-height: 1.5em;
       padding: 0.1em 0.3em;
       display: block;
@@ -319,7 +326,6 @@
       }
 
       &:focus {
-        outline-width: 0;
         background-color: var(--nausikaa-panel-hover);
         border-color: var(--nausikaa-panel-border);
       }
@@ -366,6 +372,19 @@
     }
   }
 
+  /* A subnav as <details class="subnav">: the summary takes the place of
+     the label, and no checkbox is needed */
+  .subnav > summary {
+    list-style: none;
+    cursor: pointer;
+    /* The closed list of the checkbox form still takes 2px; so does this */
+    margin-bottom: 2px;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
   .subnav > input[type="checkbox"] {
     position: absolute;
     opacity: 0;
@@ -373,7 +392,8 @@
     width: 0;
   }
 
-  .subnav > label .icon.chevron {
+  .subnav > label .icon.chevron,
+  .subnav > summary .icon.chevron {
     float: right;
     fill: var(--nausikaa-subtext0);
     height: 1.3em;
@@ -387,12 +407,15 @@
 
   .subnav > label.hover .icon.chevron,
   .subnav > label:hover .icon.chevron,
-  .subnav > label:focus .icon.chevron {
+  .subnav > label:focus .icon.chevron,
+  .subnav > summary:hover .icon.chevron,
+  .subnav > summary:focus .icon.chevron {
     fill: var(--nausikaa-black);
     pointer-events: none;
   }
 
   .subnav > input:checked + label .icon.chevron,
+  .subnav[open] > summary .icon.chevron,
   .subnav:focus-within:not(.active) > label .icon.chevron {
     transform: rotate(0deg);
   }
@@ -406,7 +429,8 @@
     line-height: 1.3em;
   }
 
-  .subnav > input:checked + label + ul {
+  .subnav > input:checked + label + ul,
+  .subnav[open] > ul {
     height: auto;
     margin: 0.4em 0 0.4em 0.4em;
     overflow: visible;
@@ -487,16 +511,13 @@
         border: 1px solid transparent;
         border-radius: 4px;
         padding: 0 0.4rem 0 1.9em;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         display: flex;
 
+        /* A long name wraps instead of being cut off */
         & > span:first-child {
           flex: 0 0 79%;
           width: 79%;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          overflow-wrap: break-word;
         }
 
         & > span:last-child {
@@ -635,8 +656,8 @@
     --nausikaa-panel-subnav-border: var(--nausikaa-maroon3);
     --nausikaa-panel-subnav-link: var(--nausikaa-ink);
     --nausikaa-panel-hover: rgba(230, 69, 83, 0.2);
-    --nausikaa-panel-active: var(--nausikaa-maroon3);
-    --nausikaa-panel-active-text: var(--nausikaa-ink);
+    --nausikaa-panel-active: #d13f4c;
+    --nausikaa-panel-active-text: var(--nausikaa-white);
   }
 
   &.peach {
@@ -683,8 +704,8 @@
     --nausikaa-panel-subnav-border: var(--nausikaa-teal3);
     --nausikaa-panel-subnav-link: var(--nausikaa-ink);
     --nausikaa-panel-hover: rgba(23, 146, 153, 0.2);
-    --nausikaa-panel-active: var(--nausikaa-teal3);
-    --nausikaa-panel-active-text: var(--nausikaa-ink);
+    --nausikaa-panel-active: #148087;
+    --nausikaa-panel-active-text: var(--nausikaa-white);
   }
 
   &.sky {
@@ -743,7 +764,9 @@
     --nausikaa-panel-subnav-border: var(--nausikaa-surface2);
     --nausikaa-panel-subnav-link: var(--nausikaa-text);
     --nausikaa-panel-hover: rgba(var(--nausikaa-overlay0-rgb), 0.2);
-    --nausikaa-panel-active: var(--nausikaa-overlay0);
+    /* The same grey in both themes: the dark overlay0 is too dark for the
+       dark text on it */
+    --nausikaa-panel-active: #9b9b9b;
     --nausikaa-panel-active-text: var(--nausikaa-ink);
   }
 }

@@ -1,11 +1,11 @@
 
 [contenteditable]:focus { outline: 0; }
 .editor-wrapper { position: relative; color: var(--nausikaa-input-text); background: var(--nausikaa-input-background); border: 1px solid var(--nausikaa-input-line); border-radius: 6px; }
-.editor-wrapper:focus-within { border-color: var(--nausikaa-input-line-hover); box-shadow: 0 0 0 2px var(--nausikaa-input-line-hover) inset; outline: 2px solid var(--nausikaa-input-line-active); }
+.editor-wrapper:focus-within { border-color: var(--nausikaa-input-line-hover); box-shadow: 0 0 0 2px var(--nausikaa-input-line-hover) inset; outline: 2px solid var(--nausikaa-focus-outline); outline-offset: 2px; }
 .editor-wrapper > .editor-toolbar, .editor-wrapper .editor-tooltip { display: flex; min-height: var(--nausikaa-input-height); padding: 0 .4em; font-family: var(--nausikaa-utility-text); background: var(--nausikaa-mantle); }
 .editor-wrapper > .editor-toolbar { border-bottom: 1px solid var(--nausikaa-surface1); flex-wrap: wrap; }
-.editor-wrapper > .editor-toolbar button, .editor-wrapper .editor-tooltip button { height: auto; margin: 0; padding: 0 .45em; border: 0; border-radius: 0; box-shadow: none; background: transparent; color: var(--nausikaa-text); }
-.editor-wrapper > .editor-toolbar button:hover, .editor-wrapper > .editor-toolbar button:focus, .editor-wrapper > .editor-toolbar button.active, .editor-wrapper .editor-tooltip button:hover, .editor-wrapper .editor-tooltip button:focus { background: var(--nausikaa-surface0); }
+.editor-wrapper > .editor-toolbar button:not(.link), .editor-wrapper .editor-tooltip button:not(.link) { height: auto; margin: 0; padding: 0 .45em; border: 0; border-radius: 0; box-shadow: none; background: transparent; color: var(--nausikaa-text); }
+.editor-wrapper > .editor-toolbar button:not(.link):hover, .editor-wrapper > .editor-toolbar button:not(.link):focus, .editor-wrapper > .editor-toolbar button.active, .editor-wrapper .editor-tooltip button:not(.link):hover, .editor-wrapper .editor-tooltip button:not(.link):focus { background: var(--nausikaa-surface0); }
 .editor-wrapper .divider { height: var(--nausikaa-input-height); margin: 0 .3em; border-left: 1px solid var(--nausikaa-surface1); }
 .editor-wrapper .icon { fill: var(--nausikaa-subtext0); }
 .editor-wrapper button:hover .icon, .editor-wrapper button:focus .icon, .editor-wrapper button.active .icon { fill: var(--nausikaa-text); }
@@ -19,6 +19,6 @@
 .editor-wrapper table .selectedCell { background: var(--nausikaa-yellow2); }
 .editor-wrapper .editor-tooltip { position: absolute; z-index: 25; transform: translateY(1em); }
 .editor-wrapper .editor-tooltip-input-link { width: 30ch; margin-top: .3em; }
-.editor-wrapper .editor-color-picker, .editor-wrapper .image-dialog, .editor-wrapper .youtube-dialog { z-index: 40; min-width: 30em; max-width: 90vw; padding: 1em; }
+.editor-wrapper .editor-color-picker, .editor-wrapper .image-dialog, .editor-wrapper .youtube-dialog { z-index: 40; min-width: min(30em, 90vw); max-width: 90vw; padding: 1em; }
 .editor-wrapper .color-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em; }
 .editor-wrapper .color-grid .tag { height: 4em; line-height: 4em; cursor: pointer; text-align: center; }

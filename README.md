@@ -11,7 +11,7 @@ dialog like a dialog, without a single class.
 
 - One stylesheet, about 36 kB gzipped
 - No JavaScript and no build step
-- Three themes: light, dark and e-ink
+- Five themes: light, dark, high contrast light and dark, and e-ink
 - Free for everyone, under the MIT License
 
 Documentation, examples and the download are at <https://nausikaa.site>.
@@ -118,9 +118,13 @@ for e-readers and other e-ink screens.
 
 ## Accessibility
 
-Nausikaä takes care of text contrast, a visible focus style, reduced motion for
-those who ask for it, and layouts that hold up on a phone and when zoomed in.
-Headings in order, labels and alt texts stay up to you.
+Nausikaä aims at WCAG 2.2 level AA, the level the European Accessibility Act
+asks for. It takes care of contrast, one clear focus outline, the forced colors
+of high contrast themes, reduced motion for those who ask for it, text that
+grows with the browser's font size, and layouts that hold up on a phone and
+when zoomed in. Menus and toggles are `<details>` elements, so they work with
+the keyboard and screen readers without a script. Headings in order, labels
+and alt texts stay up to you.
 
 It does not get everything right yet. The documentation lists the known
 limitations under Foundations, Accessibility.

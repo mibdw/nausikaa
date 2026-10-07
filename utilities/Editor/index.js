@@ -40,7 +40,29 @@ import EditorTooltip from "./EditorTooltip.js";
 import EditorToolbar from "./EditorToolbar.js";
 import EditorColorPicker from "./EditorColorPicker.js";
 import EditorImage from "./EditorImage.js";
-import { blockTypes, alignTypes } from "./editorUtils.js";
+import { blockTypes, alignTypes, readableTextOn } from "./editorUtils.js";
+
+// A highlight gets black or white text to match its background, instead of
+// the text color around it: light text on a pale highlight would be
+// unreadable in the dark theme
+const ReadableHighlight = Highlight.extend({
+  addAttributes() {
+    return {
+      color: {
+        default: null,
+        parseHTML: (element) =>
+          element.getAttribute("data-color") || element.style.backgroundColor,
+        renderHTML: (attributes) =>
+          attributes.color
+            ? {
+                "data-color": attributes.color,
+                style: `background-color: ${attributes.color}; color: ${readableTextOn(attributes.color)}`,
+              }
+            : {},
+      },
+    };
+  },
+});
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
@@ -115,7 +137,7 @@ const Editor = ({
     Gapcursor,
     HardBreak,
     Heading,
-    Highlight.configure({
+    ReadableHighlight.configure({
       multicolor: true,
     }),
     History,

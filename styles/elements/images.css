@@ -3,6 +3,43 @@ img {
   max-width: 100%;
 }
 
+/* Media never get wider than their container, so a page with a video or
+   an embedded map still fits a small screen. Video and canvas keep their
+   proportions; an iframe keeps the height it was given. */
+video,
+audio,
+iframe,
+canvas {
+  max-width: 100%;
+}
+
+video,
+canvas {
+  height: auto;
+}
+
+audio {
+  display: block;
+  margin: var(--nausikaa-paragraph-spacer) 0;
+}
+
+iframe {
+  border: 1px solid var(--nausikaa-crust);
+  border-radius: 4px;
+}
+
+figure {
+  & > video,
+  & > iframe,
+  & > canvas {
+    display: block;
+  }
+
+  & > iframe {
+    border-width: 0;
+  }
+}
+
 figure {
   display: inline-block;
   flex-direction: column;

@@ -1,0 +1,384 @@
+/*
+ * High contrast themes: what the components need besides the colors of
+ * tokens-contrast.css. Applies to the light and the dark version.
+ *
+ * Every color class keeps its hue, as a fill that reaches 7:1 with black or
+ * white text on it. The fills are the same in both versions: a fill carries
+ * its own text color, so it works on a white and on a black page. A
+ * component without a color class is drawn in the colors of the page, with
+ * a line in the text color around it.
+ */
+@nausikaa-contrast {
+  /* A fill belongs to the element with the color class, not to what is
+     inside it: a button in a red panel isn't red */
+  * {
+    --nausikaa-hc-fill: initial;
+    --nausikaa-hc-on-fill: initial;
+    --nausikaa-hc-fill-hover: initial;
+    --nausikaa-hc-fill-active: initial;
+  }
+
+  .primary {
+    --nausikaa-hc-fill: #1c5894;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #184b7e;
+    --nausikaa-hc-fill-active: #143e68;
+  }
+
+  .secondary {
+    --nausikaa-hc-fill: #34495e;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #2c3e50;
+    --nausikaa-hc-fill-active: #243342;
+  }
+
+  .positive {
+    --nausikaa-hc-fill: #166236;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #13532e;
+    --nausikaa-hc-fill-active: #0f4526;
+  }
+
+  .negative {
+    --nausikaa-hc-fill: #9a3328;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #832b22;
+    --nausikaa-hc-fill-active: #6c241c;
+  }
+
+  .radiant {
+    --nausikaa-hc-fill: #fbc531;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #fcce50;
+    --nausikaa-hc-fill-active: #fcd66f;
+  }
+
+  .midnight {
+    --nausikaa-hc-fill: #333333;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #2b2b2b;
+    --nausikaa-hc-fill-active: #242424;
+  }
+
+  .rosewater {
+    --nausikaa-hc-fill: #dc8a78;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #e19c8c;
+    --nausikaa-hc-fill-active: #e7ada1;
+  }
+
+  .flamingo {
+    --nausikaa-hc-fill: #de7d7d;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #e39191;
+    --nausikaa-hc-fill-active: #e8a4a4;
+  }
+
+  .pink {
+    --nausikaa-hc-fill: #ea76cb;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #ed8bd3;
+    --nausikaa-hc-fill-active: #f09fdb;
+  }
+
+  .mauve {
+    --nausikaa-hc-fill: #6e2ec2;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #5e27a5;
+    --nausikaa-hc-fill-active: #4d2088;
+  }
+
+  .purple {
+    --nausikaa-hc-fill: #7627c4;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #6421a7;
+    --nausikaa-hc-fill-active: #531b89;
+  }
+
+  .red {
+    --nausikaa-hc-fill: #ac0c2f;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #920a28;
+    --nausikaa-hc-fill-active: #780821;
+  }
+
+  .maroon {
+    --nausikaa-hc-fill: #ec747e;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #ef8991;
+    --nausikaa-hc-fill-active: #f29ea5;
+  }
+
+  .peach {
+    --nausikaa-hc-fill: #fe6c17;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #fe823a;
+    --nausikaa-hc-fill-active: #fe985d;
+  }
+
+  .orange {
+    --nausikaa-hc-fill: #df8245;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #e49561;
+    --nausikaa-hc-fill-active: #e9a87d;
+  }
+
+  .yellow {
+    --nausikaa-hc-fill: #df8e1d;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #e49f3f;
+    --nausikaa-hc-fill-active: #e9b061;
+  }
+
+  .green {
+    --nausikaa-hc-fill: #57ab44;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #70b860;
+    --nausikaa-hc-fill-active: #89c47c;
+  }
+
+  .teal {
+    --nausikaa-hc-fill: #43a7ac;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #5fb4b8;
+    --nausikaa-hc-fill-active: #7bc1c5;
+  }
+
+  .sky {
+    --nausikaa-hc-fill: #04a5e5;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #2ab3e9;
+    --nausikaa-hc-fill-active: #4fc0ed;
+  }
+
+  .sapphire {
+    --nausikaa-hc-fill: #32a7bb;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #51b4c5;
+    --nausikaa-hc-fill-active: #70c1cf;
+  }
+
+  .blue {
+    --nausikaa-hc-fill: #174eba;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #14429e;
+    --nausikaa-hc-fill-active: #103782;
+  }
+
+  .lavender {
+    --nausikaa-hc-fill: #7d91fd;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #91a2fd;
+    --nausikaa-hc-fill-active: #a4b2fe;
+  }
+
+  .navy {
+    --nausikaa-hc-fill: #000080;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #00006d;
+    --nausikaa-hc-fill-active: #00005a;
+  }
+
+  .olive {
+    --nausikaa-hc-fill: #9d9d3b;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #acac58;
+    --nausikaa-hc-fill-active: #baba76;
+  }
+
+  .salmon {
+    --nausikaa-hc-fill: #fa8072;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #fb9387;
+    --nausikaa-hc-fill-active: #fca69c;
+  }
+
+  .magenta {
+    --nausikaa-hc-fill: #ff3bff;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #ff58ff;
+    --nausikaa-hc-fill-active: #ff76ff;
+  }
+
+  .cyan {
+    --nausikaa-hc-fill: #00ffff;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #26ffff;
+    --nausikaa-hc-fill-active: #4dffff;
+  }
+
+  .lightgray {
+    --nausikaa-hc-fill: #cccccc;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #d4d4d4;
+    --nausikaa-hc-fill-active: #dbdbdb;
+  }
+
+  .darkgray {
+    --nausikaa-hc-fill: #555555;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #484848;
+    --nausikaa-hc-fill-active: #3c3c3c;
+  }
+
+  .chocolate {
+    --nausikaa-hc-fill: #663300;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #572b00;
+    --nausikaa-hc-fill-active: #472400;
+  }
+
+  .black {
+    --nausikaa-hc-fill: #181825;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #14141f;
+    --nausikaa-hc-fill-active: #11111a;
+  }
+
+  .forest {
+    --nausikaa-hc-fill: #006250;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #005344;
+    --nausikaa-hc-fill-active: #004538;
+  }
+
+  .royal {
+    --nausikaa-hc-fill: #005a8d;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #004d78;
+    --nausikaa-hc-fill-active: #003f63;
+  }
+
+  .lemon {
+    --nausikaa-hc-fill: #ffff66;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #ffff7d;
+    --nausikaa-hc-fill-active: #ffff94;
+  }
+
+  .alt {
+    --nausikaa-hc-fill: #565656;
+    --nausikaa-hc-on-fill: #fff;
+    --nausikaa-hc-fill-hover: #494949;
+    --nausikaa-hc-fill-active: #3c3c3c;
+  }
+
+  .gray {
+    --nausikaa-hc-fill: #9b9b9b;
+    --nausikaa-hc-on-fill: #000;
+    --nausikaa-hc-fill-hover: #aaaaaa;
+    --nausikaa-hc-fill-active: #b9b9b9;
+  }
+
+  /* Buttons: a line in the text color around every button */
+  .button,
+  button,
+  input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    --nausikaa-button-background: var(--nausikaa-hc-fill, var(--nausikaa-base));
+    --nausikaa-button-text: var(--nausikaa-hc-on-fill, var(--nausikaa-text));
+    --nausikaa-button-line: var(--nausikaa-text);
+    --nausikaa-button-shadow: var(--nausikaa-text);
+    --nausikaa-button-hover: var(--nausikaa-hc-fill-hover, var(--nausikaa-surface0));
+    --nausikaa-button-focus: var(--nausikaa-hc-fill-hover, var(--nausikaa-surface0));
+    --nausikaa-button-active: var(--nausikaa-hc-fill-active, var(--nausikaa-surface1));
+    --nausikaa-button-active-text: var(--nausikaa-hc-on-fill, var(--nausikaa-text));
+    --nausikaa-button-disabled: var(--nausikaa-hc-fill, var(--nausikaa-base));
+    --nausikaa-button-focus-ring: transparent;
+    --nausikaa-button-active-ring: transparent;
+  }
+
+  /* Knobs: outlined; the active one is filled */
+  .knobs > li > a,
+  .knobs > li > .dropdown > summary,
+  .knob {
+    --nausikaa-knob-background: transparent;
+    --nausikaa-knob-text: var(--nausikaa-text);
+    --nausikaa-knob-border: var(--nausikaa-text);
+    --nausikaa-knob-hover: var(--nausikaa-surface0);
+    --nausikaa-knob-active: var(--nausikaa-hc-fill, var(--nausikaa-text));
+    --nausikaa-knob-active-text: var(--nausikaa-hc-on-fill, var(--nausikaa-base));
+  }
+
+  /* Tags: thin letters are hard to read, so they get the normal weight */
+  .tag {
+    --nausikaa-tag-text: var(--nausikaa-hc-on-fill, var(--nausikaa-text));
+    --nausikaa-tag-background: var(--nausikaa-hc-fill, var(--nausikaa-surface0));
+    --nausikaa-tag-hover: var(--nausikaa-hc-fill-hover, var(--nausikaa-surface1));
+    --nausikaa-tag-icon: var(--nausikaa-hc-on-fill, var(--nausikaa-text));
+
+    font-weight: 400;
+  }
+
+  /* Notifications: filled, in the text color when they have no color */
+  .notification {
+    --nausikaa-notification-background: var(--nausikaa-hc-fill, var(--nausikaa-text));
+    --nausikaa-notification-border: var(--nausikaa-text);
+    --nausikaa-notification-text: var(--nausikaa-hc-on-fill, var(--nausikaa-base));
+    --nausikaa-notification-header: var(--nausikaa-hc-on-fill, var(--nausikaa-base));
+    --nausikaa-notification-icon: var(--nausikaa-hc-on-fill, var(--nausikaa-base));
+
+    a {
+      color: currentColor;
+      text-decoration-color: currentColor;
+    }
+  }
+
+  /* Panels: the page color with a line around it; the active item is
+     filled */
+  .panel {
+    --nausikaa-panel-background: var(--nausikaa-base);
+    --nausikaa-panel-border: var(--nausikaa-text);
+    --nausikaa-panel-link: var(--nausikaa-link-color);
+    --nausikaa-panel-header: var(--nausikaa-text);
+    --nausikaa-panel-subnav-border: var(--nausikaa-text);
+    --nausikaa-panel-subnav-link: var(--nausikaa-text);
+    --nausikaa-panel-hover: var(--nausikaa-surface0);
+    --nausikaa-panel-active: var(--nausikaa-hc-fill, var(--nausikaa-text));
+    --nausikaa-panel-active-text: var(--nausikaa-hc-on-fill, var(--nausikaa-base));
+  }
+
+  /* Containers: the page color; a colored one gets a thick bar in its
+     color on the left */
+  .container {
+    --nausikaa-container-background: var(--nausikaa-base);
+    --nausikaa-container-border: var(--nausikaa-text);
+    --nausikaa-container-text: var(--nausikaa-text);
+    --nausikaa-container-link: var(--nausikaa-link-color);
+    --nausikaa-container-header: var(--nausikaa-text);
+
+    box-shadow: 6px 0 0 var(--nausikaa-hc-fill, transparent) inset;
+  }
+
+  /* Code and keys: no colored backgrounds behind the letters */
+  code {
+    color: var(--nausikaa-input-line-error);
+    background-color: var(--nausikaa-base);
+    border-color: var(--nausikaa-overlay0);
+  }
+
+  kbd {
+    background-color: var(--nausikaa-surface0);
+    border-color: var(--nausikaa-text);
+  }
+
+  /* Nothing behind a dialog is blurred or shines through much, as with
+     reduced transparency */
+  dialog::backdrop,
+  dialog + .backdrop {
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: none;
+  }
+
+  .fetching {
+    background-color: var(--nausikaa-base);
+  }
+
+  /* A plain yellow, with dark text in both versions */
+  mark {
+    color: #000000;
+    background-image: none;
+    box-shadow: none;
+  }
+}

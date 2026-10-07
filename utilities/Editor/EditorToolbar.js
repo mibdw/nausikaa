@@ -1,5 +1,12 @@
 import React, { useState, useCallback } from "react";
-import { blockTypes, alignTypes, colorTypes } from "./editorUtils.js";
+import {
+  blockTypes,
+  alignTypes,
+  colorTypes,
+  canShowModal,
+  useModalDialog,
+} from "./editorUtils.js";
+import { useUniqueId } from "../useUniqueId.js";
 
 const EditorToolbar = ({
   editor,
@@ -33,19 +40,23 @@ const EditorToolbar = ({
       {(editorSize == "large" || editorSize == "medium") && [
         <button
           key="undo-button"
+          title="Undo"
+          aria-label="Undo"
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().chain().focus().undo().run()}
         >
-          <svg className="icon">
+          <svg className="icon" aria-hidden="true">
             <use xlinkHref={`${icons}#undo`} />
           </svg>
         </button>,
         <button
           key="redo-button"
+          title="Redo"
+          aria-label="Redo"
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editor.can().chain().focus().redo().run()}
         >
-          <svg className="icon">
+          <svg className="icon" aria-hidden="true">
             <use xlinkHref={`${icons}#redo`} />
           </svg>
         </button>,
@@ -56,7 +67,7 @@ const EditorToolbar = ({
           <button
             title={activeBlock && activeBlock.title ? activeBlock.title : ""}
           >
-            <svg className="icon">
+            <svg className="icon" aria-hidden="true">
               <use
                 xlinkHref={`${icons}#${
                   activeBlock && activeBlock.slug ? activeBlock.slug : ""
@@ -66,7 +77,7 @@ const EditorToolbar = ({
             <span>
               {activeBlock && activeBlock.title ? activeBlock.title : ""}
             </span>
-            <svg className="icon">
+            <svg className="icon" aria-hidden="true">
               <use xlinkHref={`${icons}#chevron-down`} />
             </svg>
           </button>
@@ -79,18 +90,18 @@ const EditorToolbar = ({
                     key={"block-type-" + block.slug}
                     className={block.slug == activeBlock.slug ? "active" : ""}
                   >
-                    <a
-                      tabIndex="0"
-                      role="button"
+                    <button
+                      type="button"
+                      className="link"
                       onClick={() => block.toggle(editor)}
                     >
-                      <svg className="icon">
+                      <svg className="icon" aria-hidden="true">
                         <use
                           xlinkHref={`${icons}#${block.slug}`}
                         />
                       </svg>
                       {block.title}
-                    </a>
+                    </button>
                   </li>
                 ))}
             </ul>
@@ -105,7 +116,7 @@ const EditorToolbar = ({
         disabled={!editor.can().chain().focus().toggleBold().run()}
         className={editor.isActive("bold") ? "active" : ""}
       >
-        <svg className="icon">
+        <svg className="icon" aria-hidden="true">
           <use xlinkHref={`${icons}#bold`} />
         </svg>
       </button>
@@ -115,7 +126,7 @@ const EditorToolbar = ({
         disabled={!editor.can().chain().focus().toggleItalic().run()}
         className={editor.isActive("italic") ? "active" : ""}
       >
-        <svg className="icon">
+        <svg className="icon" aria-hidden="true">
           <use xlinkHref={`${icons}#italic`} />
         </svg>
       </button>
@@ -126,7 +137,7 @@ const EditorToolbar = ({
           disabled={!editor.can().chain().focus().toggleUnderline().run()}
           className={editor.isActive("underline") ? "active" : ""}
         >
-          <svg className="icon">
+          <svg className="icon" aria-hidden="true">
             <use xlinkHref={`${icons}#underline`} />
           </svg>
         </button>
@@ -140,7 +151,7 @@ const EditorToolbar = ({
           disabled={!setLink}
           className={editor.isActive("link") ? "active" : ""}
         >
-          <svg className="icon">
+          <svg className="icon" aria-hidden="true">
             <use xlinkHref={`${icons}#link`} />
           </svg>
         </button>
@@ -149,68 +160,68 @@ const EditorToolbar = ({
       {editorSize != "small" && (
         <div className="dropdown">
           <button title="More options">
-            <svg className="icon">
+            <svg className="icon" aria-hidden="true">
               <use xlinkHref={`${icons}#more-horizontal`} />
             </svg>
           </button>
           <div className="panel arrow">
             <ul>
               <li className={editor.isActive("underline") ? "active" : ""}>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().toggleUnderline().run()}
                 >
-                  <svg className="icon">
+                  <svg className="icon" aria-hidden="true">
                     <use xlinkHref={`${icons}#underline`} />
                   </svg>
                   Underline
-                </a>
+                </button>
               </li>
               <li className={editor.isActive("strike") ? "active" : ""}>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().toggleStrike().run()}
                 >
-                  <svg className="icon">
+                  <svg className="icon" aria-hidden="true">
                     <use xlinkHref={`${icons}#strikethrough`} />
                   </svg>
                   Strikethrough
-                </a>
+                </button>
               </li>
               <li className={editor.isActive("code") ? "active" : ""}>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().toggleCode().run()}
                 >
-                  <svg className="icon">
+                  <svg className="icon" aria-hidden="true">
                     <use xlinkHref={`${icons}#format-code`} />
                   </svg>
                   Code
-                </a>
+                </button>
               </li>
 
               {editorSize == "medium" && (
                 <li className={editor.isActive("link") ? "active" : ""}>
-                  <a tabIndex="0" role="button" onClick={setLink}>
-                    <svg className="icon">
+                  <button type="button" className="link" onClick={setLink}>
+                    <svg className="icon" aria-hidden="true">
                       <use xlinkHref={`${icons}#link`} />
                     </svg>
                     Link
-                  </a>
+                  </button>
                 </li>
               )}
               {editorSize != "large" && [
                 <li className="seperator" key="toolbar-dropdown-seperator" />,
                 <li className="toolbar-colors" key="toolbar-dropdown-colors-1">
-                  <a
-                    tabIndex="0"
-                    role="button"
+                  <button
+                    type="button"
+                    className="link"
                     onClick={() => setColorPickerActive("text-color")}
                   >
-                    <svg className="icon">
+                    <svg className="icon" aria-hidden="true">
                       <use xlinkHref={`${icons}#color-text`} />
                     </svg>
                     <span>Text color</span>
@@ -226,15 +237,15 @@ const EditorToolbar = ({
                           editor.getAttributes("textStyle").color,
                       }}
                     />
-                  </a>
+                  </button>
                 </li>,
                 <li className="toolbar-colors" key="toolbar-dropdown-colors-2">
-                  <a
-                    tabIndex="0"
-                    role="button"
+                  <button
+                    type="button"
+                    className="link"
                     onClick={() => setColorPickerActive("highlight")}
                   >
-                    <svg className="icon">
+                    <svg className="icon" aria-hidden="true">
                       <use xlinkHref={`${icons}#color-fill`} />
                     </svg>
                     <span>Background color</span>
@@ -262,7 +273,7 @@ const EditorToolbar = ({
                               ].hex,
                       }}
                     />
-                  </a>
+                  </button>
                 </li>,
               ]}
             </ul>
@@ -271,8 +282,13 @@ const EditorToolbar = ({
       )}
 
       {editorSize == "small" && (
-        <button onClick={() => setImageDialogActive(true)}>
-          <svg className="icon">
+        <button
+          type="button"
+          title="Insert image"
+          aria-label="Insert image"
+          onClick={() => setImageDialogActive(true)}
+        >
+          <svg className="icon" aria-hidden="true">
             <use xlinkHref={`${icons}#image`} />
           </svg>
         </button>
@@ -286,7 +302,7 @@ const EditorToolbar = ({
           onClick={() => setColorPickerActive("text-color")}
           className="color-picker"
         >
-          <svg className="icon">
+          <svg className="icon" aria-hidden="true">
             <use xlinkHref={`${icons}#color-text`} />
           </svg>
           <span
@@ -300,11 +316,11 @@ const EditorToolbar = ({
         </button>,
         <button
           key={"editor-tooltip-highlight"}
-          title="Text color"
+          title="Background color"
           onClick={() => setColorPickerActive("highlight")}
           className="color-picker"
         >
-          <svg className="icon">
+          <svg className="icon" aria-hidden="true">
             <use xlinkHref={`${icons}#color-fill`} />
           </svg>
           <span
@@ -341,7 +357,7 @@ const EditorToolbar = ({
           <button
             title={activeAlign && activeAlign.title ? activeAlign.title : ""}
           >
-            <svg className="icon">
+            <svg className="icon" aria-hidden="true">
               <use
                 xlinkHref={`${icons}#${
                   activeAlign && activeAlign.slug ? activeAlign.slug : ""
@@ -358,18 +374,18 @@ const EditorToolbar = ({
                     key={"align-type-" + align.slug}
                     className={align.slug == activeAlign.slug ? "active" : ""}
                   >
-                    <a
-                      tabIndex="0"
-                      role="button"
+                    <button
+                      type="button"
+                      className="link"
                       onClick={() => align.toggle(editor)}
                     >
-                      <svg className="icon">
+                      <svg className="icon" aria-hidden="true">
                         <use
                           xlinkHref={`${icons}#${align.slug}`}
                         />
                       </svg>
                       {align.title}
-                    </a>
+                    </button>
                   </li>
                 ))}
             </ul>
@@ -377,7 +393,7 @@ const EditorToolbar = ({
         </div>,
         <div className="dropdown" key="table-dropdown">
           <button title="Insert table">
-            <svg className="icon">
+            <svg className="icon" aria-hidden="true">
               <use xlinkHref={`${icons}#table`} />
             </svg>
             <span>Table</span>
@@ -385,9 +401,9 @@ const EditorToolbar = ({
           <div className="panel arrow">
             <ul>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() =>
                     editor
                       .chain()
@@ -397,98 +413,98 @@ const EditorToolbar = ({
                   }
                 >
                   Insert table
-                </a>
+                </button>
               </li>
               <li className="seperator" />
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().addColumnBefore().run()}
                 >
                   Add column before
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().addColumnAfter().run()}
                 >
                   Add column after
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().deleteColumn().run()}
                 >
                   Delete column
-                </a>
+                </button>
               </li>
               <li className="seperator" />
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().addRowBefore().run()}
                 >
                   Add row before
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().addRowAfter().run()}
                 >
                   Add row after
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().deleteRow().run()}
                 >
                   Delete row
-                </a>
+                </button>
               </li>
               <li className="seperator" />
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().toggleHeaderRow().run()}
                 >
                   Toggle header row
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => editor.chain().focus().mergeOrSplit().run()}
                 >
                   Merge or split
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => setColorPickerActive("cell-color")}
                 >
                   Cell background color
-                </a>
+                </button>
               </li>
             </ul>
           </div>
         </div>,
         <div className="dropdown" key="media-dropdown">
           <button title="Insert media">
-            <svg className="icon">
+            <svg className="icon" aria-hidden="true">
               <use xlinkHref={`${icons}#plus`} />
             </svg>
             <span>Insert</span>
@@ -496,44 +512,44 @@ const EditorToolbar = ({
           <div className="panel arrow">
             <ul>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => setImageDialogActive(true)}
                 >
-                  <svg className="icon">
+                  <svg className="icon" aria-hidden="true">
                     <use xlinkHref={`${icons}#image`} />
                   </svg>
                   Image
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() => setYoutubeDialogActive(true)}
                 >
-                  <svg className="icon">
+                  <svg className="icon" aria-hidden="true">
                     <use xlinkHref={`${icons}#movie`} />
                   </svg>
                   YouTube
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  tabIndex="0"
-                  role="button"
+                <button
+                  type="button"
+                  className="link"
                   onClick={() =>
                     editor.commands.insertContent(
                       `<ul data-type="taskList"><li data-type="taskItem" data-checked="true">A list item</li><li data-type="taskItem" data-checked="false">And another one</li></ul>`,
                     )
                   }
                 >
-                  <svg className="icon">
+                  <svg className="icon" aria-hidden="true">
                     <use xlinkHref={`${icons}#checklist`} />
                   </svg>
                   Task list
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -549,6 +565,7 @@ const EditorToolbar = ({
       key="youtube-dialog"
       {...{ editor, youtubeDialogActive, setYoutubeDialogActive, icons }}
     />,
+    !canShowModal && (
     <div
       key="editor-toolbar-backdrop"
       className="backdrop"
@@ -560,7 +577,8 @@ const EditorToolbar = ({
         setImageDialogActive(false);
         setYoutubeDialogActive(false);
       }}
-    />,
+    />
+    ),
   ];
 };
 
@@ -577,6 +595,16 @@ const ImageDialog = ({
   const [imagePreview, setImagePreview] = useState(false);
   const [altText, setAltText] = useState("");
   const [titleText, setTitleText] = useState("");
+
+  const closeDialog = () => {
+    setImagePreview(false);
+    setAltText("");
+    setImgUrl("");
+    setTitleText("");
+    setImageDialogActive(false);
+  };
+  const dialog = useModalDialog(imageDialogActive, closeDialog);
+  const uid = useUniqueId("editor-image");
 
   const uploadFile = async (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -614,40 +642,40 @@ const ImageDialog = ({
   };
 
   return (
-    <dialog className="image-dialog" open={imageDialogActive}>
-      <a
+    <dialog
+      ref={dialog}
+      className="image-dialog"
+      open={canShowModal ? undefined : imageDialogActive}
+      aria-labelledby={`${uid}-title`}
+    >
+      <button
+        type="button"
         className="control close"
-        tabIndex="0"
-        onClick={() => {
-          setImagePreview(false);
-          setAltText("");
-          setImgUrl("");
-          setTitleText("");
-          setImageDialogActive(false);
-        }}
+        aria-label="Close"
+        onClick={closeDialog}
       >
-        <svg className="icon">
+        <svg className="icon" aria-hidden="true">
           <use xlinkHref={`${icons}#clear`}></use>
         </svg>
-      </a>
-      <h4>Insert image</h4>
+      </button>
+      <h4 id={`${uid}-title`}>Insert image</h4>
 
       <div className="basic-form">
-        <label htmlFor="images-upload">Upload</label>
+        <label htmlFor={`${uid}-upload`}>Upload</label>
         <div style={{ display: "flex" }}>
           <input
             type="file"
             name="images-upload"
             onChange={uploadFile}
             accept="image/*"
-            id="images-upload"
+            id={`${uid}-upload`}
           />
           <label
-            htmlFor="images-upload"
+            htmlFor={`${uid}-upload`}
             className="button"
             style={{ padding: "0px 1.4em 5px 1.1em" }}
           >
-            <svg className="icon">
+            <svg className="icon" aria-hidden="true">
               <use xlinkHref={`${icons}#images`}></use>
             </svg>
           </label>
@@ -683,16 +711,16 @@ const ImageDialog = ({
                 <use xlinkHref={`${icons}#warning`}></use>
               </svg>
             ) : (
-              <svg className="icon">
+              <svg className="icon" aria-hidden="true">
                 <use xlinkHref={`${icons}#upload`}></use>
               </svg>
             )}
           </div>
         </div>
-        <label htmlFor="image-url">URL</label>
+        <label htmlFor={`${uid}-url`}>URL</label>
         <input
           type="url"
-          id="image-url"
+          id={`${uid}-url`}
           placeholder="Link to image, https://example.com/picture.jpg"
           value={imgUrl}
           onChange={(e) => setImgUrl(e.target.value)}
@@ -707,20 +735,20 @@ const ImageDialog = ({
           <div className="no-images">Image preview</div>
         )}
         <div className="additional-options">
-          <label htmlFor="alt-text">Alt text</label>
+          <label htmlFor={`${uid}-alt`}>Alt text</label>
           <input
             disabled={!imagePreview && !imgUrl}
             type="text"
-            id="alt-text"
+            id={`${uid}-alt`}
             placeholder="Textual replacement for the image, for accessibility"
             value={altText}
             onChange={(e) => setAltText(e.target.value)}
           />
 
-          <label htmlFor="title-text">Title text</label>
+          <label htmlFor={`${uid}-title-text`}>Title text</label>
           <input
             type="text"
-            id="title-text"
+            id={`${uid}-title-text`}
             disabled={!imagePreview && !imgUrl}
             placeholder="Supplemental captioning information"
             value={titleText}
@@ -783,42 +811,55 @@ const YoutubeDialog = ({
   const [youtubeWidth, setYoutubeWidth] = useState("");
   const [youtubeHeight, setYoutubeHeight] = useState("");
 
+  const closeDialog = () => {
+    setYoutubeLink("");
+    setYoutubeHeight("");
+    setYoutubeWidth("");
+    setYoutubeDialogActive(false);
+  };
+  const dialog = useModalDialog(youtubeDialogActive, closeDialog);
+  const uid = useUniqueId("editor-youtube");
+
   return (
-    <dialog className="youtube-dialog" open={youtubeDialogActive}>
-      <a
+    <dialog
+      ref={dialog}
+      className="youtube-dialog"
+      open={canShowModal ? undefined : youtubeDialogActive}
+      aria-labelledby={`${uid}-title`}
+    >
+      <button
+        type="button"
         className="control close"
-        tabIndex="0"
-        onClick={() => {
-          setYoutubeLink("");
-          setYoutubeHeight("");
-          setYoutubeWidth("");
-          setYoutubeDialogActive(false);
-        }}
+        aria-label="Close"
+        onClick={closeDialog}
       >
-        <svg className="icon">
+        <svg className="icon" aria-hidden="true">
           <use xlinkHref={`${icons}#clear`}></use>
         </svg>
-      </a>
-      <h4>Insert YoutTube video:</h4>
+      </button>
+      <h4 id={`${uid}-title`}>Insert YouTube video</h4>
       <div className="basic-form">
-        <label htmlFor="youtube-link">Link</label>
+        <label htmlFor={`${uid}-link`}>Link</label>
         <input
           type="url"
+          id={`${uid}-link`}
           value={youtubeLink}
           onChange={(e) => setYoutubeLink(e.target.value)}
           placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         />
-        <label htmlFor="youtube-width">Width</label>
+        <label htmlFor={`${uid}-width`}>Width</label>
         <input
           type="number"
+          id={`${uid}-width`}
           value={youtubeWidth}
           onChange={(e) => setYoutubeWidth(e.target.value)}
           placeholder="640"
           style={{ gridColumnEnd: "-8" }}
         />
-        <label htmlFor="youtube-height">Height</label>
+        <label htmlFor={`${uid}-height`}>Height</label>
         <input
           type="number"
+          id={`${uid}-height`}
           value={youtubeHeight}
           onChange={(e) => setYoutubeHeight(e.target.value)}
           placeholder="480"

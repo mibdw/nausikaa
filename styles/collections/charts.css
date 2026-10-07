@@ -20,10 +20,9 @@
   padding: 0;
   list-style-type: none;
 
+  /* A long name wraps instead of being cut off */
   .label {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    overflow-wrap: break-word;
   }
 
   .value {

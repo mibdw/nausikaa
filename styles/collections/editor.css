@@ -9,21 +9,20 @@
   color: var(--nausikaa-input-text);
   border: 1px solid var(--nausikaa-input-line);
   border-radius: 6px;
-  outline-width: 0;
   box-shadow: 0 0 0 0 var(--nausikaa-input-line-hover) inset;
 
   &:focus,
   &:focus-within {
     border-color: var(--nausikaa-input-line-hover);
     box-shadow: 0 0 0 2px var(--nausikaa-input-line-hover) inset;
-    outline: 2px solid var(--nausikaa-input-line-active);
+    outline: 2px solid var(--nausikaa-focus-outline);
+    outline-offset: 2px;
   }
 
   &:active,
   &.active {
     border-color: var(--nausikaa-input-line-active);
     box-shadow: 0 0 0 2px var(--nausikaa-input-line-active) inset;
-    outline-width: 0;
   }
 
   &:disabled {
@@ -47,13 +46,13 @@
   }
 
   &:invalid,
-  &.invalid {
+  &.invalid,
+  &[aria-invalid="true"] {
     border-color: var(--nausikaa-input-line-error);
 
     &:focus {
       border-color: var(--nausikaa-input-line-error);
       box-shadow: 0 0 0 2px var(--nausikaa-input-line-error) inset;
-      outline-width: 0;
     }
   }
 
@@ -66,6 +65,7 @@
 
     & > .dropdown > button {
       height: calc(var(--nausikaa-input-height) - 1px);
+      min-height: 0;
       white-space: nowrap;
       overflow: hidden;
 
@@ -96,12 +96,15 @@
       padding-top: 0.3em !important;
     }
 
-    & > .dropdown > .panel > ul > li > a {
+    & > .dropdown > .panel > ul > li > a,
+    & > .dropdown > .panel > ul > li > .link {
       padding-right: 2em;
       cursor: pointer;
     }
 
-    button {
+    /* Icon buttons. The items in a menu are buttons with the class link
+       and look like the items of any panel. */
+    button:not(.link) {
       background-color: transparent;
       color: var(--nausikaa-text);
       border-width: 0;
@@ -110,6 +113,7 @@
       box-shadow: none;
       border-radius: 0;
       height: auto;
+      min-height: 0;
 
       & > .icon {
         fill: rgba(var(--nausikaa-subtext0-rgb), 0.8);
@@ -176,7 +180,8 @@
     }
 
     .toolbar-colors {
-      & > a {
+      & > a,
+      & > .link {
         display: flex;
         padding-right: 0 !important;
         cursor: pointer;
@@ -302,7 +307,9 @@
       height: var(--nausikaa-input-height);
     }
 
-    button {
+    /* Icon buttons. The items in a menu are buttons with the class link
+       and look like the items of any panel. */
+    button:not(.link) {
       background-color: transparent;
       color: var(--nausikaa-text);
       border-width: 0;
@@ -311,6 +318,7 @@
       box-shadow: none;
       border-radius: 0;
       height: auto;
+      min-height: 0;
       white-space: nowrap;
 
       & > .icon {
@@ -393,7 +401,7 @@
     padding: 1em;
     z-index: 100149;
     max-width: 60vw;
-    min-width: 30em;
+    min-width: min(30em, 90vw);
     overflow: auto;
 
     header {
@@ -420,7 +428,8 @@
           box-shadow: 0 0 0 2px var(--nausikaa-blue3);
         }
 
-        &.active {
+        &.active,
+        &[aria-pressed="true"] {
           box-shadow: 0 0 0 4px rgba(30, 102, 245, 0.65);
           font-weight: bold;
         }
@@ -443,7 +452,7 @@
   .youtube-dialog {
     padding: 1em;
     z-index: 100149;
-    min-width: 36em;
+    min-width: min(36em, 90vw);
 
     .close {
       cursor: pointer;

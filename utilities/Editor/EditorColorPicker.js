@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { colorTypes } from "./editorUtils.js";
+import { colorTypes, canShowModal, useModalDialog } from "./editorUtils.js";
+import { useUniqueId } from "../useUniqueId.js";
 
 const rgbToHex = (rgb) => {
   if (!rgb) return "";
@@ -28,6 +29,9 @@ const EditorColorPicker = ({
   icons,
 }) => {
   const [activeColor, setActiveColor] = useState(false);
+  const active = Boolean(colorPickerActive && colorPickerActive.length > 0);
+  const dialog = useModalDialog(active, () => setColorPickerActive(false));
+  const titleId = useUniqueId("editor-color-picker-title");
 
   useEffect(() => {
     if (colorPickerActive && colorPickerActive == "text-color") {
@@ -78,20 +82,23 @@ const EditorColorPicker = ({
 
   return [
     <dialog
+      ref={dialog}
       className="editor-color-picker"
       key="dialog"
-      open={colorPickerActive && colorPickerActive.length > 0}
+      open={canShowModal ? undefined : active}
+      aria-labelledby={titleId}
     >
-      <a
+      <button
+        type="button"
         className="control close"
-        tabIndex="0"
+        aria-label="Close"
         onClick={() => setColorPickerActive(false)}
       >
-        <svg className="icon">
+        <svg className="icon" aria-hidden="true">
           <use xlinkHref={`${icons}#clear`}></use>
         </svg>
-      </a>
-      <header>
+      </button>
+      <header id={titleId}>
         Set{" "}
         <em>
           text
@@ -101,37 +108,34 @@ const EditorColorPicker = ({
       </header>
       <div className="color-grid">
         {colorTypes.map((c, i) => (
-          <a
+          <button
+            type="button"
             key={"color-picker-" + i}
             className={`tag ${activeColor == c.hex ? "active" : ""}`}
-            tabIndex="0"
-            role="button"
+            aria-pressed={activeColor == c.hex ? "true" : "false"}
             onClick={() => setColor(c.hex)}
             style={{ backgroundColor: c.hex, color: c.text }}
           >
             {c.name.charAt(0).toUpperCase() + c.name.slice(1)}
-          </a>
+          </button>
         ))}
-        <a
+        <button
+          type="button"
           className="tag nothing"
-          tabIndex="0"
-          role="button"
           onClick={() => unsetColor()}
         >
           No color
-        </a>
+        </button>
       </div>
     </dialog>,
-    <div
-      key="color-picker-backdrop"
-      className="backdrop"
-      style={{
-        zIndex: 100148,
-        display:
-          colorPickerActive && colorPickerActive.length > 0 ? "block" : "none",
-      }}
-      onClick={() => setColorPickerActive(false)}
-    />,
+    !canShowModal && (
+      <div
+        key="color-picker-backdrop"
+        className="backdrop"
+        style={{ zIndex: 100148, display: active ? "block" : "none" }}
+        onClick={() => setColorPickerActive(false)}
+      />
+    ),
   ];
 };
 

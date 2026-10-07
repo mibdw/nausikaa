@@ -85,9 +85,9 @@
           }
         }
 
+        /* The row scrolls sideways and would cut off an outline outside the tab */
         &:focus {
-          outline: 1px dotted var(--nausikaa-subtext0);
-          outline-offset: -3px;
+          outline-offset: -2px;
         }
       }
 

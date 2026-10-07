@@ -17,6 +17,7 @@
      does the same job. */
   .dropdown > .panel,
   .suggestions > .panel,
+  [popover],
   dialog,
   .notification.sticky {
     box-shadow: none;
@@ -63,6 +64,7 @@
     --nausikaa-button-hover: #ddd;
     --nausikaa-button-focus: #ddd;
     --nausikaa-button-active: #bbb;
+    --nausikaa-button-active-text: #000;
     --nausikaa-button-disabled: #fff;
     --nausikaa-button-focus-ring: #888;
     --nausikaa-button-active-ring: #888;
@@ -104,6 +106,7 @@
       --nausikaa-button-hover: #333;
       --nausikaa-button-focus: #333;
       --nausikaa-button-active: #555;
+      --nausikaa-button-active-text: #fff;
       --nausikaa-button-disabled: #666;
       --nausikaa-button-refresh: var(--nausikaa-icon-refresh-white);
       --nausikaa-button-check: var(--nausikaa-icon-check-white);
@@ -118,6 +121,7 @@
 
   /* Knobs: outlined */
   .knobs > li > a,
+  .knobs > li > .dropdown > summary,
   .knob {
     --nausikaa-knob-background: #fff;
     --nausikaa-knob-text: #000;
@@ -365,7 +369,9 @@
   }
 
   /* The current page in the navbar is marked with a line */
-  .navbar .knobs > li.active > a {
+  .navbar .knobs > li.active > a,
+  .navbar .knobs > li.active > .dropdown > summary,
+  .navbar .knobs > li > a[aria-current] {
     border-color: var(--nausikaa-text);
   }
 }

@@ -44,7 +44,6 @@
 
     &:focus {
       color: var(--nausikaa-so-active-text);
-      outline-width: 0;
       border-color: var(--nausikaa-so-border);
       background-color: var(--nausikaa-so-background);
 

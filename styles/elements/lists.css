@@ -27,9 +27,9 @@ dl {
     padding-right: 1em;
     font-family: var(--nausikaa-utility-text);
     color: var(--nausikaa-subtext0);
-    word-spacing: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* A long term wraps instead of being cut off */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   dd {

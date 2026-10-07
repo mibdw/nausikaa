@@ -81,7 +81,7 @@
   &.flamingo {
     --nausikaa-tag-text: var(--nausikaa-ink);
     --nausikaa-tag-background: var(--nausikaa-flamingo3);
-    --nausikaa-tag-hover: #d86464;
+    --nausikaa-tag-hover: #db6d6d;
     --nausikaa-tag-icon: var(--nausikaa-flamingo2);
   }
 
@@ -102,7 +102,7 @@
   &.purple {
     --nausikaa-tag-text: var(--nausikaa-white);
     --nausikaa-tag-background: #9933ff;
-    --nausikaa-tag-hover: #a64dff;
+    --nausikaa-tag-hover: #9a48ed;
     --nausikaa-tag-icon: #e6ccff;
   }
 
@@ -115,8 +115,8 @@
 
   &.maroon {
     --nausikaa-tag-text: var(--nausikaa-white);
-    --nausikaa-tag-background: var(--nausikaa-maroon3);
-    --nausikaa-tag-hover: #e32f3e;
+    --nausikaa-tag-background: #d13f4c;
+    --nausikaa-tag-hover: #be3945;
     --nausikaa-tag-icon: var(--nausikaa-maroon2);
   }
 
@@ -128,9 +128,9 @@
   }
 
   &.orange {
-    --nausikaa-tag-text: var(--nausikaa-ink);
-    --nausikaa-tag-background: #d35400;
-    --nausikaa-tag-hover: #e65c00;
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: #c64f00;
+    --nausikaa-tag-hover: #b04600;
     --nausikaa-tag-icon: #ffa366;
   }
 
@@ -144,14 +144,14 @@
   &.green {
     --nausikaa-tag-text: var(--nausikaa-ink);
     --nausikaa-tag-background: var(--nausikaa-green3);
-    --nausikaa-tag-hover: #388c26;
+    --nausikaa-tag-hover: #529b42;
     --nausikaa-tag-icon: var(--nausikaa-green2);
   }
 
   &.teal {
     --nausikaa-tag-text: var(--nausikaa-white);
-    --nausikaa-tag-background: var(--nausikaa-teal3);
-    --nausikaa-tag-hover: #147d83;
+    --nausikaa-tag-background: #148087;
+    --nausikaa-tag-hover: #116d73;
     --nausikaa-tag-icon: var(--nausikaa-teal2);
   }
 
@@ -165,7 +165,7 @@
   &.sapphire {
     --nausikaa-tag-text: var(--nausikaa-ink);
     --nausikaa-tag-background: var(--nausikaa-sapphire3);
-    --nausikaa-tag-hover: #1c8c9f;
+    --nausikaa-tag-hover: #3398a9;
     --nausikaa-tag-icon: var(--nausikaa-sapphire2);
   }
 
@@ -179,7 +179,7 @@
   &.lavender {
     --nausikaa-tag-text: var(--nausikaa-ink);
     --nausikaa-tag-background: var(--nausikaa-lavender3);
-    --nausikaa-tag-hover: #5972fd;
+    --nausikaa-tag-hover: #6a80fd;
     --nausikaa-tag-icon: var(--nausikaa-lavender2);
   }
 
@@ -191,9 +191,9 @@
   }
 
   &.olive {
-    --nausikaa-tag-text: var(--nausikaa-ink);
-    --nausikaa-tag-background: olive;
-    --nausikaa-tag-hover: #9a9a00;
+    --nausikaa-tag-text: var(--nausikaa-white);
+    --nausikaa-tag-background: #787800;
+    --nausikaa-tag-hover: #666600;
     --nausikaa-tag-icon: #cdcd00;
   }
 
@@ -249,7 +249,7 @@
   &.forest {
     --nausikaa-tag-text: var(--nausikaa-white);
     --nausikaa-tag-background: var(--nausikaa-forest);
-    --nausikaa-tag-hover: #9a9a00;
+    --nausikaa-tag-hover: #005a49;
     --nausikaa-tag-icon: #00b895;
   }
 
@@ -326,4 +326,22 @@ a.tag {
   & > *:nth-child(2) {
     margin-top: 0;
   }
+}
+
+/* A tag can be a <button>, when choosing it does something. It drops the
+   look of a button. */
+button.tag,
+button.tag:hover,
+button.tag:focus,
+button.tag:active,
+button.tag.active,
+button.tag[aria-pressed="true"] {
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  margin-top: 0 !important;
+  border-width: 0;
+  box-shadow: none;
+  overflow: visible;
+  vertical-align: baseline;
 }

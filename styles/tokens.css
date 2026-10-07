@@ -120,7 +120,9 @@
   --nausikaa-utility-text: "IBM Plex Sans", Calibri, Arial, Verdana, sans-serif;
   --nausikaa-mono-text: "IBM Plex Mono", monospace;
   --nausikaa-font-family: var(--nausikaa-block-text);
-  --nausikaa-font-size: 15px;
+  /* 15px at the browser's default size, and larger when the visitor has
+     chosen a larger default font size */
+  --nausikaa-font-size: 0.9375rem;
   --nausikaa-line-height: calc(var(--nausikaa-font-size) * 1.4);
   --nausikaa-paragraph-spacer: calc(var(--nausikaa-line-height) * 0.75);
 
@@ -137,6 +139,11 @@
   --nausikaa-link-active: var(--nausikaa-text);
   --nausikaa-link-visited: var(--nausikaa-mauve3);
 
+  /* Focus: one outline for everything that takes focus. The link blue
+     reaches at least 3:1 against the backgrounds in every theme. */
+  --nausikaa-focus-outline: var(--nausikaa-link-color);
+  --nausikaa-focus-width: 2px;
+
   /* Inputs */
   --nausikaa-input-font-size: 1em;
   --nausikaa-input-height: 2.6em;
@@ -147,7 +154,8 @@
   --nausikaa-input-background-disabled: var(--nausikaa-surface1);
   --nausikaa-input-text: var(--nausikaa-text);
   --nausikaa-input-vague: var(--nausikaa-subtext0);
-  --nausikaa-input-line: var(--nausikaa-surface2);
+  /* Field borders need 3:1 against the background to be seen */
+  --nausikaa-input-line: var(--nausikaa-overlay1);
   --nausikaa-input-line-hover: #0388bd;
   --nausikaa-input-line-focus: #0493cc;
   --nausikaa-input-line-active: var(--nausikaa-sky3);
@@ -173,6 +181,12 @@
   --nausikaa-button-check: var(--nausikaa-icon-check-black);
   --nausikaa-button-focus-ring: rgba(var(--nausikaa-surface1-rgb), 0.65);
   --nausikaa-button-active-ring: rgba(var(--nausikaa-overlay0-rgb), 0.65);
+
+  /* Meters: the filled part needs 3:1 against the empty part */
+  --nausikaa-meter-optimum: #2e8a1f;
+  --nausikaa-ins-line: #2e8a1f;
+  --nausikaa-meter-suboptimum: #a86500;
+  --nausikaa-meter-poor: var(--nausikaa-red3);
 
   /* Highlighted text */
   --nausikaa-mark-background: rgba(229, 200, 144, 0.7);

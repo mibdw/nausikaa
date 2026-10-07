@@ -183,33 +183,33 @@ meter {
 
   &::-webkit-meter-optimum-value {
     background-image: none;
-    background-color: var(--nausikaa-green3);
+    background-color: var(--nausikaa-meter-optimum);
     border-radius: 2px;
   }
 
   &::-webkit-meter-suboptimum-value {
     background-image: none;
-    background-color: var(--nausikaa-yellow3);
+    background-color: var(--nausikaa-meter-suboptimum);
     border-radius: 2px;
   }
 
   &::-webkit-meter-even-less-good-value {
     background-image: none;
-    background-color: var(--nausikaa-red3);
+    background-color: var(--nausikaa-meter-poor);
     border-radius: 2px;
   }
 
   &::-moz-meter-bar {
     background-image: none;
-    background-color: var(--nausikaa-green3);
+    background-color: var(--nausikaa-meter-optimum);
     border-radius: 2px;
   }
 
   &:-moz-meter-sub-optimum::-moz-meter-bar {
-    background-color: var(--nausikaa-yellow3);
+    background-color: var(--nausikaa-meter-suboptimum);
   }
 
   &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
-    background-color: var(--nausikaa-red3);
+    background-color: var(--nausikaa-meter-poor);
   }
 }

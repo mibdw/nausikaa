@@ -9,6 +9,14 @@ table,
   margin: var(--nausikaa-paragraph-spacer) 0;
   font-family: var(--nausikaa-utility-text);
 
+  /* The name of the table, read out first by screen readers */
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-weight: bold;
+    padding: 0 0 0.5em;
+  }
+
   th,
   td {
     text-align: left;
@@ -32,6 +40,17 @@ table,
 
   tfoot th {
     border-top: 2px solid var(--nausikaa-crust);
+  }
+
+  /* Groups of columns get a line between them, and one column can be
+     marked. Cells with a background of their own (striped rows, hover)
+     cover the column's. */
+  colgroup + colgroup {
+    border-left: 2px solid var(--nausikaa-crust);
+  }
+
+  col.highlight {
+    background-color: var(--nausikaa-surface0);
   }
 
   &.bordered {

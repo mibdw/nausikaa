@@ -70,13 +70,20 @@
     }
   }
 
+  /*
+   * The menu button on small screens. Write it as <details class="navbar-toggle">
+   * with the icons in its <summary>: screen readers announce a button that is
+   * expanded or collapsed. The older form, a hidden checkbox with a label,
+   * still works but is announced as a checkbox.
+   */
   .navbar-toggle {
     position: absolute;
     opacity: 0;
     pointer-events: none;
     display: none;
 
-    & + label {
+    & + label,
+    & > summary {
       width: calc(var(--nausikaa-header-height) * 0.8);
       height: calc(var(--nausikaa-header-height) * 0.8);
       transform: translateY(-0.4em);
@@ -98,7 +105,8 @@
       }
     }
 
-    &:checked + label {
+    &:checked + label,
+    &[open] > summary {
       .icon.menu {
         display: none;
       }
@@ -110,9 +118,26 @@
 
     & + label:hover,
     &:focus + label,
-    &:active + label {
+    &:active + label,
+    & > summary:hover,
+    & > summary:focus {
       background-color: var(--nausikaa-base);
       border-color: var(--nausikaa-base);
+    }
+  }
+
+  details.navbar-toggle {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+
+    & > summary {
+      list-style: none;
+      cursor: pointer;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
     }
   }
 
@@ -150,7 +175,6 @@
         }
 
         &:focus {
-          outline: none;
           box-shadow: 0 0 0 2px var(--nausikaa-crust);
         }
       }
@@ -284,10 +308,13 @@
     }
   }
 
+  /* A knob that opens a menu is a <details class="dropdown"> in the list
+     item, with the knob as its <summary> */
   .knobs > li {
     margin-right: 0.5em;
 
-    & > a {
+    & > a,
+    & > .dropdown > summary {
       color: var(--nausikaa-text);
       margin-right: 0;
       margin-bottom: 0;
@@ -312,7 +339,9 @@
       }
     }
 
-    &.active > a {
+    &.active > a,
+    &.active > .dropdown > summary,
+    & > a[aria-current] {
       background-color: rgba(var(--nausikaa-base-rgb), 0.9);
       color: var(--nausikaa-text);
 
@@ -321,7 +350,8 @@
       }
     }
 
-    &.dropdown:focus-within > a {
+    &.dropdown:focus-within > a,
+    & > .dropdown[open] > summary {
       background-color: var(--nausikaa-base);
       border-color: var(--nausikaa-crust);
     }
@@ -332,7 +362,8 @@
     border-bottom-color: transparent;
 
     .knobs > li {
-      & > a {
+      & > a,
+      & > .dropdown > summary {
         background-color: transparent;
 
         &:hover {
@@ -345,13 +376,16 @@
         }
       }
 
-      &:focus-within > a {
+      &:focus-within > a,
+      & > .dropdown[open] > summary {
         background-color: transparent;
         border-color: rgba(var(--nausikaa-base-rgb), 0.6);
         box-shadow: 0 0 0 2px rgba(var(--nausikaa-base-rgb), 0.6);
       }
 
-      &.active > a {
+      &.active > a,
+      &.active > .dropdown > summary,
+      & > a[aria-current] {
         background-color: rgba(var(--nausikaa-base-rgb), 0.5);
         color: var(--nausikaa-text);
 
@@ -405,14 +439,16 @@
     & > .navbar-toggle {
       display: block;
 
-      & + label {
+      & + label,
+      & > summary {
         display: inline-block;
         position: absolute;
         top: 0.7em;
         right: 0.5em;
       }
 
-      &:checked ~ * {
+      &:checked ~ *,
+      &[open] ~ * {
         display: flex;
 
         &.spacer {
@@ -469,6 +505,51 @@
           /* The knob itself stays a row, as wide as the menu */
           & > a {
             display: flex;
+          }
+
+          /* A menu written as <details>: the knob is a row like the
+             others, and the menu opens below it inside the navbar */
+          & > .dropdown {
+            display: block;
+
+            & > summary {
+              display: flex;
+              border-radius: 0;
+              line-height: 2em;
+              height: 2em;
+              padding: 0 0.5em;
+            }
+
+            .icon.last {
+              margin-left: auto;
+              position: relative;
+              right: 0.5rem;
+            }
+
+            & > .panel {
+              position: static;
+              transform: none;
+              box-shadow: none;
+              border-width: 0;
+              border-radius: 0;
+              width: 100%;
+              max-width: 100%;
+              display: block;
+              border-bottom: 1px solid var(--nausikaa-crust);
+              margin: 0;
+              padding: 0;
+              opacity: 1;
+              pointer-events: all;
+
+              &.arrow:after {
+                display: none;
+              }
+
+              & > ul > li.active a {
+                background-color: var(--nausikaa-mantle);
+                color: var(--nausikaa-text);
+              }
+            }
           }
 
           &.dropdown {
@@ -555,7 +636,8 @@
         }
       }
 
-      &:focus-within > .panel.arrow.top.right {
+      &:focus-within > .panel.arrow.top.right,
+      &[open] > .panel.arrow.top.right {
         transform: translate(0, 0);
       }
     }

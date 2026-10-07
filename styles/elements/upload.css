@@ -182,6 +182,9 @@
       display: inline-flex;
       cursor: pointer;
       border-radius: 4px;
+      /* At least 24px to click or tap, without moving the icon */
+      padding: 2px;
+      margin: -2px;
 
       & > .icon {
         width: 1.4em;

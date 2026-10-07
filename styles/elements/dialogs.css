@@ -1,7 +1,8 @@
 
 dialog {
   margin: var(--nausikaa-paragraph-spacer) 0;
-  min-width: 20rem;
+  /* Never wider than a phone screen, even at 400% zoom */
+  min-width: min(20rem, 80vw);
   max-width: 80vw;
   padding: 1.5rem 3rem 1.5rem 2rem;
   border: 1px solid var(--nausikaa-crust);
@@ -25,6 +26,9 @@ dialog {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    /* A tall dialog scrolls instead of running off the screen */
+    max-height: 80vh;
+    overflow-y: auto;
     animation: nausikaa-show-dialog 0.3s ease normal;
 
     &.hide {
@@ -159,4 +163,38 @@ dialog {
   100% {
     opacity: 0;
   }
+}
+
+/*
+ * Popovers: any element with the popover attribute, opened by a button with
+ * popovertarget="its id". The browser places it on top of the page, closes
+ * it with Escape or a click elsewhere, and returns the focus to the button.
+ * That takes Chrome and Edge 114, Safari 17 or Firefox 125; older browsers
+ * ignore the attribute and show the element where it is in the page.
+ */
+[popover] {
+  max-width: min(90vw, 40rem);
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: auto;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--nausikaa-surface2);
+  border-radius: 6px;
+  background-color: var(--nausikaa-base);
+  color: var(--nausikaa-text);
+  box-shadow: 2px 2px 5px rgba(24, 24, 37, 0.5);
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* A dialog opened as a popover is placed by the browser, not by the rules
+   for an open dialog above */
+dialog[popover] {
+  padding: 1.5rem 3rem 1.5rem 2rem;
 }
