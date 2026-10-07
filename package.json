@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "nausikaa",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "CSS building blocks for accessible websites: one stylesheet that styles plain HTML, with light, dark and e-ink themes.",
   "main": "dist/nausikaa.min.css",
   "style": "dist/nausikaa.min.css",
